@@ -1,0 +1,26 @@
+/* 제목이 본문과 섞이지 않게: 굵기·크기·여백·줄로 구분한다 */
+.md-typeset h1 {
+  font-weight: 700;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset h2 {
+  font-weight: 700;
+  font-size: 1.6em;
+  margin-top: 2.4em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid var(--md-primary-fg-color);
+}
+
+.md-typeset h3 {
+  font-weight: 700;
+  font-size: 1.25em;
+  margin-top: 1.8em;
+  padding-left: 0.6em;
+  border-left: 4px solid var(--md-accent-fg-color);
+}
+
+.md-typeset p,
+.md-typeset li {
+  line-height: 1.8;
+}

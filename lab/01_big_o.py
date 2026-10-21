@@ -31,33 +31,6 @@ def total_loop(xs):
     return s
 
 
-def insertion_sort(xs):
-    xs = list(xs)
-    for i in range(1, len(xs)):
-        cur = xs[i]
-        j = i - 1
-        while j >= 0 and xs[j] > cur:
-            xs[j + 1] = xs[j]
-            j -= 1
-        xs[j + 1] = cur
-    return xs
-
-
-def merge_sort(xs):
-    if len(xs) <= 1:
-        return list(xs)
-    mid = len(xs) // 2
-    a, b = merge_sort(xs[:mid]), merge_sort(xs[mid:])
-    out, i, j = [], 0, 0
-    while i < len(a) and j < len(b):
-        if a[i] <= b[j]:
-            out.append(a[i]); i += 1
-        else:
-            out.append(b[j]); j += 1
-    out.extend(a[i:]); out.extend(b[j:])
-    return out
-
-
 def best(stmt, number=1, repeat=5):
     return min(timeit.repeat(stmt, number=number, repeat=repeat)) / number
 
@@ -88,12 +61,3 @@ for n in (100_000, 1_000_000):
     a = best(lambda: total_loop(xs), number=5)
     b = best(lambda: sum(xs), number=5)
     print(f"  n={n:,}: for {ms(a)}, sum {ms(b)}, {a / b:.1f}배")
-
-print("\n## 4. n이 작을 때: 삽입정렬(n²) vs 병합정렬(n log n), 둘 다 순수 파이썬")
-print("| n | 삽입 | 병합 | 빠른 쪽 |")
-for n in (4, 8, 16, 32, 64, 128, 256, 1024):
-    data = [random.random() for _ in range(n)]
-    k = max(1, 20_000 // n)
-    a = best(lambda: insertion_sort(data), number=k)
-    b = best(lambda: merge_sort(data), number=k)
-    print(f"| {n} | {a * 1e6:,.1f} µs | {b * 1e6:,.1f} µs | {'삽입' if a < b else '병합'} |")

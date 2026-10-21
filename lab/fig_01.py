@@ -3,7 +3,6 @@
 측정값은 lab/01_big_o.py를 한 번 돌린 결과를 그대로 옮겨 적었다.
 글자는 SVG 안에 글자로 남긴다(글꼴 모양을 파일에 넣지 않는다). 보는 쪽 글꼴로 그려진다.
 """
-import math
 import os
 
 import matplotlib
@@ -37,22 +36,26 @@ def save(fig, name):
     plt.close(fig)
 
 
-def grid(ax, rows, cols, x0, y0, cell, title):
+def grid(ax, rows, cols, x0, y0, title, cw=2.4, ch=0.5):
     for r in range(rows):
         for c in range(cols):
-            ax.add_patch(Rectangle((x0 + c * cell, y0 + r * cell), cell * 0.9, cell * 0.9, color=SLOW, alpha=0.8))
-    ax.text(x0 + cols * cell / 2, y0 + rows * cell + 0.5, title, ha="center", va="bottom", fontsize=13)
+            ax.add_patch(Rectangle((x0 + c * cw, y0 + r * ch), cw * 0.94, ch * 0.86, color=SLOW, alpha=0.8))
+    ax.text(x0 + cols * cw / 2, y0 + rows * ch + 0.4, title, ha="center", va="bottom", fontsize=13)
 
 
-# 1. 느린 방법: 회원마다 탈퇴 명단을 다 본다 → 칸 하나가 비교 한 번
-fig, ax = plt.subplots(figsize=(9, 4.6))
-ax.set_xlim(-1, 21); ax.set_ylim(-3.2, 20); ax.axis("off")
-grid(ax, 8, 2, 1, 0, 1, "회원 8명 × 탈퇴 2명\n= 16번")
-grid(ax, 16, 4, 9, 0, 1, "회원 16명 × 탈퇴 4명\n= 64번")
-ax.annotate("", xy=(8.4, 4), xytext=(4, 4), arrowprops=dict(arrowstyle="->", color="#555", lw=1.5))
-ax.text(6.2, 4.6, "둘 다 두 배", ha="center", fontsize=12, color="#555")
-ax.text(15.5, 8, "세로 두 배\n가로 두 배\n→ 칸은 네 배", fontsize=12, color="#333", va="center")
-ax.text(0.2, -1.6, "빨간 칸 하나 = 회원 한 명과 탈퇴자 한 명의 이름을 맞대 보는 일 한 번", fontsize=11, color="#555")
+# 1. 느린 방법: 회원마다 탈퇴 명단을 다 본다 → 칸 하나가 비교 한 번 (탈퇴자는 회원 10명 중 1명꼴)
+fig, ax = plt.subplots(figsize=(8.5, 5.4))
+ax.set_xlim(-1.5, 22); ax.set_ylim(-2.6, 13); ax.axis("off")
+grid(ax, 10, 1, 1.5, 0, "회원 10명 × 탈퇴 1명\n= 10칸")
+grid(ax, 20, 2, 10, 0, "회원 20명 × 탈퇴 2명\n= 40칸")
+ax.annotate("", xy=(9.3, 2.5), xytext=(4.4, 2.5), arrowprops=dict(arrowstyle="->", color="#555", lw=1.5))
+ax.text(6.85, 2.9, "둘 다 두 배", ha="center", fontsize=12, color="#555")
+ax.annotate("", xy=(9.4, 10.1), xytext=(9.4, 0), arrowprops=dict(arrowstyle="->", color="#999", lw=1))
+ax.text(9.1, 5, "회원 수", rotation=90, ha="right", va="center", fontsize=10, color="#777")
+ax.annotate("", xy=(14.9, -0.4), xytext=(10, -0.4), arrowprops=dict(arrowstyle="->", color="#999", lw=1))
+ax.text(12.4, -0.8, "탈퇴자 수", ha="center", va="top", fontsize=10, color="#777")
+ax.text(15.8, 5, "세로(회원) 두 배\n가로(탈퇴자) 두 배\n→ 칸은 네 배", fontsize=12, color="#333", va="center")
+ax.text(-1, -2.2, "빨간 칸 하나 = 회원 한 명과 탈퇴자 한 명의 이름을 맞대 보는 일 한 번", fontsize=11, color="#555")
 save(fig, "slow-grid.svg")
 
 # 2. 빠른 방법: 탈퇴자를 바로 찾는 상자에 넣고, 회원마다 한 번만 물어본다
@@ -62,7 +65,7 @@ for ax, n in zip(axes, (8, 16)):
     for i in range(n):
         ax.add_patch(Rectangle((i, 0), 0.8, 0.8, color=FAST, alpha=0.85))
     ax.add_patch(FancyBboxPatch((n / 2 - 2, 2.4), 4, 1.1, boxstyle="round,pad=0.1", color=YEL))
-    ax.text(n / 2, 2.95, "탈퇴자 상자", ha="center", va="center", fontsize=11)
+    ax.text(n / 2, 2.95, "탈퇴자 사물함", ha="center", va="center", fontsize=11)
     for i in range(n):
         ax.annotate("", xy=(n / 2, 2.35), xytext=(i + 0.4, 0.85), arrowprops=dict(arrowstyle="-", color="#9bb", lw=0.7))
     ax.text(n / 2, -1.0, f"회원 {n}명 → {n}번", ha="center", fontsize=13)
@@ -73,39 +76,25 @@ save(fig, "fast-row.svg")
 members = [1000, 2000, 4000, 8000]
 slow = [0.936, 3.539, 13.272, 52.972]
 fast = [0.016, 0.034, 0.063, 0.144]
-fig, axes = plt.subplots(1, 2, figsize=(10, 3.8), gridspec_kw={"width_ratios": [1.2, 1]})
-ax = axes[0]
+fig, ax = plt.subplots(figsize=(7.5, 4.2))
 xs = range(4)
 ax.plot(xs, slow, "o-", color=SLOW, lw=2.5, label="느린 방법")
 ax.plot(xs, fast, "o-", color=FAST, lw=2.5, label="빠른 방법")
 for x, y in zip(xs, slow):
     ax.annotate(f"{y:.1f}ms", (x, y), textcoords="offset points", xytext=(0, 8), ha="center", fontsize=9, color=SLOW)
-ax.annotate("0.14ms\n(바닥에 붙어 보여요)", (3, fast[-1]), textcoords="offset points", xytext=(-10, 22), ha="right", fontsize=9, color=FAST)
+ax.annotate("파란 선: 너무 작아서 바닥에 붙어 보여요\n(8,000명일 때 0.14ms, 두 배마다 약 2배)", (3, fast[-1]), textcoords="offset points", xytext=(-10, 22), ha="right", fontsize=9, color=FAST)
 ax.set_xticks(list(xs)); ax.set_xticklabels([f"{m:,}명" for m in members])
-ax.set_ylim(0, 65); ax.set_ylabel("걸린 시간 (ms)"); ax.set_title("걸린 시간", fontsize=13)
+ax.set_ylim(0, 65); ax.set_ylabel("걸린 시간 (ms = 밀리초)"); ax.set_title("걸린 시간", fontsize=13)
 ax.legend(frameon=False, loc="upper left")
-ax = axes[1]
-labs = ["1,000→2,000", "2,000→4,000", "4,000→8,000"]
-rs = [slow[k + 1] / slow[k] for k in range(3)]
-rf = [fast[k + 1] / fast[k] for k in range(3)]
-w = 0.38
-ax.bar([k - w / 2 for k in range(3)], rs, w, color=SLOW, label="느린 방법")
-ax.bar([k + w / 2 for k in range(3)], rf, w, color=FAST, label="빠른 방법")
 for k in range(3):
-    ax.text(k - w / 2, rs[k] + 0.08, f"×{rs[k]:.1f}", ha="center", fontsize=10)
-    ax.text(k + w / 2, rf[k] + 0.08, f"×{rf[k]:.1f}", ha="center", fontsize=10)
-ax.axhline(4, color=SLOW, ls=":", lw=1); ax.axhline(2, color=FAST, ls=":", lw=1)
-ax.text(2.62, 4.08, "4배", fontsize=9, color=SLOW); ax.text(2.62, 2.08, "2배", fontsize=9, color=FAST)
-ax.set_xticks(range(3)); ax.set_xticklabels(labs, fontsize=9)
-ax.set_ylim(0, 4.8); ax.set_yticks([]); ax.spines["left"].set_visible(False)
-ax.set_title("두 배로 늘릴 때마다 몇 배?", fontsize=13)
+    ax.text(k + 0.4, (slow[k] + slow[k + 1]) / 2 + 5, "×4", ha="center", fontsize=13, color=SLOW, fontweight="bold")
 fig.tight_layout()
 save(fig, "measured.svg")
 
-# 4. 3n²+5n+2 에서 앞부분과 뒷부분의 크기
+# 4. n×n+5n+2 에서 앞부분과 뒷부분의 크기
 fig, ax = plt.subplots(figsize=(9, 2.8))
-rows = [(10, 300, 52, "앞 300번 · 뒤 52번"), (1000, 3_000_000, 5_002, "앞 300만 번 · 뒤 5,002번"),
-        (1_000_000, 3e12, 5_000_002, "앞 3조 번 · 뒤 500만 번")]
+rows = [(10, 100, 52, "앞 100번 · 뒤 52번"), (1000, 1_000_000, 5_002, "앞 100만 번 · 뒤 5,002번"),
+        (1_000_000, 1e12, 5_000_002, "앞 1조 번 · 뒤 500만 번")]
 for i, (n, big, small, lab) in enumerate(rows):
     tot = big + small
     ax.barh(i, big / tot * 100, color=SLOW)
@@ -114,134 +103,113 @@ for i, (n, big, small, lab) in enumerate(rows):
 ax.set_yticks(range(3)); ax.set_yticklabels([f"n = {n:,}" for n, *_ in rows])
 ax.invert_yaxis(); ax.set_xlim(0, 150); ax.set_xticks([])
 ax.spines["bottom"].set_visible(False)
-ax.legend(["앞부분 3 × n × n", "뒷부분 5 × n + 2"], loc="lower left", fontsize=10, frameon=False, ncol=2, bbox_to_anchor=(0.0, 1.0))
+ax.legend(["앞부분 n × n", "뒷부분 5 × n + 2"], loc="lower left", fontsize=10, frameon=False, ncol=2, bbox_to_anchor=(0.0, 1.0))
 save(fig, "shares.svg")
 
-# 5. 모양: 1, log n, n, n log n, n×n 이 자라는 모습
-fig, axes = plt.subplots(1, 2, figsize=(10, 4))
-for ax, top in ((axes[0], 16), (axes[1], 64)):
-    ns = list(range(1, top + 1))
-    lines = [("n × n", [n * n for n in ns], SLOW), ("n × log n", [n * math.log2(n) for n in ns], YEL),
-             ("n", ns, FAST), ("log n", [math.log2(n) for n in ns], "#6a994e"), ("1", [1] * top, "#555")]
-    for lab, ys, col in lines:
-        ax.plot(ns, ys, color=col, lw=2.5)
-    ax.set_xlabel("데이터 개수 n")
-    if top == 16:
-        ax.set_ylim(0, 80); ax.set_title("n이 16까지 (오른쪽 그래프의 왼쪽 아래를 크게)", fontsize=11)
-        ax.set_xticks([0, 4, 8, 12, 16])
-        for lab, ys, col in lines:
-            y = min(ys[-1], 76) if lab != "n × n" else 76
-            ax.text(top + 0.4, y if lab != "1" else 1, lab if lab != "1" else "1 (그대로)", va="center", fontsize=10, color=col)
-        ax.set_ylabel("일하는 횟수")
-    else:
-        ax.set_title("n이 64까지", fontsize=12)
-        ax.text(top + 1, 64 * 64, "n × n", va="center", fontsize=10, color=SLOW)
-        ax.text(top + 1, 64 * 6 + 380, "n × log n", va="center", fontsize=10, color="#b8860b")
-        ax.text(top + 1, 280, "n, log n, 1은\n바닥에 붙어요", va="top", fontsize=9, color="#555")
-    ax.set_xlim(0, top * 1.25)
-fig.tight_layout()
-save(fig, "shapes.svg")
 
-# 6. log: 반으로 몇 번 나눠야 하나
-fig, ax = plt.subplots(figsize=(9, 2.8))
-ax.set_xlim(0, 34); ax.set_ylim(-1.5, 2); ax.axis("off")
-x = 0
-for k, n in enumerate((16, 8, 4, 2, 1)):
-    for i in range(n):
-        ax.add_patch(Rectangle((x + i * 0.4, 0), 0.34, 0.8, color=FAST if n > 1 else YEL))
-    ax.text(x + n * 0.2, 1.1, f"{n}장", ha="center", fontsize=11)
-    if n > 1:
-        ax.annotate("", xy=(x + n * 0.4 + 1.2, 0.4), xytext=(x + n * 0.4 + 0.2, 0.4), arrowprops=dict(arrowstyle="->", color="#555"))
-        ax.text(x + n * 0.4 + 0.7, -0.35, "반", ha="center", fontsize=10, color="#555")
-    x += n * 0.4 + 1.6
-ax.text(0, -1.2, "16장 → 1장: 반으로 4번.  1,000장이면 10번쯤, 100만 장이면 20번쯤.  이 '몇 번'이 log n이에요.", fontsize=11, color="#333")
-save(fig, "log-halving.svg")
-
-# 7. 작은 데이터: 삽입정렬 vs 병합정렬, 누가 몇 배 빠른가
-ns2 = [8, 32, 64, 128, 1024]
-ins = [0.9, 9.4, 34.2, 121.8, 10837]
-mer = [3.9, 20.4, 44.5, 97.3, 975]
-fig, ax = plt.subplots(figsize=(9, 3.6))
-for k, (n, a, b) in enumerate(zip(ns2, ins, mer)):
-    if a < b:
-        v = b / a; ax.barh(k, -v, color=SLOW); ax.text(-v - 0.2, k, f"삽입정렬이 {v:.1f}배 빨라요", ha="right", va="center", fontsize=10)
-    else:
-        v = a / b; ax.barh(k, v, color=FAST); ax.text(v + 0.2, k, f"병합정렬이 {v:.1f}배 빨라요", ha="left", va="center", fontsize=10)
-ax.axvline(0, color="#555", lw=1)
-ax.set_yticks(range(5)); ax.set_yticklabels([f"{n}개" for n in ns2]); ax.invert_yaxis()
-ax.set_xlim(-12, 19); ax.set_xticks([]); ax.spines["bottom"].set_visible(False)
-ax.set_ylabel("정렬할 개수")
-save(fig, "sort-small.svg")
-
-# 8. 심부름: 주문마다 창고에 다녀오기 vs 한 번에 모아 다녀오기
-fig, axes = plt.subplots(1, 2, figsize=(9, 3.4))
-for ax, trips, title in ((axes[0], 6, "주문 6건, 하나씩: 왕복 6번"), (axes[1], 1, "주문 6건, 한 번에 모아서: 왕복 1번")):
-    ax.set_xlim(0, 10); ax.set_ylim(0, 7); ax.axis("off")
+# 8. 심부름: 주문마다 창고에 다녀오기 vs 한 번에 모아 다녀오기 (안에서 찾는 일은 양쪽 다 6번)
+fig, axes = plt.subplots(1, 2, figsize=(9.5, 2.9))
+for ax, trips, title in ((axes[0], 6, "하나씩 물으면: 왕복 6번"), (axes[1], 1, "모아서 물으면: 왕복 1번")):
+    ax.set_xlim(0, 10); ax.set_ylim(1.2, 6.8); ax.axis("off")
     ax.add_patch(FancyBboxPatch((0.3, 2.5), 2, 2, boxstyle="round,pad=0.1", color=FAST, alpha=0.85))
     ax.text(1.3, 3.5, "앱", ha="center", va="center", fontsize=13, color="white")
-    ax.add_patch(FancyBboxPatch((7.4, 2.5), 2.3, 2, boxstyle="round,pad=0.1", color=YEL))
-    ax.text(8.55, 3.5, "데이터\n베이스", ha="center", va="center", fontsize=12)
+    ax.add_patch(FancyBboxPatch((7.2, 2.1), 2.5, 2.8, boxstyle="round,pad=0.1", color=YEL))
+    ax.text(8.45, 4.35, "데이터베이스", ha="center", va="center", fontsize=10)
+    for k in range(6):
+        ax.add_patch(Rectangle((7.45 + (k % 3) * 0.72, 2.45 + (k // 3) * 0.75), 0.55, 0.55, color="white", ec="#888"))
+    ax.text(8.45, 1.6, "안에서 찾기 6번", ha="center", va="top", fontsize=9, color="#555")
     for t in range(trips):
         y = 2.7 + (t * 1.6 / max(1, trips - 1) if trips > 1 else 0.8)
-        ax.add_patch(FancyArrowPatch((2.5, y), (7.2, y), arrowstyle="<->", mutation_scale=12, color=SLOW if trips > 1 else "#3a7d44", lw=1.4))
+        ax.add_patch(FancyArrowPatch((2.5, y), (7.0, y), arrowstyle="<->", mutation_scale=12, color=SLOW if trips > 1 else "#3a7d44", lw=1.4))
     ax.text(5, 6.2, title, ha="center", fontsize=12)
+fig.text(0.5, -0.06, "주문 6개를 물어볼 때. 찾는 일은 둘 다 6번이라 빅오는 같고, 왕복 횟수만 달라요", ha="center", fontsize=11, color="#555")
 save(fig, "trips.svg")
 
-# 9. 카드로 보는 두 정렬
-fig, axes = plt.subplots(1, 2, figsize=(9, 3.4))
-ax = axes[0]; ax.set_xlim(0, 10); ax.set_ylim(0, 6); ax.axis("off")
-ax.set_title("삽입정렬: 하나씩 제자리에 끼우기", fontsize=12)
-for i, v in enumerate([2, 5, 8, 9]):
-    ax.add_patch(Rectangle((0.6 + i * 1.5, 1.2), 1.2, 1.7, color=GREY)); ax.text(1.2 + i * 1.5, 2.05, str(v), ha="center", va="center", fontsize=14)
-ax.add_patch(Rectangle((3.6, 4.0), 1.2, 1.7, color=YEL)); ax.text(4.2, 4.85, "6", ha="center", va="center", fontsize=14)
-ax.annotate("", xy=(3.85, 3.05), xytext=(4.2, 3.95), arrowprops=dict(arrowstyle="->", color="#555", lw=1.5))
-ax.annotate("", xy=(6.9, 0.9), xytext=(5.4, 0.9), arrowprops=dict(arrowstyle="->", color=SLOW, lw=1.5))
-ax.text(6.2, 0.25, "8, 9는 한 칸씩 밀려나요", ha="center", fontsize=10, color=SLOW)
-ax = axes[1]; ax.set_xlim(0, 10); ax.set_ylim(0, 6); ax.axis("off")
-ax.set_title("병합정렬: 반씩 정리한 뒤 합치기", fontsize=12)
-for i, v in enumerate([2, 6, 9]):
-    ax.add_patch(Rectangle((0.4 + i * 1.3, 3.8), 1.1, 1.5, color=FAST, alpha=0.5)); ax.text(0.95 + i * 1.3, 4.55, str(v), ha="center", va="center", fontsize=13)
-for i, v in enumerate([3, 5, 8]):
-    ax.add_patch(Rectangle((5.6 + i * 1.3, 3.8), 1.1, 1.5, color=FAST, alpha=0.5)); ax.text(6.15 + i * 1.3, 4.55, str(v), ha="center", va="center", fontsize=13)
-for i, v in enumerate([2, 3, 5, 6, 8, 9]):
-    ax.add_patch(Rectangle((1.1 + i * 1.3, 0.8), 1.1, 1.5, color=FAST)); ax.text(1.65 + i * 1.3, 1.55, str(v), ha="center", va="center", fontsize=13, color="white")
-ax.annotate("", xy=(4.5, 2.4), xytext=(2.2, 3.7), arrowprops=dict(arrowstyle="->", color="#555"))
-ax.annotate("", xy=(5.6, 2.4), xytext=(7.8, 3.7), arrowprops=dict(arrowstyle="->", color="#555"))
-ax.text(5, 3.1, "맨 앞끼리 비교", ha="center", fontsize=10, color="#555")
-save(fig, "cards.svg")
+# 12. set 상자: 이름만 보면 칸 번호가 정해진다
+fig, ax = plt.subplots(figsize=(9, 3.4))
+ax.set_xlim(-0.5, 10.5); ax.set_ylim(-1.3, 4.0); ax.axis("off")
+for i in range(10):
+    hit = i in (2, 7)
+    ax.add_patch(Rectangle((i + 0.05, 0), 0.9, 1.1, color=YEL if hit else GREY, alpha=0.9))
+    ax.text(i + 0.5, 0.55, str(i), ha="center", va="center", fontsize=12)
+for name, box, x in (("민지", 2, 1.4), ("준호", 7, 7.2)):
+    ax.text(x, 3.2, name, ha="center", va="center", fontsize=13, bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="#888"))
+    ax.annotate("", xy=(box + 0.5, 1.15), xytext=(x, 2.75), arrowprops=dict(arrowstyle="->", color=SLOW, lw=1.6))
+    ax.text((x + box + 0.5) / 2 + 0.25, 2.0, f"늘 {box}번 사물함", fontsize=10, color=SLOW)
+ax.text(5, -0.8, "넣을 때도, 물을 때도 같은 이름은 같은 사물함 → 그 사물함 하나만 열어 봐요", ha="center", fontsize=12)
+save(fig, "set-lockers.svg")
 
+# 13. 결석한 친구 찾기: 반 친구 한 명마다 결석 명단을 처음부터 끝까지
+fig, ax = plt.subplots(figsize=(8, 4.2))
+ax.set_xlim(0, 10); ax.set_ylim(-0.8, 6.4); ax.axis("off")
+cls = ["민지", "준호", "서연", "도윤", "하은"]
+absent = ["준호", "하은"]
+ax.text(1.5, 6.0, "반 친구 명단", ha="center", fontsize=12)
+ax.text(8.0, 6.0, "결석 명단", ha="center", fontsize=12)
+for i, nm in enumerate(cls):
+    y = 5.0 - i * 1.0
+    ax.text(1.5, y, nm, ha="center", va="center", fontsize=12, bbox=dict(boxstyle="round,pad=0.3", fc="#fde4dc" if i == 0 else "white", ec="#888"))
+for j, nm in enumerate(absent):
+    y = 4.0 - j * 1.6
+    ax.text(8.0, y, nm, ha="center", va="center", fontsize=12, bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="#888"))
+    ax.annotate("", xy=(7.3, y), xytext=(2.3, 5.0), arrowprops=dict(arrowstyle="->", color=SLOW, lw=1.4))
+    ax.text(6.4, y + 0.35, "같은 이름?", fontsize=10, color=SLOW, ha="center")
+ax.text(5, -0.5, "민지 한 명을 확인하려고 결석 명단을 처음부터 끝까지 봐요. 다음 친구도, 그다음 친구도요.", ha="center", fontsize=11, color="#555")
+save(fig, "class-scan.svg")
 
-# 10. 병합정렬: 나누는 층마다 카드 8장을 다 한 번씩 만진다
-fig, ax = plt.subplots(figsize=(9.5, 3.9))
-ax.set_xlim(-2.2, 15.5); ax.set_ylim(-0.8, 4.2); ax.axis("off")
-layers = [[8], [4, 4], [2, 2, 2, 2], [1] * 8]
-for li, groups in enumerate(layers):
-    y = 3.3 - li * 1.1
-    x = 0
-    for g in groups:
-        for i in range(g):
-            ax.add_patch(Rectangle((x + i * 1.05, y), 0.9, 0.7, color=FAST, alpha=0.35 + 0.15 * li))
-        x += g * 1.05 + 0.35
-    ax.text(-0.4, y + 0.35, f"{len(groups)}묶음", ha="right", va="center", fontsize=10, color="#555")
-for k in range(3):
-    ybot, ytop = 3.3 - (k + 1) * 1.1 + 0.7, 3.3 - k * 1.1
-    ax.annotate("", xy=(10.4, ytop + 0.05), xytext=(10.4, ybot - 0.05), arrowprops=dict(arrowstyle="->", color=SLOW, lw=1.5))
-    ax.text(10.7, (ybot + ytop) / 2, f"합치기 {3 - k}: 8장 만짐", va="center", fontsize=10, color=SLOW)
-ax.text(4.8, -0.6, "아래에서 위로 세 번 합쳐요. 합칠 때마다 8장을 한 번씩 만지니 8 × 3 = 24번", ha="center", fontsize=11)
-save(fig, "merge-levels.svg")
+# 14. 연습 때와 진짜 앱: 같은 코드, 1밀리초도 안 걸리던 게 14분
+fig, ax = plt.subplots(figsize=(8.5, 3.0))
+ax.set_xlim(0, 10); ax.set_ylim(0, 4); ax.axis("off")
+for x, who, t, col in ((0.3, "연습: 회원 1,000명", "1밀리초도 안 걸려요\n(눈 깜짝할 새보다 짧아요)", FAST), (6.0, "진짜 앱: 회원 100만 명", "14분", SLOW)):
+    ax.add_patch(FancyBboxPatch((x, 0.6), 3.7, 2.4, boxstyle="round,pad=0.1", fc="white", ec=col, lw=2))
+    ax.text(x + 1.85, 2.55, who, ha="center", fontsize=12)
+    ax.text(x + 1.85, 1.45, t, ha="center", va="center", fontsize=15 if t == "14분" else 11, color=col, fontweight="bold" if t == "14분" else "normal")
+ax.annotate("", xy=(5.8, 1.8), xytext=(4.2, 1.8), arrowprops=dict(arrowstyle="->", color="#555", lw=1.8))
+ax.text(5.0, 2.15, "같은 코드", ha="center", fontsize=10, color="#555")
+save(fig, "small-big.svg")
 
-# 11. 삽입정렬: 미는 장수를 계단으로 쌓고, 같은 계단을 거꾸로 얹으면 (n-1) × n 네모
-fig, ax = plt.subplots(figsize=(5.6, 4.6))
-n = 8
-ax.set_xlim(0.5, n + 4.6); ax.set_ylim(-1.4, n + 0.6); ax.set_aspect("equal"); ax.axis("off")
-ax.add_patch(Rectangle((1, 0), n - 1, n, fill=False, ec="#888", lw=1.2, ls="--"))
-for k in range(1, n):
-    for h in range(n):
-        ax.add_patch(Rectangle((k + 0.04, h + 0.04), 0.92, 0.92, color=SLOW if h < k else GREY, alpha=0.85))
-    ax.text(k + 0.5, -0.45, str(k + 1), ha="center", fontsize=9, color="#555")
-ax.text((n + 1) / 2, -1.2, "몇 번째 카드", ha="center", fontsize=10, color="#555")
-ax.text(n + 0.3, n - 0.2, "회색: 같은 계단을\n거꾸로 얹은 것\n\n점선 네모:\n7 × 8 = 56칸", fontsize=10, color="#555", va="top")
-ax.text(n + 0.3, 3, "빨간 계단:\n1+2+…+7\n= 28칸\n(네모의 반)", fontsize=10, color=SLOW, va="top")
-save(fig, "insertion-steps.svg")
+# 15. 컴퓨터가 달라도 규칙은 같다
+fig, axes = plt.subplots(1, 2, figsize=(8.5, 3.4), sharey=True)
+for ax, name, base in ((axes[0], "보통 컴퓨터", 2.0), (axes[1], "두 배 빠른 컴퓨터", 1.0)):
+    ax.bar([0, 1], [base, base * 4], 0.55, color=[GREY, SLOW])
+    ax.set_xticks([0, 1]); ax.set_xticklabels(["회원 1,000명", "회원 2,000명"])
+    ax.text(0.5, base * 4 + 0.3, "×4", ha="center", fontsize=15, color=SLOW, fontweight="bold")
+    ax.set_title(name, fontsize=12); ax.set_yticks([]); ax.spines["left"].set_visible(False)
+    ax.set_ylim(0, 10)
+fig.text(0.5, -0.04, "걸린 시간은 컴퓨터마다 달라도, 두 배면 4배라는 규칙은 같아요", ha="center", fontsize=11, color="#555")
+fig.tight_layout()
+save(fig, "two-computers.svg")
+
+# 16. 빅오 이름표: 두 배면 몇 배?
+fig, ax = plt.subplots(figsize=(9, 3.6))
+ax.set_xlim(0, 12); ax.set_ylim(0, 4.6); ax.axis("off")
+rows = [(3.3, "느린 방법", "일 ×4", "O(n²)", SLOW, "n이 3이면 3×3 = 9칸, n이 6이면 6×6 = 36칸 (4배)"),
+        (1.2, "빠른 방법", "일 ×2", "O(n)", FAST, "n이 3이면 3번, n이 6이면 6번 (2배)")]
+for y, nm, mul, tag, col, ex in rows:
+    ax.text(1.0, y, nm, ha="center", va="center", fontsize=12)
+    ax.text(3.4, y, "회원 ×2", ha="center", va="center", fontsize=12, bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="#888"))
+    ax.annotate("", xy=(5.2, y), xytext=(4.3, y), arrowprops=dict(arrowstyle="->", color="#555"))
+    ax.text(6.1, y, mul, ha="center", va="center", fontsize=13, color=col, fontweight="bold")
+    ax.annotate("", xy=(8.0, y), xytext=(7.0, y), arrowprops=dict(arrowstyle="->", color="#555"))
+    ax.text(9.2, y, tag, ha="center", va="center", fontsize=16, color="white", fontweight="bold", bbox=dict(boxstyle="round,pad=0.4", fc=col, ec=col))
+    ax.text(6.1, y - 0.7, ex, ha="center", va="center", fontsize=11.5, color="#444")
+ax.text(9.2, 4.35, "빅오 이름표", ha="center", fontsize=11, color="#555")
+save(fig, "bigo-tags.svg")
+
+# 17. 종이 vs 계산기: 둘 다 곧은 선(O(n)), 몇 배인지는 늘 5배
+fig, ax = plt.subplots(figsize=(7.5, 4.2))
+ns = [0, 20, 40, 60, 80]
+ax.plot(ns, [n / 2 for n in ns], color=SLOW, lw=2.5)
+ax.plot(ns, [n / 10 for n in ns], color=FAST, lw=2.5)
+ax.text(81, 40, "종이로 더하는 친구", va="center", fontsize=11, color=SLOW)
+ax.text(81, 8, "계산기로 더하는 친구", va="center", fontsize=11, color=FAST)
+for n in (20, 60):
+    ax.plot([n, n], [n / 10, n / 2], color="#888", lw=1, ls=":")
+    ax.plot([n, n], [n / 10, n / 2], "o", color="#888", ms=4)
+    ax.text(n + 1.5, n * 0.3, f"{n // 10}초 대 {n // 2}초\n= 5배", fontsize=11, color="#333")
+ax.set_xlabel("더할 숫자 개수 →"); ax.set_ylabel("걸린 시간 →")
+ax.set_xticks([]); ax.set_yticks([]); ax.set_xlim(0, 112); ax.set_ylim(0, 44)
+ax.set_title("빅오는 둘 다 O(n). 개수가 늘어도 늘 5배 차이", fontsize=12)
+save(fig, "paper-calc.svg")
 
 print("ok", sorted(os.listdir(OUT)))
