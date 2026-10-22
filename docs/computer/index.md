@@ -8,5 +8,6 @@
 | 2 | [컴퓨터는 사진을 어떻게 기억하나요?](02-how-computers-keep-pictures.md) |
 | 3 | [컴퓨터는 글자를 어떻게 기억하나요?](03-how-computers-keep-letters.md) |
 | 4 | [컴퓨터 속 숫자는 어떻게 생겼나요?](04-what-numbers-look-like.md) |
+| 5 | [컴퓨터는 어디에 기억해 두나요?](05-where-computers-remember.md) |
 
-다음 편부터는 기억을 두는 곳, 코드로 일을 시키는 방법, 일 한 번에 드는 시간으로 이어져요.
+다음 편부터는 코드로 일을 시키는 방법, 일 한 번에 드는 시간으로 이어져요.
