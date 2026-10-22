@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="437.76pt" height="135.792pt" viewBox="0 0 437.76 135.792" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-22T16:02:11.132445</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 135.792 
+L 437.76 135.792 
+L 437.76 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 24.48 102.439385 
+L 89.28 102.439385 
+L 89.28 25.676308 
+L 24.48 25.676308 
+z
+" clip-path="url(#p228d0239f9)" style="fill: #ffffff; stroke: #c9ccd1; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 89.28 102.439385 
+L 154.08 102.439385 
+L 154.08 25.676308 
+L 89.28 25.676308 
+z
+" clip-path="url(#p228d0239f9)" style="fill: #ffffff; stroke: #c9ccd1; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 154.08 102.439385 
+L 218.88 102.439385 
+L 218.88 25.676308 
+L 154.08 25.676308 
+z
+" clip-path="url(#p228d0239f9)" style="fill: #ffffff; stroke: #c9ccd1; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 218.88 102.439385 
+L 283.68 102.439385 
+L 283.68 25.676308 
+L 218.88 25.676308 
+z
+" clip-path="url(#p228d0239f9)" style="fill: #ffffff; stroke: #c9ccd1; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 283.68 102.439385 
+L 348.48 102.439385 
+L 348.48 25.676308 
+L 283.68 25.676308 
+z
+" clip-path="url(#p228d0239f9)" style="fill: #ffffff; stroke: #c9ccd1; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 348.48 102.439385 
+L 413.28 102.439385 
+L 413.28 25.676308 
+L 348.48 25.676308 
+z
+" clip-path="url(#p228d0239f9)" style="fill: #ffffff; stroke: #c9ccd1; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 41.328 99.368862 
+L 72.432 99.368862 
+L 72.432 62.522585 
+L 41.328 62.522585 
+z
+" clip-path="url(#p228d0239f9)" style="fill: #555555"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 56.88 68.663631 
+C 61.004439 68.663631 64.960506 66.722453 67.876925 63.267618 
+C 70.793343 59.812784 72.432 55.126366 72.432 50.240492 
+C 72.432 45.354619 70.793343 40.6682 67.876925 37.213366 
+C 64.960506 33.758532 61.004439 31.817354 56.88 31.817354 
+C 52.755561 31.817354 48.799494 33.758532 45.883075 37.213366 
+C 42.966657 40.6682 41.328 45.354619 41.328 50.240492 
+C 41.328 55.126366 42.966657 59.812784 45.883075 63.267618 
+C 48.799494 66.722453 52.755561 68.663631 56.88 68.663631 
+z
+" clip-path="url(#p228d0239f9)" style="fill: #ffffff; stroke: #555555; stroke-width: 1.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 380.88 64.057846 
+" clip-path="url(#p228d0239f9)" style="fill: none; stroke: #f6c445; stroke-width: 1.5; stroke-linecap: square"/>
+    <defs>
+     <path id="m96e8fcdaf7" d="M 0 -13 
+L -2.918682 -4.017221 
+L -12.363735 -4.017221 
+L -4.722526 1.534442 
+L -7.641208 10.517221 
+L -0 4.965558 
+L 7.641208 10.517221 
+L 4.722526 1.534442 
+L 12.363735 -4.017221 
+L 2.918682 -4.017221 
+z
+" style="stroke: #b8901e; stroke-linejoin: bevel"/>
+    </defs>
+    <g clip-path="url(#p228d0239f9)">
+     <use xlink:href="#m96e8fcdaf7" x="380.88" y="64.057846" style="fill: #f6c445; stroke: #b8901e; stroke-linejoin: bevel"/>
+    </g>
+   </g>
+   <g id="text_1">
+    <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="97.056" y="37.190769" transform="rotate(-0 97.056 37.190769)">1</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="161.856" y="37.190769" transform="rotate(-0 161.856 37.190769)">2</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="226.656" y="37.190769" transform="rotate(-0 226.656 37.190769)">3</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="291.456" y="37.190769" transform="rotate(-0 291.456 37.190769)">4</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="356.256" y="37.190769" transform="rotate(-0 356.256 37.190769)">5</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p228d0239f9">
+   <rect x="18" y="18" width="401.76" height="99.792"/>
+  </clipPath>
+ </defs>
+</svg>
