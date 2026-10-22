@@ -11,5 +11,6 @@
 | 5 | [컴퓨터는 어디에 기억해 두나요?](05-where-computers-remember.md) |
 | 6 | [컴퓨터에게 일을 어떻게 시키나요?](06-how-to-tell-computers.md) |
 | 7 | [컴퓨터도 틀릴까요?](07-can-computers-be-wrong.md) |
+| 8 | [영상은 어떻게 움직일까요?](08-how-videos-move.md) |
 
 1편부터 6편까지는 컴퓨터의 바닥이에요. 7편부터는 그 바닥 위에서 컴퓨터가 일하는 모습을 봐요.
