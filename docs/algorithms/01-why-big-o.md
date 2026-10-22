@@ -189,18 +189,6 @@ for m in members:          # 회원 한 명씩 차례로
 ??? info "직접 재 보기"
     이 글의 숫자는 모두 [`lab/01_big_o.py`](https://github.com/oya150/bedrock/blob/main/lab/01_big_o.py)로 쟀고, 그림은 [`lab/fig_01.py`](https://github.com/oya150/bedrock/blob/main/lab/fig_01.py)로 그렸어요. 파이썬만 있으면 돌려 볼 수 있어요. 숫자는 컴퓨터마다 달라도 "두 배면 몇 배" 규칙은 비슷하게 나올 거예요.
 
-## 출처와 사용 근거
-
-| 항목 | 출처 | 쓴 방식 |
-|---|---|---|
-| 측정값 전부 | 직접 쓴 `lab/01_big_o.py`, CPython 3.12.7, Apple Silicon(arm64)에서 실행 | 직접 측정 |
-| 그림 전부 | 직접 쓴 `lab/fig_01.py`로 그림 | 직접 제작, 글꼴은 파일에 넣지 않음 |
-| 코드 예시 전부 | 직접 작성 | 저장소와 같은 조건으로 공개 |
-| 바흐만 1894, 란다우 1909, Ordnung | Wikipedia "Big O notation", arXiv 1309.3210 | 사실만 요약 |
-| 하르트마니스·스턴스 1965 논문과 1993 튜링상 | 원 논문 DOI, ACM 추모 기사 | 서지 사항과 사실만 |
-| 응답 시간 1초·10초 | Nielsen Norman Group "Response Times: The 3 Important Limits"(원전: J. Nielsen, *Usability Engineering*, 1993) | 사실만 요약 |
-| 크누스 1976 | SIGACT News 8(2), NIST 알고리즘 사전 항목 | 서지 사항과 사실만 |
-
 [^lab]: 측정 환경은 CPython 3.12.7, Apple Silicon 노트북이에요. 다시 재면 숫자는 조금씩 달라져요.
 [^set]: 어떻게 한 번에 찾는지는 해시 테이블을 다루는 편에서 봐요.
 [^append]: 자세한 건 리스트를 다루는 편에서 봐요.

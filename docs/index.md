@@ -8,4 +8,5 @@
 
 ## 주제
 
+- [컴퓨터](computer/index.md): 컴퓨터가 어떻게 일하는지 바닥부터
 - [알고리즘](algorithms/index.md)
