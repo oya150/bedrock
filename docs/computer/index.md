@@ -13,5 +13,6 @@
 | 7 | [컴퓨터도 틀릴까요?](07-can-computers-be-wrong.md) |
 | 8 | [영상은 어떻게 움직일까요?](08-how-videos-move.md) |
 | 9 | [내가 누른 걸 컴퓨터는 어떻게 알까요?](09-how-touch-works.md) |
+| 10 | [남이 봐도 못 읽는 메시지는 어떻게 만들까요?](10-how-to-keep-messages-secret.md) |
 
 1편부터 6편까지는 컴퓨터의 바닥이에요. 7편부터는 그 바닥 위에서 컴퓨터가 일하는 모습을 봐요.

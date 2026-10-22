@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="538.2pt" height="224.496pt" viewBox="0 0 538.2 224.496" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-22T19:21:19.863597</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 224.496 
+L 538.2 224.496 
+L 538.2 -0 
+L 0 -0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 150.572034 75.222 
+Q 223.901665 75.222 294.995229 75.222 
+" clip-path="url(#pfa67fc14d1)" style="fill: none; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 287.795229 71.622 
+L 294.995229 75.222 
+L 287.795229 78.822 
+z
+" clip-path="url(#pfa67fc14d1)" style="fill: #555555; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 223.902 65.124 
+C 227.89755 65.124 231.72999 63.528017 234.555271 60.687546 
+C 237.380551 57.847076 238.968 53.994031 238.968 49.977 
+C 238.968 45.959969 237.380551 42.106924 234.555271 39.266454 
+C 231.72999 36.425983 227.89755 34.83 223.902 34.83 
+C 219.90645 34.83 216.07401 36.425983 213.248729 39.266454 
+C 210.423449 42.106924 208.836 45.959969 208.836 49.977 
+C 208.836 53.994031 210.423449 57.847076 213.248729 60.687546 
+C 216.07401 63.528017 219.90645 65.124 223.902 65.124 
+z
+" clip-path="url(#pfa67fc14d1)" style="fill: #ffffff; stroke: #e4572e; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 150.572034 152.64 
+Q 223.901665 152.64 294.995229 152.64 
+" clip-path="url(#pfa67fc14d1)" style="fill: none; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 287.795229 149.04 
+L 294.995229 152.64 
+L 287.795229 156.24 
+z
+" clip-path="url(#pfa67fc14d1)" style="fill: #555555; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 223.902 142.542 
+C 227.89755 142.542 231.72999 140.946017 234.555271 138.105546 
+C 237.380551 135.265076 238.968 131.412031 238.968 127.395 
+C 238.968 123.377969 237.380551 119.524924 234.555271 116.684454 
+C 231.72999 113.843983 227.89755 112.248 223.902 112.248 
+C 219.90645 112.248 216.07401 113.843983 213.248729 116.684454 
+C 210.423449 119.524924 208.836 123.377969 208.836 127.395 
+C 208.836 131.412031 210.423449 135.265076 213.248729 138.105546 
+C 216.07401 140.946017 219.90645 142.542 223.902 142.542 
+z
+" clip-path="url(#pfa67fc14d1)" style="fill: #ffffff; stroke: #e4572e; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #222222; font: 700 18px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="84.96" y="81.181687" transform="rotate(-0 84.96 81.181687)">바다 가자</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #e4572e; font: 700 16px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="223.902" y="55.19325" transform="rotate(-0 223.902 55.19325)">1</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="223.902" y="94.011031" transform="rotate(-0 223.902 94.011031)">열쇠 1: 1칸 밀기</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #e4572e; font: 700 18px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="386.28" y="81.181687" transform="rotate(-0 386.28 81.181687)">사라 나차</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #222222; font: 700 18px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="84.96" y="158.599687" transform="rotate(-0 84.96 158.599687)">바다 가자</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #e4572e; font: 700 16px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="223.902" y="132.61125" transform="rotate(-0 223.902 132.61125)">3</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="223.902" y="171.429031" transform="rotate(-0 223.902 171.429031)">열쇠 3: 3칸 밀기</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #e4572e; font: 700 18px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="386.28" y="158.599687" transform="rotate(-0 386.28 158.599687)">자바 라타</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pfa67fc14d1">
+   <rect x="18" y="18" width="502.2" height="188.496"/>
+  </clipPath>
+ </defs>
+</svg>
