@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="482.4pt" height="268.848pt" viewBox="0 0 482.4 268.848" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-23T23:30:23.773992</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 268.848 
+L 482.4 268.848 
+L 482.4 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 138.184615 72.787765 
+L 309.876923 72.787765 
+L 299.575385 230.302588 
+L 148.486154 230.302588 
+z
+" clip-path="url(#p200e9b3cdb)" style="fill: #eef5fb; stroke: #555555; stroke-width: 1.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 146.769231 228.590471 
+L 301.292308 228.590471 
+L 301.292308 105.318 
+L 146.769231 105.318 
+z
+" clip-path="url(#p200e9b3cdb)" style="fill: #cfe3f3"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 175.956923 146.408824 
+L 224.030769 146.408824 
+L 224.030769 100.181647 
+L 175.956923 100.181647 
+z
+" clip-path="url(#p200e9b3cdb)" style="fill: #dbeaf5; stroke: #555555; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 254.935385 227.734412 
+C 259.488718 227.734412 263.856171 226.742214 267.075864 224.97634 
+C 270.295557 223.210465 272.104615 220.815089 272.104615 218.317765 
+C 272.104615 215.820441 270.295557 213.425064 267.075864 211.65919 
+C 263.856171 209.893315 259.488718 208.901118 254.935385 208.901118 
+C 250.382051 208.901118 246.014598 209.893315 242.794905 211.65919 
+C 239.575212 213.425064 237.766154 215.820441 237.766154 218.317765 
+C 237.766154 220.815089 239.575212 223.210465 242.794905 224.97634 
+C 246.014598 226.742214 250.382051 227.734412 254.935385 227.734412 
+z
+" clip-path="url(#p200e9b3cdb)" style="fill: #9aa3ad; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 146.769231 105.318 
+L 301.292308 105.318 
+" clip-path="url(#p200e9b3cdb)" style="fill: none; stroke: #7da2c8; stroke-width: 1.2; stroke-linecap: square"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 336.81663 82.176105 
+Q 281.406377 92.704281 225.996123 103.232457 
+" style="fill: none; stroke: #555555; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="340.781538" y="83.060471" transform="rotate(-0 340.781538 83.060471)">얼음</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 336.78254 213.982995 
+Q 305.444301 215.253742 274.106062 216.52449 
+" style="fill: none; stroke: #555555; stroke-linecap: round"/>
+   </g>
+   <g id="text_2">
+    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="340.781538" y="216.605647" transform="rotate(-0 340.781538 216.605647)">돌멩이</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #e4572e; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="241.2" y="39.094301" transform="rotate(-0 241.2 39.094301)">같은 물인데 얼음은 왜 뜰까?</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p200e9b3cdb">
+   <rect x="18" y="18" width="446.4" height="232.848"/>
+  </clipPath>
+ </defs>
+</svg>

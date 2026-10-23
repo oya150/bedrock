@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="538.2pt" height="246.672pt" viewBox="0 0 538.2 246.672" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-23T23:30:24.059371</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 246.672 
+L 538.2 246.672 
+L 538.2 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 51.48 79.162839 
+L 158.616 79.162839 
+L 148.572 208.284387 
+L 61.524 208.284387 
+z
+" clip-path="url(#p7f30739c74)" style="fill: #eef5fb; stroke: #555555; stroke-width: 1.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 56.1672 102.948387 
+L 153.9288 102.948387 
+L 150.246 206.585419 
+L 59.85 206.585419 
+z
+" clip-path="url(#p7f30739c74)" style="fill: #cfe3f3"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 187.398501 147.121548 
+Q 218.878104 147.121548 248.12164 147.121548 
+" clip-path="url(#p7f30739c74)" style="fill: none; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 240.92164 143.521548 
+L 248.12164 147.121548 
+L 240.92164 150.721548 
+z
+" clip-path="url(#p7f30739c74)" style="fill: #555555; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 279.144 79.162839 
+L 386.28 79.162839 
+L 376.236 208.284387 
+L 289.188 208.284387 
+z
+" clip-path="url(#p7f30739c74)" style="fill: #eef5fb; stroke: #555555; stroke-width: 1.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 282.1572 91.055613 
+L 383.2668 91.055613 
+L 377.91 206.585419 
+L 287.514 206.585419 
+z
+" clip-path="url(#p7f30739c74)" style="fill: #dbeaf5"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 44.784 102.948387 
+L 165.312 102.948387 
+" clip-path="url(#p7f30739c74)" style="fill: none; stroke-dasharray: 4.44,1.92; stroke-dashoffset: 0; stroke: #e4572e; stroke-width: 1.2"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 272.448 102.948387 
+L 392.976 102.948387 
+" clip-path="url(#p7f30739c74)" style="fill: none; stroke-dasharray: 4.44,1.92; stroke-dashoffset: 0; stroke: #e4572e; stroke-width: 1.2"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #222222; font: 9px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="218.88" y="129.713779" transform="rotate(-0 218.88 129.713779)">냉동실에서 얼리면</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(406.368 83.94846)">얼면 높이가</text>
+    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(406.368 95.253022)">올라가요</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p7f30739c74">
+   <rect x="18" y="18" width="502.2" height="210.672"/>
+  </clipPath>
+ </defs>
+</svg>
