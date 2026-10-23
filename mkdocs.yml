@@ -75,3 +75,5 @@ nav:
       - 8. 비교하지 않고 정렬할 수 있을까요: algorithms/08-counting-sort.md
       - 9. 이름으로 어떻게 바로 찾을까요: algorithms/09-hash.md
       - 10. 가장 급한 것을 어떻게 늘 빨리 꺼낼까요: algorithms/10-heap.md
+      - 11. 창고 속 카드는 어떻게 빨리 찾을까요: algorithms/11-btree.md
+      - 12. 친구의 친구까지 빠짐없이 찾으려면: algorithms/12-bfs-dfs.md
