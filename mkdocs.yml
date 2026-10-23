@@ -66,3 +66,4 @@ nav:
   - 알고리즘:
       - algorithms/index.md
       - 1. 양말이 두 배면 일은 몇 배가 될까요: algorithms/01-why-big-o.md
+      - 2. 사물함은 왜 몇 번 칸이든 바로 찾을까요: algorithms/02-why-arrays-are-fast.md
