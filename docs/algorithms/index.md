@@ -6,3 +6,4 @@
 | 2 | [사물함은 왜 몇 번 칸이든 바로 찾을까요?](02-why-arrays-are-fast.md) |
 | 3 | [업다운 놀이는 왜 금방 맞힐까요?](03-why-sorted-is-fast.md) |
 | 4 | [손에 든 카드는 어떻게 정리할까요?](04-insertion-sort.md) |
+| 5 | [카드를 반씩 나눠 정리하면 왜 빠를까요?](05-merge-sort.md) |
