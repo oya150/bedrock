@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="649.8pt" height="324.288pt" viewBox="0 0 649.8 324.288" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-23T22:04:55.950994</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 324.288 
+L 649.8 324.288 
+L 649.8 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 52.1 266.976 
+L 597.7 266.976 
+L 597.7 103.176 
+L 52.1 103.176 
+z
+" clip-path="url(#pc313160abe)" style="fill: #f6d8c4; stroke: #555555; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 52.1 129.384 
+L 597.7 129.384 
+L 597.7 103.176 
+L 52.1 103.176 
+z
+" clip-path="url(#pc313160abe)" style="fill: #f2c9b0"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 174.86 103.176 
+L 202.14 103.176 
+L 198.73 214.56 
+L 178.27 214.56 
+z
+" clip-path="url(#pc313160abe)" style="fill: #f2c9b0; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 222.6 188.352 
+C 227.121713 188.352 231.458837 186.97128 234.656171 184.513927 
+C 237.853504 182.056575 239.65 178.723221 239.65 175.248 
+C 239.65 171.772779 237.853504 168.439425 234.656171 165.982073 
+C 231.458837 163.52472 227.121713 162.144 222.6 162.144 
+C 218.078287 162.144 213.741163 163.52472 210.543829 165.982073 
+C 207.346496 168.439425 205.55 171.772779 205.55 175.248 
+C 205.55 178.723221 207.346496 182.056575 210.543829 184.513927 
+C 213.741163 186.97128 218.078287 188.352 222.6 188.352 
+z
+" clip-path="url(#pc313160abe)" style="fill: #f6c445; stroke: #555555; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 206.193538 170.272415 
+Q 202.138653 163.779844 198.794463 158.425216 
+" clip-path="url(#pc313160abe)" style="fill: none; stroke: #555555; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 199.174742 162.432133 
+L 198.794463 158.425216 
+L 202.228164 160.525142 
+z
+" clip-path="url(#pc313160abe)" style="fill: #555555; stroke: #555555; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 427.2 253.872 
+C 432.626055 253.872 437.830604 251.80092 441.667405 248.114891 
+C 445.504205 244.428862 447.66 239.428832 447.66 234.216 
+C 447.66 229.003168 445.504205 224.003138 441.667405 220.317109 
+C 437.830604 216.63108 432.626055 214.56 427.2 214.56 
+C 421.773945 214.56 416.569396 216.63108 412.732595 220.317109 
+C 408.895795 224.003138 406.74 229.003168 406.74 234.216 
+C 406.74 239.428832 408.895795 244.428862 412.732595 248.114891 
+C 416.569396 251.80092 421.773945 253.872 427.2 253.872 
+z
+" clip-path="url(#pc313160abe)" style="fill: #dbe7f3; stroke: #7da2c8; stroke-width: 1.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 417.133015 99.9 
+C 418.489529 99.9 419.790666 99.20964 420.749866 97.980964 
+C 421.709066 96.752287 422.248015 95.085611 422.248015 93.348 
+C 422.248015 91.610389 421.709066 89.943713 420.749866 88.715036 
+C 419.790666 87.48636 418.489529 86.796 417.133015 86.796 
+C 415.776501 86.796 414.475364 87.48636 413.516164 88.715036 
+C 412.556964 89.943713 412.018015 91.610389 412.018015 93.348 
+C 412.018015 95.085611 412.556964 96.752287 413.516164 97.980964 
+C 414.475364 99.20964 415.776501 99.9 417.133015 99.9 
+z
+" clip-path="url(#pc313160abe)" style="fill: #7da2c8; stroke: #555555; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 431.297919 86.777604 
+Q 426.509938 93.348791 422.380358 99.016369 
+" clip-path="url(#pc313160abe)" style="fill: none; stroke: #7da2c8; stroke-linecap: round"/>
+    <path d="M 425.557947 97.372311 
+L 422.380358 99.016369 
+L 422.971666 95.487862 
+z
+" clip-path="url(#pc313160abe)" style="fill: #7da2c8; stroke: #7da2c8; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 188.5 208.008 
+L 188.5 103.176 
+L 215.78 44.208 
+" clip-path="url(#pc313160abe)" style="fill: none; stroke: #555555; stroke-width: 2.4; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 427.2 227.664 
+L 435.213434 221.112 
+L 437.162461 214.56 
+L 431.572096 208.008 
+L 422.673016 201.456 
+L 417.199867 194.904 
+L 419.294619 188.352 
+L 427.372006 181.8 
+L 435.319222 175.248 
+L 437.121973 168.696 
+L 431.415972 162.144 
+L 422.519408 155.592 
+L 417.165022 149.04 
+L 419.404908 142.488 
+L 427.543964 135.936 
+L 435.422715 129.384 
+L 437.078679 122.832 
+L 431.258656 116.28 
+L 422.367123 109.728 
+L 417.133015 103.176 
+" clip-path="url(#pc313160abe)" style="fill: none; stroke: #7da2c8; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="246.47" y="178.558937" transform="rotate(-0 246.47 178.558937)">기름이 나오는 곳</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #222222; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="188.5" y="290.274031" transform="rotate(-0 188.5 290.274031)">모공(털구멍): 털과 기름</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="454.48" y="237.52225" transform="rotate(-0 454.48 237.52225)">땀을 만드는 곳</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #7da2c8; font: 700 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="434.183015" y="86.830938" transform="rotate(-0 434.183015 86.830938)">땀구멍</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #7da2c8; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="447.66" y="290.279188" transform="rotate(-0 447.66 290.279188)">땀구멍: 땀이 나오는 작은 구멍</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="324.9" y="31.20925" transform="rotate(-0 324.9 31.20925)">피부를 잘라 옆에서 본 모습 (크기는 실제와 맞추지 않았어요)</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pc313160abe">
+   <rect x="18" y="18" width="613.8" height="288.288"/>
+  </clipPath>
+ </defs>
+</svg>
