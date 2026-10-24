@@ -113,3 +113,4 @@ nav:
       - 4. 저장했는데 왜 바로 검색이 안 될까요: elasticsearch/04-refresh.md
       - 5. 지운 문서는 언제 실제로 사라질까요: elasticsearch/05-merge.md
       - 6. 낱말 수억 개를 어떻게 메모리에 올릴까요: elasticsearch/06-terms-postings.md
+      - 7. AND 검색은 어떻게 빨리 겹치는 걸 찾을까요: elasticsearch/07-intersection.md
