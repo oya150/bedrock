@@ -121,3 +121,4 @@ nav:
       - 12. 샤드 여러 개의 결과를 어떻게 합칠까요: elasticsearch/12-distributed-search.md
       - 13. 고유 사용자 수는 왜 근삿값일까요: elasticsearch/13-cardinality.md
       - 14. 노드가 죽어도 왜 데이터가 안 사라질까요: elasticsearch/14-replication.md
+      - 15. 벡터 검색은 어떻게 비슷한 걸 찾을까요: elasticsearch/15-hnsw.md
