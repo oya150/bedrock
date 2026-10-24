@@ -105,3 +105,6 @@ nav:
       - 10. 빛은 무엇일까요: matter/10-light.md
       - 11. 전기는 무엇일까요: matter/11-electricity.md
       - 12. 자석은 왜 붙을까요: matter/12-magnets.md
+  - Elasticsearch:
+      - elasticsearch/index.md
+      - 1. 검색 엔진은 왜 목록을 거꾸로 만들어 둘까요: elasticsearch/01-inverted-index.md
