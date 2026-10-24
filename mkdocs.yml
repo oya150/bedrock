@@ -117,3 +117,4 @@ nav:
       - 8. 같은 검색어인데 왜 환경마다 순위가 다를까요: elasticsearch/08-bm25.md
       - 9. 상위 10개만 필요하면 왜 다 계산하지 않아도 될까요: elasticsearch/09-top-k.md
       - 10. 정렬·집계는 왜 역색인을 쓰지 않을까요: elasticsearch/10-doc-values.md
+      - 11. 숫자·날짜 범위 검색은 왜 빠를까요: elasticsearch/11-bkd.md
