@@ -55,7 +55,7 @@ ES가 더 빠른 컴퓨터를 쓰는 것도 아닌데 왜 이렇게 차이가 �
 찾는 일만 놓고 보면 2만 배쯤 차이가 나요. 글이 늘어날 때를 생각하면 차이는 더 벌어져요. 하나씩 보는 쪽은 글이 두 배면 시간도 두 배인데 역색인 쪽은 이진 탐색이라 낱말 종류가 두 배가 돼도 한 걸음만 늘어요.
 
 ??? info "동료용 심화: 실제 용어 사전은 블록과 FST로 짜여 있어요"
-    수억 개 용어를 정렬된 배열로 메모리에 다 올리면 힙이 버티지 못해요. Lucene은 용어를 정렬해서 수십 개씩 블록으로 묶어 세그먼트 파일에 두고 "어느 접두사는 어느 블록에 있다"는 작은 색인만 따로 둬요. 이 색인을 FST라는 오토마톤으로 압축해요. 예전에는 이 색인을 JVM 힙에 올렸어요. Lucene 8부터 힙 밖(mmap)에 둘 수 있게 됐고 ES 7.x 중반부터는 `_id` 필드만 힙에 두고 나머지는 힙 밖에 둬요.[^offheap] 그래서 실제 찾기는 FST로 블록 자리를 찾고 그 블록 하나를 읽어 훑는 두 걸음이에요. 용어 사전은 세그먼트마다, 필드마다 따로 있어서 검색 한 번은 세그먼트 수만큼 이 두 걸음을 되풀이해요. 6편에서 자세히 다뤄요.
+    수억 개 용어를 정렬된 배열로 메모리에 다 올리면 힙이 버티지 못해요. Lucene은 용어를 정렬해서 수십 개씩 블록으로 묶어 세그먼트 파일에 두고 "어느 접두사는 어느 블록에 있다"는 작은 색인만 따로 둬요. 이 색인을 FST라는 오토마톤으로 압축해요. 예전에는 이 색인을 JVM 힙에 올렸어요. Lucene 8부터 힙 밖(mmap)에 둘 수 있게 됐고 ES도 7.x 들어 이 색인을 힙 밖에 두기 시작했어요.[^offheap] 7.17에서 낱말 23만 개짜리 필드와 `_id` 23만 개가 든 인덱스를 재 보니 힙을 차지한 용어 사전 색인이 512 B뿐이었어요(6편). 그래서 실제 찾기는 FST로 블록 자리를 찾고 그 블록 하나를 읽어 훑는 두 걸음이에요. 용어 사전은 세그먼트마다, 필드마다 따로 있어서 검색 한 번은 세그먼트 수만큼 이 두 걸음을 되풀이해요. 6편에서 자세히 다뤄요.
 
 ## 검색어가 둘이면 목록 둘을 합쳐요
 
@@ -148,4 +148,4 @@ curl 'localhost:9200/board/_termvectors/1?fields=body&term_statistics=true'
 [^index-options]: Elasticsearch 문서, "index_options" 매핑 파라미터. <https://www.elastic.co/guide/en/elasticsearch/reference/current/index-options.html>
 [^lab]: 재는 코드: [lab/es/01_inverted_index.py](https://github.com/oya150/bedrock/blob/main/lab/es/01_inverted_index.py). 낱말 5,000종에서 30개씩 뽑아 글을 만들었어요. 파이썬 메모리 안에서 두 방법을 비교한 것이라 데이터베이스나 ES의 실제 시간과는 달라요. 시간은 컴퓨터마다 다르고, 표에는 여러 번 잰 값을 어림해 적었어요.
 [^keyword]: Elasticsearch 문서, "Keyword type family". `index_options` 기본값이 docs이고 freqs로 바꿀 수 있어요. <https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html>
-[^offheap]: Lucene 8.0 변경 기록 LUCENE-8635(용어 사전 색인을 힙 밖에), Elasticsearch PR #42838(`_id` 말고는 힙 밖에). <https://lucene.apache.org/core/8_0_0/changes/Changes.html>, <https://github.com/elastic/elasticsearch/pull/42838>
+[^offheap]: Lucene 8.0 변경 기록 LUCENE-8635(용어 사전 색인을 힙 밖에), Elasticsearch PR #42838(처음에는 `_id` 말고 나머지 필드부터 힙 밖에). <https://lucene.apache.org/core/8_0_0/changes/Changes.html>, <https://github.com/elastic/elasticsearch/pull/42838>
