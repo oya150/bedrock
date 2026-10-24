@@ -109,3 +109,4 @@ nav:
       - elasticsearch/index.md
       - 1. 검색 엔진은 왜 목록을 거꾸로 만들어 둘까요: elasticsearch/01-inverted-index.md
       - 2. 같은 글자인데 왜 검색이 안 될까요: elasticsearch/02-analyzer.md
+      - 3. 샤드 수는 왜 나중에 못 바꿀까요: elasticsearch/03-routing.md
