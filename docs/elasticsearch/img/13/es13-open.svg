@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="594pt" height="180.144pt" viewBox="0 0 594 180.144" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-24T13:04:08.563866</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 180.144 
+L 594 180.144 
+L 594 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 31.95 135.47736 
+L 269.1 135.47736 
+Q 271.1925 135.47736 271.1925 133.3152 
+L 271.1925 39.6216 
+Q 271.1925 37.45944 269.1 37.45944 
+L 31.95 37.45944 
+Q 29.8575 37.45944 29.8575 39.6216 
+L 29.8575 133.3152 
+Q 29.8575 135.47736 31.95 135.47736 
+z
+" clip-path="url(#pcdb7da50d0)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 324.9 135.47736 
+L 562.05 135.47736 
+Q 564.1425 135.47736 564.1425 133.3152 
+L 564.1425 39.6216 
+Q 564.1425 37.45944 562.05 37.45944 
+L 324.9 37.45944 
+Q 322.8075 37.45944 322.8075 39.6216 
+L 322.8075 133.3152 
+Q 322.8075 135.47736 324.9 135.47736 
+z
+" clip-path="url(#pcdb7da50d0)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #222222; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="150.525" y="65.216325" transform="rotate(-0 150.525 65.216325)">오늘 방문자 (집계)</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #e4572e; font: 700 20px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="150.525" y="107.684363" transform="rotate(-0 150.525 107.684363)">94,707명</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #222222; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="443.475" y="65.216325" transform="rotate(-0 443.475 65.216325)">로그를 직접 세면</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #222222; font: 700 20px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="443.475" y="107.684363" transform="rotate(-0 443.475 107.684363)">95,062명</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="297" y="156.854375" transform="rotate(-0 297 156.854375)">355명이 어디 갔을까요?</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pcdb7da50d0">
+   <rect x="18" y="18" width="558" height="144.144"/>
+  </clipPath>
+ </defs>
+</svg>
