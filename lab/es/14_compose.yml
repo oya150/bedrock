@@ -1,0 +1,26 @@
+# Elasticsearch 14편: 노드 3개 실험 클러스터 (보안 끔, 로컬 실험용)
+#   ES_IMAGE=docker.elastic.co/elasticsearch/elasticsearch:9.2.0 docker compose -f lab/es/14_compose.yml up -d
+#   기본은 7.17.26. 노드 하나 멈추기: docker compose -f lab/es/14_compose.yml stop es02
+x-es: &es
+  image: ${ES_IMAGE:-docker.elastic.co/elasticsearch/elasticsearch:7.17.26}
+  environment: &env
+    cluster.name: bedrock-ha
+    discovery.seed_hosts: es01,es02,es03
+    cluster.initial_master_nodes: es01,es02,es03
+    xpack.security.enabled: "false"
+    xpack.ml.enabled: "false"
+    ES_JAVA_OPTS: -Xms256m -Xmx256m
+
+services:
+  es01:
+    <<: *es
+    environment: {<<: *env, node.name: es01}
+    ports: ["127.0.0.1:9211:9200"]
+  es02:
+    <<: *es
+    environment: {<<: *env, node.name: es02}
+    ports: ["127.0.0.1:9212:9200"]
+  es03:
+    <<: *es
+    environment: {<<: *env, node.name: es03}
+    ports: ["127.0.0.1:9213:9200"]
