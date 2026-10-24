@@ -114,3 +114,4 @@ nav:
       - 5. 지운 문서는 언제 실제로 사라질까요: elasticsearch/05-merge.md
       - 6. 낱말 수억 개를 어떻게 메모리에 올릴까요: elasticsearch/06-terms-postings.md
       - 7. AND 검색은 어떻게 빨리 겹치는 걸 찾을까요: elasticsearch/07-intersection.md
+      - 8. 같은 검색어인데 왜 환경마다 순위가 다를까요: elasticsearch/08-bm25.md
