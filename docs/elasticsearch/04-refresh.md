@@ -34,7 +34,7 @@ refresh 간격은 기본 1초예요. 처음 장면의 문서는 그 1초 동안 
 
 자동 refresh를 끄고 문서 하나를 넣으면 바로 검색해서 0건이고 `_refresh`를 부른 뒤에는 1건이에요. 문서를 두 번 더 넣고 그때마다 refresh 하면 세그먼트가 `_0`, `_1`, `_2` 셋으로 늘어나요.[^lab]
 
-??? info "동료용 심화: refresh가 실제로 하는 일과 search idle"
+??? info "심화: refresh가 실제로 하는 일과 search idle"
     refresh는 Lucene의 `IndexWriter`가 버퍼를 새 세그먼트로 내보내고 ES가 새 `IndexReader`를 열어 검색에 쓰게 하는 일이에요. 이때 세그먼트 파일은 운영체제 파일 캐시에 쓰일 뿐 디스크에 확실히 쓰는 fsync는 하지 않아요. 그 일은 아래의 flush가 해요. 이름이 헷갈리는데 Lucene에서 flush는 버퍼를 세그먼트로 내보내는 일(ES의 refresh 쪽)이고 ES의 flush는 Lucene의 커밋(`IndexWriter.commit`)이에요.
 
     ES 7.0부터는 search idle이 있어요. 샤드가 `index.search.idle.after`(기본 30초) 동안 검색이나 GET을 받지 않으면 예약된 refresh를 건너뛰어요. 건너뛴 refresh가 있는 샤드에 검색이 오면 그 검색은 refresh를 부르고 끝날 때까지 기다렸다가 결과를 줘요. 색인만 몰리는 시간에 쓸데없는 refresh를 줄이려는 장치예요. `refresh_interval`을 명시적으로 주면 이 동작은 꺼져요. 한동안 조용하던 인덱스의 첫 검색이 유난히 느리다면 이것 때문일 수 있어요.
@@ -49,7 +49,7 @@ refresh 간격은 기본 1초예요. 처음 장면의 문서는 그 1초 동안 
 
 GET은 `_id` 하나로 문서 하나를 꺼내는 일이에요. ES는 샤드마다 아직 refresh 되지 않은 `_id`를 기억해 두고 있어서 GET이 오면 그걸 알아보고 따로 꺼내 줘요. 그래서 "방금 쓴 글 다시 보여 주기"처럼 `_id`를 아는 경우에는 검색 대신 GET을 쓰면 1초를 기다리지 않아도 돼요.
 
-??? info "동료용 심화: 실시간 GET은 어떻게 최신 문서를 찾을까"
+??? info "심화: 실시간 GET은 어떻게 최신 문서를 찾을까"
     ES는 샤드마다 `_id`에서 버전·시퀀스 번호·translog 위치로 가는 메모리 표(LiveVersionMap)를 둬요. 문서 내용은 이 표에 없어요. refresh 전에 GET이 오면 이 표로 "아직 검색기에 없는 문서"임을 알고 검색에는 쓰지 않는 내부 refresh를 따로 돌려 세그먼트에서 읽어요. 로컬에서 GET을 하자 검색에는 안 보이는(`searchable=false`) 세그먼트 `_0`이 생긴 것이 그 흔적이에요. 7.17.26과 9.2.0 둘 다 같은 모습이었어요. 그래서 refresh 안 된 `_id`로 GET을 자주 하면 작은 세그먼트가 늘어날 수 있어요.
 
     이 표는 GET 전용이 아니에요. 같은 `_id`로 다시 쓸 때 버전을 확인하는 데도 쓰고 refresh 때마다 새 표로 갈아 끼워요. 지운 문서의 흔적은 `index.gc_deletes`(기본 60초) 동안 표에 남아서 그 사이 늦게 도착한 옛 버전 쓰기를 막아요. `realtime=false`를 주면 이 기능을 끄고 검색처럼 refresh된 것만 봐요.
@@ -70,7 +70,7 @@ translog가 끝없이 길어지면 다시 실행하는 데도 오래 걸려요. 
 | translog 기록 | 요청을 파일 끝에 적고 fsync | 요청마다 |
 | flush | 세그먼트를 디스크에 fsync, 그 앞 translog는 다시 실행할 필요가 없어짐 | translog가 커지는 등 조건이 차면 ES가 알아서 |
 
-??? info "동료용 심화: translog 설정과 잃을 수 있는 범위"
+??? info "심화: translog 설정과 잃을 수 있는 범위"
     `index.translog.durability` 기본값은 `request`라서 요청마다 translog를 fsync한 뒤에 답해요. `request`라도 fsync는 bulk 요청 하나에 샤드마다 한 번이라서 bulk가 클수록 싸요. `async`로 바꾸면 `index.translog.sync_interval`(기본 5초)마다 모아서 fsync해요. 쓰기 처리량은 오르지만 서버가 꺼지면 마지막 몇 초의 성공 응답한 문서를 잃을 수 있어요. 복제본(14편)이 있으면 한 노드가 꺼져도 다른 노드에 남지만 모든 노드가 한꺼번에 꺼지는 전원 사고에는 소용없어요.
 
     flush가 언제 도는지는 translog 크기 기준(`index.translog.flush_threshold_size`) 같은 조건으로 ES가 정해요. 기본값은 7.17이 512mb, 최근 문서는 10gb예요. flush 뒤에도 옛 translog 파일이 바로 지워지지는 않아요. 새 파일(generation)로 넘어가고 옛 것은 복구에 더 필요 없을 때 지워요. 직접 `_flush`를 부를 일은 거의 없어요. 노드를 재시작하기 전에 부르면 재시작 뒤 translog를 다시 실행하는 시간이 줄어요(7.x 초반까지 쓰던 synced flush는 8.0에서 없어졌어요).
@@ -109,7 +109,7 @@ curl 'localhost:9200/_cat/segments/nrt?v&h=segment,docs.count,committed,searchab
 
     **풀이** `async`에서는 translog를 요청마다 fsync하지 않고 몇 초마다 모아서 해요. 정전 직전 몇 초의 기록은 아직 운영체제 캐시에만 있다가 사라졌어요. 기본값 `request`였다면 응답 전에 translog를 fsync했으니 남아 있었을 거예요.
 
-## 업무 판단 연습
+## 판단 연습
 
 ??? question "글 쓰고 바로 목록 보여 주기"
     게시판 화면이 글을 쓰자마자 "내 글" 목록을 검색해서 보여 주는데 방금 쓴 글이 가끔 빠진다는 문의가 와요. `refresh_interval`을 100ms로 줄이자는 제안이 나왔어요. 어떻게 할까요?

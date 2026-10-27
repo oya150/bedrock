@@ -24,3 +24,21 @@
 .md-typeset li {
   line-height: 1.8;
 }
+
+/* 단계 딱지: 글 제목 바로 아래 */
+.md-typeset a.level-tag {
+  display: inline-block;
+  font-size: 0.75em;
+  font-weight: 700;
+  padding: 0.15em 0.7em;
+  border-radius: 1em;
+  color: #fff;
+  text-decoration: none;
+}
+.md-typeset a.level-1 { background: #4c9a6a; }
+.md-typeset a.level-2 { background: #3f7cb8; }
+.md-typeset a.level-3 { background: #8a5cb8; }
+.md-typeset p.prereq {
+  font-size: 0.85em;
+  color: var(--md-default-fg-color--light);
+}
