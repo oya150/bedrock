@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="594pt" height="202.32pt" viewBox="0 0 594 202.32" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-27T12:17:57.284530</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 202.32 
+L 594 202.32 
+L 594 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 66.36 57.6 
+L 118.44 57.6 
+L 118.44 25.92 
+L 66.36 25.92 
+z
+" clip-path="url(#p5f3610b0b1)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 121.416 57.6 
+L 173.496 57.6 
+L 173.496 25.92 
+L 121.416 25.92 
+z
+" clip-path="url(#p5f3610b0b1)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 2.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 176.472 57.6 
+L 228.552 57.6 
+L 228.552 25.92 
+L 176.472 25.92 
+z
+" clip-path="url(#p5f3610b0b1)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 2.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 29.16 178.776 
+L 564.84 178.776 
+Q 567.072 178.776 567.072 176.4 
+L 567.072 140.76 
+Q 567.072 138.384 564.84 138.384 
+L 29.16 138.384 
+Q 26.928 138.384 26.928 140.76 
+L 26.928 176.4 
+Q 26.928 178.776 29.16 178.776 
+z
+" clip-path="url(#p5f3610b0b1)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #222222; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="29.16" y="41.712187" transform="rotate(-0 29.16 41.712187)">글 1</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #222222; font: 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="92.4" y="45.672187" transform="rotate(-0 92.4 45.672187)">주문</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #e4572e; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="147.456" y="45.672187" transform="rotate(-0 147.456 45.672187)">환불</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #e4572e; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="202.512" y="45.745312" transform="rotate(-0 202.512 45.745312)">요청</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #555555; font: 9.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="92.4" y="72.625391" transform="rotate(-0 92.4 72.625391)">자리 0</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #555555; font: 9.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="147.456" y="72.625391" transform="rotate(-0 147.456 72.625391)">자리 1</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #555555; font: 9.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="202.512" y="72.625391" transform="rotate(-0 202.512 72.625391)">자리 2</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #222222; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="29.16" y="118.99875" transform="rotate(-0 29.16 118.99875)">역색인</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #e4572e; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="66.36" y="118.683516" transform="rotate(-0 66.36 118.683516)">환불 → 글 1 (자리 1)     요청 → 글 1 (자리 2)</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="297" y="162.140156" transform="rotate(-0 297 162.140156)">자리 1 다음이 자리 2라서 "환불 요청"이 붙어 있다는 걸 알아요. 자리를 안 적어 두면 알 수 없어요.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p5f3610b0b1">
+   <rect x="18" y="18" width="558" height="166.32"/>
+  </clipPath>
+ </defs>
+</svg>
