@@ -111,31 +111,8 @@ ES가 더 빠른 컴퓨터를 쓰는 것도 아닌데 왜 이렇게 차이가 �
 - 용어 사전: 역색인의 낱말 쪽이에요. 정렬돼 있어서 이진 탐색으로 찾아요.
 - 포스팅 목록: 낱말 하나에 달린 글 번호 줄이에요. 번호순으로 정렬돼 있어서 두 목록을 한 번씩만 훑어 합칠 수 있어요.
 
-## 직접 해 보기
-
-ES를 도커로 하나 띄우고 글 세 개를 넣어요. 보안을 끈 개발용 컨테이너예요. 7.17과 9.x 어느 쪽이든 결과가 같아요.
-
-```bash
-docker run -d --name es -p 9200:9200 -e discovery.type=single-node \
-  -e xpack.security.enabled=false elasticsearch:7.17.26
-```
-
-9.x로 해 보려면 이미지를 `docker.elastic.co/elasticsearch/elasticsearch:9.2.0`처럼 원하는 버전으로 바꾸면 돼요.
-
-글 세 개는 조사 없이 낱말만 띄어 썼어요. 넣고 나서 부르는 `_refresh`는 메모리에 쌓인 글을 바로 검색에 보이게 하는 요청이에요(4편). 전체 명령은 [lab/es/01_es.sh](https://github.com/oya150/bedrock/blob/main/lab/es/01_es.sh)에 있어요.
-
-```bash
-curl -XPUT localhost:9200/board/_doc/1 -H 'Content-Type: application/json' -d '{"body":"주문 환불 요청"}'
-curl -XPUT localhost:9200/board/_doc/2 -H 'Content-Type: application/json' -d '{"body":"주문 배송 언제"}'
-curl -XPUT localhost:9200/board/_doc/3 -H 'Content-Type: application/json' -d '{"body":"환불 완료 감사"}'
-curl -XPOST localhost:9200/board/_refresh
-curl 'localhost:9200/board/_termvectors/1?fields=body&term_statistics=true'
-```
-
-마지막 요청은 1번 글의 낱말을 보여 줘요. 낱말마다 붙은 `doc_freq`는 그 낱말이 든 글 수, 곧 포스팅 목록의 길이예요. 샤드가 하나이고 지운 글이 없어서 정확히 맞아요. 샤드가 여럿이면 그 글이 있는 샤드 안의 수만 나와요. "요청"은 1, "주문"과 "환불"은 2가 나와요. 낱말이 가나다순으로 나오는 것도 보세요.
-
 [^mysql]: MySQL 8.0 참조 매뉴얼, "Comparison of B-Tree and Hash Indexes". LIKE의 인자가 와일드카드로 시작하지 않는 상수 문자열이면 B-트리 인덱스를 쓸 수 있고, `'%Patrick%'`처럼 와일드카드로 시작하면 쓰지 않는 예가 실려 있어요. <https://dev.mysql.com/doc/refman/8.0/en/index-btree-hash.html>
 [^index-options]: Elasticsearch 문서, "index_options" 매핑 파라미터. <https://www.elastic.co/guide/en/elasticsearch/reference/current/index-options.html>
-[^lab]: 재는 코드: [lab/es/01_inverted_index.py](https://github.com/oya150/bedrock/blob/main/lab/es/01_inverted_index.py). 낱말 5,000종에서 30개씩 뽑아 글을 만들었어요. 파이썬 메모리 안에서 두 방법을 비교한 것이라 데이터베이스나 ES의 실제 시간과는 달라요. 시간은 컴퓨터마다 다르고, 표에는 여러 번 잰 값을 어림해 적었어요.
+[^lab]: 낱말 5,000종에서 30개씩 뽑아 글을 만들었어요. 파이썬 메모리 안에서 두 방법을 비교한 것이라 데이터베이스나 ES의 실제 시간과는 달라요. 시간은 컴퓨터마다 다르고, 표에는 여러 번 잰 값을 어림해 적었어요.
 [^keyword]: Elasticsearch 문서, "Keyword type family". `index_options` 기본값이 docs이고 freqs로 바꿀 수 있어요. <https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html>
 [^offheap]: Lucene 8.0 변경 기록 LUCENE-8635(용어 사전 색인을 힙 밖에), Elasticsearch PR #42838(처음에는 `_id` 말고 나머지 필드부터 힙 밖에). <https://lucene.apache.org/core/8_0_0/changes/Changes.html>, <https://github.com/elastic/elasticsearch/pull/42838>
