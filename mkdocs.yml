@@ -53,10 +53,9 @@ extra_javascript:
 
 nav:
   - 처음: index.md
-  - 길 안내: paths.md
-  - 1단계 · 누구나:
-      - level-1.md
-      - 컴퓨터:
+  - 컴퓨터:
+      - paths.md
+      - 1단계 · 컴퓨터:
         - computer/index.md
         - 1. 컴퓨터는 무엇을 할 줄 아나요: computer/01-what-computers-do.md
         - 2. 컴퓨터는 사진을 어떻게 기억하나요: computer/02-how-computers-keep-pictures.md
@@ -70,6 +69,39 @@ nav:
         - 10. 남이 봐도 못 읽는 메시지는 어떻게 만들까요: computer/10-how-to-keep-messages-secret.md
         - 11. 메시지는 어떤 길로 갈까요: computer/11-how-messages-travel.md
         - 12. 검색하면 어떻게 바로 찾을까요: computer/12-how-search-works.md
+      - 2단계 · 알고리즘:
+        - algorithms/index.md
+        - 1. 양말이 두 배면 일은 몇 배가 될까요: algorithms/01-why-big-o.md
+        - 2. 사물함은 왜 몇 번 칸이든 바로 찾을까요: algorithms/02-why-arrays-are-fast.md
+        - 3. 업다운 놀이는 왜 금방 맞힐까요: algorithms/03-why-sorted-is-fast.md
+        - 4. 손에 든 카드는 어떻게 정리할까요: algorithms/04-insertion-sort.md
+        - 5. 카드를 반씩 나눠 정리하면 왜 빠를까요: algorithms/05-merge-sort.md
+        - 6. 기준 카드 하나로 나누면 어떻게 정렬될까요: algorithms/06-quick-sort.md
+        - 7. 파이썬은 카드를 어떻게 정렬할까요: algorithms/07-timsort.md
+        - 8. 비교하지 않고 정렬할 수 있을까요: algorithms/08-counting-sort.md
+        - 9. 이름으로 어떻게 바로 찾을까요: algorithms/09-hash.md
+        - 10. 가장 급한 것을 어떻게 늘 빨리 꺼낼까요: algorithms/10-heap.md
+        - 11. 창고 속 카드는 어떻게 빨리 찾을까요: algorithms/11-btree.md
+        - 12. 친구의 친구까지 빠짐없이 찾으려면: algorithms/12-bfs-dfs.md
+      - 3단계 · Elasticsearch:
+        - elasticsearch/index.md
+        - 1. 검색 엔진은 왜 목록을 거꾸로 만들어 둘까요: elasticsearch/01-inverted-index.md
+        - 2. 같은 글자인데 왜 검색이 안 될까요: elasticsearch/02-analyzer.md
+        - 3. 샤드 수는 왜 나중에 못 바꿀까요: elasticsearch/03-routing.md
+        - 4. 저장했는데 왜 바로 검색이 안 될까요: elasticsearch/04-refresh.md
+        - 5. 지운 문서는 언제 실제로 사라질까요: elasticsearch/05-merge.md
+        - 6. 낱말 수억 개를 어떻게 메모리에 올릴까요: elasticsearch/06-terms-postings.md
+        - 7. AND 검색은 어떻게 빨리 겹치는 걸 찾을까요: elasticsearch/07-intersection.md
+        - 8. 같은 검색어인데 왜 환경마다 순위가 다를까요: elasticsearch/08-bm25.md
+        - 9. 상위 10개만 필요하면 왜 다 계산하지 않아도 될까요: elasticsearch/09-top-k.md
+        - 10. 정렬·집계는 왜 역색인을 쓰지 않을까요: elasticsearch/10-doc-values.md
+        - 11. 숫자·날짜 범위 검색은 왜 빠를까요: elasticsearch/11-bkd.md
+        - 12. 샤드 여러 개의 결과를 어떻게 합칠까요: elasticsearch/12-distributed-search.md
+        - 13. 고유 사용자 수는 왜 근삿값일까요: elasticsearch/13-cardinality.md
+        - 14. 노드가 죽어도 왜 데이터가 안 사라질까요: elasticsearch/14-replication.md
+        - 15. 벡터 검색은 어떻게 비슷한 걸 찾을까요: elasticsearch/15-hnsw.md
+  - 과학:
+      - science.md
       - 인체:
         - body/index.md
         - 1. 우리 몸은 무엇으로 만들어졌을까요: body/01-cells.md
@@ -98,38 +130,3 @@ nav:
         - 10. 빛은 무엇일까요: matter/10-light.md
         - 11. 전기는 무엇일까요: matter/11-electricity.md
         - 12. 자석은 왜 붙을까요: matter/12-magnets.md
-  - 2단계 · 코드 입문:
-      - level-2.md
-      - 알고리즘:
-        - algorithms/index.md
-        - 1. 양말이 두 배면 일은 몇 배가 될까요: algorithms/01-why-big-o.md
-        - 2. 사물함은 왜 몇 번 칸이든 바로 찾을까요: algorithms/02-why-arrays-are-fast.md
-        - 3. 업다운 놀이는 왜 금방 맞힐까요: algorithms/03-why-sorted-is-fast.md
-        - 4. 손에 든 카드는 어떻게 정리할까요: algorithms/04-insertion-sort.md
-        - 5. 카드를 반씩 나눠 정리하면 왜 빠를까요: algorithms/05-merge-sort.md
-        - 6. 기준 카드 하나로 나누면 어떻게 정렬될까요: algorithms/06-quick-sort.md
-        - 7. 파이썬은 카드를 어떻게 정렬할까요: algorithms/07-timsort.md
-        - 8. 비교하지 않고 정렬할 수 있을까요: algorithms/08-counting-sort.md
-        - 9. 이름으로 어떻게 바로 찾을까요: algorithms/09-hash.md
-        - 10. 가장 급한 것을 어떻게 늘 빨리 꺼낼까요: algorithms/10-heap.md
-        - 11. 창고 속 카드는 어떻게 빨리 찾을까요: algorithms/11-btree.md
-        - 12. 친구의 친구까지 빠짐없이 찾으려면: algorithms/12-bfs-dfs.md
-  - 3단계 · 실제 소프트웨어:
-      - level-3.md
-      - Elasticsearch:
-        - elasticsearch/index.md
-        - 1. 검색 엔진은 왜 목록을 거꾸로 만들어 둘까요: elasticsearch/01-inverted-index.md
-        - 2. 같은 글자인데 왜 검색이 안 될까요: elasticsearch/02-analyzer.md
-        - 3. 샤드 수는 왜 나중에 못 바꿀까요: elasticsearch/03-routing.md
-        - 4. 저장했는데 왜 바로 검색이 안 될까요: elasticsearch/04-refresh.md
-        - 5. 지운 문서는 언제 실제로 사라질까요: elasticsearch/05-merge.md
-        - 6. 낱말 수억 개를 어떻게 메모리에 올릴까요: elasticsearch/06-terms-postings.md
-        - 7. AND 검색은 어떻게 빨리 겹치는 걸 찾을까요: elasticsearch/07-intersection.md
-        - 8. 같은 검색어인데 왜 환경마다 순위가 다를까요: elasticsearch/08-bm25.md
-        - 9. 상위 10개만 필요하면 왜 다 계산하지 않아도 될까요: elasticsearch/09-top-k.md
-        - 10. 정렬·집계는 왜 역색인을 쓰지 않을까요: elasticsearch/10-doc-values.md
-        - 11. 숫자·날짜 범위 검색은 왜 빠를까요: elasticsearch/11-bkd.md
-        - 12. 샤드 여러 개의 결과를 어떻게 합칠까요: elasticsearch/12-distributed-search.md
-        - 13. 고유 사용자 수는 왜 근삿값일까요: elasticsearch/13-cardinality.md
-        - 14. 노드가 죽어도 왜 데이터가 안 사라질까요: elasticsearch/14-replication.md
-        - 15. 벡터 검색은 어떻게 비슷한 걸 찾을까요: elasticsearch/15-hnsw.md

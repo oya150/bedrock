@@ -6,12 +6,11 @@
 
 편마다 질문 하나를 다루고 끝에 판단해 볼 문제를 붙였어요. 숫자는 다 직접 잰 거라, 잰 코드도 같이 올려 뒀어요.
 
-## 단계
+## 분야
 
-글은 쉬운 것부터 세 단계로 나눠 뒀어요. 처음이라면 1단계부터 보세요. 단계 사이가 어떻게 이어지는지는 [길 안내](paths.md)에 그림으로 있어요.
+| 분야 | 갈래 |
+|---|---|
+| [컴퓨터](paths.md) | [컴퓨터](computer/index.md) → [알고리즘](algorithms/index.md) → [Elasticsearch](elasticsearch/index.md) |
+| [과학](science.md) | [인체](body/index.md), [물질과 에너지](matter/index.md) |
 
-| 단계 | 갈래 | 누구를 생각하고 썼나 |
-|---|---|---|
-| [1단계 · 누구나](level-1.md) | [컴퓨터](computer/index.md), [인체](body/index.md), [물질과 에너지](matter/index.md) | 덧셈과 뺄셈을 아는 누구나 |
-| [2단계 · 코드 입문](level-2.md) | [알고리즘](algorithms/index.md) | 코드를 막 배우기 시작한 분 |
-| [3단계 · 실제 소프트웨어](level-3.md) | [Elasticsearch](elasticsearch/index.md) | 프로그램을 조금 다뤄 본 분 |
+컴퓨터 분야는 쉬운 것부터 세 단계로 나눠 뒀어요. 어떤 차례로 읽으면 좋은지는 [길 안내](paths.md)에 그림으로 있어요. 과학 분야는 어느 갈래부터 읽어도 괜찮아요.
