@@ -1,5 +1,5 @@
 #!/bin/bash
-# Elasticsearch 1편 직접 해 보기. 조사 없이 낱말만 띄어 쓴 글 세 개를 넣는다. ES 7.17과 9.x에서 같은 결과가 나온다.
+# Elasticsearch 1편 역색인을 직접 보는 명령. 조사 없이 낱말만 띄어 쓴 글 세 개를 넣는다. ES 7.17과 9.x에서 같은 결과가 나온다.
 # ES 띄우기(둘 중 하나):
 #   docker run -d --name es -p 9200:9200 -e discovery.type=single-node -e xpack.security.enabled=false elasticsearch:7.17.26
 #   docker run -d --name es -p 9200:9200 -e discovery.type=single-node -e xpack.security.enabled=false docker.elastic.co/elasticsearch/elasticsearch:9.2.0
