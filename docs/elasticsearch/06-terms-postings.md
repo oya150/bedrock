@@ -41,7 +41,7 @@
 
 ![위 메모리(또는 mmap) 칸에 빨간 블록 색인(.tip): sa… → 블록 41, se… → 블록 42, sh… → 블록 43. 점선 아래 디스크 칸에 블록 41 sable … sawyer, 블록 42 seal … sewer(빨강), 블록 43 shack … shy. 아래에 용어 블록(.tim): 낱말 수십 개씩 정렬해서 묶음. 오른쪽 찾기: search 상자에서 ① 접두사로 블록 고르기 화살표가 블록 색인으로, ② 블록 하나만 읽어 훑기 화살표가 블록 42로 간다.](img/06/es06-blocktree.svg)
 
-FST가 작아도 낱말 수억 개를 다 담으면 여전히 커요. 그래서 Lucene은 정렬된 낱말을 수십 개씩 묶어 **용어 블록**으로 디스크(.tim 파일)에 적어요. 그리고 "이 앞부분으로 시작하는 낱말은 몇 번 블록에 있다"만 담은 작은 블록 색인(.tip 파일)을 따로 둬요. 블록 색인도 앞부분을 나눠 쓰는 그림이고 7.17까지는 FST였어요(9.x에서 바뀐 점은 아래 심화 칸). 낱말 하나를 찾으려면 블록 색인으로 블록을 고르고 그 블록 하나만 읽어 차례로 훑어요. 블록 하나에 든 낱말은 수십 개뿐이에요. 그림의 블록 번호는 일부만 보인 것이고 실제로는 사이에 다른 블록들이 더 있어요.
+FST가 작아도 낱말 수억 개를 다 담으면 여전히 커요. 그래서 Lucene은 정렬된 낱말을 수십 개씩 묶어 **용어 블록**으로 디스크(.tim 파일)에 적어요. 그리고 "이 앞부분으로 시작하는 낱말은 몇 번 블록에 있다"만 담은 작은 블록 색인(.tip 파일)을 따로 둬요. 블록 색인도 앞부분을 나눠 쓰는 그림이고 7.17까지는 FST였어요(9.x에서 바뀐 점은 아래 심화 칸). 낱말 하나를 찾으려면 블록 색인으로 블록을 고르고 그 블록 하나만 읽어 차례로 훑어요(ES 8.15부터는 블록 안 낱말의 뒷부분 길이가 모두 같으면 블록 안도 이진 탐색해요). 블록 하나에 든 낱말은 수십 개뿐이에요. 그림의 블록 번호는 일부만 보인 것이고 실제로는 사이에 다른 블록들이 더 있어요.
 
 로컬 ES에 같은 23만 낱말을 `keyword` 필드 `w`로 넣고 필드별 역색인 크기를 `_disk_usage` API로 봤어요. ES가 문서마다 붙이는 `_id`도 낱말이 23만 개라 함께 적었어요.
 
@@ -55,7 +55,7 @@ FST가 작아도 낱말 수억 개를 다 담으면 여전히 커요. 그래서 
 ??? info "심화: BlockTree와 파일 이름"
     이 구조를 Lucene에서는 BlockTree 용어 사전이라고 불러요. 블록 하나에 25~48개 낱말을 담고(기본값), 블록 안에는 공통 앞부분을 뺀 뒷부분, 낱말마다의 통계(docFreq, totalTermFreq), 포스팅 목록의 파일 위치를 구역을 나눠 적어요. 앞부분이 긴 낱말 무리는 더 긴 앞부분의 하위 블록으로 들어가 트리가 되고 한 앞부분 아래 낱말이 너무 많으면 다음 글자 범위로 쪼갠 floor block을 만들어요.
 
-    블록 색인(.tip)의 생김새는 버전마다 달라요. 7.17이 쓰는 Lucene 8.11은 FST예요. 9.2가 쓰는 Lucene 10.3의 `lucene103/blocktree` 패키지에는 FST 대신 `TrieBuilder`, `TrieReader`가 들어 있어서 블록 색인을 전용 trie로 짜요(로컬 9.2.0의 lucene-core-10.3.1.jar 클래스 목록으로 확인). 블록을 고르는 역할은 같아요.
+    블록 색인(.tip)의 생김새는 버전마다 달라요. 7.17이 쓰는 Lucene 8.11은 FST예요. 9.2가 쓰는 Lucene 10.3의 `lucene103/blocktree` 패키지에는 FST 대신 `TrieBuilder`, `TrieReader`가 들어 있어서 블록 색인을 전용 trie로 짜요(로컬 9.2.0의 lucene-core-10.3.1.jar 클래스 목록으로 확인). ES 9.2에서 이 포맷을 쓰는 건 새로 만든 보통(standard) 인덱스뿐이에요. `logsdb`·`time_series`·`lookup` 모드 인덱스와 9.2 전에 만든 인덱스는 ES 자체 포스팅 포맷(ES812)을 그대로 써서 블록 색인도 FST예요.[^es92-codec] 블록을 고르는 역할은 같아요.
 
     파일 이름은 `.tim`(용어 블록), `.tip`(블록 색인), `.tmd`(메타데이터)예요. `.tmd`는 7.17의 Lucene 8.11 세그먼트에도 있어요. 블록 안 뒷부분은 Lucene 8 후반부터 LZ4나 소문자 영어 전용 압축을 골라 쓸 수 있어요. 실제 서비스 인덱스에서는 `GET 인덱스/_stats/segments?include_segment_file_sizes=true`로 파일 종류별 크기를 볼 수 있지만 모든 필드가 섞여 나와요. 필드별 크기는 이 편처럼 `POST 인덱스/_disk_usage?run_expensive_tasks=true`(7.15부터)로 봐요. 9.2에서는 같은 파일 종류별 합계가 7.17과 크게 달랐는데(.tim 1.2 MB 대 2.7 MB) 필드별 역색인은 비슷해서 원인은 따로 나눠 보지 못했어요. 힙에 올린 용어 사전 크기(`terms_memory_in_bytes`)는 7.17에서 512 B였고 9.2는 이 통계 칸을 모두 0으로만 줘서 비교할 수 없어요. mmap으로 읽는 건 `index.store.type`이 기본값(`hybridfs`)일 때 .tim, .tip 같은 파일이 mmap 목록에 들어 있어서예요. 작은 세그먼트는 파일 하나(`.cfs`)로 묶여 있어서 병합으로 새로 쓴 세그먼트에서 봐야 파일이 나뉘어 보여요.
 
@@ -133,3 +133,4 @@ python lab/es/06_terms_postings.py
     **풀이** 값이 문서마다 다르니 낱말 수가 문서 수만큼 늘고 앞뒤 공유도 거의 안 돼요. 용어 블록과 FST가 크게 불어나요. 검색에 안 쓰면 `"index": false`로 역색인을 만들지 않고 `_source`에만 둬요. 정렬·집계에도 안 쓰면 `doc_values`까지 꺼서 자리를 아껴요. `_id`는 이렇게 끌 수 없으니 `request_id`를 `_id`로 쓰는 일도 같은 크기를 치른다는 걸 기억해요. 가끔 찾아야 하면 로그 쪽에서 찾는 방법도 따져 봐요.
 
 [^lab]: 재는 코드: [lab/es/06_terms_postings.py](https://github.com/oya150/bedrock/blob/main/lab/es/06_terms_postings.py), [lab/es/06_es.py](https://github.com/oya150/bedrock/blob/main/lab/es/06_es.py). 낱말 목록은 macOS에 들어 있는 `/usr/share/dict/words`(web2)를 썼어요. ES 크기는 7.17.26과 9.2.0에서 `_disk_usage`로 쟀어요.
+[^es92-codec]: Elasticsearch v9.2.0 소스 `PerFieldFormatSupplier`(Lucene 10.3 이후 만든 인덱스이면서 `IndexMode`가 기본 포스팅 포맷을 쓰는 standard일 때만 Lucene103), `ES812PostingsFormat`(`Lucene90BlockTreeTermsWriter` 사용). <https://github.com/elastic/elasticsearch/blob/v9.2.0/server/src/main/java/org/elasticsearch/index/codec/PerFieldFormatSupplier.java>

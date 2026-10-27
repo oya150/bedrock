@@ -80,7 +80,7 @@ Can't update non dynamic settings [[index.number_of_shards]] for open indices [[
 
     쓰기 차단은 곧 그 인덱스에 쓰기가 멈춘다는 뜻이에요. 계속 쓰는 인덱스라면 롤오버로 새 인덱스를 만들거나 재색인이 현실적이에요. 샤드 수는 그대로 두고 같은 방식으로 복제하는 `_clone`도 있어요.
 
-    `_shrink`는 원본 샤드의 복사본 하나씩이 모두 같은 노드에 모여 있어야 해서 보통 `index.routing.allocation.require._name`으로 한 노드에 모은 뒤 실행해요. 새 인덱스의 샤드 하나에 들어갈 문서가 약 21억 개를 넘으면 안 돼요(1편 doc id 상한).
+    `_shrink`는 원본 샤드의 복사본 하나씩이 모두 같은 노드에 모여 있어야 해서 보통 `index.routing.allocation.require._name`으로 한 노드에 모은 뒤 실행해요. 새 인덱스의 샤드 하나에 들어갈 문서가 약 21억 개를 넘으면 안 돼요(Lucene은 샤드 하나 안의 문서 번호를 32비트 정수로 매겨서 약 21억 개가 끝이에요).
 
 ## 라우팅 값을 직접 줄 수도 있어요
 
@@ -100,7 +100,7 @@ Can't update non dynamic settings [[index.number_of_shards]] for open indices [[
 
 ## 직접 해 보기
 
-1편처럼 띄운 ES에서 [lab/es/03_es.sh](https://github.com/oya150/bedrock/blob/main/lab/es/03_es.sh)를 돌리면 이 편의 장면을 차례로 볼 수 있어요. 샤드 수 변경이 거절되고 3에서 4로 쪼개기도 거절되고 3에서 6으로 쪼개기는 돼요. 라우팅 값을 준 문서가 한 샤드에 모인 것은 이 요청으로 봐요.
+개발용 ES를 띄우고 [lab/es/03_es.sh](https://github.com/oya150/bedrock/blob/main/lab/es/03_es.sh)를 돌리면 이 편의 장면을 차례로 볼 수 있어요. 샤드 수 변경이 거절되고 3에서 4로 쪼개기도 거절되고 3에서 6으로 쪼개기는 돼요. 라우팅 값을 준 문서가 한 샤드에 모인 것은 이 요청으로 봐요.
 
 ```bash
 curl 'localhost:9200/_cat/shards/by-user?h=shard,docs&s=shard'
