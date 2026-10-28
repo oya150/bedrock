@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-24T11:57:19.459011</dc:date>
+    <dc:date>2026-10-28T18:32:37.372453</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 29.8575 52.7424 29.8575 54.96
 L 29.8575 91.92 
 Q 29.8575 94.1376 31.95 94.1376 
 z
-" clip-path="url(#pca934d284f)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p39916754e6)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 178.425 94.1376 
@@ -53,7 +53,7 @@ Q 176.3325 52.7424 176.3325 54.96
 L 176.3325 91.92 
 Q 176.3325 94.1376 178.425 94.1376 
 z
-" clip-path="url(#pca934d284f)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p39916754e6)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 405.1125 94.1376 
@@ -66,27 +66,27 @@ Q 403.02 52.7424 403.02 54.96
 L 403.02 91.92 
 Q 403.02 94.1376 405.1125 94.1376 
 z
-" clip-path="url(#pca934d284f)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p39916754e6)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_1">
     <path d="M 45.9 114.096 
 L 548.1 114.096 
-" clip-path="url(#pca934d284f)" style="fill: none; stroke: #555555; stroke-width: 1.6; stroke-linecap: square"/>
+" clip-path="url(#p39916754e6)" style="fill: none; stroke: #555555; stroke-width: 1.6; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
     <path d="M 70.3125 119.64 
 L 70.3125 108.552 
-" clip-path="url(#pca934d284f)" style="fill: none; stroke: #555555; stroke-width: 1.6; stroke-linecap: square"/>
+" clip-path="url(#p39916754e6)" style="fill: none; stroke: #555555; stroke-width: 1.6; stroke-linecap: square"/>
    </g>
    <g id="line2d_3">
     <path d="M 227.25 119.64 
 L 227.25 108.552 
-" clip-path="url(#pca934d284f)" style="fill: none; stroke: #555555; stroke-width: 1.6; stroke-linecap: square"/>
+" clip-path="url(#p39916754e6)" style="fill: none; stroke: #555555; stroke-width: 1.6; stroke-linecap: square"/>
    </g>
    <g id="line2d_4">
     <path d="M 453.9375 119.64 
 L 453.9375 108.552 
-" clip-path="url(#pca934d284f)" style="fill: none; stroke: #555555; stroke-width: 1.6; stroke-linecap: square"/>
+" clip-path="url(#p39916754e6)" style="fill: none; stroke: #555555; stroke-width: 1.6; stroke-linecap: square"/>
    </g>
    <g id="text_1">
     <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="70.3125" y="135.836156" transform="rotate(-0 70.3125 135.836156)">0초</text>
@@ -98,21 +98,24 @@ L 453.9375 108.552
     <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="453.9375" y="135.836156" transform="rotate(-0 453.9375 135.836156)">1초쯤</text>
    </g>
    <g id="text_4">
-    <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="70.3125" y="77.082031" transform="rotate(-0 70.3125 77.082031)">글 저장</text>
+    <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="70.3125" y="71.538031" transform="rotate(-0 70.3125 71.538031)">글 저장</text>
    </g>
    <g id="text_5">
-    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="227.25" y="77.082031" transform="rotate(-0 227.25 77.082031)">검색: 0건</text>
+    <text style="fill: #555555; font: 9.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="70.3125" y="85.843945" transform="rotate(-0 70.3125 85.843945)">(환불 요청)</text>
    </g>
    <g id="text_6">
-    <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="453.9375" y="77.082031" transform="rotate(-0 453.9375 77.082031)">검색: 1건</text>
+    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="227.25" y="77.082031" transform="rotate(-0 227.25 77.082031)">검색: 0건</text>
    </g>
    <g id="text_7">
+    <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="453.9375" y="77.082031" transform="rotate(-0 453.9375 77.082031)">검색: 1건</text>
+   </g>
+   <g id="text_8">
     <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="297" y="164.015375" transform="rotate(-0 297 164.015375)">저장은 끝났다는데 검색에는 잠깐 안 보여요</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="pca934d284f">
+  <clipPath id="p39916754e6">
    <rect x="18" y="18" width="558" height="155.232"/>
   </clipPath>
  </defs>
