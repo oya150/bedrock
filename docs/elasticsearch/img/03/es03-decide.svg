@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-28T12:36:26.730105</dc:date>
+    <dc:date>2026-10-28T12:46:20.047442</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,17 +40,17 @@ Q 26.928 30.5664 26.928 32.784
 L 26.928 84.528 
 Q 26.928 86.7456 29.16 86.7456 
 z
-" clip-path="url(#pb04658b78e)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p4c712dcd85)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 243.199409 58.656 
 Q 267.238643 58.656 289.041809 58.656 
-" clip-path="url(#pb04658b78e)" style="fill: none; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p4c712dcd85)" style="fill: none; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 281.841809 55.056 
 L 289.041809 58.656 
 L 281.841809 62.256 
 z
-" clip-path="url(#pb04658b78e)" style="fill: #e4572e; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p4c712dcd85)" style="fill: #e4572e; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="patch_4">
     <path d="M 297 86.7456 
@@ -63,17 +63,17 @@ Q 294.768 30.5664 294.768 32.784
 L 294.768 84.528 
 Q 294.768 86.7456 297 86.7456 
 z
-" clip-path="url(#pb04658b78e)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p4c712dcd85)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 133.32 90.224496 
 Q 133.32 110.401172 133.32 128.341781 
-" clip-path="url(#pb04658b78e)" style="fill: none; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p4c712dcd85)" style="fill: none; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 136.92 121.141781 
 L 133.32 128.341781 
 L 129.72 121.141781 
 z
-" clip-path="url(#pb04658b78e)" style="fill: #555555; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p4c712dcd85)" style="fill: #555555; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="patch_6">
     <path d="M 29.16 186.5376 
@@ -86,17 +86,17 @@ Q 26.928 134.0544 26.928 136.272
 L 26.928 184.32 
 Q 26.928 186.5376 29.16 186.5376 
 z
-" clip-path="url(#pb04658b78e)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p4c712dcd85)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 243.199409 160.296 
 Q 267.238643 160.296 289.041809 160.296 
-" clip-path="url(#pb04658b78e)" style="fill: none; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p4c712dcd85)" style="fill: none; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 281.841809 156.696 
 L 289.041809 160.296 
 L 281.841809 163.896 
 z
-" clip-path="url(#pb04658b78e)" style="fill: #555555; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p4c712dcd85)" style="fill: #555555; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="patch_8">
     <path d="M 297 186.5376 
@@ -109,7 +109,7 @@ Q 294.768 134.0544 294.768 136.272
 L 294.768 184.32 
 Q 294.768 186.5376 297 186.5376 
 z
-" clip-path="url(#pb04658b78e)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p4c712dcd85)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 700 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(57.311484 56.778469)">시간이 지나며 계속 쌓이기만 하나요?</text>
@@ -136,7 +136,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pb04658b78e">
+  <clipPath id="p4c712dcd85">
    <rect x="18" y="18" width="558" height="177.408"/>
   </clipPath>
  </defs>

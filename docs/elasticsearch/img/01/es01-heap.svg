@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-27T15:55:28.542799</dc:date>
+    <dc:date>2026-10-28T12:46:16.642676</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 26.928 44.22553 26.928 46.684174
 L 26.928 153.225391 
 Q 26.928 155.684035 29.16 155.684035 
 z
-" clip-path="url(#p9df8b8c56d)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p6a266c6760)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 215.16 155.684035 
@@ -53,7 +53,7 @@ Q 212.928 44.22553 212.928 46.684174
 L 212.928 153.225391 
 Q 212.928 155.684035 215.16 155.684035 
 z
-" clip-path="url(#p9df8b8c56d)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p6a266c6760)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 412.32 155.684035 
@@ -66,17 +66,17 @@ Q 410.088 44.22553 410.088 46.684174
 L 410.088 153.225391 
 Q 410.088 155.684035 412.32 155.684035 
 z
-" clip-path="url(#p9df8b8c56d)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p6a266c6760)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 406.601499 112.248 
 Q 391.86184 112.248 379.358248 112.248 
-" clip-path="url(#p9df8b8c56d)" style="fill: none; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p6a266c6760)" style="fill: none; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 386.558248 115.848 
 L 379.358248 112.248 
 L 386.558248 108.648 
 z
-" clip-path="url(#p9df8b8c56d)" style="fill: #e4572e; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p6a266c6760)" style="fill: #e4572e; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 700 11.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="103.56" y="70.980448" transform="rotate(-0 103.56 70.980448)">ES 전용 메모리</text>
@@ -113,7 +113,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p9df8b8c56d">
+  <clipPath id="p6a266c6760">
    <rect x="18" y="18" width="558" height="188.496"/>
   </clipPath>
  </defs>

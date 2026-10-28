@@ -3,7 +3,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "es"))
-from figkit import (BLUE, GREEN, GREY, INK, NOTE, PAPER, PINK, RED, YEL, arrow, box, canvas, cell,  # noqa: E402
+from figkit import (story, BLUE, GREEN, GREY, INK, NOTE, PAPER, PINK, RED, YEL, arrow, box, canvas, cell,  # noqa: E402
                     label, outdir, save)
 
 OUT = outdir("03")
@@ -242,17 +242,8 @@ def decide():
 
 
 def map_():
-    steps = ["인덱스는\n샤드로 나뉘어요", "샤드 번호는\n계산으로", "라우팅 값\n직접 주기", "샤드 수를 바꾸면\n자리를 옮겨요", "2배, 4배로\n쪼개기", "샤드 수\n정하기"]
-    fig, ax = canvas(12, 2.2, 24, 3)
-    for k, s in enumerate(steps):
-        x = 0.2 + k * 4.0
-        hot = k == 3
-        box(ax, x, 0.6, 3.2, 1.8, fc=PINK if hot else NOTE, ec=RED if hot else INK)
-        label(ax, x + 1.6, 1.5, s, fs=11, color=RED if hot else "#222")
-        label(ax, x + 0.22, 2.15, str(k + 1), fs=10, color=INK, ha="left")
-        if k < len(steps) - 1:
-            arrow(ax, (x + 3.3, 1.5), (x + 3.9, 1.5), ms=14)
-    save(fig, OUT, "es03-map.svg")
+    """정리 절: 이 편이 한 말을 결론 문장으로."""
+    story(['문서가 많으면 인덱스를 샤드 여러 개로 나눠 여러 노드에 담아요', '문서가 갈 샤드는 해시값과 샤드 수로 계산해요(라우팅 값을 따로 줄 수도 있어요)', '샤드 수를 바꾸면 계산이 달라져 문서 대부분이 자리를 옮겨야 해요', '그래서 샤드 수는 못 바꾸고 2배, 4배로 쪼개는 것만 돼요', '샤드 수는 앞으로 클 크기로 정하고 계속 쌓이는 데이터는 기간마다 새 인덱스를 만들어요'], 2, OUT, "es03-map.svg")
 
 
 if __name__ == "__main__":

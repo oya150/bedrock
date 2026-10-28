@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-27T15:55:28.326705</dc:date>
+    <dc:date>2026-10-28T12:46:16.417755</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 520.2 66.754588
 L 520.2 41.317412 
 L 166.8 41.317412 
 z
-" clip-path="url(#pd94c70d528)" style="fill: #c9ccd1; stroke: #555555; stroke-linejoin: miter"/>
+" clip-path="url(#p4c8a33efb7)" style="fill: #c9ccd1; stroke: #555555; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 166.8 121.868471 
@@ -43,7 +43,7 @@ L 167.916 121.868471
 L 167.916 96.431294 
 L 166.8 96.431294 
 z
-" clip-path="url(#pd94c70d528)" style="fill: #e4572e; stroke: #e4572e; stroke-linejoin: miter"/>
+" clip-path="url(#p4c8a33efb7)" style="fill: #e4572e; stroke: #e4572e; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 11.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="29.16" y="57.872328" transform="rotate(-0 29.16 57.872328)">전체 훑기</text>
@@ -61,7 +61,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pd94c70d528">
+  <clipPath id="p4c8a33efb7">
    <rect x="18" y="18" width="558" height="144.144"/>
   </clipPath>
  </defs>

@@ -3,7 +3,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "es"))
-from figkit import (GREY, INK, LIGHT, NOTE, PAPER, PINK, RED, YEL, arrow, box, canvas, cell, cells,  # noqa: E402
+from figkit import (story, GREY, INK, LIGHT, NOTE, PAPER, PINK, RED, YEL, arrow, box, canvas, cell, cells,  # noqa: E402
                     label, outdir, save)
 
 OUT = outdir("01")
@@ -30,17 +30,8 @@ def scan():
 
 
 def map_():
-    """정리 절의 지나온 길."""
-    steps = ["한 줄씩\n다 보기", "정렬 목록의\n한계", "글마다\n낱말 목록", "뒤집기:\n역색인", "사전에서\n찾기", "글이 늘어도\n걸음 그대로", "두 목록\n겹치기", "시간과\n공간", "잘라 둔\n낱말만", "잠시 뒤\n검색", "언제\n쓸모 있나"]
-    fig, ax = canvas(15.3, 1.8, 44, 3)
-    for k, s in enumerate(steps):
-        x = 0.2 + k * 4.0
-        box(ax, x, 0.6, 3.2, 1.8, fc=PINK if k == 3 else NOTE, ec=RED if k == 3 else INK)
-        label(ax, x + 1.6, 1.5, s, fs=11, color=RED if k == 3 else "#222")
-        label(ax, x + 0.22, 2.15, str(k + 1), fs=10, color=INK, ha="left")
-        if k < len(steps) - 1:
-            arrow(ax, (x + 3.3, 1.5), (x + 3.9, 1.5), ms=14)
-    save(fig, OUT, "es01-map.svg")
+    """정리 절: 이 편이 한 말을 결론 문장으로."""
+    story(['글을 하나씩 다 훑으면 글이 늘수록 찾는 시간도 늘어나요', '그래서 낱말마다 그 낱말이 든 글 번호를 미리 적어 둬요(역색인)', '낱말을 정렬해 둔 사전이라 글이 늘어도 낱말 하나를 찾는 걸음은 거의 그대로예요', '두 낱말이 다 든 글은 번호 줄 둘을 한 번씩 훑어 겹쳐 찾아요', '대신 미리 만드는 시간과 공간이 들고 잘라 둔 낱말로만 찾을 수 있어요', '넣은 글은 모았다가 한꺼번에 올려서 잠시 뒤에야 검색돼요'], 1, OUT, "es01-map.svg")
 
 
 DOCS = {1: ["주문", "환불", "요청"], 2: ["주문", "배송", "언제"], 3: ["환불", "완료", "감사"]}

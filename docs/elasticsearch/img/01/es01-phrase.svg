@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-27T15:55:28.481476</dc:date>
+    <dc:date>2026-10-28T12:46:16.576286</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 118.44 57.6
 L 118.44 25.92 
 L 66.36 25.92 
 z
-" clip-path="url(#p1399558dbd)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p2f56b8dce6)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 121.416 57.6 
@@ -43,7 +43,7 @@ L 173.496 57.6
 L 173.496 25.92 
 L 121.416 25.92 
 z
-" clip-path="url(#p1399558dbd)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 2.2; stroke-linejoin: miter"/>
+" clip-path="url(#p2f56b8dce6)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 2.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 176.472 57.6 
@@ -51,7 +51,7 @@ L 228.552 57.6
 L 228.552 25.92 
 L 176.472 25.92 
 z
-" clip-path="url(#p1399558dbd)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 2.2; stroke-linejoin: miter"/>
+" clip-path="url(#p2f56b8dce6)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 2.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 29.16 178.776 
@@ -64,7 +64,7 @@ Q 26.928 138.384 26.928 140.76
 L 26.928 176.4 
 Q 26.928 178.776 29.16 178.776 
 z
-" clip-path="url(#p1399558dbd)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p2f56b8dce6)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="29.16" y="41.712187" transform="rotate(-0 29.16 41.712187)">글 1</text>
@@ -99,7 +99,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p1399558dbd">
+  <clipPath id="p2f56b8dce6">
    <rect x="18" y="18" width="558" height="166.32"/>
   </clipPath>
  </defs>

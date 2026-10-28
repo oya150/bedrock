@@ -3,7 +3,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "es"))
-from figkit import (GREY, INK, NOTE, PAPER, PINK, RED, arrow, box, canvas, cell, cells,  # noqa: E402
+from figkit import (story, GREY, INK, NOTE, PAPER, PINK, RED, arrow, box, canvas, cell, cells,  # noqa: E402
                     label, outdir, save)
 
 OUT = outdir("02")
@@ -31,17 +31,8 @@ def miss():
 
 
 def map_():
-    steps = ["글자가 똑같아야\n찾아요", "분석기\n세 단계", "한국어는\n형태소로", "검색어도\n같은 길로", "통째로\n둘 값", "바꾸려면\n재색인", "필드마다\n정하기"]
-    fig, ax = canvas(13.9, 1.8, 28, 3)
-    for k, s in enumerate(steps):
-        x = 0.2 + k * 4.0
-        hot = k == 1
-        box(ax, x, 0.6, 3.2, 1.8, fc=PINK if hot else NOTE, ec=RED if hot else INK)
-        label(ax, x + 1.6, 1.5, s, fs=11, color=RED if hot else "#222")
-        label(ax, x + 0.22, 2.15, str(k + 1), fs=10, color=INK, ha="left")
-        if k < len(steps) - 1:
-            arrow(ax, (x + 3.3, 1.5), (x + 3.9, 1.5), ms=14)
-    save(fig, OUT, "es02-map.svg")
+    """정리 절: 이 편이 한 말을 결론 문장으로."""
+    story(['띄어쓰기로만 자르면 "환불했어요"는 "환불"로 못 찾아요', '분석기가 글을 잘라 용어 사전에 올릴 낱말(토큰)을 만들어요', '한국어는 형태소 분석(nori)으로 낱말 안쪽까지 잘라 "환불"을 꺼내요', '검색어도 저장할 때와 같은 방식으로 잘라야 용어 사전의 낱말과 맞아요', '주문번호처럼 통째로 맞아야 하는 값은 자르지 말고 그대로 둬요(keyword)', '한번 자른 결과는 바꾸기 어려워서 필드마다 처음에 정해요'], 1, OUT, "es02-map.svg")
 
 
 def pipeline():
@@ -118,7 +109,7 @@ def termmatch():
     label(ax, 6.0, 2.75, "그대로", fs=11, color=INK)
     cell(ax, 8.4, 1.9, 1.8, 0.8, "Refund")
     arrow(ax, (10.3, 2.3), (11.4, 2.3), color=INK, ms=14)
-    label(ax, 11.6, 2.3, "사전에 대문자\nRefund는 없어요\n→ 0건", fs=11, ha="left", color=INK)
+    label(ax, 11.6, 2.3, "용어 사전에 대문자\nRefund는 없어요\n→ 0건", fs=11, ha="left", color=INK)
     save(fig, OUT, "es02-termmatch.svg")
 
 
@@ -164,7 +155,7 @@ def reindex():
     cell(ax, 11.0, 2.9, 3.0, 0.75, "환불", hot=True, fs=11)
     arrow(ax, (9.5, 1.0), (10.9, 2.0), color=RED)
     label(ax, 8.9, 2.2, "글을 다시 넣기\n(재색인)", fs=10.5, color=RED)
-    label(ax, 2.4, 1.1, "사전은 저절로\n바뀌지 않아요", fs=10, color=INK)
+    label(ax, 2.4, 1.1, "용어 사전은 저절로\n바뀌지 않아요", fs=10, color=INK)
     save(fig, OUT, "es02-reindex.svg")
 
 
@@ -251,7 +242,7 @@ def ngram():
     arrow(ax, (4.1, 3.4), (6.85, 3.4), color=RED, ms=12)
     label(ax, 5.5, 3.85, "기본 분석기", fs=9.5, color=RED)
     cell(ax, 6.95, 3.0, 1.5, 0.8, "청바", hot=True, fs=11)
-    label(ax, 10.3, 3.4, "사전의 청바와 맞아요", fs=10.5, ha="left", color=RED)
+    label(ax, 10.3, 3.4, "용어 사전의 청바와 맞아요", fs=10.5, ha="left", color=RED)
     label(ax, 0.3, 1.6, "검색어도\nedge_ngram", fs=10.5, ha="left", color=INK)
     cell(ax, 2.2, 1.2, 1.8, 0.8, "청바", fc=PAPER, fs=11)
     arrow(ax, (4.1, 1.6), (5.4, 1.6), ms=12)

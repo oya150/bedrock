@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-28T12:36:26.346809</dc:date>
+    <dc:date>2026-10-28T12:46:19.708165</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 26.928 60.1344 26.928 62.352
 L 26.928 121.488 
 Q 26.928 123.7056 29.16 123.7056 
 z
-" clip-path="url(#p96d5abd3d6)" style="fill: #7da2c8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p0a342b77ae)" style="fill: #7da2c8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 92.4 123.7056 
@@ -53,7 +53,7 @@ Q 90.168 60.1344 90.168 62.352
 L 90.168 121.488 
 Q 90.168 123.7056 92.4 123.7056 
 z
-" clip-path="url(#p96d5abd3d6)" style="fill: #8fb58f; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p0a342b77ae)" style="fill: #8fb58f; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 155.64 123.7056 
@@ -66,17 +66,17 @@ Q 153.408 60.1344 153.408 62.352
 L 153.408 121.488 
 Q 153.408 123.7056 155.64 123.7056 
 z
-" clip-path="url(#p96d5abd3d6)" style="fill: #f6c445; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p0a342b77ae)" style="fill: #f6c445; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 220.858634 73.168846 
 Q 272.818754 66.048171 322.563512 59.231092 
-" clip-path="url(#p96d5abd3d6)" style="fill: none; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p0a342b77ae)" style="fill: none; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 314.941403 56.641987 
 L 322.563512 59.231092 
 L 315.918963 63.775316 
 z
-" clip-path="url(#p96d5abd3d6)" style="fill: #e4572e; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p0a342b77ae)" style="fill: #e4572e; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="patch_6">
     <path d="M 330.48 81.2016 
@@ -89,17 +89,17 @@ Q 328.248 39.8064 328.248 42.024
 L 328.248 78.984 
 Q 328.248 81.2016 330.48 81.2016 
 z
-" clip-path="url(#p96d5abd3d6)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p0a342b77ae)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 220.85205 107.041815 
 Q 272.821864 115.944319 322.587714 124.469281 
-" clip-path="url(#p96d5abd3d6)" style="fill: none; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p0a342b77ae)" style="fill: none; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 316.098915 119.705303 
 L 322.587714 124.469281 
 L 314.883252 126.801934 
 z
-" clip-path="url(#p96d5abd3d6)" style="fill: #555555; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p0a342b77ae)" style="fill: #555555; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="patch_8">
     <path d="M 330.48 147.7296 
@@ -112,7 +112,7 @@ Q 328.248 106.3344 328.248 108.552
 L 328.248 145.512 
 Q 328.248 147.7296 330.48 147.7296 
 z
-" clip-path="url(#p96d5abd3d6)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p0a342b77ae)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="29.16" y="36.79275" transform="rotate(-0 29.16 36.79275)">주문 기록 (조각 3개)</text>
@@ -141,7 +141,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p96d5abd3d6">
+  <clipPath id="p0a342b77ae">
    <rect x="18" y="18" width="558" height="199.584"/>
   </clipPath>
  </defs>

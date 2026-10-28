@@ -74,3 +74,19 @@ def cells(ax, x, y, items, w=0.9, h=0.8, gap=0.08, hot=(), dim=(), fs=12):
     for k, s in enumerate(items):
         cell(ax, x + k * (w + gap), y, w, h, s, hot=(k in hot), dim=(k in dim), fs=fs)
     return x + len(items) * (w + gap) - gap
+
+
+def story(steps, hot, out, name):
+    """정리 절 그림: 이 편이 한 말을 결론 문장 칸으로 위에서 아래로 잇는다. hot=빨강 칸 번호(0부터)."""
+    n = len(steps)
+    H = 1.15
+    fig, ax = canvas(9, 0.62 * n + 0.3, 14, n * (H + 0.45) + 0.2)
+    for k, s in enumerate(steps):
+        y = (n - 1 - k) * (H + 0.45) + 0.25
+        on = k == hot
+        box(ax, 0.3, y, 13.4, H, fc=PINK if on else NOTE, ec=RED if on else INK)
+        label(ax, 0.75, y + H / 2, str(k + 1), fs=11, color=RED if on else INK, bold=True)
+        label(ax, 1.4, y + H / 2, s, fs=11.5, ha="left", color=RED if on else "#222")
+        if k < n - 1:
+            arrow(ax, (7.0, y - 0.03), (7.0, y - 0.42), ms=12)
+    save(fig, out, name)
