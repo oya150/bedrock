@@ -393,6 +393,23 @@ def back(ax, step):
         moral(ax, 6.0, 0.2, "글이 백만 개여도 환불 줄 하나만 봐요")
 
 
+# ── 전환: 빨라진 대신 치르는 값 ─────────────────────────────────────
+def turn(ax, step):
+    """돌아오는 장면과 같은 무대. 빨라진 결과를 보여 준 뒤 그 대가 세 가지로 넘어간다."""
+    board(ax, hot=(1, 3) if step == 1 else (), dim=(2, 4, 5, 6) if step == 1 else (1, 2, 3, 4, 5, 6))
+    x, y, w, h = CYL
+    cylinder(ax, *CYL, "ES (역색인)")
+    cell(ax, x + 0.15, y + 0.35, 0.9, 0.5, "환불", fs=10.5)
+    cells(ax, x + 1.15, y + 0.35, [1, 3, "⋯"], w=0.42, h=0.5, gap=0.04, fs=10)
+    if step == 1:
+        bubble(ax, *SAY, "환불이 든 글을\n단번에 찾았어요", SAY_TAIL)
+        return
+    bubble(ax, 7.2, 0.25, 4.7, 2.45, "", SAY_TAIL, hot=True)
+    label(ax, 9.55, 2.25, "대신 치르는 값이 있어요", fs=11.5, color=RED, bold=True)
+    for k, t in enumerate(["① 미리 만드는 시간과 공간", "② 잘라 둔 낱말로만 찾기", "③ 넣은 글은 잠시 뒤에 검색"]):
+        label(ax, 7.55, 1.7 - k * 0.5, t, fs=11, ha="left", color=RED)
+
+
 # ── 정리: 낱말 카드 ────────────────────────────────────────────────
 def cards():
     """이 편 본문에서 이름 붙인 말 여덟. 카드마다 본문 그림을 작게 다시 그리고 한 줄 뜻을 단다. 휴대폰 폭에 맞게 두 장씩."""
@@ -564,5 +581,6 @@ if __name__ == "__main__":
     stage(deleted, 2, OUT, "es01-deleted", S, L)
     stage(merge, 2, OUT, "es01-merge", S, L)
     decide()
+    stage(turn, 2, OUT, "es01-turn", S, L)
     stage(back, 3, OUT, "es01-back", S, L)
     cards()
