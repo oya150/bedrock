@@ -8,7 +8,8 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "es"))
 from figkit import (GREY, INK, LIGHT, NOTE, PAPER, PINK, RED, YEL, arrow, box, bubble, canvas, cell, cells,  # noqa: E402
-                    cylinder, label, magnifier, moral, outdir, save, stage)
+                    cylinder, label, moral, outdir, save, stage)
+from figkit import board as fk_board  # noqa: E402
 from matplotlib.patches import Rectangle  # noqa: E402
 
 OUT = outdir("01")
@@ -39,29 +40,7 @@ SAY_TAIL = (9.9, 2.95)
 
 def board(ax, hot=(), dim=(), checks=False):
     """처음 장면과 돌아오는 장면의 무대: 쇼핑몰 문의 게시판 화면."""
-    box(ax, 0.6, 0.65, 6.4, 5.75, fc="white", round_=False)
-    ax.add_patch(Rectangle((0.6, 5.95), 6.4, 0.45, fc=LIGHT, ec=INK, lw=1.2))
-    label(ax, 0.8, 6.17, "쇼핑몰 문의 게시판", fs=11, ha="left", color=INK)
-    ax.add_patch(Rectangle((0.85, 5.2), 4.6, 0.5, fc="white", ec=INK, lw=1.2))
-    magnifier(ax, 1.1, 5.47)
-    label(ax, 1.4, 5.45, "환불", fs=12, ha="left")
-    ax.add_patch(Rectangle((5.55, 5.2), 1.2, 0.5, fc=LIGHT, ec=INK, lw=1.2))
-    label(ax, 6.15, 5.45, "검색", fs=11.5)
-    label(ax, 1.15, 4.85, "번호", fs=10, color=INK)
-    label(ax, 3.9, 4.85, "제목", fs=10, color=INK)
-    ax.plot([0.85, 6.75], [4.65, 4.65], color=INK, lw=1.0)
-    for k, r in enumerate(POSTS):
-        y, on, off = ROW_Y[k], k + 1 in hot, k + 1 in dim
-        if on:
-            ax.add_patch(Rectangle((0.85, y - 0.24), 5.9, 0.48, fc=PINK, ec=RED, lw=1.8))
-        else:
-            ax.plot([0.85, 6.75], [y - 0.27, y - 0.27], color=GREY, lw=0.8)
-        c = RED if on else (GREY if off else "#222")
-        label(ax, 1.15, y, k + 1, fs=11, color=c, bold=on)
-        label(ax, 1.75, y, r, fs=11.5, ha="left", color=c, bold=on)
-        if checks:
-            label(ax, 6.45, y, "✓", fs=12, color=RED)
-    label(ax, 3.8, 0.88, "⋮   글이 백만 개", fs=11.5, color=INK)
+    fk_board(ax, list(enumerate(POSTS, 1)), hot=hot, dim=dim, checks=checks)
 
 
 def scan(ax, step):

@@ -147,3 +147,44 @@ def magnifier(ax, x, y, r=0.11, color=INK):
     """돋보기 표시(검색창 왼쪽)."""
     ax.add_patch(Circle((x, y), r, fill=False, ec=color, lw=1.3))
     ax.plot([x + r * 0.7, x + r * 1.5], [y - r * 0.7, y - r * 1.5], color=color, lw=1.5)
+
+
+BOARD_ROW_Y = [4.15 - k * 0.55 for k in range(6)]
+
+
+def board(ax, posts, query="환불", hot=(), dim=(), checks=False, miss=(), footer="⋮   글이 백만 개"):
+    """처음 장면과 돌아오는 장면의 무대: 쇼핑몰 문의 게시판 화면.
+    posts=[(번호, 제목) 또는 None(⋮ 줄)], 최대 6줄. hot/dim/miss는 글 번호(miss=안 나온 글, 점선 ✗)."""
+    box(ax, 0.6, 0.65, 6.4, 5.75, fc="white", round_=False)
+    ax.add_patch(Rectangle((0.6, 5.95), 6.4, 0.45, fc=LIGHT, ec=INK, lw=1.2))
+    label(ax, 0.8, 6.17, "쇼핑몰 문의 게시판", fs=11, ha="left", color=INK)
+    ax.add_patch(Rectangle((0.85, 5.2), 4.6, 0.5, fc="white", ec=INK, lw=1.2))
+    magnifier(ax, 1.1, 5.47)
+    label(ax, 1.4, 5.45, query, fs=12, ha="left")
+    ax.add_patch(Rectangle((5.55, 5.2), 1.2, 0.5, fc=LIGHT, ec=INK, lw=1.2))
+    label(ax, 6.15, 5.45, "검색", fs=11.5)
+    label(ax, 1.15, 4.85, "번호", fs=10, color=INK)
+    label(ax, 3.9, 4.85, "제목", fs=10, color=INK)
+    ax.plot([0.85, 6.75], [4.65, 4.65], color=INK, lw=1.0)
+    for k, p in enumerate(posts):
+        y = BOARD_ROW_Y[k]
+        if p is None:
+            label(ax, 3.8, y, "⋮", fs=12, color=INK)
+            continue
+        n, r = p
+        on, off, lost = n in hot, n in dim, n in miss
+        if on:
+            ax.add_patch(Rectangle((0.85, y - 0.24), 5.9, 0.48, fc=PINK, ec=RED, lw=1.8))
+        elif lost:
+            ax.add_patch(Rectangle((0.85, y - 0.24), 5.9, 0.48, fill=False, ec=RED, lw=1.5, ls="--"))
+        else:
+            ax.plot([0.85, 6.75], [y - 0.27, y - 0.27], color=GREY, lw=0.8)
+        c = RED if on else (GREY if off else "#222")
+        label(ax, 1.15, y, n, fs=11, color=c, bold=on)
+        label(ax, 1.75, y, r, fs=11.5, ha="left", color=c, bold=on)
+        if checks:
+            label(ax, 6.45, y, "✓", fs=12, color=RED)
+        if lost:
+            label(ax, 6.45, y, "✗", fs=13, color=RED, bold=True)
+    if footer:
+        label(ax, 3.8, 0.88, footer, fs=11.5, color=INK)
