@@ -134,64 +134,68 @@ def index(ax, step):
 
 
 # ── 트라이 → FST ─────────────────────────────────────────────────
-P4 = {"r": (0.7, 3.5), "t": (2.2, 3.5), "ta": (3.8, 4.7), "to": (3.8, 2.3), "tap": (5.4, 4.7), "top": (5.4, 2.3),
-      "taps": (7.0, 4.7), "tops": (7.0, 2.3)}
+# 앞 절과 같은 sea 낱말로 이어 간다.
+P4 = {"r": (0.5, 3.5), "s": (1.8, 3.5), "se": (3.1, 3.5), "sea": (4.4, 3.5), "seal": (5.8, 4.7), "seat": (5.8, 2.3),
+      "seals": (7.1, 4.7), "seats": (7.1, 2.3)}
+R = 0.28
+
+
+def stem(ax, hot=(), vals=None):
+    """s, e, a 줄기. vals가 있으면 '글자 / 값'으로 적는다."""
+    for a, b, ch in (("r", "s", "s"), ("s", "se", "e"), ("se", "sea", "a")):
+        t = f"{ch} / {vals[ch + b]}" if vals else ch
+        edge(ax, (P4[a][0] + R, 3.5), (P4[b][0] - R, 3.5), t, hot=b in hot)
 
 
 def trie(ax, step):
-    label(ax, 0.3, 6.35, "낱말 넷: tap, taps, top, tops", fs=12.5, ha="left", bold=True)
-    gone = step >= 2
+    label(ax, 0.3, 6.35, "낱말 넷: seal, seals, seat, seats", fs=12.5, ha="left", bold=True)
     for k, (x, y) in P4.items():
-        final = k in ("tap", "taps", "top", "tops")
-        if k in ("to", "top", "tops"):
+        final = k in ("seal", "seals", "seat", "seats")
+        if k in ("seat", "seats"):
             if step == 3:
                 continue
-            node(ax, x, y, final=final, hot=step == 1 and k != "to", dim=gone)
+            node(ax, x, y, final=final, hot=step == 1, dim=step >= 2)
         else:
-            node(ax, x, y, final=final, hot=step == 1 and k in ("tap", "taps"))
-    r28 = 0.28
-    edge(ax, (P4["r"][0] + r28, 3.5), (P4["t"][0] - r28, 3.5), "t")
-    edge(ax, (P4["t"][0] + 0.2, 3.7), (P4["ta"][0] - 0.25, 4.6), "a", dy=0.2)
-    edge(ax, (P4["ta"][0] + r28, 4.7), (P4["tap"][0] - r28, 4.7), "p", hot=step == 1)
-    edge(ax, (P4["tap"][0] + r28, 4.7), (P4["taps"][0] - r28, 4.7), "s", hot=step == 1)
+            node(ax, x, y, final=final, hot=step == 1 and k in ("seal", "seals"))
+    stem(ax)
+    edge(ax, (P4["sea"][0] + 0.2, 3.7), (P4["seal"][0] - 0.25, 4.6), "l", at=(4.9, 4.35))
+    edge(ax, (P4["seal"][0] + R, 4.7), (P4["seals"][0] - R, 4.7), "s", hot=step == 1)
     if step < 3:
-        edge(ax, (P4["t"][0] + 0.2, 3.3), (P4["to"][0] - 0.25, 2.4), "o", dim=gone, dy=-0.45)
-        edge(ax, (P4["to"][0] + r28, 2.3), (P4["top"][0] - r28, 2.3), "p", hot=step == 1, dim=gone)
-        edge(ax, (P4["top"][0] + r28, 2.3), (P4["tops"][0] - r28, 2.3), "s", hot=step == 1, dim=gone)
+        edge(ax, (P4["sea"][0] + 0.2, 3.3), (P4["seat"][0] - 0.25, 2.4), "t", dim=step >= 2, at=(4.9, 2.6))
+        edge(ax, (P4["seat"][0] + R, 2.3), (P4["seats"][0] - R, 2.3), "s", hot=step == 1, dim=step >= 2)
     if step >= 2:
-        edge(ax, (P4["t"][0] + 0.28, 3.4), (P4["ta"][0] + 0.1, 4.43), "o", hot=step == 2, rad=0.55, at=(3.75, 3.65))
+        edge(ax, (P4["sea"][0] + R, 3.4), (P4["seal"][0] + 0.1, 4.43), "t", hot=step == 2, rad=0.55, at=(5.8, 3.65))
     if step == 1:
-        label(ax, 8.0, 4.7, "← 꼬리 p, s", fs=12, ha="left", color=RED)
-        label(ax, 8.0, 2.3, "← 똑같은 꼬리 p, s", fs=12, ha="left", color=RED)
-        label(ax, 8.0, 3.5, "트라이: 칸 8개", fs=12.5, ha="left", bold=True)
+        label(ax, 7.8, 4.7, "← 끝, s 붙으면 또 끝", fs=11.5, ha="left", color=RED)
+        label(ax, 7.8, 2.3, "← 똑같은 꼬리", fs=11.5, ha="left", color=RED)
+        label(ax, 7.8, 3.5, "트라이: 칸 8개", fs=12.5, ha="left", bold=True)
         label(ax, 6.0, 0.9, "이중 원 = 여기서 끝나는 낱말이 있어요", fs=11, color=INK)
     elif step == 2:
-        label(ax, 8.0, 2.3, "← 지워요", fs=12, ha="left", color=GREY)
-        label(ax, 8.0, 3.6, "o 길을 위 칸으로\n돌려 함께 써요", fs=12, ha="left", color=RED)
-        label(ax, 6.0, 0.9, "to 뒤 칸들은 ta 뒤 칸들과 모양이 같아요", fs=11.5, color=INK)
+        label(ax, 7.8, 2.3, "← 지워요", fs=12, ha="left", color=GREY)
+        label(ax, 7.8, 3.6, "t 길을 위 칸으로\n돌려 함께 써요", fs=12, ha="left", color=RED)
+        label(ax, 6.0, 0.9, "seat 뒤 칸들은 seal 뒤 칸들과 모양이 같아요", fs=11.5, color=INK)
     else:
-        label(ax, 8.0, 3.5, "FST: 칸 5개", fs=12.5, ha="left", bold=True)
-        label(ax, 8.0, 2.8, "칸 8개 → 5개", fs=12.5, ha="left", color=RED, bold=True)
+        label(ax, 7.8, 3.5, "FST: 칸 6개", fs=12.5, ha="left", bold=True)
+        label(ax, 7.8, 2.8, "칸 8개 → 6개", fs=12.5, ha="left", color=RED, bold=True)
         moral(ax, 6.0, 0.6, "앞부분뿐 아니라 꼬리가 같은 칸도 합쳐요")
 
 
 def output(ax, step):
-    """FST의 값: 지나는 화살표 값을 더한다. 1=tap 길, 2=top 길."""
+    """FST의 값: 지나는 화살표 값을 더한다. 1=seal 길, 2=seat 길."""
     label(ax, 0.3, 6.35, "글자 / 값: 지나는 화살표의 값을 더해요", fs=12.5, ha="left", bold=True)
-    for k in ("r", "t", "ta", "tap", "taps"):
-        node(ax, *P4[k], final=k in ("tap", "taps"))
-    tap, top = step == 1, step == 2
-    edge(ax, (P4["r"][0] + 0.28, 3.5), (P4["t"][0] - 0.28, 3.5), "t / 5", hot=True)
-    edge(ax, (P4["t"][0] + 0.2, 3.7), (P4["ta"][0] - 0.25, 4.6), "a / 0", hot=tap, at=(2.55, 4.4))
-    edge(ax, (P4["t"][0] + 0.28, 3.4), (P4["ta"][0] + 0.1, 4.43), "o / 4", hot=top, rad=0.55, at=(4.15, 3.6))
-    edge(ax, (P4["ta"][0] + 0.28, 4.7), (P4["tap"][0] - 0.28, 4.7), "p / 0", hot=True)
-    edge(ax, (P4["tap"][0] + 0.28, 4.7), (P4["taps"][0] - 0.28, 4.7), "s / 1")
-    label(ax, 8.0, 3.9, "tap = 5 + 0 + 0 = 5", fs=12.5, ha="left", color=RED if tap else INK, bold=tap)
-    if top:
-        label(ax, 8.0, 3.1, "top = 5 + 4 + 0 = 9", fs=12.5, ha="left", color=RED, bold=True)
+    for k in ("r", "s", "se", "sea", "seal", "seals"):
+        node(ax, *P4[k], final=k in ("seal", "seals"))
+    seal, seat = step == 1, step == 2
+    stem(ax, hot=("s", "se", "sea"), vals={"ss": 5, "ese": 0, "asea": 0})
+    edge(ax, (P4["sea"][0] + 0.2, 3.7), (P4["seal"][0] - 0.25, 4.6), "l / 0", hot=seal, at=(4.6, 4.45))
+    edge(ax, (P4["sea"][0] + R, 3.4), (P4["seal"][0] + 0.1, 4.43), "t / 4", hot=seat, rad=0.55, at=(6.1, 3.6))
+    edge(ax, (P4["seal"][0] + R, 4.7), (P4["seals"][0] - R, 4.7), "s / 1")
+    label(ax, 7.8, 3.9, "seal = 5 + 0 + 0 + 0 = 5", fs=11.5, ha="left", color=RED if seal else INK, bold=seal)
+    if seat:
+        label(ax, 7.8, 3.1, "seat = 5 + 0 + 0 + 4 = 9", fs=11.5, ha="left", color=RED, bold=True)
         moral(ax, 6.0, 1.0, "꼬리를 함께 써도 갈라지는 화살표의 값이 두 낱말을 갈라요")
     else:
-        label(ax, 6.0, 1.3, "t, a, p를 따라가며 화살표 값을 더해요", fs=12, color=INK)
+        label(ax, 6.0, 1.3, "s, e, a, l을 따라가며 화살표 값을 더해요", fs=12, color=INK)
         label(ax, 6.0, 0.6, "값은 낱말에 딸린 정보예요 (안내판이라면 블록 위치)", fs=11, color=INK)
 
 

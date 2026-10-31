@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-31T10:46:53.080605</dc:date>
+    <dc:date>2026-10-31T11:24:24.424733</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 396.324 68.49
 L 396.324 57.7188 
 L 28.044 57.7188 
 z
-" clip-path="url(#pf453a3d3e4)" style="fill: #e9ecef; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p1974767c54)" style="fill: #e9ecef; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 28.044 102.15 
@@ -43,7 +43,7 @@ L 85.58775 102.15
 L 85.58775 91.3788 
 L 28.044 91.3788 
 z
-" clip-path="url(#pf453a3d3e4)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p1974767c54)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 28.044 135.81 
@@ -51,7 +51,7 @@ L 74.079 135.81
 L 74.079 125.0388 
 L 28.044 125.0388 
 z
-" clip-path="url(#pf453a3d3e4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p1974767c54)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 28.044 169.47 
@@ -59,7 +59,7 @@ L 97.0965 169.47
 L 97.0965 158.6988 
 L 28.044 158.6988 
 z
-" clip-path="url(#pf453a3d3e4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p1974767c54)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 700 12.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.044" y="35.602672" transform="rotate(-0 28.044 35.602672)">차이값 128개 묶음 하나를 적는 데 드는 바이트</text>
@@ -94,7 +94,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pf453a3d3e4">
+  <clipPath id="p1974767c54">
    <rect x="18" y="18" width="401.76" height="188.496"/>
   </clipPath>
  </defs>

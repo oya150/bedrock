@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-31T10:46:52.679706</dc:date>
+    <dc:date>2026-10-31T11:24:24.004284</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 303.9192 25.6608 303.9192 27.576
 L 303.9192 51.516 
 Q 303.9192 53.4312 305.928 53.4312 
 z
-" clip-path="url(#p8036796c32)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p6188162e34)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 106.722 136.104 
@@ -48,7 +48,7 @@ L 173.682 136.104
 L 173.682 110.568 
 L 106.722 110.568 
 z
-" clip-path="url(#p8036796c32)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p6188162e34)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 185.4 136.104 
@@ -56,7 +56,7 @@ L 252.36 136.104
 L 252.36 110.568 
 L 185.4 110.568 
 z
-" clip-path="url(#p8036796c32)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p6188162e34)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 264.078 136.104 
@@ -64,7 +64,7 @@ L 331.038 136.104
 L 331.038 110.568 
 L 264.078 110.568 
 z
-" clip-path="url(#p8036796c32)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p6188162e34)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 12.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="357.822" y="43.862827" transform="rotate(-0 357.822 43.862827)">찾기: search</text>
@@ -96,7 +96,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p8036796c32">
+  <clipPath id="p6188162e34">
    <rect x="18" y="18" width="401.76" height="210.672"/>
   </clipPath>
  </defs>

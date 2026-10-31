@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-31T10:46:52.494648</dc:date>
+    <dc:date>2026-10-31T11:24:23.825697</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 118.44 171.0144
 L 118.44 51.264 
 L 51.48 51.264 
 z
-" clip-path="url(#pc7c49eb5d3)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.6; stroke-linejoin: miter"/>
+" clip-path="url(#p0eef3a8870)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.6; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 185.4 171.0144 
@@ -43,7 +43,7 @@ L 252.36 171.0144
 L 252.36 84.528 
 L 185.4 84.528 
 z
-" clip-path="url(#pc7c49eb5d3)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.6; stroke-linejoin: miter"/>
+" clip-path="url(#p0eef3a8870)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.6; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(57.432187 193.754775)">낱말 글자만</text>
@@ -67,7 +67,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pc7c49eb5d3">
+  <clipPath id="p0eef3a8870">
    <rect x="18" y="18" width="401.76" height="199.584"/>
   </clipPath>
  </defs>
