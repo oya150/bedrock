@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="393.12pt" height="196.776pt" viewBox="0 0 393.12 196.776" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-31T20:00:53.274114</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 196.776 
+L 393.12 196.776 
+L 393.12 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 25.288163 171.8334 
+L 192.915918 171.8334 
+Q 195.102367 171.8334 195.102367 169.641 
+L 195.102367 27.135 
+Q 195.102367 24.9426 192.915918 24.9426 
+L 25.288163 24.9426 
+Q 23.101714 24.9426 23.101714 27.135 
+L 23.101714 169.641 
+Q 23.101714 171.8334 25.288163 171.8334 
+z
+" clip-path="url(#pd67b045f87)" style="fill: #ffffff; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 47.152653 114.831 
+L 94.525714 114.831 
+L 94.525714 78.291 
+L 47.152653 78.291 
+z
+" clip-path="url(#pd67b045f87)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 2.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 123.678367 114.831 
+L 171.051429 114.831 
+L 171.051429 78.291 
+L 123.678367 78.291 
+z
+" clip-path="url(#pd67b045f87)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 203.848163 171.8334 
+L 371.475918 171.8334 
+Q 373.662367 171.8334 373.662367 169.641 
+L 373.662367 27.135 
+Q 373.662367 24.9426 371.475918 24.9426 
+L 203.848163 24.9426 
+Q 201.661714 24.9426 201.661714 27.135 
+L 201.661714 169.641 
+Q 201.661714 171.8334 203.848163 171.8334 
+z
+" clip-path="url(#pd67b045f87)" style="fill: #ffffff; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 222.068571 115.1964 
+L 353.25551 115.1964 
+Q 355.441959 115.1964 355.441959 113.004 
+L 355.441959 80.118 
+Q 355.441959 77.9256 353.25551 77.9256 
+L 222.068571 77.9256 
+Q 219.882122 77.9256 219.882122 80.118 
+L 219.882122 113.004 
+Q 219.882122 115.1964 222.068571 115.1964 
+z
+" clip-path="url(#pd67b045f87)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #222222; font: 700 12.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="34.398367" y="45.889672" transform="rotate(-0 34.398367 45.889672)">비교</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="109.102041" y="156.538625" transform="rotate(-0 109.102041 156.538625)">둘 중 어느 쪽이 큰지 알아보는 일</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #e4572e; font: 700 18px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="70.839184" y="102.429281" transform="rotate(-0 70.839184 102.429281)">70</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #e4572e; font: 700 20px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="109.102041" y="103.081313" transform="rotate(-0 109.102041 103.081313)">&gt;</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #222222; font: 18px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="147.364898" y="102.429281" transform="rotate(-0 147.364898 102.429281)">50</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #222222; font: 700 12.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="212.958367" y="45.889672" transform="rotate(-0 212.958367 45.889672)">명령어</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="287.662041" y="156.538625" transform="rotate(-0 287.662041 156.538625)">컴퓨터에게 시키는 일 하나를 적은 쪽지</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #222222; font: 11.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="287.662041" y="100.373969" transform="rotate(-0 287.662041 100.373969)">점수에 10 더하기</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pd67b045f87">
+   <rect x="18" y="18" width="357.12" height="160.776"/>
+  </clipPath>
+ </defs>
+</svg>
