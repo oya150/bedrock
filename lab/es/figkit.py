@@ -11,7 +11,7 @@ import matplotlib
 FMT = os.environ.get("FIG_FMT", "svg")
 matplotlib.use("agg" if FMT == "png" else "svg")
 import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Rectangle  # noqa: E402
+from matplotlib.patches import Arc, Circle, Ellipse, FancyArrowPatch, FancyBboxPatch, Polygon, Rectangle  # noqa: E402
 
 plt.rcParams.update({
     "font.family": ["Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "sans-serif"],
@@ -119,3 +119,31 @@ def letters(ax, x, y, word, w=0.55, h=0.6, hot=(), dim=(), blank=(), fs=12):
 def bits(ax, x, y, s, w=0.32, h=0.5, hot=(), dim=(), fs=9.5):
     """0/1 비트 칸 줄. 끝 x를 돌려준다."""
     return letters(ax, x, y, s, w=w, h=h, hot=hot, dim=dim, fs=fs)
+
+
+def bubble(ax, x, y, w, h, s, tail, hot=False, fs=11.5):
+    """말풍선. 장면 속 주인공(데이터베이스, ES)이 하는 일을 제 입으로 말하게 한다. tail=꼬리 끝(위나 아래)."""
+    fc, ec = (PINK, RED) if hot else ("white", INK)
+    box(ax, x, y, w, h, fc=fc, ec=ec, lw=1.5)
+    bx = min(max(tail[0], x + 0.4), x + w - 0.4)
+    edge = y + h if tail[1] > y + h else y
+    ax.add_patch(Polygon([(bx - 0.18, edge), (bx + 0.18, edge), tail], closed=True, fc=fc, ec=ec, lw=1.5, zorder=3))
+    ax.add_patch(Rectangle((bx - 0.16, edge - 0.04), 0.32, 0.08, fc=fc, ec="none", zorder=4))
+    label(ax, x + w / 2, y + h / 2, s, fs=fs, color=RED if hot else "#222")
+
+
+def cylinder(ax, x, y, w, h, name, fc=NOTE, ec=INK, color="#222"):
+    """저장소 원통(데이터베이스, ES). 이름은 원통 위에 쓴다."""
+    ax.add_patch(Ellipse((x + w / 2, y), w, 0.4, fc=fc, ec="none"))
+    ax.add_patch(Rectangle((x, y), w, h, fc=fc, ec="none"))
+    ax.plot([x, x], [y, y + h], color=ec, lw=1.5)
+    ax.plot([x + w, x + w], [y, y + h], color=ec, lw=1.5)
+    ax.add_patch(Arc((x + w / 2, y), w, 0.4, theta1=180, theta2=360, color=ec, lw=1.5))
+    ax.add_patch(Ellipse((x + w / 2, y + h), w, 0.4, fc=PAPER, ec=ec, lw=1.5))
+    label(ax, x + w / 2, y + h + 0.5, name, fs=11.5, color=color, bold=True)
+
+
+def magnifier(ax, x, y, r=0.11, color=INK):
+    """돋보기 표시(검색창 왼쪽)."""
+    ax.add_patch(Circle((x, y), r, fill=False, ec=color, lw=1.3))
+    ax.plot([x + r * 0.7, x + r * 1.5], [y - r * 0.7, y - r * 1.5], color=color, lw=1.5)

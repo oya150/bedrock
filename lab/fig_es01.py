@@ -7,8 +7,8 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "es"))
-from figkit import (story, GREY, INK, LIGHT, NOTE, PAPER, PINK, RED, YEL, arrow, box, canvas, cell, cells,  # noqa: E402
-                    label, moral, outdir, save, stage)
+from figkit import (GREY, INK, LIGHT, NOTE, PAPER, PINK, RED, YEL, arrow, box, bubble, canvas, cell, cells,  # noqa: E402
+                    cylinder, label, magnifier, moral, outdir, save, stage)
 from matplotlib.patches import Rectangle  # noqa: E402
 
 OUT = outdir("01")
@@ -31,28 +31,51 @@ def empty(ax, x, y, w, h):
 
 
 # ── 1번 글부터 다 읽기 ─────────────────────────────────────────────
-def scan(ax, step):
-    label(ax, 0.3, 6.3, "데이터베이스 속 글 표", fs=12.5, ha="left", bold=True)
-    ask(ax, "찾기: 환불이 든 글")
+ROW_Y = [4.15 - k * 0.55 for k in range(6)]
+CYL = (8.6, 3.2, 2.6, 1.3)           # 오른쪽 위 저장소 원통 자리
+SAY = (7.5, 0.95, 4.3, 1.25)         # 그 아래 말풍선 자리
+SAY_TAIL = (9.9, 2.95)
+
+
+def board(ax, hot=(), dim=(), checks=False):
+    """처음 장면과 돌아오는 장면의 무대: 쇼핑몰 문의 게시판 화면."""
+    box(ax, 0.6, 0.65, 6.4, 5.75, fc="white", round_=False)
+    ax.add_patch(Rectangle((0.6, 5.95), 6.4, 0.45, fc=LIGHT, ec=INK, lw=1.2))
+    label(ax, 0.8, 6.17, "쇼핑몰 문의 게시판", fs=11, ha="left", color=INK)
+    ax.add_patch(Rectangle((0.85, 5.2), 4.6, 0.5, fc="white", ec=INK, lw=1.2))
+    magnifier(ax, 1.1, 5.47)
+    label(ax, 1.4, 5.45, "환불", fs=12, ha="left")
+    ax.add_patch(Rectangle((5.55, 5.2), 1.2, 0.5, fc=LIGHT, ec=INK, lw=1.2))
+    label(ax, 6.15, 5.45, "검색", fs=11.5)
+    label(ax, 1.15, 4.85, "번호", fs=10, color=INK)
+    label(ax, 3.9, 4.85, "제목", fs=10, color=INK)
+    ax.plot([0.85, 6.75], [4.65, 4.65], color=INK, lw=1.0)
     for k, r in enumerate(POSTS):
-        y = 5.2 - k * 0.66
-        hot = (step == 2 and k == 0) or (step == 3 and "환불" in r)
-        cell(ax, 1.0, y, 0.6, 0.56, k + 1, hot=hot, fs=11.5)
-        cell(ax, 1.6, y, 3.6, 0.56, r, hot=hot, fs=11.5)
-        if step == 3:
-            label(ax, 5.55, y + 0.28, "✓", fs=12, color=RED)
-    label(ax, 3.1, 1.15, "⋮  글이 백만 개", fs=12, color=INK)
+        y, on, off = ROW_Y[k], k + 1 in hot, k + 1 in dim
+        if on:
+            ax.add_patch(Rectangle((0.85, y - 0.24), 5.9, 0.48, fc=PINK, ec=RED, lw=1.8))
+        else:
+            ax.plot([0.85, 6.75], [y - 0.27, y - 0.27], color=GREY, lw=0.8)
+        c = RED if on else (GREY if off else "#222")
+        label(ax, 1.15, y, k + 1, fs=11, color=c, bold=on)
+        label(ax, 1.75, y, r, fs=11.5, ha="left", color=c, bold=on)
+        if checks:
+            label(ax, 6.45, y, "✓", fs=12, color=RED)
+    label(ax, 3.8, 0.88, "⋮   글이 백만 개", fs=11.5, color=INK)
+
+
+def scan(ax, step):
+    board(ax, hot={2: (1,), 3: (1, 3)}.get(step, ()), checks=(step == 3))
+    cylinder(ax, *CYL, "데이터베이스")
     if step == 1:
-        label(ax, 6.4, 3.6, "'환불'이 어느 글에\n들었는지 몰라요", fs=12.5, ha="left", color=INK)
+        bubble(ax, *SAY, "'환불'이 어느 글에\n들었는지 몰라요", SAY_TAIL)
     elif step == 2:
-        arrow(ax, (0.0, 5.48), (0.9, 5.48), color=RED, ms=14)
-        label(ax, 6.4, 3.9, "1번 글부터 읽어요", fs=12.5, ha="left", color=RED, bold=True)
-        label(ax, 6.4, 3.2, "환불이 있으니 골라요", fs=12, ha="left", color=INK)
+        arrow(ax, (0.05, ROW_Y[0]), (0.55, ROW_Y[0]), color=RED, ms=14)
+        bubble(ax, *SAY, "1번 글부터 읽어요\n환불이 있으니 골라요", SAY_TAIL, hot=True)
     else:
-        arrow(ax, (0.45, 5.48), (0.45, 1.2), color=RED, ms=14)
-        label(ax, 6.4, 3.9, "끝까지 한 줄씩\n다 읽어요", fs=12.5, ha="left", color=RED, bold=True)
-        label(ax, 6.4, 2.75, "글이 열 배면\n읽는 시간도 열 배", fs=12, ha="left", color=INK)
-        moral(ax, 6.0, 0.35, "환불이 든 글을 다 찾으려면 백만 줄을 다 읽어요")
+        arrow(ax, (0.3, ROW_Y[0]), (0.3, 0.75), color=RED, ms=14)
+        bubble(ax, *SAY, "끝까지 한 줄씩 다 읽어요\n글이 열 배면 시간도 열 배", SAY_TAIL, hot=True)
+        moral(ax, 6.0, 0.2, "환불이 든 글을 다 찾으려면 백만 줄을 다 읽어요")
 
 
 # ── 정렬해 둔 데이터베이스 인덱스 ──────────────────────────────────
@@ -69,17 +92,17 @@ def prefix(ax, step):
         if step == 3 and inside:
             label(ax, 5.4, y + 0.21, "●", fs=11, color=RED)
     first = 5.55 - 8 * 0.47
+    cylinder(ax, 9.8, 4.6, 1.8, 0.8, "데이터베이스")
+    say, tail = (6.0, 2.55, 5.8, 1.3), (10.7, 4.35)
     if step == 1:
-        label(ax, 6.3, 4.2, "국어사전처럼 제목을\n가나다순으로 늘어놓은\n목록이에요", fs=12, ha="left", color=INK)
+        bubble(ax, *say, "국어사전처럼 제목을\n가나다순으로 늘어놨어요", tail)
     elif step == 2:
         arrow(ax, (0.2, first + 0.21), (1.2, first + 0.21), color=RED, ms=14)
-        label(ax, 6.3, 3.0, "'환불%'  (환불로 시작)", fs=12.5, ha="left", color=RED, bold=True)
-        label(ax, 6.3, 2.2, "한곳에 모여 있어서\n그 자리로 바로 가요", fs=12, ha="left", color=INK)
-        label(ax, 6.3, 1.05, "%는 아무 글자나 와도\n된다는 표시예요", fs=11, ha="left", color=INK)
+        bubble(ax, *say, "'환불%'는 한곳에 모여 있어서\n그 자리로 바로 가요", tail, hot=True)
+        label(ax, 6.0, 1.75, "'환불%'는 환불로 시작하는 제목,\n%는 아무 글자나 와도 된다는 표시", fs=10.5, ha="left", color=INK)
     else:
-        label(ax, 6.3, 4.6, "'%환불%'  (어디든 환불)", fs=12.5, ha="left", color=RED, bold=True)
-        label(ax, 6.3, 3.75, "ㅃ, ㅈ, ㅎ에\n흩어져 있어요", fs=12, ha="left", color=INK)
-        label(ax, 6.3, 2.6, "한 자리로 찾아갈 수 없어서\n처음부터 다 읽어요", fs=12, ha="left", color=INK)
+        bubble(ax, *say, "'%환불%'는 ㅃ, ㅈ, ㅎ에 흩어져서\n처음부터 다 읽어요", tail, hot=True)
+        label(ax, 6.0, 1.85, "'%환불%'는 어디든 환불이 든 제목", fs=10.5, ha="left", color=INK)
         moral(ax, 6.0, 0.25, "정렬해 둬도 중간에 든 낱말은 못 찾아가요")
 
 
@@ -348,9 +371,77 @@ def merge(ax, step):
     moral(ax, 6.0, 0.6, "병합할 때 지운 글의 번호와 공간이 치워져요")
 
 
-def map_():
-    """정리 절: 이 편이 한 말을 결론 문장으로."""
-    story(['글을 하나씩 다 훑으면 글이 늘수록 찾는 시간도 늘어나요', '그래서 낱말마다 그 낱말이 든 글 번호를 미리 적어 둬요(역색인)', '낱말을 정렬해 둔 사전이라 글이 늘어도 낱말 하나를 찾는 걸음은 거의 그대로예요', '두 낱말이 다 든 글은 번호 줄 둘을 한 번씩 훑어 겹쳐 찾아요', '대신 미리 만드는 시간과 공간이 들고 잘라 둔 낱말로만 찾을 수 있어요', '넣은 글은 모았다가 한꺼번에 올려서 잠시 뒤에야 검색돼요'], 1, OUT, "es01-map.svg")
+# ── 정리: 처음 장면으로 돌아가기 ────────────────────────────────────
+def back(ax, step):
+    """scan과 같은 무대. 처음엔 데이터베이스가 다 읽었던 글을 이번엔 ES가 역색인으로 찾는다."""
+    board(ax, hot=(1, 3) if step == 3 else (), dim=(2, 4, 5, 6) if step == 3 else ())
+    if step == 1:
+        arrow(ax, (0.3, ROW_Y[0]), (0.3, 0.75), color=GREY, ms=14)
+        cylinder(ax, *CYL, "데이터베이스")
+        bubble(ax, *SAY, "처음엔 1번 글부터\n백만 줄을 다 읽었어요", SAY_TAIL)
+        return
+    x, y, w, h = CYL
+    cylinder(ax, *CYL, "ES (역색인)", ec=RED if step == 2 else INK, color=RED if step == 2 else "#222")
+    cell(ax, x + 0.15, y + 0.35, 0.9, 0.5, "환불", hot=(step == 2), fs=10.5)
+    cells(ax, x + 1.15, y + 0.35, [1, 3, "⋯"], w=0.42, h=0.5, gap=0.04, hot=(0, 1) if step == 2 else (), fs=10)
+    if step == 2:
+        bubble(ax, *SAY, "사전에서 환불 줄을 꺼내요\n1번과 3번이 달려 있어요", SAY_TAIL, hot=True)
+    else:
+        arrow(ax, (x - 0.05, y + 0.6), (6.8, ROW_Y[0]), color=RED, ms=14)
+        arrow(ax, (x - 0.05, y + 0.6), (6.8, ROW_Y[2]), color=RED, ms=14)
+        bubble(ax, *SAY, "1번과 3번 글만 열어요", SAY_TAIL, hot=True)
+        moral(ax, 6.0, 0.2, "글이 백만 개여도 환불 줄 하나만 봐요")
+
+
+# ── 정리: 낱말 카드 ────────────────────────────────────────────────
+def cards():
+    """이 편 본문에서 이름 붙인 말 여덟. 카드마다 본문 그림을 작게 다시 그리고 한 줄 뜻을 단다. 휴대폰 폭에 맞게 두 장씩."""
+    fig, ax = canvas(6.4, 10.6, 9.8, 16.4)
+    W, H = 4.6, 3.8
+
+    def card(col, row, name, line):
+        x, y = 0.2 + col * 4.9, 12.4 - row * 4.05
+        box(ax, x, y, W, H, fc="white")
+        label(ax, x + 0.25, y + H - 0.4, name, fs=12.5, ha="left", bold=True)
+        label(ax, x + W / 2, y + 0.45, line, fs=10, color=INK)
+        return x, y
+
+    x, y = card(0, 0, "전체 훑기", "처음부터 끝까지 다 읽기")
+    for k in range(4):
+        cell(ax, x + 1.0, y + 2.65 - k * 0.42, 2.6, 0.38, "", fs=9)
+    arrow(ax, (x + 0.7, y + 2.95), (x + 0.7, y + 1.0), color=RED, ms=12)
+    x, y = card(1, 0, "색인", "찾으려고 미리 만들어 둔 목록")
+    for k, (t, n) in enumerate([("광합성", "34, 112"), ("나무", "8"), ("뿌리", "21, 40")]):
+        on = k == 0
+        label(ax, x + 0.6, y + 2.75 - k * 0.5, t, fs=10.5, ha="left", color=RED if on else "#222", bold=on)
+        label(ax, x + 3.9, y + 2.75 - k * 0.5, n, fs=10.5, ha="right", color=RED if on else "#222", bold=on)
+    x, y = card(0, 1, "용어", "잘라 낸 낱말 하나")
+    label(ax, x + W / 2, y + 2.75, "주문 환불 요청", fs=10.5, color=INK)
+    arrow(ax, (x + W / 2, y + 2.5), (x + W / 2, y + 2.05), lw=1.3, ms=10)
+    cells(ax, x + 0.85, y + 1.35, ["주문", "환불", "요청"], w=0.9, h=0.5, hot=(1,), fs=10)
+    x, y = card(1, 1, "역색인", "낱말에서 글 번호로 가는 목록")
+    for k, (t, ds) in enumerate([("주문", [1, 2, "⋯"]), ("환불", [1, 3, "⋯"])]):
+        yy = y + 2.45 - k * 0.6
+        cell(ax, x + 0.4, yy, 1.1, 0.48, t, hot=(t == "환불"), fs=10.5)
+        arrow(ax, (x + 1.6, yy + 0.24), (x + 2.05, yy + 0.24), lw=1.2, ms=9)
+        cells(ax, x + 2.15, yy, ds, w=0.5, h=0.48, hot=(0, 1) if t == "환불" else (), fs=10)
+    x, y = card(0, 2, "용어 사전", "가나다순으로 늘어놓은 낱말 칸")
+    for k, t in enumerate(["⋯"] + TERMS[3:]):
+        cell(ax, x + 0.3 + k * 0.82, y + 1.9, 0.78, 0.55, t, hot=(t == "환불"), fs=10)
+    x, y = card(1, 2, "포스팅 목록", "낱말 하나에 달린 글 번호 줄 (번호순)")
+    label(ax, x + 0.3, y + 2.15, "환불", fs=10.5, ha="left", color=RED, bold=True)
+    cells(ax, x + 1.15, y + 1.9, REFUND, w=0.6, h=0.48, hot=range(5), fs=10)
+    x, y = card(0, 3, "세그먼트", "1초쯤 모은 글로 만든 작은 역색인")
+    for k in range(3):
+        box(ax, x + 0.4 + k * 1.3, y + 1.6, 1.1, 1.2, fc=NOTE, lw=1.4)
+        label(ax, x + 0.95 + k * 1.3, y + 2.2, f"글{3 * k + 1}~{3 * k + 3}", fs=9.5, color=INK)
+    x, y = card(1, 3, "새로 고침", "모은 글로 세그먼트를 만드는 일")
+    box(ax, x + 0.4, y + 1.6, 1.4, 1.2, fc=NOTE, lw=1.4)
+    label(ax, x + 1.1, y + 2.2, "모은 글", fs=9.5, color=INK)
+    arrow(ax, (x + 1.9, y + 2.2), (x + 2.6, y + 2.2), color=RED, ms=12)
+    box(ax, x + 2.7, y + 1.6, 1.5, 1.2, fc=PINK, ec=RED, lw=1.4)
+    label(ax, x + 3.45, y + 2.2, "세그먼트", fs=9.5, color=RED)
+    save(fig, OUT, "es01-cards.svg")
 
 
 DOCS = {1: ["주문", "환불", "요청"], 2: ["주문", "배송", "언제"], 3: ["환불", "완료", "감사"]}
@@ -472,4 +563,6 @@ if __name__ == "__main__":
     stage(segs, 3, OUT, "es01-segs", S, L)
     stage(deleted, 2, OUT, "es01-deleted", S, L)
     stage(merge, 2, OUT, "es01-merge", S, L)
-    decide(); map_()
+    decide()
+    stage(back, 3, OUT, "es01-back", S, L)
+    cards()
