@@ -1,23 +1,26 @@
-"""Elasticsearch 6편 그림 만들기. 실행: python lab/fig_es06.py  → docs/elasticsearch/img/06/*.svg"""
+"""Elasticsearch 6편 그림 만들기. 실행: python lab/fig_es06.py  → docs/elasticsearch/img/06/*.svg
+
+본문 절은 장면 띠로 그린다: 같은 무대를 여러 장 그리고 장마다 바뀐 곳만 빨강으로 칠한다.
+"""
 import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "es"))
-from figkit import (GREY, INK, LIGHT, NOTE, PAPER, PINK, RED, arrow, box, canvas, cell, cells,  # noqa: E402
-                    label, outdir, save, story)
+from figkit import (GREY, INK, LIGHT, NOTE, PAPER, PINK, RED, arrow, bits, box, canvas, cell, cells,  # noqa: E402
+                    label, letters, moral, outdir, save, stage, story)
 from matplotlib.patches import Circle, Rectangle  # noqa: E402
 
 OUT = outdir("06")
 
 
 def open_():
-    fig, ax = canvas(9, 3.4, 13, 5.0)
-    for k, (title, mb, h) in enumerate((("낱말 글자만 늘어놓기", "2.2 MB", 3.0), ("역색인\n(용어 사전 + 포스팅 목록)", "1.6 MB", 2.2))):
-        x = 1.3 + k * 4.4
-        ax.add_patch(Rectangle((x, 1.0), 1.8, h, fc=NOTE if k == 0 else PINK, ec=RED if k else INK, lw=1.6))
-        label(ax, x + 0.9, 0.45, title, fs=10.5, color=RED if k else "#222")
-        label(ax, x + 0.9, 1.0 + h / 2, mb, fs=11, color=RED if k else INK, bold=True)
-    label(ax, 9.3, 2.6, "글 번호까지\n붙었는데\n더 작아요", fs=12, color=RED, ha="left", bold=True)
+    fig, ax = canvas(7.2, 3.6, 12, 6.0)
+    for k, (title, mb, h) in enumerate((("낱말 글자만\n늘어놓기", "2.2 MB", 3.6), ("역색인\n(용어 사전 + 포스팅 목록)", "1.6 MB", 2.6))):
+        x = 1.0 + k * 4.0
+        ax.add_patch(Rectangle((x, 1.4), 2.0, h, fc=NOTE if k == 0 else PINK, ec=RED if k else INK, lw=1.6))
+        label(ax, x + 1.0, 0.65, title, fs=12, color=RED if k else "#222")
+        label(ax, x + 1.0, 1.4 + h / 2, mb, fs=13, color=RED if k else INK, bold=True)
+    label(ax, 8.4, 3.4, "글 번호까지\n붙었는데\n더 작아요", fs=13, color=RED, ha="left", bold=True)
     save(fig, OUT, "es06-open.svg")
 
 
@@ -27,191 +30,321 @@ def map_():
            "작은 안내판으로 블록 하나를 골라 그 블록만 읽어요",
            "꼬리가 같은 칸까지 합친 FST는 트라이보다 더 작아요",
            "포스팅 목록은 앞 번호와의 차이만 필요한 비트만큼 적어요",
-           "작게 담은 파일은 운영체제가 남는 메모리에 올려 빨리 읽어요"], 3, OUT, "es06-map.svg")
+           "작게 담은 파일은 운영체제가 남는 메모리에 올려 빨리 읽어요"], -1, OUT, "es06-map.svg")
 
 
-def block():
-    fig, ax = canvas(10, 4.0, 15, 6.3)
-    words = ["seal", "search", "searched", "searching", "season", "seat"]
-    label(ax, 1.8, 5.0, "정렬된 낱말", fs=11, bold=True)
-    for k, w in enumerate(words):
-        label(ax, 1.8, 4.3 - k * 0.6, w, fs=11, color=INK)
-    arrow(ax, (3.4, 2.8), (5.2, 2.8), color=RED)
-    box(ax, 5.4, 0.9, 9.2, 3.9, fc=NOTE)
-    label(ax, 5.7, 4.45, "블록 하나", fs=11, ha="left", bold=True)
-    ax.add_patch(Rectangle((5.8, 5.25), 3.4, 0.75, fc="white", ec=RED, lw=1.5, ls="--"))
-    label(ax, 7.5, 5.62, "sea", fs=12, color=RED, bold=True)
-    label(ax, 9.5, 5.62, "← 함께 쓰는 앞부분 sea는 블록 밖에 한 번만", fs=10.5, color=RED, ha="left")
-    rest = ["l", "rch", "rched", "rching", "son", "t"]
-    for k, r in enumerate(rest):
-        cell(ax, 5.8 + k * 1.4, 2.7, 1.25, 0.8, r, fs=10.5)
-    label(ax, 10.0, 1.9, "낱말마다 나머지 글자만 적어요", fs=10.5, color=INK)
-    label(ax, 7.5, 0.4, "실제 블록에는 낱말이 수십 개 들어요", fs=10.5, color=INK)
-    save(fig, OUT, "es06-block.svg")
+# ── 같은 앞부분은 한 번만 ──────────────────────────────────────────
+WORDS = ["seal", "search", "searched", "searching", "season", "seat"]
+REST = [w[3:] for w in WORDS]
 
 
-def node(ax, x, y, final=False, hot=False):
-    ax.add_patch(Circle((x, y), 0.28, fc=PINK if hot else "white", ec=RED if hot else INK, lw=2.2 if final else 1.3))
+def block(ax, step):
+    label(ax, 0.3, 6.35, "정렬된 낱말 여섯", fs=12.5, ha="left", bold=True)
+    x0 = 1.2
+    for r, w in enumerate(WORDS):
+        y = 4.55 - r * 0.68
+        if step == 1:
+            letters(ax, x0, y, w)
+        elif step == 2:
+            letters(ax, x0, y, w, hot=(0, 1, 2))
+        else:
+            letters(ax, x0, y, w, blank=(0, 1, 2))
+    if step == 1:
+        label(ax, 7.5, 3.0, "글자 칸 37개", fs=13, ha="left", bold=True)
+        label(ax, 7.5, 2.3, "정렬하면 앞부분이\n같은 낱말끼리 붙어요", fs=11.5, ha="left", color=INK)
+    elif step == 2:
+        label(ax, 7.5, 3.0, "sea가 여섯 번", fs=13, ha="left", color=RED, bold=True)
+        label(ax, 7.5, 2.3, "같은 글자 18칸이\n되풀이돼요", fs=11.5, ha="left", color=RED)
+    else:
+        letters(ax, x0, 5.45, "sea", hot=(0, 1, 2))
+        label(ax, 3.0, 5.75, "← 블록 밖에 한 번만", fs=11.5, ha="left", color=RED)
+        box(ax, x0 + 1.55, 0.95, 5.2, 4.3, fc="none", ec=INK, lw=1.4, round_=False)
+        label(ax, x0 + 6.6, 5.05, "블록", fs=11, ha="right", color=INK)
+        label(ax, 8.2, 3.0, "블록 안 19칸\n+ 앞부분 3칸", fs=13, ha="left", bold=True)
+        label(ax, 8.2, 2.0, "37칸 → 22칸", fs=13, ha="left", color=RED, bold=True)
+        moral(ax, 6.0, 0.35, "같은 앞부분은 한 번만 적고 나머지 글자만 적어요")
+
+
+# ── 안내판 ────────────────────────────────────────────────────────
+def node(ax, x, y, final=False, hot=False, dim=False):
+    ec = RED if hot else (GREY if dim else INK)
+    ax.add_patch(Circle((x, y), 0.28, fc=PINK if hot else "white", ec=ec, lw=2.2 if final else 1.3,
+                        ls="--" if dim else "-"))
     if final:
-        ax.add_patch(Circle((x, y), 0.19, fc="none", ec=RED if hot else INK, lw=1.0))
+        ax.add_patch(Circle((x, y), 0.19, fc="none", ec=ec, lw=1.0, ls="--" if dim else "-"))
 
 
-def edge(ax, a, b, ch, hot=False):
-    arrow(ax, a, b, color=RED if hot else INK, lw=1.5, ms=10)
-    ax.text((a[0] + b[0]) / 2, (a[1] + b[1]) / 2 + 0.22, ch, ha="center", fontsize=11, color=RED if hot else "#222")
+def edge(ax, a, b, ch, hot=False, dim=False, rad=0.0, dy=0.25, at=None):
+    color = RED if hot else (GREY if dim else INK)
+    arrow(ax, a, b, color=color, lw=1.5, ms=10, rad=rad)
+    x, y = at or ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2 + dy)
+    ax.text(x, y, ch, ha="center", va="center", fontsize=12, color=color)
 
 
-def trie():
-    fig, ax = canvas(11, 4.4, 18, 7.2)
-    label(ax, 0.3, 6.8, "낱말 넷: tap, taps, top, tops", fs=12, ha="left", bold=True)
-    # 트라이
-    label(ax, 4.2, 6.0, "트라이: 앞부분만 나눠 써요 (칸 8개)", fs=11, color=INK)
-    P = {"r": (0.6, 3.2), "t": (1.9, 3.2), "ta": (3.2, 4.5), "to": (3.2, 1.9), "tap": (4.5, 4.5), "top": (4.5, 1.9),
-         "taps": (5.8, 4.5), "tops": (5.8, 1.9)}
+def index(ax, step):
+    # 찾는 낱말
+    box(ax, 8.6, 5.55, 3.1, 0.75, fc=PAPER)
+    label(ax, 10.15, 5.92, "찾기: search", fs=12.5)
+    # 디스크의 블록 줄
+    label(ax, 0.3, 4.1, "디스크", fs=12, ha="left", bold=True)
+    names = ["…", "블록 41", "블록 42", "블록 43", "…"]
+    for k, n in enumerate(names):
+        x = 0.3 + k * 2.35
+        hot = step == 2 and k == 2
+        if n == "…":
+            label(ax, x + 1.0, 3.3, "…", fs=14, color=INK)
+            continue
+        box(ax, x, 2.9, 2.0, 0.8, fc=PINK if hot else NOTE, ec=RED if hot else INK, round_=False)
+        label(ax, x + 1.0, 3.3, n, fs=11.5, color=RED if hot else "#222", bold=hot)
+    if step == 1:
+        label(ax, 6.0, 2.1, "블록이 수천 개예요. 하나씩 다 열어 보면 느려요", fs=12, color=RED)
+        moral(ax, 6.0, 1.2, "search가 든 블록은 어떻게 고를까요?", fs=12)
+        return
+    # 메모리의 안내판
+    label(ax, 0.3, 6.35, "메모리: 안내판", fs=12, ha="left", bold=True, color=RED if step == 2 else "#222")
+    P = {"r": (0.7, 5.15), "s": (1.9, 5.15), "sa": (3.1, 5.85), "se": (3.1, 5.15), "sea": (4.3, 5.15), "sh": (3.1, 4.5)}
+    hot_path = step == 2
     for k, (x, y) in P.items():
-        node(ax, x, y, final=k in ("tap", "taps", "top", "tops"))
-    for a, b, ch in (("r", "t", "t"), ("t", "ta", "a"), ("t", "to", "o"), ("ta", "tap", "p"), ("to", "top", "p"),
-                     ("tap", "taps", "s"), ("top", "tops", "s")):
+        node(ax, x, y, hot=hot_path and k in ("s", "se", "sea"))
+    for a, b, ch, dy in (("r", "s", "s", 0.2), ("s", "sa", "a", 0.25), ("s", "se", "e", 0.15), ("se", "sea", "a", 0.2),
+                         ("s", "sh", "h", -0.42)):
         (x1, y1), (x2, y2) = P[a], P[b]
-        edge(ax, (x1 + 0.28, y1), (x2 - 0.28, y2), ch)
-    label(ax, 3.2, 0.9, "p, s 칸이 두 번씩 있어요", fs=10, color=INK)
-    # 최소 자동자
-    label(ax, 13.3, 6.0, "FST: 꼬리도 나눠 써요 (칸 5개)", fs=11, color=RED)
-    Q = {"r": (9.8, 3.2), "t": (11.1, 3.2), "m": (12.6, 3.2), "p": (14.1, 3.2), "s": (15.6, 3.2)}
-    for k, (x, y) in Q.items():
-        node(ax, x, y, final=k in ("p", "s"), hot=k in ("m", "p", "s"))
-    edge(ax, (10.08, 3.2), (10.82, 3.2), "t")
-    arrow(ax, (11.35, 3.35), (12.35, 3.35), color=RED, lw=1.5, ms=10, rad=-0.5)
-    ax.text(11.85, 4.05, "a", ha="center", fontsize=11, color=RED)
-    arrow(ax, (11.35, 3.05), (12.35, 3.05), color=RED, lw=1.5, ms=10, rad=0.5)
-    ax.text(11.85, 2.2, "o", ha="center", fontsize=11, color=RED)
-    edge(ax, (12.88, 3.2), (13.82, 3.2), "p", hot=True)
-    edge(ax, (14.38, 3.2), (15.32, 3.2), "s", hot=True)
-    label(ax, 12.9, 0.9, "ta-와 to-가 같은 꼬리 p, ps를 함께 써요", fs=10, color=RED)
-    label(ax, 9.0, 0.2, "이중 원 = 여기서 끝나는 낱말이 있어요", fs=10, color=INK)
-    save(fig, OUT, "es06-trie.svg")
+        hot = hot_path and (a, b) in (("r", "s"), ("s", "se"), ("se", "sea"))
+        edge(ax, (x1 + 0.28, y1), (x2 - 0.28, y2), ch, hot=hot, dy=dy)
+    for k, (x, y, t) in {"sa": (3.45, 5.85, "블록 41"), "sea": (4.65, 5.15, "블록 42"), "sh": (3.45, 4.5, "블록 43")}.items():
+        label(ax, x, y, "→ " + t, fs=11, ha="left", color=RED if hot_path and k == "sea" else INK)
+    if step == 2:
+        arrow(ax, (6.0, 4.95), (6.0, 3.75), color=RED, ms=14)
+        label(ax, 6.3, 4.3, "s, e, a를 따라가면 블록 42", fs=11.5, ha="left", color=RED)
+        label(ax, 6.0, 2.0, "블록마다 앞부분만 적은 작은 안내판이에요", fs=12, color=INK)
+        return
+    # step 3: 블록 42를 열어 훑는다
+    ax.plot([5.0, 0.3], [2.9, 2.45], color=INK, lw=1, ls=":")
+    ax.plot([7.0, 11.7], [2.9, 2.45], color=INK, lw=1, ls=":")
+    box(ax, 0.3, 0.85, 11.4, 1.6, fc=NOTE, ec=INK, round_=False)
+    label(ax, 0.5, 2.15, "블록 42 (앞부분 sea)", fs=11, ha="left", color=INK)
+    label(ax, 11.5, 2.15, "sea + rch = search, 찾았어요", fs=11.5, ha="right", color=RED)
+    x = 0.6
+    for k, r in enumerate(REST):
+        w = 0.36 * len(r) + 0.45
+        hit = r == "rch"
+        cell(ax, x, 1.05, w, 0.7, r, hot=hit, fs=12)
+        x += w + 0.15
+    moral(ax, 6.0, 0.3, "안내판으로 블록 하나만 골라 그 블록만 읽어요")
 
 
-def index():
-    fig, ax = canvas(11, 4.8, 18, 7.8)
-    label(ax, 0.3, 7.4, "메모리", fs=12, ha="left", bold=True)
-    box(ax, 0.3, 4.5, 9.4, 2.6, fc=PINK, ec=RED)
-    label(ax, 0.6, 6.75, "안내판", fs=11, ha="left", color=RED, bold=True)
-    P = {"r": (1.2, 5.6), "s": (2.6, 5.6), "sa": (4.0, 6.5), "se": (4.0, 5.6), "sea": (5.4, 5.6), "sh": (4.0, 4.9)}
-    for k, (x, y) in P.items():
-        node(ax, x, y, hot=k in ("s", "se", "sea"))
-    for a, b, ch, dy in (("r", "s", "s", 0.22), ("s", "sa", "a", 0.3), ("s", "se", "e", 0.12), ("se", "sea", "a", 0.22),
-                         ("s", "sh", "h", -0.55)):
-        (x1, y1), (x2, y2) = P[a], P[b]
-        hot = (a, b) in (("r", "s"), ("s", "se"), ("se", "sea"))
-        arrow(ax, (x1 + 0.28, y1), (x2 - 0.28, y2), color=RED if hot else INK, lw=1.5, ms=10)
-        ax.text((x1 + x2) / 2 + (0.15 if dy == 0.12 else 0), (y1 + y2) / 2 + dy, ch, ha="center", fontsize=11,
-                color=RED if hot else "#222")
-    for k, (x, y, t) in {"sa": (4.4, 6.5, "→ 블록 41"), "sea": (5.8, 5.6, "→ 블록 42"), "sh": (4.4, 4.9, "→ 블록 43")}.items():
-        label(ax, x, y, t, fs=10.5, ha="left", color=RED if k == "sea" else INK)
-    ax.plot([0.2, 17.8], [4.1, 4.1], color=GREY, lw=1.5, ls="--")
-    label(ax, 0.3, 3.65, "디스크", fs=12, ha="left", bold=True)
-    for k, (name, ts) in enumerate((("블록 41", "sable … sawyer"), ("블록 42", "seal … seat"), ("블록 43", "shack … shy"))):
-        x = 0.3 + k * 4.4
-        hot = k == 1
-        box(ax, x, 1.2, 4.0, 1.9, fc=PINK if hot else NOTE, ec=RED if hot else INK, round_=False)
-        label(ax, x + 2.0, 2.65, name, fs=11, color=RED if hot else "#222", bold=hot)
-        label(ax, x + 2.0, 1.85, ts, fs=10, color=INK)
-    label(ax, 14.9, 2.15, "블록은 일부만 그렸어요", fs=10, color=INK)
-    box(ax, 13.6, 5.2, 4.0, 1.1, fc=PAPER)
-    label(ax, 15.6, 5.75, "찾기: search", fs=12)
-    arrow(ax, (13.5, 5.75), (9.8, 5.75), color=RED)
-    label(ax, 11.65, 6.55, "① 안내판을 s, e, a로 따라가\n블록 42를 골라요", fs=10, color=RED)
-    arrow(ax, (6.9, 5.2), (6.6, 3.2), color=RED)
-    label(ax, 7.2, 3.6, "② 블록 42만 읽어 차례로 훑어요", fs=10, color=RED, ha="left")
-    save(fig, OUT, "es06-index.svg")
+# ── 트라이 → FST ─────────────────────────────────────────────────
+P4 = {"r": (0.7, 3.5), "t": (2.2, 3.5), "ta": (3.8, 4.7), "to": (3.8, 2.3), "tap": (5.4, 4.7), "top": (5.4, 2.3),
+      "taps": (7.0, 4.7), "tops": (7.0, 2.3)}
 
 
-def postings():
-    fig, ax = canvas(11, 3.4, 18, 7.0)
-    ids = [3, 7, 8, 15, 21, 22, 40]
-    d = [ids[0]] + [b - a for a, b in zip(ids, ids[1:])]
-    label(ax, 0.3, 6.5, "환불의 포스팅 목록", fs=12, ha="left", bold=True)
-    label(ax, 0.3, 5.45, "글 번호", fs=11, ha="left", color=INK)
-    cells(ax, 3.0, 5.05, ids, w=1.1, h=0.8)
-    label(ax, 11.6, 5.45, "번호가 커질수록 자리도 커져요", fs=10, color=INK, ha="left")
-    label(ax, 0.3, 3.75, "차이값", fs=11, ha="left", color=RED)
-    cells(ax, 3.0, 3.35, d, w=1.1, h=0.8, hot=range(len(d)))
-    label(ax, 11.6, 3.75, "앞 번호와의 차이만 적어요", fs=10, color=RED, ha="left")
-    for k in range(1, len(ids)):
-        ax.annotate("", xy=(3.55 + k * 1.18, 4.2), xytext=(3.55 + k * 1.18, 5.0), arrowprops=dict(arrowstyle="->", color=GREY))
-    label(ax, 8.0, 1.9, "번호는 커져도 차이는 작아요. 첫 번호는 0과의 차이예요", fs=11, color=INK)
-    save(fig, OUT, "es06-postings.svg")
+def trie(ax, step):
+    label(ax, 0.3, 6.35, "낱말 넷: tap, taps, top, tops", fs=12.5, ha="left", bold=True)
+    gone = step >= 2
+    for k, (x, y) in P4.items():
+        final = k in ("tap", "taps", "top", "tops")
+        if k in ("to", "top", "tops"):
+            if step == 3:
+                continue
+            node(ax, x, y, final=final, hot=step == 1 and k != "to", dim=gone)
+        else:
+            node(ax, x, y, final=final, hot=step == 1 and k in ("tap", "taps"))
+    r28 = 0.28
+    edge(ax, (P4["r"][0] + r28, 3.5), (P4["t"][0] - r28, 3.5), "t")
+    edge(ax, (P4["t"][0] + 0.2, 3.7), (P4["ta"][0] - 0.25, 4.6), "a", dy=0.2)
+    edge(ax, (P4["ta"][0] + r28, 4.7), (P4["tap"][0] - r28, 4.7), "p", hot=step == 1)
+    edge(ax, (P4["tap"][0] + r28, 4.7), (P4["taps"][0] - r28, 4.7), "s", hot=step == 1)
+    if step < 3:
+        edge(ax, (P4["t"][0] + 0.2, 3.3), (P4["to"][0] - 0.25, 2.4), "o", dim=gone, dy=-0.45)
+        edge(ax, (P4["to"][0] + r28, 2.3), (P4["top"][0] - r28, 2.3), "p", hot=step == 1, dim=gone)
+        edge(ax, (P4["top"][0] + r28, 2.3), (P4["tops"][0] - r28, 2.3), "s", hot=step == 1, dim=gone)
+    if step >= 2:
+        edge(ax, (P4["t"][0] + 0.28, 3.4), (P4["ta"][0] + 0.1, 4.43), "o", hot=step == 2, rad=0.55, at=(3.75, 3.65))
+    if step == 1:
+        label(ax, 8.0, 4.7, "← 꼬리 p, s", fs=12, ha="left", color=RED)
+        label(ax, 8.0, 2.3, "← 똑같은 꼬리 p, s", fs=12, ha="left", color=RED)
+        label(ax, 8.0, 3.5, "트라이: 칸 8개", fs=12.5, ha="left", bold=True)
+        label(ax, 6.0, 0.9, "이중 원 = 여기서 끝나는 낱말이 있어요", fs=11, color=INK)
+    elif step == 2:
+        label(ax, 8.0, 2.3, "← 지워요", fs=12, ha="left", color=GREY)
+        label(ax, 8.0, 3.6, "o 길을 위 칸으로\n돌려 함께 써요", fs=12, ha="left", color=RED)
+        label(ax, 6.0, 0.9, "to 뒤 칸들은 ta 뒤 칸들과 모양이 같아요", fs=11.5, color=INK)
+    else:
+        label(ax, 8.0, 3.5, "FST: 칸 5개", fs=12.5, ha="left", bold=True)
+        label(ax, 8.0, 2.8, "칸 8개 → 5개", fs=12.5, ha="left", color=RED, bold=True)
+        moral(ax, 6.0, 0.6, "앞부분뿐 아니라 꼬리가 같은 칸도 합쳐요")
 
 
-def pack():
-    fig, ax = canvas(10.5, 3.6, 16, 5.4)
-    box(ax, 0.3, 3.9, 15.4, 1.0, fc=LIGHT, ec=GREY)
-    label(ax, 8.0, 4.4, "그대로 적으면: 128개 × 32비트 = 512바이트", fs=11, color=INK)
-    blocks = [("묶음 1", 18, 5), ("묶음 2", 9, 4), ("묶음 3", 40, 6)]
-    for k, (n, mx, b) in enumerate(blocks):
-        x = 0.3 + k * 5.3
-        hot = k == 0
-        box(ax, x, 1.5, 4.8, 1.9, fc=PINK if hot else NOTE, ec=RED if hot else INK)
-        label(ax, x + 2.4, 3.0, f"{n}: 가장 큰 차이 {mx}", fs=10.5, color=RED if hot else "#222", bold=True)
-        label(ax, x + 2.4, 2.2, f"{b}비트 × 128 = {b * 16}바이트", fs=10.5, color=RED if hot else INK)
-    label(ax, 8.0, 0.7, "묶음마다 가장 큰 값에 맞춰 비트 수를 정해요", fs=11, color=INK, bold=True)
-    save(fig, OUT, "es06-pack.svg")
+def output(ax, step):
+    """FST의 값: 지나는 화살표 값을 더한다. 1=tap 길, 2=top 길."""
+    label(ax, 0.3, 6.35, "글자 / 값: 지나는 화살표의 값을 더해요", fs=12.5, ha="left", bold=True)
+    for k in ("r", "t", "ta", "tap", "taps"):
+        node(ax, *P4[k], final=k in ("tap", "taps"))
+    tap, top = step == 1, step == 2
+    edge(ax, (P4["r"][0] + 0.28, 3.5), (P4["t"][0] - 0.28, 3.5), "t / 5", hot=True)
+    edge(ax, (P4["t"][0] + 0.2, 3.7), (P4["ta"][0] - 0.25, 4.6), "a / 0", hot=tap, at=(2.55, 4.4))
+    edge(ax, (P4["t"][0] + 0.28, 3.4), (P4["ta"][0] + 0.1, 4.43), "o / 4", hot=top, rad=0.55, at=(4.15, 3.6))
+    edge(ax, (P4["ta"][0] + 0.28, 4.7), (P4["tap"][0] - 0.28, 4.7), "p / 0", hot=True)
+    edge(ax, (P4["tap"][0] + 0.28, 4.7), (P4["taps"][0] - 0.28, 4.7), "s / 1")
+    label(ax, 8.0, 3.9, "tap = 5 + 0 + 0 = 5", fs=12.5, ha="left", color=RED if tap else INK, bold=tap)
+    if top:
+        label(ax, 8.0, 3.1, "top = 5 + 4 + 0 = 9", fs=12.5, ha="left", color=RED, bold=True)
+        moral(ax, 6.0, 1.0, "꼬리를 함께 써도 갈라지는 화살표의 값이 두 낱말을 갈라요")
+    else:
+        label(ax, 6.0, 1.3, "t, a, p를 따라가며 화살표 값을 더해요", fs=12, color=INK)
+        label(ax, 6.0, 0.6, "값은 낱말에 딸린 정보예요 (안내판이라면 블록 위치)", fs=11, color=INK)
 
 
-def cache():
-    fig, ax = canvas(10.5, 4.0, 16, 6.0)
-    label(ax, 0.3, 5.6, "컴퓨터 메모리 16 GB", fs=12, ha="left", bold=True)
-    W = 15.2
-    for row, (heap, y) in enumerate(((8, 4.3), (14, 2.6))):
-        hw = W * heap / 16
-        box(ax, 0.4, y, hw, 0.9, fc=LIGHT, ec=GREY, round_=False)
-        label(ax, 0.4 + hw / 2, y + 0.45, f"ES 전용 메모리(자바 힙) {heap} GB", fs=10, color=INK)
-        box(ax, 0.4 + hw, y, W - hw, 0.9, fc=PINK, ec=RED, round_=False)
-        txt = f"남는 메모리 {16 - heap} GB:\n용어 사전·포스팅 목록" if row == 0 else f"{16 - heap} GB"
-        label(ax, 0.4 + hw + (W - hw) / 2, y + 0.45, txt, fs=10 if row == 0 else 9.5, color=RED)
-    label(ax, 15.7, 2.2, "힙을 키우면 파일이 올라갈 자리가 좁아져요", fs=10, color=RED, ha="right")
-    box(ax, 0.4, 0.3, W, 1.0, fc=NOTE)
-    label(ax, 8.0, 0.8, "디스크: 역색인 파일 전체. 남는 메모리에 없는 부분은 디스크에서 읽어요", fs=10.5, color=INK)
-    save(fig, OUT, "es06-cache.svg")
+# ── 포스팅 목록: 차이값 ──────────────────────────────────────────
+IDS = [3, 7, 8, 15, 21, 22, 40]
+DIFF = [IDS[0]] + [b - a for a, b in zip(IDS, IDS[1:])]
+
+
+def postings(ax, step):
+    label(ax, 0.3, 6.35, "환불이 든 글 번호", fs=12.5, ha="left", bold=True)
+    X = lambda n: 0.6 + n * 0.27  # noqa: E731
+    ax.plot([X(0), X(41)], [4.0, 4.0], color=INK, lw=1.4)
+    for n in range(0, 41, 5):
+        ax.plot([X(n), X(n)], [3.9, 4.1], color=INK, lw=1)
+        label(ax, X(n), 3.55, str(n), fs=9.5, color=INK)
+    prev = 0
+    for k, n in enumerate(IDS):
+        ax.add_patch(Circle((X(n), 4.0), 0.15, fc=RED if step == 1 else INK, ec="none"))
+        sh = {7: -0.15, 8: 0.15, 21: -0.15, 22: 0.15}.get(n, 0)
+        label(ax, X(n) + sh, 4.5, str(n), fs=12, color=RED if step == 1 else "#222", bold=step == 1)
+        if step == 2:
+            arrow(ax, (X(prev), 4.15), (X(n), 4.15), color=RED, lw=1.4, ms=9, rad=-0.6)
+            label(ax, (X(prev) + X(n)) / 2, 4.95 + 0.03 * (n - prev) + (0.35 if n - prev == 1 else 0),
+                  f"+{n - prev}", fs=11.5, color=RED, bold=True)
+        prev = n
+    if step == 1:
+        label(ax, 6.0, 2.4, "번호가 커질수록 적는 자리도 커져요 (40은 두 자리)", fs=12, color=INK)
+    else:
+        label(ax, 0.3, 2.45, "글 번호", fs=11.5, ha="left", color=INK)
+        cells(ax, 2.2, 2.1, IDS, w=0.9, h=0.65, fs=11.5)
+        label(ax, 0.3, 1.55, "차이값", fs=11.5, ha="left", color=RED)
+        cells(ax, 2.2, 1.2, DIFF, w=0.9, h=0.65, hot=range(len(DIFF)), fs=11.5)
+        moral(ax, 6.0, 0.4, "번호 대신 앞 번호와의 차이만 적어요. 차이는 작아요")
+
+
+# ── 비트 패킹 ────────────────────────────────────────────────────
+def pack(ax, step):
+    label(ax, 0.3, 6.35, "차이값 18을 4바이트(32비트)로 적으면", fs=12.5, ha="left", bold=True)
+    b18 = format(18, "032b")
+    bits(ax, 0.6, 5.3, b18, hot=range(27, 32), dim=range(27))
+    label(ax, 5.2, 4.85, "앞 27칸은 늘 0", fs=11, color=GREY)
+    label(ax, 10.3, 4.85, "18을 0과 1로 적으면 10010\n5칸이면 돼요", fs=11, color=RED)
+    if step == 1:
+        label(ax, 6.0, 3.0, "작은 차이값을 32칸씩 적으면 칸 대부분이 빈 0이에요", fs=12, color=INK)
+        moral(ax, 6.0, 1.8, "그럼 몇 칸씩 적어야 할까요?", fs=12)
+        return
+    label(ax, 0.3, 3.95, "묶음(차이값 128개) 하나를 5칸씩 이어 적으면 (앞 7개만 그림)", fs=12, ha="left", bold=True)
+    x = 0.6
+    for d in DIFF:
+        hot = d == 18
+        bits(ax, x, 2.7, format(d, "05b"), w=0.28, hot=range(5) if hot else ())
+        label(ax, x + 0.7, 3.45, str(d), fs=11.5, color=RED if hot else INK, bold=hot)
+        x += 5 * 0.28 + 0.12
+    label(ax, x + 0.1, 2.95, "…", fs=13, ha="left", color=INK)
+    label(ax, 6.0, 1.85, "가장 큰 값 18이 칸 수(5)를 정해요. 128개 × 5칸 = 640비트 = 80바이트", fs=11.5, color=INK)
+    moral(ax, 6.0, 0.8, "32칸씩이면 512바이트, 5칸씩이면 80바이트")
+
+
+def pack_sum():
+    """묶음마다 다른 칸 수: 바이트를 막대 길이로."""
+    fig, ax = canvas(7.2, 3.4, 12, 5.6)
+    label(ax, 0.3, 5.2, "차이값 128개 묶음 하나를 적는 데 드는 바이트", fs=12.5, ha="left", bold=True)
+    rows = [("그대로 (32칸씩)", 512, None, False), ("묶음 1: 가장 큰 차이 18 → 5칸", 80, 5, True),
+            ("묶음 2: 가장 큰 차이 9 → 4칸", 64, 4, False), ("묶음 3: 가장 큰 차이 33 → 6칸", 96, 6, False)]
+    for k, (name, b, _, hot) in enumerate(rows):
+        y = 4.1 - k * 1.0
+        label(ax, 0.3, y + 0.55, name, fs=11, ha="left", color=RED if hot else "#222")
+        L = 11.0 * b / 512
+        ax.add_patch(Rectangle((0.3, y), L, 0.32, fc=PINK if hot else (LIGHT if k == 0 else NOTE),
+                               ec=RED if hot else INK, lw=1.2))
+        label(ax, 0.45 + L, y + 0.16, f"{b}바이트", fs=11, ha="left", color=RED if hot else INK, bold=hot)
+    moral(ax, 6.0, 0.25, "묶음마다 가장 큰 값에 맞춘 칸 수로 꽉 채워 적어요", fs=12)
+    save(fig, OUT, "es06-pack-3.svg")
+
+
+# ── 페이지 캐시 ──────────────────────────────────────────────────
+def cache(ax, step):
+    heap = 8 if step == 1 else 14
+    label(ax, 0.3, 6.35, f"컴퓨터 메모리 16 GB (한 칸 1 GB), 힙 {heap} GB", fs=12.5, ha="left", bold=True)
+    w = 0.66
+    for k in range(16):
+        x = 0.5 + k * w
+        if k < heap:
+            ax.add_patch(Rectangle((x, 4.8), w, 0.9, fc=LIGHT, ec=GREY, lw=1))
+        else:
+            ax.add_patch(Rectangle((x, 4.8), w, 0.9, fc="white", ec=INK, lw=1))
+    label(ax, 0.5 + heap * w / 2, 5.25, "자바 힙", fs=11.5, color=INK)
+    label(ax, 0.5 + (heap + 16) * w / 2, 4.35, "남는 메모리", fs=11, color=INK)
+    label(ax, 0.3, 2.85, "디스크: 역색인 파일 조각 (점선 = 메모리에 올라간 조각)", fs=11, ha="left", color=INK)
+    free = 16 - heap
+    for k in range(6):
+        x = 0.5 + k * 1.2
+        up = k < free
+        if up:
+            mx = 0.5 + (heap + k) * w
+            hot = step == 1
+            ax.add_patch(Rectangle((mx + 0.08, 4.9), w - 0.16, 0.7, fc=PINK if hot else NOTE, ec=RED if hot else INK, lw=1.2))
+            ax.add_patch(Rectangle((x, 1.6), 0.9, 0.8, fc="white", ec=GREY, lw=1, ls="--"))
+        else:
+            ax.add_patch(Rectangle((x, 1.6), 0.9, 0.8, fc=PINK, ec=RED, lw=1.5))
+    arrow(ax, (3.6, 3.2), (0.5 + (heap + 0.5) * w, 4.7), color=GREY, lw=1.5, ms=12)
+    label(ax, 0.3 + (heap + 0.5) * w / 2 + 1.8, 3.6, "남는 메모리에 올려요", fs=11, ha="left", color=INK)
+    if step == 1:
+        label(ax, 8.0, 2.0, "조각 6개가 모두 올라가요", fs=12, ha="left", color=INK)
+        label(ax, 6.0, 0.7, "찾을 때 디스크까지 가지 않아요", fs=12, color=INK)
+    else:
+        label(ax, 8.0, 2.0, "4개는 디스크에서\n읽어야 해요 (느려요)", fs=12, ha="left", color=RED)
+        moral(ax, 6.0, 0.6, "힙을 키우면 파일이 올라갈 자리가 줄어요")
+
+
+# ── 값이 모두 다른 필드 ───────────────────────────────────────────
+def names():
+    """정렬했을 때 앞부분이 겹치는 이름과 안 겹치는 이름을 나란히."""
+    fig, ax = canvas(7.2, 3.8, 12, 6.3)
+    a = ["IMG_20261029_093512", "IMG_20261029_093547", "IMG_20261029_094102", "IMG_20261029_094230"]
+    b = ["2c71e0b4d9…", "9f3a5d12e0…", "a0e4c7f981…", "e58b0a63c2…"]
+    label(ax, 0.3, 5.9, "찍은 시각 꼴 (정렬)", fs=12, ha="left", bold=True)
+    label(ax, 7.6, 5.9, "무작위 32글자 (정렬, 앞 10글자만)", fs=12, ha="left", bold=True)
+    for k, s in enumerate(a):
+        letters(ax, 0.3, 4.8 - k * 0.6, s, w=0.32, h=0.5, hot=range(15), fs=9.5)
+    for k, s in enumerate(b):
+        letters(ax, 7.6, 4.8 - k * 0.6, s, w=0.32, h=0.5, hot=(), fs=9.5)
+    label(ax, 3.2, 2.0, "빨간 앞부분을 함께 써요\n글자 1.9 MB → 역색인 0.54 MB", fs=11.5, color=RED)
+    label(ax, 9.4, 2.0, "함께 쓸 앞부분이 없어요\n글자 3.2 MB → 역색인 2.9 MB", fs=11.5, color=INK)
+    label(ax, 6.0, 0.6, "사진 이름 10만 개, ES 7.17로 잰 값", fs=10.5, color=INK)
+    ax.plot([6.9, 6.9], [1.4, 6.2], color=GREY, lw=1, ls="--")
+    save(fig, OUT, "es06-names.svg")
 
 
 def decide():
-    fig, ax = canvas(10, 3.8, 15, 5.7)
-    box(ax, 2.0, 4.4, 11.0, 1.0, fc=LIGHT, ec=GREY)
-    label(ax, 7.5, 4.9, "값이 모두 다르고 앞부분도 겹치지 않는 필드 (무작위 요청 번호처럼)", fs=10.5, color=INK)
-    arrow(ax, (7.5, 4.3), (7.5, 3.7), ms=12)
-    box(ax, 3.5, 2.8, 8.0, 0.9, fc=NOTE)
-    label(ax, 7.5, 3.25, "이 필드로 글을 찾거나 거르나요?", fs=10.5, bold=True)
-    arrow(ax, (5.0, 2.7), (3.3, 1.9)); label(ax, 3.7, 2.45, "예", fs=10, color=INK)
-    box(ax, 0.3, 0.4, 6.4, 1.4, fc=PAPER)
-    label(ax, 3.5, 1.1, "역색인을 둬요\n(사전이 커도 찾으려면 필요해요)", fs=10)
-    arrow(ax, (10.0, 2.7), (11.7, 1.9), color=RED); label(ax, 11.4, 2.45, "아니요", fs=10, color=RED)
-    box(ax, 8.3, 0.4, 6.4, 1.4, fc=PINK, ec=RED)
-    label(ax, 11.5, 1.1, "\"index\": false로 역색인을 만들지 않아요\n(원본에는 그대로 남아요)", fs=10, color=RED)
+    fig, ax = canvas(7.2, 3.8, 12, 6.3)
+    box(ax, 0.6, 5.0, 10.8, 1.0, fc=LIGHT, ec=GREY)
+    label(ax, 6.0, 5.5, "값이 모두 다르고 앞부분도 겹치지 않는 필드\n(무작위 요청 번호처럼)", fs=11.5, color=INK)
+    arrow(ax, (6.0, 4.9), (6.0, 4.3), ms=12)
+    box(ax, 2.0, 3.3, 8.0, 0.9, fc=NOTE)
+    label(ax, 6.0, 3.75, "이 필드로 글을 찾거나 거르나요?", fs=12, bold=True)
+    arrow(ax, (4.0, 3.2), (2.9, 2.3)); label(ax, 3.0, 2.85, "예", fs=11.5, color=INK)
+    box(ax, 0.3, 0.6, 5.2, 1.6, fc=PAPER)
+    label(ax, 2.9, 1.4, "역색인을 둬요\n(사전이 커도\n찾으려면 필요해요)", fs=11.5)
+    arrow(ax, (8.0, 3.2), (9.1, 2.3), color=RED); label(ax, 9.2, 2.85, "아니요", fs=11.5, color=RED)
+    box(ax, 6.5, 0.6, 5.2, 1.6, fc=PINK, ec=RED)
+    label(ax, 9.1, 1.4, "\"index\": false로\n역색인을 만들지 않아요\n(원본에는 그대로 남아요)", fs=11.5, color=RED)
     save(fig, OUT, "es06-decide.svg")
 
 
-def output():
-    """FST의 값: 화살표에 붙은 값을 더하면 낱말마다 다른 값이 나온다."""
-    fig, ax = canvas(10.5, 3.6, 16, 5.6)
-    Q = {"r": (1.0, 2.8), "t": (3.2, 2.8), "m": (6.4, 2.8), "p": (9.6, 2.8), "s": (12.8, 2.8)}
-    for k, (x, y) in Q.items():
-        node(ax, x, y, final=k in ("p", "s"))
-    def lab(x, y, s, hot=False):
-        ax.text(x, y, s, ha="center", fontsize=11, color=RED if hot else "#222")
-    arrow(ax, (1.3, 2.8), (2.9, 2.8), lw=1.5, ms=10); lab(2.1, 3.05, "t / 5")
-    arrow(ax, (3.45, 2.95), (6.15, 2.95), lw=1.5, ms=10, rad=-0.4); lab(4.8, 3.75, "a / 0")
-    arrow(ax, (3.45, 2.65), (6.15, 2.65), color=RED, lw=1.5, ms=10, rad=0.4); lab(4.8, 1.65, "o / 4", hot=True)
-    arrow(ax, (6.7, 2.8), (9.3, 2.8), lw=1.5, ms=10); lab(8.0, 3.05, "p / 0")
-    arrow(ax, (9.9, 2.8), (12.5, 2.8), lw=1.5, ms=10); lab(11.2, 3.05, "s / 1")
-    label(ax, 0.3, 5.2, "글자 / 값: 지나는 화살표의 값을 더해요", fs=11, ha="left", bold=True)
-    rows = ["tap = 5+0+0 = 5", "taps = 5+0+0+1 = 6", "top = 5+4+0 = 9", "tops = 5+4+0+1 = 10"]
-    for k, r in enumerate(rows):
-        label(ax, 13.6 + (k % 2) * 0.0, 4.9 - k * 0.45, r, fs=10, ha="left", color=RED if r.startswith("to") else INK)
-    label(ax, 8.0, 0.6, "꼬리 p, s를 함께 써도 o 화살표의 4 덕분에 top과 tap의 값이 달라요", fs=10.5, color=INK)
-    save(fig, OUT, "es06-output.svg")
-
-
 if __name__ == "__main__":
-    open_(); map_(); block(); index(); trie(); output(); postings(); pack(); cache(); decide()
+    S, L = (7.2, 3.8), (12, 6.6)
+    open_(); map_()
+    stage(block, 3, OUT, "es06-block", S, L)
+    stage(index, 3, OUT, "es06-index", S, L)
+    stage(trie, 3, OUT, "es06-trie", S, L)
+    stage(output, 2, OUT, "es06-output", S, L)
+    stage(postings, 2, OUT, "es06-postings", S, L)
+    stage(pack, 2, OUT, "es06-pack", S, L); pack_sum()
+    stage(cache, 2, OUT, "es06-cache", S, L)
+    names(); decide()

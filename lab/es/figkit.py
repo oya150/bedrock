@@ -90,3 +90,31 @@ def story(steps, hot, out, name):
         if k < n - 1:
             arrow(ax, (7.0, y - 0.03), (7.0, y - 0.42), ms=12)
     save(fig, out, name)
+
+
+def stage(draw, n, out, prefix, size=(7.2, 3.6), lim=(12, 6)):
+    """장면 띠: 같은 무대를 n장 그린다. draw(ax, step)은 step(1부터)에 따라 바뀐 곳만 칠한다. → prefix-1.svg …"""
+    for k in range(1, n + 1):
+        fig, ax = canvas(*size, *lim)
+        draw(ax, k)
+        save(fig, out, f"{prefix}-{k}.svg")
+
+
+def moral(ax, x, y, s, fs=12.5):
+    """장면 띠 마지막 장 아래의 결론 한 줄."""
+    label(ax, x, y, s, fs=fs, color=RED, bold=True)
+
+
+def letters(ax, x, y, word, w=0.55, h=0.6, hot=(), dim=(), blank=(), fs=12):
+    """글자 하나를 칸 하나로. blank=글자를 지운 빈칸(점선). 끝 x를 돌려준다."""
+    for k, ch in enumerate(word):
+        if k in blank:
+            ax.add_patch(Rectangle((x + k * w, y), w, h, fc="white", ec=GREY, lw=1.0, ls="--"))
+        else:
+            cell(ax, x + k * w, y, w, h, ch, hot=k in hot, dim=k in dim, fs=fs)
+    return x + len(word) * w
+
+
+def bits(ax, x, y, s, w=0.32, h=0.5, hot=(), dim=(), fs=9.5):
+    """0/1 비트 칸 줄. 끝 x를 돌려준다."""
+    return letters(ax, x, y, s, w=w, h=h, hot=hot, dim=dim, fs=fs)

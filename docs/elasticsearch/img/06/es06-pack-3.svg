@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="463.170687pt" height="224.496pt" viewBox="0 0 463.170687 224.496" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-31T10:46:53.080605</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 224.496 
+L 463.170687 224.496 
+L 463.170687 -0 
+L 0 -0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 28.044 68.49 
+L 396.324 68.49 
+L 396.324 57.7188 
+L 28.044 57.7188 
+z
+" clip-path="url(#pf453a3d3e4)" style="fill: #e9ecef; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 28.044 102.15 
+L 85.58775 102.15 
+L 85.58775 91.3788 
+L 28.044 91.3788 
+z
+" clip-path="url(#pf453a3d3e4)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 28.044 135.81 
+L 74.079 135.81 
+L 74.079 125.0388 
+L 28.044 125.0388 
+z
+" clip-path="url(#pf453a3d3e4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 28.044 169.47 
+L 97.0965 169.47 
+L 97.0965 158.6988 
+L 28.044 158.6988 
+z
+" clip-path="url(#pf453a3d3e4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #222222; font: 700 12.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.044" y="35.602672" transform="rotate(-0 28.044 35.602672)">차이값 128개 묶음 하나를 적는 데 드는 바이트</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.044" y="53.619031" transform="rotate(-0 28.044 53.619031)">그대로 (32칸씩)</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="401.346" y="66.746431" transform="rotate(-0 401.346 66.746431)">512바이트</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #e4572e; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.044" y="87.279031" transform="rotate(-0 28.044 87.279031)">묶음 1: 가장 큰 차이 18 → 5칸</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="90.60975" y="100.406431" transform="rotate(-0 90.60975 100.406431)">80바이트</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.044" y="120.939031" transform="rotate(-0 28.044 120.939031)">묶음 2: 가장 큰 차이 9 → 4칸</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="79.101" y="134.066431" transform="rotate(-0 79.101 134.066431)">64바이트</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.044" y="154.599031" transform="rotate(-0 28.044 154.599031)">묶음 3: 가장 큰 차이 33 → 6칸</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="102.1185" y="167.726431" transform="rotate(-0 102.1185 167.726431)">96바이트</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #e4572e; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="218.88" y="202.084125" transform="rotate(-0 218.88 202.084125)">묶음마다 가장 큰 값에 맞춘 칸 수로 꽉 채워 적어요</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pf453a3d3e4">
+   <rect x="18" y="18" width="401.76" height="188.496"/>
+  </clipPath>
+ </defs>
+</svg>
