@@ -96,6 +96,7 @@ def stage(draw, n, out, prefix, size=(7.2, 3.6), lim=(12, 6)):
     """장면 띠: 같은 무대를 n장 그린다. draw(ax, step)은 step(1부터)에 따라 바뀐 곳만 칠한다. → prefix-1.svg …"""
     for k in range(1, n + 1):
         fig, ax = canvas(*size, *lim)
+        ax.add_patch(Rectangle((0, 0), *lim, fill=False, ec="none"))  # 장마다 잘리는 테두리를 같게
         draw(ax, k)
         save(fig, out, f"{prefix}-{k}.svg")
 

@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-28T12:46:16.434241</dc:date>
+    <dc:date>2026-10-31T15:56:46.006180</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 183.54 72.693692
 L 183.54 56.488154 
 L 99.84 56.488154 
 z
-" clip-path="url(#p6a9619adb2)" style="fill: #c9ccd1; stroke: #555555; stroke-linejoin: miter"/>
+" clip-path="url(#pc1fab69e77)" style="fill: #c9ccd1; stroke: #555555; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 99.84 92.950615 
@@ -43,7 +43,7 @@ L 102.816 92.950615
 L 102.816 76.745077 
 L 99.84 76.745077 
 z
-" clip-path="url(#p6a9619adb2)" style="fill: #e4572e; stroke: #e4572e; stroke-linejoin: miter"/>
+" clip-path="url(#pc1fab69e77)" style="fill: #e4572e; stroke: #e4572e; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 99.84 123.336 
@@ -51,7 +51,7 @@ L 267.24 123.336
 L 267.24 107.130462 
 L 99.84 107.130462 
 z
-" clip-path="url(#p6a9619adb2)" style="fill: #c9ccd1; stroke: #555555; stroke-linejoin: miter"/>
+" clip-path="url(#pc1fab69e77)" style="fill: #c9ccd1; stroke: #555555; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 99.84 143.592923 
@@ -59,7 +59,7 @@ L 102.816 143.592923
 L 102.816 127.387385 
 L 99.84 127.387385 
 z
-" clip-path="url(#p6a9619adb2)" style="fill: #e4572e; stroke: #e4572e; stroke-linejoin: miter"/>
+" clip-path="url(#pc1fab69e77)" style="fill: #e4572e; stroke: #e4572e; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 99.84 173.978308 
@@ -67,7 +67,7 @@ L 434.64 173.978308
 L 434.64 157.772769 
 L 99.84 157.772769 
 z
-" clip-path="url(#p6a9619adb2)" style="fill: #c9ccd1; stroke: #555555; stroke-linejoin: miter"/>
+" clip-path="url(#pc1fab69e77)" style="fill: #c9ccd1; stroke: #555555; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 99.84 194.235231 
@@ -75,7 +75,7 @@ L 102.816 194.235231
 L 102.816 178.029692 
 L 99.84 178.029692 
 z
-" clip-path="url(#p6a9619adb2)" style="fill: #e4572e; stroke: #e4572e; stroke-linejoin: miter"/>
+" clip-path="url(#pc1fab69e77)" style="fill: #e4572e; stroke: #e4572e; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="29.16" y="36.170784" transform="rotate(-0 29.16 36.170784)">낱말 하나 찾는 걸음 수</text>
@@ -84,7 +84,7 @@ z
     <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="29.16" y="68.177095" transform="rotate(-0 29.16 68.177095)">글 10만</text>
    </g>
    <g id="text_3">
-    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="187.26" y="67.991704" transform="rotate(-0 187.26 67.991704)">하나씩: 100,000번</text>
+    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="187.26" y="68.016704" transform="rotate(-0 187.26 68.016704)">전체 훑기: 100,000번</text>
    </g>
    <g id="text_4">
     <text style="fill: #e4572e; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="109.14" y="88.173627" transform="rotate(-0 109.14 88.173627)">사전에서 찾기: 13번</text>
@@ -93,7 +93,7 @@ z
     <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="29.16" y="118.819403" transform="rotate(-0 29.16 118.819403)">글 20만</text>
    </g>
    <g id="text_6">
-    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="270.96" y="118.634012" transform="rotate(-0 270.96 118.634012)">하나씩: 200,000번</text>
+    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="270.96" y="118.659012" transform="rotate(-0 270.96 118.659012)">전체 훑기: 200,000번</text>
    </g>
    <g id="text_7">
     <text style="fill: #e4572e; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="109.14" y="138.815935" transform="rotate(-0 109.14 138.815935)">사전에서 찾기: 13번</text>
@@ -102,7 +102,7 @@ z
     <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="29.16" y="169.46171" transform="rotate(-0 29.16 169.46171)">글 40만</text>
    </g>
    <g id="text_9">
-    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="438.36" y="169.27632" transform="rotate(-0 438.36 169.27632)">하나씩: 400,000번</text>
+    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="438.36" y="169.30132" transform="rotate(-0 438.36 169.30132)">전체 훑기: 400,000번</text>
    </g>
    <g id="text_10">
     <text style="fill: #e4572e; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="109.14" y="189.458243" transform="rotate(-0 109.14 189.458243)">사전에서 찾기: 13번</text>
@@ -113,7 +113,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p6a9619adb2">
+  <clipPath id="pc1fab69e77">
    <rect x="18" y="18" width="558" height="210.672"/>
   </clipPath>
  </defs>
