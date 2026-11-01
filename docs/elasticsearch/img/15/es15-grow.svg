@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="493.231516pt" height="246.672pt" viewBox="0 0 493.231516 246.672" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-01T10:15:31.875173</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 246.672 
+L 493.231516 246.672 
+L 493.231516 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 105.048 70.668 
+L 119.4444 70.668 
+L 119.4444 57.9 
+L 105.048 57.9 
+z
+" clip-path="url(#p1c913b7e93)" style="fill: #e9ecef; stroke: #c9ccd1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 105.048 88.224 
+L 112.462146 88.224 
+L 112.462146 75.456 
+L 105.048 75.456 
+z
+" clip-path="url(#p1c913b7e93)" style="fill: #fbe3dc; stroke: #e4572e; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 105.048 116.952 
+L 177.03 116.952 
+L 177.03 104.184 
+L 105.048 104.184 
+z
+" clip-path="url(#p1c913b7e93)" style="fill: #e9ecef; stroke: #c9ccd1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 105.048 134.508 
+L 116.277192 134.508 
+L 116.277192 121.74 
+L 105.048 121.74 
+z
+" clip-path="url(#p1c913b7e93)" style="fill: #fbe3dc; stroke: #e4572e; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 105.048 163.236 
+L 392.976 163.236 
+L 392.976 150.468 
+L 105.048 150.468 
+z
+" clip-path="url(#p1c913b7e93)" style="fill: #e9ecef; stroke: #c9ccd1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 105.048 180.792 
+L 118.767769 180.792 
+L 118.767769 168.024 
+L 105.048 168.024 
+z
+" clip-path="url(#p1c913b7e93)" style="fill: #fbe3dc; stroke: #e4572e; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #555555; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.044" y="34.508859" transform="rotate(-0 28.044 34.508859)">질문 하나에 거리를 재는 횟수 (파이썬, 후보 50개)</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.044" y="75.83482" transform="rotate(-0 28.044 75.83482)">벡터 1,000개</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #555555; font: 9.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="124.4664" y="67.514742" transform="rotate(-0 124.4664 67.514742)">전부 재기 1,000번</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #e4572e; font: 700 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="117.484146" y="85.100156" transform="rotate(-0 117.484146 85.100156)">HNSW 515번</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.044" y="122.11882" transform="rotate(-0 28.044 122.11882)">벡터 5,000개</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #555555; font: 9.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="182.052" y="113.798742" transform="rotate(-0 182.052 113.798742)">전부 재기 5,000번</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #e4572e; font: 700 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="121.299192" y="131.384156" transform="rotate(-0 121.299192 131.384156)">HNSW 780번</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.044" y="168.40282" transform="rotate(-0 28.044 168.40282)">벡터 20,000개</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #555555; font: 9.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="397.998" y="160.082742" transform="rotate(-0 397.998 160.082742)">전부 재기 20,000번</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #e4572e; font: 700 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="123.789769" y="177.668156" transform="rotate(-0 123.789769 177.668156)">HNSW 953번</text>
+   </g>
+   <g id="text_11">
+    <text style="fill: #e4572e; font: 700 12.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="218.88" y="220.123727" transform="rotate(-0 218.88 220.123727)">벡터가 20배 늘어도 일은 2배도 안 늘었어요</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p1c913b7e93">
+   <rect x="18" y="18" width="401.76" height="210.672"/>
+  </clipPath>
+ </defs>
+</svg>
