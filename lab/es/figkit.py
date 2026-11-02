@@ -27,8 +27,8 @@ LIGHT = "#e9ecef"
 PINK = "#fbe3dc"
 
 
-def outdir(nn):
-    out = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "..", "docs", "elasticsearch", "img", nn)
+def outdir(nn, topic="elasticsearch"):
+    out = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "..", "docs", topic, "img", nn)
     os.makedirs(out, exist_ok=True)
     return out
 
