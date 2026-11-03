@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="437.76pt" height="246.672pt" viewBox="0 0 437.76 246.672" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-03T10:04:04.865737</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 246.672 
+L 437.76 246.672 
+L 437.76 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 18 228.672 
+L 419.76 228.672 
+L 419.76 18 
+L 18 18 
+L 18 228.672 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: none"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 49.806 188.772 
+L 146.898 188.772 
+L 146.898 48.324 
+L 49.806 48.324 
+L 49.806 188.772 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke-dasharray: 7.4,3.2; stroke-dashoffset: 0; stroke: #e4572e; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 53.154 69.072 
+L 91.656 69.072 
+L 91.656 53.112 
+L 53.154 53.112 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 94.659146 61.092 
+Q 99.188091 61.092 102.375394 61.092 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 98.775394 59.292 
+L 102.375394 61.092 
+L 98.775394 62.892 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 106.722 69.072 
+L 145.224 69.072 
+L 145.224 53.112 
+L 106.722 53.112 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 148.227146 61.092 
+Q 152.756091 61.092 155.943394 61.092 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 152.343394 59.292 
+L 155.943394 61.092 
+L 152.343394 62.892 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 160.29 69.072 
+L 198.792 69.072 
+L 198.792 53.112 
+L 160.29 53.112 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 201.795146 61.092 
+Q 206.324091 61.092 209.511394 61.092 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 205.911394 59.292 
+L 209.511394 61.092 
+L 205.911394 62.892 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 213.858 69.072 
+L 252.36 69.072 
+L 252.36 53.112 
+L 213.858 53.112 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 53.154 97.8 
+L 91.656 97.8 
+L 91.656 81.84 
+L 53.154 81.84 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 94.659146 89.82 
+Q 99.188091 89.82 102.375394 89.82 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 98.775394 88.02 
+L 102.375394 89.82 
+L 98.775394 91.62 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 106.722 97.8 
+L 145.224 97.8 
+L 145.224 81.84 
+L 106.722 81.84 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 148.227146 89.82 
+Q 152.756091 89.82 155.943394 89.82 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 152.343394 88.02 
+L 155.943394 89.82 
+L 152.343394 91.62 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 160.29 97.8 
+L 198.792 97.8 
+L 198.792 81.84 
+L 160.29 81.84 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 53.154 126.528 
+L 91.656 126.528 
+L 91.656 110.568 
+L 53.154 110.568 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 94.659146 118.548 
+Q 99.188091 118.548 102.375394 118.548 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 98.775394 116.748 
+L 102.375394 118.548 
+L 98.775394 120.348 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_18">
+    <path d="M 106.722 126.528 
+L 145.224 126.528 
+L 145.224 110.568 
+L 106.722 110.568 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_19">
+    <path d="M 148.227146 118.548 
+Q 152.756091 118.548 155.943394 118.548 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 152.343394 116.748 
+L 155.943394 118.548 
+L 152.343394 120.348 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_20">
+    <path d="M 160.29 126.528 
+L 198.792 126.528 
+L 198.792 110.568 
+L 160.29 110.568 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_21">
+    <path d="M 201.795146 118.548 
+Q 206.324091 118.548 209.511394 118.548 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 205.911394 116.748 
+L 209.511394 118.548 
+L 205.911394 120.348 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_22">
+    <path d="M 213.858 126.528 
+L 252.36 126.528 
+L 252.36 110.568 
+L 213.858 110.568 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_23">
+    <path d="M 53.154 155.256 
+L 91.656 155.256 
+L 91.656 139.296 
+L 53.154 139.296 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_24">
+    <path d="M 94.659146 147.276 
+Q 99.188091 147.276 102.375394 147.276 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 98.775394 145.476 
+L 102.375394 147.276 
+L 98.775394 149.076 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_25">
+    <path d="M 106.722 155.256 
+L 145.224 155.256 
+L 145.224 139.296 
+L 106.722 139.296 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_26">
+    <path d="M 148.227146 147.276 
+Q 152.756091 147.276 155.943394 147.276 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 152.343394 145.476 
+L 155.943394 147.276 
+L 152.343394 149.076 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_27">
+    <path d="M 160.29 155.256 
+L 198.792 155.256 
+L 198.792 139.296 
+L 160.29 139.296 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_28">
+    <path d="M 201.795146 147.276 
+Q 206.324091 147.276 209.511394 147.276 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 205.911394 145.476 
+L 209.511394 147.276 
+L 205.911394 149.076 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_29">
+    <path d="M 213.858 155.256 
+L 252.36 155.256 
+L 252.36 139.296 
+L 213.858 139.296 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_30">
+    <path d="M 53.154 183.984 
+L 91.656 183.984 
+L 91.656 168.024 
+L 53.154 168.024 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_31">
+    <path d="M 94.659146 176.004 
+Q 99.188091 176.004 102.375394 176.004 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 98.775394 174.204 
+L 102.375394 176.004 
+L 98.775394 177.804 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_32">
+    <path d="M 106.722 183.984 
+L 145.224 183.984 
+L 145.224 168.024 
+L 106.722 168.024 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_33">
+    <path d="M 148.227146 176.004 
+Q 152.756091 176.004 155.943394 176.004 
+" clip-path="url(#paa5235f1b4)" style="fill: none; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 152.343394 174.204 
+L 155.943394 176.004 
+L 152.343394 177.804 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #c9ccd1; stroke: #c9ccd1; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_34">
+    <path d="M 160.29 183.984 
+L 198.792 183.984 
+L 198.792 168.024 
+L 160.29 168.024 
+z
+" clip-path="url(#paa5235f1b4)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #222222; font: 700 11.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.044" y="29.787578" transform="rotate(-0 28.044 29.787578)">앞 낱말 2개 표를 길로 그리면</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #e4572e; font: 700 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="96.678" y="44.293338" transform="rotate(-0 96.678 44.293338)">제비로 고르는 곳</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="36.414" y="64.352156" transform="rotate(-0 36.414 64.352156)">1</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="72.405" y="64.515164" transform="rotate(-0 72.405 64.515164)">오늘</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="125.973" y="64.515164" transform="rotate(-0 125.973 64.515164)">점심</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="179.541" y="64.568484" transform="rotate(-0 179.541 64.568484)">뭐</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="233.109" y="64.568484" transform="rotate(-0 233.109 64.568484)">먹지</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="36.414" y="93.080156" transform="rotate(-0 36.414 93.080156)">2</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="72.405" y="93.243164" transform="rotate(-0 72.405 93.243164)">오늘</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="125.973" y="93.296484" transform="rotate(-0 125.973 93.296484)">날씨</text>
+   </g>
+   <g id="text_11">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="179.541" y="93.296484" transform="rotate(-0 179.541 93.296484)">좋다</text>
+   </g>
+   <g id="text_12">
+    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="36.414" y="121.808156" transform="rotate(-0 36.414 121.808156)">3</text>
+   </g>
+   <g id="text_13">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="72.405" y="122.024484" transform="rotate(-0 72.405 122.024484)">내일</text>
+   </g>
+   <g id="text_14">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="125.973" y="121.971164" transform="rotate(-0 125.973 121.971164)">점심</text>
+   </g>
+   <g id="text_15">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="179.541" y="122.024484" transform="rotate(-0 179.541 122.024484)">같이</text>
+   </g>
+   <g id="text_16">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="233.109" y="122.024484" transform="rotate(-0 233.109 122.024484)">먹자</text>
+   </g>
+   <g id="text_17">
+    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="36.414" y="150.536156" transform="rotate(-0 36.414 150.536156)">4</text>
+   </g>
+   <g id="text_18">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="72.405" y="150.699164" transform="rotate(-0 72.405 150.699164)">오늘</text>
+   </g>
+   <g id="text_19">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="125.973" y="150.752484" transform="rotate(-0 125.973 150.752484)">저녁</text>
+   </g>
+   <g id="text_20">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="179.541" y="150.752484" transform="rotate(-0 179.541 150.752484)">뭐</text>
+   </g>
+   <g id="text_21">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="233.109" y="150.752484" transform="rotate(-0 233.109 150.752484)">먹을까</text>
+   </g>
+   <g id="text_22">
+    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="36.414" y="179.264156" transform="rotate(-0 36.414 179.264156)">5</text>
+   </g>
+   <g id="text_23">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="72.405" y="179.480484" transform="rotate(-0 72.405 179.480484)">날씨</text>
+   </g>
+   <g id="text_24">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="125.973" y="179.480484" transform="rotate(-0 125.973 179.480484)">뭐</text>
+   </g>
+   <g id="text_25">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="179.541" y="179.480484" transform="rotate(-0 179.541 179.480484)">이래</text>
+   </g>
+   <g id="text_26">
+    <text style="fill: #e4572e; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(299.232 118.282547)">셋째 낱말부터는</text>
+    <text style="fill: #e4572e; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(299.232 129.073266)">줄마다 다음 낱말이 하나뿐</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="paa5235f1b4">
+   <rect x="18" y="18" width="401.76" height="210.672"/>
+  </clipPath>
+ </defs>
+</svg>
