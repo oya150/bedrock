@@ -86,6 +86,7 @@ nav:
       - 2단계 · AI:
         - ai/index.md
         - 1. 자판은 다음 낱말을 어떻게 미리 띄울까요: ai/01-next-word.md
+        - 2. 글을 어떤 조각으로 자를까요: ai/02-tokens.md
       - 3단계 · Elasticsearch:
         - elasticsearch/index.md
         - 1. 검색 엔진은 왜 목록을 거꾸로 만들어 둘까요: elasticsearch/01-inverted-index.md

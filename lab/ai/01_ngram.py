@@ -1,46 +1,16 @@
 """AI 1편: 앞 낱말 몇 개를 보고 다음 낱말을 고르는 세기 모델을 재 본다.
 
 실행: python lab/ai/01_ngram.py
-말뭉치는 커밋 8bf17a2 시점의 bedrock 본문(docs 아래 .md)이다. 본문이 바뀌어도 숫자가 그대로 나오게 커밋을 고정했다. 낱말은 띄어쓰기로 자른 덩어리(어절)다.
+말뭉치는 corpus.py가 고정한 bedrock 본문이다. 낱말은 띄어쓰기로 자른 덩어리(어절)다.
 1) 앞 낱말 1~4개로 다음 낱말 횟수표를 만들고 문장을 뽑아 본다
 2) 처음 보는 글(시험 글)에서 "앞 낱말 묶음을 표에서 한 번도 못 본" 비율을 잰다
 3) 뽑은 문장이 말뭉치 문장을 그대로 베낀 비율을 잰다
 4) 배우는 글을 10%~100%로 바꿔 가며 앞 낱말 2개 묶음을 처음 보는 비율을 잰다
 """
 import collections
-import pathlib
 import random
-import re
-import subprocess
 
-REPO = pathlib.Path(__file__).resolve().parents[2]
-COMMIT = "8bf17a2"
-
-
-def git(*args):
-    return subprocess.run(["git", "-C", str(REPO), *args], capture_output=True, text=True, check=True).stdout
-
-
-def sentences():
-    out = []
-    for p in sorted(git("ls-tree", "-r", "--name-only", COMMIT, "docs").split()):
-        if not p.endswith(".md"):
-            continue
-        text = git("show", f"{COMMIT}:{p}")
-        text = re.sub(r"```.*?```", " ", text, flags=re.S)        # 코드 덩어리
-        text = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", text)         # 그림
-        text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)      # 링크는 글자만
-        text = re.sub(r"\[\^[^\]]*\]:?", " ", text)               # 각주 표시
-        for line in text.splitlines():
-            line = line.strip()
-            if not line or line[0] in "#|!<>-*?{" or line.startswith("    "):
-                continue
-            line = re.sub(r"[*`_\"“”()]", "", line)
-            for s in re.split(r"(?<=[.?!])\s+", line):
-                w = s.split()
-                if len(w) >= 3 and re.search(r"[가-힣]", s):
-                    out.append(w)
-    return out
+from corpus import sentences
 
 
 def table(sents, n):
