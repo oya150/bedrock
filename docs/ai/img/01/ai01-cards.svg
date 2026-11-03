@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-03T17:12:24.117603</dc:date>
+    <dc:date>2026-11-03T19:21:13.582573</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 23.101714 21.224049 23.101714 23.373415
 L 23.101714 127.259446 
 Q 23.101714 129.408812 25.288163 129.408812 
 z
-" clip-path="url(#p1d82ee635b)" style="fill: #ffffff; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p4b24777586)" style="fill: #ffffff; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 72.661224 114.721477 
@@ -53,7 +53,7 @@ C 46.580279 103.834365 43.508571 105.656861 43.508571 107.556923
 C 43.508571 109.456985 46.580279 111.279481 52.047186 112.623028 
 C 57.514093 113.966574 64.929851 114.721477 72.661224 114.721477 
 z
-" clip-path="url(#p1d82ee635b)" style="fill: #fffdf5"/>
+" clip-path="url(#p4b24777586)" style="fill: #fffdf5"/>
    </g>
    <g id="patch_4">
     <path d="M 43.508571 107.556923 
@@ -61,7 +61,7 @@ L 101.813878 107.556923
 L 101.813878 78.898708 
 L 43.508571 78.898708 
 z
-" clip-path="url(#p1d82ee635b)" style="fill: #fffdf5"/>
+" clip-path="url(#p4b24777586)" style="fill: #fffdf5"/>
    </g>
    <g id="patch_5">
     <path d="M 43.508571 107.556923 
@@ -69,7 +69,7 @@ C 43.508571 109.456352 46.5821 111.279929 52.047186 112.623028
 C 57.512272 113.966127 64.932425 114.721477 72.661224 114.721477 
 C 80.390024 114.721477 87.810177 113.966127 93.275263 112.623028 
 C 98.740349 111.279929 101.813878 109.456352 101.813878 107.556923 
-" clip-path="url(#p1d82ee635b)" style="fill: none; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p4b24777586)" style="fill: none; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 72.661224 86.063262 
@@ -82,7 +82,7 @@ C 46.580279 75.17615 43.508571 76.998646 43.508571 78.898708
 C 43.508571 80.79877 46.580279 82.621266 52.047186 83.964812 
 C 57.514093 85.308359 64.929851 86.063262 72.661224 86.063262 
 z
-" clip-path="url(#p1d82ee635b)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p4b24777586)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 116.390204 77.465797 
@@ -95,17 +95,17 @@ Q 114.203755 48.091126 114.203755 50.240492
 L 114.203755 75.316431 
 Q 114.203755 77.465797 116.390204 77.465797 
 z
-" clip-path="url(#p1d82ee635b)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p4b24777586)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_1">
     <path d="M 43.508571 107.556923 
 L 43.508571 78.898708 
-" clip-path="url(#p1d82ee635b)" style="fill: none; stroke: #555555; stroke-width: 1.5; stroke-linecap: square"/>
+" clip-path="url(#p4b24777586)" style="fill: none; stroke: #555555; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
     <path d="M 101.813878 107.556923 
 L 101.813878 78.898708 
-" clip-path="url(#p1d82ee635b)" style="fill: none; stroke: #555555; stroke-width: 1.5; stroke-linecap: square"/>
+" clip-path="url(#p4b24777586)" style="fill: none; stroke: #555555; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 700 12.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="36.220408" y="43.632333" transform="rotate(-0 36.220408 43.632333)">언어 모델</text>
@@ -119,7 +119,7 @@ L 101.813878 78.898708
 L 137.525878 75.316431 
 L 101.813878 91.436677 
 z
-" clip-path="url(#p1d82ee635b)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p4b24777586)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_3">
     <text style="fill: #e4572e; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="151.00898" y="66.201626" transform="rotate(-0 151.00898 66.201626)">점심?</text>
@@ -130,12 +130,12 @@ L 136.797061 76.749342
 L 136.797061 73.88352 
 L 125.136 73.88352 
 z
-" clip-path="url(#p1d82ee635b)" style="fill: #fbe3dc"/>
+" clip-path="url(#p4b24777586)" style="fill: #fbe3dc"/>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p1d82ee635b">
+  <clipPath id="p4b24777586">
    <rect x="18" y="18" width="357.12" height="116.424"/>
   </clipPath>
  </defs>

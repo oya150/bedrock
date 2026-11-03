@@ -2,7 +2,7 @@
 
 본문 절은 장면 띠로 그린다: 같은 무대를 여러 장 그리고 장마다 바뀐 곳만 빨강으로 칠한다.
 여는 장면은 챗봇 화면과 1편 무대(보낸 메시지, 자판, 언어 모델 원통)로 연다. 돌아오는 장면은 1편 무대를 다시 쓴다.
-예시와 숫자는 .claude/writing/work/cal/units-ai02-v3.md 의 메시지 7개뿐이다. 실험 숫자는 쓰지 않는다.
+장면마다 할 일이 하나다(v4: 한 끗 차이 장면은 합쳤다). 예시와 숫자는 .claude/writing/work/cal/units-ai02-v3.md 의 메시지 7개뿐이다. 실험 숫자는 쓰지 않는다.
 """
 import os
 import sys
@@ -61,6 +61,7 @@ def empty(ax, x, y, w, h, s="", color=GREY):
 
 # ── 0. 챗봇은 글을 토큰으로 세요 ──────────────────────────────────
 def chat(ax, step):
+    """챗봇 화면. 주고받을 수 있는 글의 양과 한 번에 읽는 길이를 토큰으로 센다."""
     box(ax, 0.4, 0.9, 5.6, 5.55, fc="white")
     ax.add_patch(Rectangle((0.4, 5.95), 5.6, 0.5, fc=LIGHT, ec=INK, lw=1.2))
     label(ax, 0.65, 6.2, "챗봇", fs=11, ha="left", color=INK, bold=True)
@@ -70,33 +71,12 @@ def chat(ax, step):
     label(ax, 1.95, 4.32, "김밥 어때요?", fs=11.5)
     ax.add_patch(Rectangle((0.6, 1.1), 5.2, 0.5, fc="white", ec=INK, lw=1.2))
     label(ax, 0.8, 1.35, "|", fs=12, ha="left")
-    for k, (name, fill) in enumerate([("쓸 수 있는 양", 0.35), ("한 번에 읽는 길이", 0.6)]):
+    for k, (name, fill) in enumerate([("주고받을 수 있는 글의 양", 0.35), ("한 번에 읽는 길이", 0.6)]):
         y = 5.5 - k * 1.45
         label(ax, 6.6, y + 0.45, name, fs=10.5, ha="left", bold=True)
         ax.add_patch(Rectangle((6.6, y - 0.2), 3.0, 0.36, fc="white", ec=INK, lw=1.2))
         ax.add_patch(Rectangle((6.6, y - 0.2), 3.0 * fill, 0.36, fc=LIGHT, ec="none"))
         label(ax, 9.8, y - 0.02, "토큰으로 세요", fs=10, ha="left", color=INK)
-    if step == 1:
-        return
-    if step == 2:
-        label(ax, 6.6, 2.55, "\"오늘 점심 뭐 먹지\"는 토큰 몇 개?", fs=10.5, ha="left", color=RED, bold=True)
-        for k in range(5):
-            empty(ax, 6.6 + k * 0.78, 1.65, 0.7, 0.55, "?", color=RED)
-        label(ax, 10.6, 1.92, "…", fs=13, color=RED)
-        moral(ax, 6.0, 0.4, "토큰은 글을 자른 조각이에요. 어떻게 자를까요?")
-        return
-    label(ax, 6.6, 2.95, "한국어로 만든 사전", fs=10, ha="left", color=RED, bold=True)
-    x = 6.6
-    for t in ["오늘", "점심", "뭐", "먹", "지"]:
-        w = 0.3 * len(t) + 0.15
-        cell(ax, x, 2.25, w, 0.45, t, hot=True, fs=9)
-        x += w + 0.04
-    label(ax, x + 0.1, 2.47, "5개", fs=10.5, ha="left", color=RED, bold=True)
-    label(ax, 6.6, 1.85, "영어로만 만든 사전", fs=10, ha="left", color=RED, bold=True)
-    for k in range(21):
-        ax.add_patch(Rectangle((6.6 + k * 0.17 + (k // 3) * 0.06, 1.15), 0.15, 0.4, fc=PINK, ec=RED, lw=0.8))
-    label(ax, 10.6, 1.35, "21개", fs=10.5, ha="left", color=RED, bold=True)
-    moral(ax, 6.0, 0.4, "같은 말도 사전을 만든 글에 따라 토큰 수가 달라요")
 
 
 # ── 무대: 1편의 휴대폰 자판과 언어 모델 원통 ──────────────────────
@@ -105,7 +85,7 @@ SAY = (6.3, 0.95, 5.5, 1.55)
 TAIL = (9.2, 3.1)
 
 
-def phone(ax, typed=(), hot_word=None, hot_msgs=(), cand="empty"):
+def phone(ax, typed=(), hot_word=None, cand="empty"):
     """typed=낱말 목록. hot_word=빨갛게 칠할 낱말 번호. cand=empty(회색 점선)/miss(빨간 점선과 물음표)."""
     box(ax, 0.4, 0.9, 4.8, 5.55, fc="white")
     label(ax, 0.65, 6.17, "보낸 메시지", fs=10, ha="left", color=INK)
@@ -113,9 +93,8 @@ def phone(ax, typed=(), hot_word=None, hot_msgs=(), cand="empty"):
         s = " ".join(m)
         w = 0.21 * len(s.replace(" ", "")) + 0.1 * (len(m) - 1) + 0.35
         y = 5.62 - k * 0.4
-        on = k in hot_msgs
-        ax.add_patch(Rectangle((5.0 - w, y), w, 0.33, fc=PINK if on else NOTE, ec=RED if on else GREY, lw=1.6 if on else 1.0))
-        label(ax, 5.0 - w / 2, y + 0.165, s, fs=9, color=RED if on else "#222", bold=on)
+        ax.add_patch(Rectangle((5.0 - w, y), w, 0.33, fc=NOTE, ec=GREY, lw=1.0))
+        label(ax, 5.0 - w / 2, y + 0.165, s, fs=9)
     ax.add_patch(Rectangle((0.6, 2.72), 4.4, 0.46, fc="white", ec=INK, lw=1.4))
     x = 0.8
     for k, wd in enumerate(typed):
@@ -144,59 +123,18 @@ def program(ax, lines=(), hot=False, name="언어 모델"):
         label(ax, x + w / 2, y + 1.1 - k * gap, t, fs=10, color=RED if hot else "#222", bold=hot)
 
 
-# ── 1. 여는 장면: 1편 휴대폰 ──────────────────────────────────────
+# ── 1. 낱말 사전에 없는 "먹었니" (휴대폰과 사전 한 컷) ─────────────
 def opening(ax, step):
-    program(ax, ["횟수표", "앞 낱말 → 다음 낱말"])
-    if step == 1:
-        phone(ax, hot_msgs=(5, 6))
-        bubble(ax, *SAY, "새로 보낸 메시지 둘도\n횟수표에 셌어요", TAIL)
-    else:
-        phone(ax, TYPED, hot_word=3, cand="miss")
-        bubble(ax, *SAY, "\"먹었니\" 다음에 올\n낱말을 못 띄워요", TAIL, hot=True)
-        moral(ax, 6.0, 0.35, "\"먹었니\"까지 치자 후보 칸이 비었어요")
-
-
-# ── 2. 사전 = 횟수표의 줄 머리 ─────────────────────────────────────
-def tally_rows():
-    rows = {"(처음)": []}
-    for m in MSGS:
-        seq = ["(처음)"] + m + ["(끝)"]
-        for a, b in zip(seq, seq[1:]):
-            rows.setdefault(a, [])
-            if b in dict(rows[a]):
-                rows[a] = [(x, n + 1 if x == b else n) for x, n in rows[a]]
-            else:
-                rows[a].append((b, 1))
-    return [("(처음)", rows["(처음)"])] + [(w, rows[w]) for w in WORDS]
-
-
-TALLY = tally_rows()
-
-
-def dictionary(ax, step):
-    """1장: 줄 머리를 모아 낱말 사전. 2장: "먹었니" 줄이 없다."""
-    label(ax, 0.3, 6.3, "횟수표 (앞 낱말 → 다음 낱말 횟수)", fs=11, ha="left", bold=True)
-    on = step == 1
-    for k, (head, nxt) in enumerate(TALLY):
-        y = 5.75 - k * 0.33
-        is_word = head != "(처음)"
-        cell(ax, 0.3, y + 0.02, 1.05, 0.25, head, dim=not is_word, fs=8.5, fc=PINK if on and is_word else None)
-        s = "  ".join(f"{w} {n}" for w, n in nxt)
-        label(ax, 1.5, y + 0.145, "→  " + s, fs=9, ha="left", color=INK)
-    label(ax, 7.1, 6.3, "낱말 사전 (15개)", fs=11, ha="left", bold=True, color=RED if on else "#222")
+    phone(ax, TYPED, hot_word=3, cand="miss")
+    label(ax, 6.6, 6.3, "언어 모델의 낱말 사전 (15개)", fs=11, ha="left", bold=True)
     for k, w in enumerate(WORDS):
-        x, y = 7.1 + (k % 3) * 1.55, 5.45 - (k // 3) * 0.5
-        cell(ax, x, y, 1.45, 0.4, w, hot=on, fs=10)
-    if on:
-        ax.add_patch(Rectangle((0.22, 5.75 - 15 * 0.33 - 0.06), 1.21, 15 * 0.33 + 0.08, fill=False, ec=RED, lw=1.6))
-        arrow(ax, (2.9, 0.55), (6.95, 3.3), color=RED, ms=14, rad=0.3)
-        label(ax, 9.4, 2.85, "줄 맨 앞 낱말을 모았어요", fs=10.5, color=RED, bold=True)
-        return
-    label(ax, 7.1, 2.65, "\"먹었니\" 줄을 찾아요", fs=10.5, ha="left", color=INK)
-    cell(ax, 7.1, 1.85, 1.45, 0.45, "먹었니", hot=True, fs=10.5)
-    label(ax, 8.75, 2.07, "→  ?", fs=12, ha="left", color=RED, bold=True)
-    label(ax, 9.6, 2.07, "사전에 없어요", fs=10, ha="left", color=RED)
-    moral(ax, 6.0, 0.3, "사전에 없는 낱말은 횟수표에 줄이 없어요")
+        x, y = 6.6 + (k % 3) * 1.6, 5.45 - (k // 3) * 0.5
+        cell(ax, x, y, 1.5, 0.4, w, fs=10)
+    label(ax, 6.6, 2.65, "\"먹었니\"를 찾아요", fs=10.5, ha="left", color=INK)
+    cell(ax, 6.6, 1.85, 1.5, 0.45, "먹었니", hot=True, fs=10.5)
+    label(ax, 8.3, 2.07, "→  ?", fs=12, ha="left", color=RED, bold=True)
+    label(ax, 9.15, 2.07, "사전에 없어요", fs=10.5, ha="left", color=RED, bold=True)
+    moral(ax, 6.0, 0.35, "사전에 없는 낱말 다음에는 후보를 못 띄워요")
 
 
 # ── 3. "먹" 나뭇가지 ───────────────────────────────────────────────
@@ -205,14 +143,12 @@ L2 = [("어", 2.85, 1), ("지", 2.3, 1), ("니", 1.75, 2), ("대", 1.2, 2)]
 EAT = (3.0, 2.35)  # "었" 칸
 
 
-def branch(ax, step):
+def branch(ax):
     label(ax, 0.3, 6.3, "\"먹\"으로 시작하는 낱말", fs=11.5, ha="left", bold=True)
     rx, ry = 1.4, 3.5
     cell(ax, 0.6, ry - 0.28, 0.8, 0.56, "먹", fs=14)
 
     def leaf(x, y, s, word, when, parent):
-        if when > step:
-            return
         late = when == 2
         ax.plot([parent[0], x], [parent[1], y], color=RED if late else INK, lw=1.4, ls="--" if late else "-")
         if late:
@@ -227,13 +163,9 @@ def branch(ax, step):
     cell(ax, EAT[0], EAT[1] - 0.22, 0.85, 0.44, "었", fs=11)
     for s, y, when in L2:
         leaf(4.6, y, s, "먹었" + s, when, (EAT[0] + 0.85, EAT[1]))
-    if step == 1:
-        label(ax, 9.6, 3.6, "보낸 메시지 일곱 개에\n나온 낱말 다섯 개", fs=10.5, color=INK)
-        label(ax, 9.6, 2.5, "앞은 같고 끝만 달라요", fs=10.5, color=INK)
-    else:
-        label(ax, 9.6, 3.6, "끝은 얼마든지\n더 붙어요 …", fs=10.5, color=RED)
-        label(ax, 9.6, 2.5, "점선 = 아직 사전에 없는 낱말", fs=9.5, color=INK)
-        moral(ax, 6.0, 0.45, "끝이 바뀔 때마다 사전에 없는 낱말이 생겨요")
+    label(ax, 9.6, 3.6, "끝은 얼마든지\n더 붙어요 …", fs=10.5, color=RED)
+    label(ax, 9.6, 2.5, "점선 = 아직 사전에 없는 낱말", fs=9.5, color=INK)
+    moral(ax, 6.0, 0.45, "끝이 바뀔 때마다 사전에 없는 낱말이 생겨요")
 
 
 # ── 4. 메시지를 더할 때 낱말 사전과 글자 사전 (한 컷) ───────────────
@@ -288,8 +220,10 @@ PAIRS = [("오 + 늘", "3번"), ("점 + 심", "3번"), ("먹 + 었", "2번"), ("
 CW = 0.4
 
 
-def merge(ax, step):
+def merge(ax, step, prev):
+    """step=합친 횟수+1. prev=앞 장의 step. 앞 장 뒤로 합친 곳을 모두 빨갛게 칠한다."""
     done = RULES[:step - 1]
+    new = RULES[max(prev - 1, 0):step - 1]
     label(ax, 0.3, 6.3, "보낸 메시지 7개를 글자로 자른 칸", fs=11, ha="left", bold=True)
     for r, m in enumerate(MSGS):
         y = 5.55 - r * 0.6
@@ -301,7 +235,7 @@ def merge(ax, step):
                 if step == 1:
                     on = wd == "오늘"
                 else:
-                    on = len(p) == 2 and (p[0], p[1]) == RULES[step - 2]
+                    on = len(p) == 2 and (p[0], p[1]) in new
                 cell(ax, x, y, w, 0.42, p, hot=on, fs=10.5)
                 x += w
             x += 0.16
@@ -321,7 +255,7 @@ def merge(ax, step):
         y = 2.65 - k * 0.55
         if k < step - 1:
             a, b = RULES[k]
-            on = k == step - 2
+            on = RULES[k] in new
             cell(ax, 6.5, y, 2.9, 0.45, f"{'①②③④'[k]} {a} + {b} → {a}{b}", hot=on, fs=10.5)
             label(ax, 9.6, y + 0.22, f"{SLOTS[k] - SLOTS[k + 1]}칸 줄어 {SLOTS[k + 1]}칸", fs=10.5, ha="left",
                   color=RED if on else INK, bold=on)
@@ -330,8 +264,11 @@ def merge(ax, step):
     if step == 1:
         label(ax, 0.3, 1.4, "\"오\" 다음 \"늘\"이 1번 · 2번 · 4번 메시지에서 3번", fs=10, ha="left", color=RED)
         label(ax, 0.3, 0.95, "띄어 쓴 두 글자는 짝으로 세지 않아요", fs=10, ha="left", color=INK)
+    if step == 2:
+        moral(ax, 6.0, 0.35, "합치기 한 번에 붙은 두 칸이 한 칸이 돼요")
     if step == 5:
-        moral(ax, 6.0, 0.35, "많이 나온 짝부터 합치면 칸이 가장 많이 줄어요")
+        label(ax, 0.3, 1.25, "사전: 글자 24개 + 합친 조각 4개 = 28개", fs=10.5, ha="left", color=RED, bold=True)
+        moral(ax, 6.0, 0.35, "합친 순서가 쌓여 사전이 돼요")
 
 
 # ── 7. 새 낱말은 합친 순서대로 ────────────────────────────────────
@@ -370,8 +307,8 @@ def byte(ax, step):
     label(ax, 4.6, 6.3, "바이트 3개", fs=11, ha="left", bold=True, color=RED if on else "#222")
     for k, b in enumerate(NI):
         cell(ax, 4.6 + k * 0.9, 5.0, 0.8, 0.8, b, hot=on, fs=13)
-    label(ax, 7.5, 5.62, "한 칸에 0 ~ 255 가운데", fs=10, ha="left", color=RED if on else INK)
-    label(ax, 7.5, 5.18, "숫자 하나만 들어가서 셋에 나눠요", fs=10, ha="left", color=RED if on else INK)
+    label(ax, 7.5, 5.62, "바이트 = 0 ~ 255 가운데 숫자 하나", fs=10, ha="left", color=RED if on else INK)
+    label(ax, 7.5, 5.18, "45768을 약속대로 셋에 나눠 담아요", fs=10, ha="left", color=RED if on else INK)
     if on:
         label(ax, 0.4, 3.75, "바이트 사전", fs=10.5, ha="left", color=GREY)
         empty(ax, 3.0, 3.5, 8.5, 0.5)
@@ -391,30 +328,23 @@ def byte(ax, step):
 
 # ── 9. 사전을 만든 글이 조각 수를 정해요 ────────────────────────────
 def lang(ax, step):
-    on1, on2, on3 = step == 1, step == 2, step == 3
-    box(ax, 0.3, 3.75, 5.5, 2.25, fc=PINK if on1 else "white", ec=RED if on1 else INK, lw=1.4)
-    label(ax, 0.55, 5.65, "한국어 메시지 7개로 만든 사전", fs=10.5, ha="left", bold=True, color=RED if on1 else "#222")
+    """두 사전과 자른 결과를 한 컷에. 빨강은 두 사전이 갈리는 곳(합친 조각, 한글 0개)과 조각 수."""
+    box(ax, 0.3, 3.75, 5.5, 2.25, fc="white", ec=INK, lw=1.4)
+    label(ax, 0.55, 5.65, "한국어 메시지 7개로 만든 사전", fs=10.5, ha="left", bold=True, color="#222")
     label(ax, 0.55, 5.1, "한글 글자 24개", fs=10, ha="left", color=INK)
     label(ax, 0.55, 4.6, "합친 조각", fs=10, ha="left", color=INK)
     for k, t in enumerate(["오늘", "점심", "먹었", "날씨"]):
-        cell(ax, 1.8 + k * 0.9, 4.35, 0.82, 0.48, t, hot=on1, fs=10)
+        cell(ax, 1.8 + k * 0.9, 4.35, 0.82, 0.48, t, hot=True, fs=10)
     label(ax, 0.55, 4.05, "바이트 256개", fs=10, ha="left", color=INK)
-    if step == 1:
-        empty(ax, 6.2, 3.75, 5.5, 2.25)
-    else:
-        box(ax, 6.2, 3.75, 5.5, 2.25, fc=PINK if on2 else "white", ec=RED if on2 else INK, lw=1.4)
-        label(ax, 6.45, 5.65, "영어 메시지만으로 만든 사전", fs=10.5, ha="left", bold=True, color=RED if on2 else "#222")
-        label(ax, 6.45, 5.1, "영어 글자 a ~ z", fs=10, ha="left", color=INK)
-        label(ax, 6.45, 4.6, "합친 조각: 영어 짝만", fs=10, ha="left", color=INK)
-        label(ax, 6.45, 4.05, "바이트 256개", fs=10, ha="left", color=INK)
-        label(ax, 9.3, 5.1, "한글 글자 0개", fs=10.5, ha="left", color=RED if on2 else INK, bold=on2)
+    box(ax, 6.2, 3.75, 5.5, 2.25, fc="white", ec=INK, lw=1.4)
+    label(ax, 6.45, 5.65, "영어 메시지만으로 만든 사전", fs=10.5, ha="left", bold=True, color="#222")
+    label(ax, 6.45, 5.1, "영어 글자 a ~ z", fs=10, ha="left", color=INK)
+    label(ax, 6.45, 4.6, "합친 조각: 영어 짝만", fs=10, ha="left", color=INK)
+    label(ax, 6.45, 4.05, "바이트 256개", fs=10, ha="left", color=INK)
+    label(ax, 9.3, 5.1, "한글 글자 0개", fs=10.5, ha="left", color=RED, bold=True)
     label(ax, 0.3, 3.15, "\"오늘 점심 뭐 먹지\"를 자르면", fs=10.5, ha="left", bold=True)
-    label(ax, 0.3, 2.35, "한국어 사전", fs=10, ha="left", color=RED if on3 else GREY)
-    label(ax, 0.3, 1.25, "영어 사전", fs=10, ha="left", color=RED if on3 else GREY)
-    if not on3:
-        empty(ax, 2.2, 2.1, 6.0, 0.5)
-        empty(ax, 2.2, 1.0, 8.4, 0.5)
-        return
+    label(ax, 0.3, 2.35, "한국어 사전", fs=10, ha="left", color=INK)
+    label(ax, 0.3, 1.25, "영어 사전", fs=10, ha="left", color=INK)
     x = 2.2
     for t in ["오늘", "점심", "뭐", "먹", "지"]:
         w = 0.42 * len(t) + 0.2
@@ -435,15 +365,10 @@ def lang(ax, step):
 
 # ── 10. 정리: 처음 장면으로 돌아가기 ───────────────────────────────
 def back(ax, step):
-    if step == 1:
-        phone(ax, TYPED, cand="miss")
-        program(ax, ["낱말 사전 15개"])
-        bubble(ax, *SAY, "처음엔 \"먹었니\"가 사전에\n없어서 막혔어요", TAIL)
-    else:
-        phone(ax, TYPED, hot_word=3)
-        program(ax, ["토큰 사전", "먹었니 → 먹었 · 니", "니 → 235 · 139 · 136"], hot=True)
-        bubble(ax, *SAY, "합친 순서대로 자르고\n없는 글자는 바이트로 잘라요", TAIL, hot=True, fs=10.5)
-        moral(ax, 6.0, 0.35, "처음 보는 낱말도 사전에 있는 토큰으로 잘랐어요")
+    phone(ax, TYPED, hot_word=3)
+    program(ax, ["토큰 사전", "먹었니 → 먹었 · 니", "니 → 235 · 139 · 136"], hot=True)
+    bubble(ax, *SAY, "합친 순서대로 자르고\n없는 글자는 바이트로 잘라요", TAIL, hot=True, fs=10.5)
+    moral(ax, 6.0, 0.35, "처음 보는 낱말도 사전에 있는 토큰으로 잘랐어요")
 
 
 # ── 11. 정리: 낱말 카드 ────────────────────────────────────────────
@@ -471,7 +396,7 @@ def cards():
     arrow(ax, (x + 1.75, y + 1.07), (x + 2.45, y + 1.07), color=RED, ms=12)
     cell(ax, x + 2.6, y + 0.8, 1.1, 0.55, "오늘", hot=True, fs=11)
     label(ax, x + 4.0, y + 1.07, "3칸 줄어요", fs=10, ha="left", color=INK)
-    x, y = card(2, "바이트", "0 ~ 255 가운데\n숫자 하나를 담는 칸")
+    x, y = card(2, "바이트", "0 ~ 255 가운데\n숫자 하나")
     cell(ax, x + 0.5, y + 0.75, 0.65, 0.65, "니", fs=12)
     arrow(ax, (x + 1.25, y + 1.07), (x + 1.8, y + 1.07), color=GREY, ms=10)
     for k, b in enumerate(NI):
@@ -489,15 +414,14 @@ def cards():
 
 if __name__ == "__main__":
     S, L = (7.2, 3.8), (12, 6.6)
-    stage(chat, 3, OUT, "ai02-chat", S, L)
-    stage(opening, 2, OUT, "ai02-open", S, L)
-    stage(dictionary, 2, OUT, "ai02-dict", S, L)
-    stage(branch, 2, OUT, "ai02-branch", S, L)
+    stage(chat, 1, OUT, "ai02-chat", S, L)
+    stage(opening, 1, OUT, "ai02-open", S, L)
+    stage(lambda ax, k: branch(ax), 1, OUT, "ai02-branch", S, L)
     stage(grow, 1, OUT, "ai02-grow", S, L)
     stage(longer, 1, OUT, "ai02-long", S, L)
-    stage(merge, 5, OUT, "ai02-merge", S, L)
+    stage(lambda ax, k: merge(ax, *[(1, 0), (2, 1), (5, 2)][k - 1]), 3, OUT, "ai02-merge", S, L)
     stage(cutnew, 1, OUT, "ai02-cut", S, L)
     stage(byte, 2, OUT, "ai02-byte", S, L)
-    stage(lang, 3, OUT, "ai02-lang", S, L)
-    stage(back, 2, OUT, "ai02-back", S, L)
+    stage(lang, 1, OUT, "ai02-lang", S, L)
+    stage(back, 1, OUT, "ai02-back", S, L)
     cards()

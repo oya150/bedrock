@@ -78,13 +78,9 @@ def program(ax, name, lines=(), hot=False):
 
 def opening(ax, step):
     program(ax, "자판 속 프로그램")
-    if step == 1:
-        phone(ax, "오늘", None, typed_hot=True)
-        bubble(ax, *SAY, "\"오늘\" 다음에 올 낱말을\n골라야 해요", TAIL)
-    else:
-        phone(ax, "오늘", ["점심", "날씨", "저녁"], hot=(0, 1, 2))
-        bubble(ax, *SAY, "아직 안 친 낱말을\n미리 맞혀서 띄웠어요", TAIL, hot=True)
-        moral(ax, 6.0, 0.4, "자판은 다음 낱말을 맞혀서 띄워요")
+    phone(ax, "오늘", ["점심", "날씨", "저녁"], typed_hot=True, hot=(0, 1, 2))
+    bubble(ax, *SAY, "아직 안 친 낱말을\n미리 맞혀서 띄웠어요", TAIL, hot=True)
+    moral(ax, 6.0, 0.4, "자판은 다음 낱말을 맞혀서 띄워요")
 
 
 # ── 챗봇: 다음 낱말 하나를 맞히고 붙이기를 되풀이 ──────────────────
@@ -99,15 +95,11 @@ def chat(ax, step):
     label(ax, 3.52, 5.25, "점심 뭐 먹지?", fs=11.5)
     label(ax, 4.95, 4.7, "내 질문", fs=9, ha="right", color=INK)
     label(ax, 0.65, 4.2, "챗봇의 답", fs=9, ha="left", color=INK)
-    got = step
-    for k in range(got):
-        cell(ax, 0.65 + k * 1.45, 3.35, 1.35, 0.6, ANSWER[k], hot=step == 2 and k == 1, fs=11.5)
-    empty(ax, 0.65 + got * 1.45, 3.35, 1.35, 0.6, "?", color=RED)
-    if step == 1:
-        bubble(ax, *SAY, "질문과 지금까지 쓴 답을 보고\n다음 낱말 하나를 맞혀요", TAIL, hot=True)
-    else:
-        bubble(ax, *SAY, "\"국수\"를 붙이고\n또 다음 낱말을 맞혀요", TAIL, hot=True)
-        moral(ax, 6.0, 0.4, "맞히고 붙이기를 되풀이해서 긴 답을 써요")
+    for k in range(2):
+        cell(ax, 0.65 + k * 1.45, 3.35, 1.35, 0.6, ANSWER[k], hot=k == 1, fs=11.5)
+    empty(ax, 0.65 + 2 * 1.45, 3.35, 1.35, 0.6, "?", color=RED)
+    bubble(ax, *SAY, "\"국수\"를 붙이고\n또 다음 낱말을 맞혀요", TAIL, hot=True)
+    moral(ax, 6.0, 0.4, "맞히고 붙이기를 되풀이해서 긴 답을 써요")
 
 
 # ── 횟수표: 보낸 메시지 → 앞 낱말마다 다음 낱말 횟수 ──────────────
@@ -233,13 +225,9 @@ def chain_stage(ax, out, hot_out, front, tickets, pick, end_moral=None):
         moral(ax, 6.0, 1.0, end_moral)
 
 
-CHAIN = [(["내일", "점심", "뭐", "먹지"], 3, "뭐", ["먹지", "먹을까", "이래"], 0),
-         (["내일", "점심", "뭐", "먹지", EN], 4, "먹지", [EN], 0)]
-
-
 def chain(ax, step):
-    out, h, front, tk, pick = CHAIN[step - 1]
-    chain_stage(ax, out, h, front, tk, pick, end_moral="보낸 적 없는 문장이 나왔어요" if step == 2 else None)
+    chain_stage(ax, ["내일", "점심", "뭐", "먹지", EN], 3, "뭐", ["먹지", "먹을까", "이래"], 0,
+                end_moral="보낸 적 없는 문장이 나왔어요")
 
 
 def tangle(ax, step):
@@ -265,7 +253,7 @@ def merge(ax, step):
     for r, k in MWO:
         mo_arrow(ax, r, k, ry, RED)
     table_row(ax, RX, ry, "뭐", TABLE[7][1], fw=RW, iw=1.1, gap=0.1, hot=True)
-    label(ax, RX, 3.6, "세 메시지가 한 줄로 모여요\n점심, 저녁, 날씨는 표에 안 적혀요", fs=10.5, ha="left",
+    label(ax, RX, 3.6, "세 메시지가 한 줄로 모여요\n\"뭐\" 줄에는 앞 낱말이 적히지 않아요", fs=10.5, ha="left",
           color=RED, va="top")
     moral(ax, 6.0, 0.75, "\"뭐\" 줄만 봐서는 어느 메시지에서 왔는지 몰라요")
 
@@ -312,26 +300,19 @@ def grid(ax, step):
         for j, b in enumerate(WORDS):
             x, y = GX + j * GC, GTOP - (i + 1) * GC
             seen = (a, b) in PAIRS
-            if step == 2 and seen:
+            if seen:
                 fc, ec, lw = RED, RED, 1.0
-            elif step == 3 and seen:
-                fc, ec, lw = PINK, INK, 0.8
             else:
-                fc, ec, lw = "white", RED if step == 1 else GREY, 0.8
+                fc, ec, lw = "white", GREY, 0.8
             ax.add_patch(Rectangle((x, y), GC, GC, fc=fc, ec=ec, lw=lw))
-    if step == 1:
-        label(ax, 7.6, 5.6, "앞 낱말 2개 표의 줄은\n짝마다 하나예요\n12 × 12 = 144가지", fs=10.5, ha="left", color=RED,
-              va="top")
-    elif step == 2:
-        label(ax, 7.6, 5.6, "메시지에 나온 짝은\n13가지뿐이에요\n144칸 가운데 13칸", fs=10.5, ha="left", color=RED,
-              va="top")
-    else:
-        i, j = WORDS.index("내일"), WORDS.index("저녁")
-        x, y = GX + j * GC, GTOP - (i + 1) * GC
-        ax.add_patch(Rectangle((x - 0.04, y - 0.04), GC + 0.08, GC + 0.08, fill=False, ec=RED, lw=2.4))
-        label(ax, x + GC / 2, y + GC / 2, "?", fs=11, color=RED, bold=True)
-        label(ax, 7.6, 5.6, "\"내일 저녁\" 칸은 비어 있어요\n그래서 줄이 없어요", fs=10.5, ha="left", color=RED, va="top")
-        moral(ax, 6.0, 0.45, "아는 낱말끼리도 처음 보는 짝이면 막혀요")
+    label(ax, 7.6, 5.6, "짝은 12 × 12 = 144가지\n메시지에 나온 짝은\n13가지뿐이에요", fs=10.5, ha="left", color=RED,
+          va="top")
+    i, j = WORDS.index("내일"), WORDS.index("저녁")
+    x, y = GX + j * GC, GTOP - (i + 1) * GC
+    ax.add_patch(Rectangle((x - 0.04, y - 0.04), GC + 0.08, GC + 0.08, fill=False, ec=RED, lw=2.4))
+    label(ax, x + GC / 2, y + GC / 2, "?", fs=11, color=RED, bold=True)
+    label(ax, 7.6, 4.2, "\"내일 저녁\" 칸은 비어 있어요\n그래서 줄이 없어요", fs=10.5, ha="left", color=RED, va="top")
+    moral(ax, 6.0, 0.45, "아는 낱말끼리도 처음 보는 짝이면 막혀요")
 
 
 # ── 세기의 벽: 짧게 보면 엉키고 길게 보면 막혀요 ───────────────────
@@ -374,18 +355,18 @@ def cards():
 
 
 if __name__ == "__main__":
-    stage(opening, 2, OUT, "ai01-open", S, L)
-    stage(chat, 2, OUT, "ai01-chat", S, L)
+    stage(opening, 1, OUT, "ai01-open", S, L)
+    stage(chat, 1, OUT, "ai01-chat", S, L)
     stage(tally, 2, OUT, "ai01-tally", *T)
     stage(press, 1, OUT, "ai01-press", S, L)
     stage(edge, 1, OUT, "ai01-edge", *T)
     stage(draw, 1, OUT, "ai01-draw", S, L)
-    stage(chain, 2, OUT, "ai01-chain", S, L)
+    stage(chain, 1, OUT, "ai01-chain", S, L)
     stage(tangle, 1, OUT, "ai01-tangle", S, L)
     stage(merge, 1, OUT, "ai01-merge", *T)
     stage(split, 1, OUT, "ai01-split", *T)
     stage(stuck, 1, OUT, "ai01-stuck", S, L)
-    stage(grid, 3, OUT, "ai01-grid", (7.2, 5.4), (12, 9.0))
+    stage(grid, 1, OUT, "ai01-grid", (7.2, 5.4), (12, 9.0))
     stage(wall, 1, OUT, "ai01-wall", S, L)
     stage(back, 1, OUT, "ai01-back", S, L)
     cards()

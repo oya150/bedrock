@@ -42,3 +42,13 @@
   font-size: 0.85em;
   color: var(--md-default-fg-color--light);
 }
+
+/* 그림 설명: 그림 바로 아래 한 줄. 무엇을 보는 그림인지 적는다 */
+.md-typeset p.fig-cap {
+  margin-top: -0.6em;
+  font-size: 0.85em;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset p.fig-cap strong {
+  color: var(--md-default-fg-color);
+}
