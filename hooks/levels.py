@@ -7,9 +7,9 @@
 import os
 import re
 
-STAGE = {"computer": 1, "algorithms": 2, "ai": 2, "elasticsearch": 3}   # 컴퓨터 분야만 단계가 있다
+STAGE = {"computer": 1, "algorithms": 2, "ai": 2, "elasticsearch": 3, "kubernetes": 3}   # 컴퓨터 분야만 단계가 있다
 STAGE_NAME = {1: "1단계 · 누구나", 2: "2단계 · 코드 입문", 3: "3단계 · 실제 소프트웨어"}
-TOPIC = {"computer": "컴퓨터", "algorithms": "알고리즘", "ai": "AI", "elasticsearch": "Elasticsearch"}
+TOPIC = {"computer": "컴퓨터", "algorithms": "알고리즘", "ai": "AI", "elasticsearch": "Elasticsearch", "kubernetes": "쿠버네티스"}
 LINK = re.compile(r"\]\(([^)#\s]+\.md)(?:#[^)]*)?\)")
 
 _bridges = None   # 글 경로 -> {"before": set(), "after": set()}

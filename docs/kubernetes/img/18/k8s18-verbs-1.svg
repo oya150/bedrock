@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="437.76pt" height="246.672pt" viewBox="0 0 437.76 246.672" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-08T10:46:08.294504</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 246.672 
+L 437.76 246.672 
+L 437.76 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 18 228.672 
+L 419.76 228.672 
+L 419.76 18 
+L 18 18 
+L 18 228.672 
+z
+" clip-path="url(#pafddde1e17)" style="fill: none"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 31.392 144.4032 
+L 145.224 144.4032 
+Q 147.2328 144.4032 147.2328 142.488 
+L 147.2328 94.608 
+Q 147.2328 92.6928 145.224 92.6928 
+L 31.392 92.6928 
+Q 29.3832 92.6928 29.3832 94.608 
+L 29.3832 142.488 
+Q 29.3832 144.4032 31.392 144.4032 
+z
+" clip-path="url(#pafddde1e17)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 88.308 147.682403 
+Q 88.308 160.045275 88.308 170.17208 
+" clip-path="url(#pafddde1e17)" style="fill: none; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 90.708 165.37208 
+L 88.308 170.17208 
+L 85.908 165.37208 
+z
+" clip-path="url(#pafddde1e17)" style="fill: #e4572e; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 161.964 144.4032 
+L 275.796 144.4032 
+Q 277.8048 144.4032 277.8048 142.488 
+L 277.8048 94.608 
+Q 277.8048 92.6928 275.796 92.6928 
+L 161.964 92.6928 
+Q 159.9552 92.6928 159.9552 94.608 
+L 159.9552 142.488 
+Q 159.9552 144.4032 161.964 144.4032 
+z
+" clip-path="url(#pafddde1e17)" style="fill: #e9ecef; stroke: #c9ccd1; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 292.536 144.4032 
+L 406.368 144.4032 
+Q 408.3768 144.4032 408.3768 142.488 
+L 408.3768 94.608 
+Q 408.3768 92.6928 406.368 92.6928 
+L 292.536 92.6928 
+Q 290.5272 92.6928 290.5272 94.608 
+L 290.5272 142.488 
+Q 290.5272 144.4032 292.536 144.4032 
+z
+" clip-path="url(#pafddde1e17)" style="fill: #e9ecef; stroke: #c9ccd1; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #e4572e; font: 700 12.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="218.88" y="44.701422" transform="rotate(-0 218.88 44.701422)">get order-db : 이름을 대고 하나</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="88.308" y="110.962172" transform="rotate(-0 88.308 110.962172)">order-db</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #e4572e; font: 9.5px 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: middle" x="88.308" y="130.770641" transform="rotate(-0 88.308 130.770641)">Y3JvaXNzYW50</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #c9ccd1; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="218.88" y="110.962172" transform="rotate(-0 218.88 110.962172)">admin-login</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #c9ccd1; font: 9.5px 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: middle" x="218.88" y="130.770641" transform="rotate(-0 218.88 130.770641)">password: ……</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #c9ccd1; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="349.452" y="110.956156" transform="rotate(-0 349.452 110.956156)">mail-key</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #c9ccd1; font: 9.5px 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: middle" x="349.452" y="130.770641" transform="rotate(-0 349.452 130.770641)">password: ……</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #e4572e; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="218.88" y="190.818031" transform="rotate(-0 218.88 190.818031)">돌려받는 것: 이름과 값</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pafddde1e17">
+   <rect x="18" y="18" width="401.76" height="210.672"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="437.76pt" height="246.672pt" viewBox="0 0 437.76 246.672" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-08T10:45:57.937293</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 246.672 
+L 437.76 246.672 
+L 437.76 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 18 228.672 
+L 419.76 228.672 
+L 419.76 18 
+L 18 18 
+L 18 228.672 
+z
+" clip-path="url(#p5fb9ab0b52)" style="fill: none"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 38.088 158.448 
+L 178.704 158.448 
+L 178.704 83.436 
+L 38.088 83.436 
+z
+" clip-path="url(#p5fb9ab0b52)" style="fill: #ffffff; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 40.7664 131.316 
+L 176.0256 131.316 
+L 176.0256 118.548 
+L 40.7664 118.548 
+z
+" clip-path="url(#p5fb9ab0b52)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 198.792 158.448 
+L 409.716 158.448 
+L 409.716 94.608 
+L 198.792 94.608 
+z
+" clip-path="url(#p5fb9ab0b52)" style="fill: #ffffff; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 198.792 108.0144 
+L 409.716 108.0144 
+L 409.716 94.608 
+L 198.792 94.608 
+z
+" clip-path="url(#p5fb9ab0b52)" style="fill: #e9ecef; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 207.162 103.5456 
+C 207.78353 103.5456 208.379687 103.31017 208.819175 102.891159 
+C 209.258664 102.472149 209.5056 101.90377 209.5056 101.3112 
+C 209.5056 100.71863 209.258664 100.150251 208.819175 99.731241 
+C 208.379687 99.31223 207.78353 99.0768 207.162 99.0768 
+C 206.54047 99.0768 205.944313 99.31223 205.504825 99.731241 
+C 205.065336 100.150251 204.8184 100.71863 204.8184 101.3112 
+C 204.8184 101.90377 205.065336 102.472149 205.504825 102.891159 
+C 205.944313 103.31017 206.54047 103.5456 207.162 103.5456 
+z
+" clip-path="url(#p5fb9ab0b52)" style="fill: #e4572e"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 215.532 103.5456 
+C 216.15353 103.5456 216.749687 103.31017 217.189175 102.891159 
+C 217.628664 102.472149 217.8756 101.90377 217.8756 101.3112 
+C 217.8756 100.71863 217.628664 100.150251 217.189175 99.731241 
+C 216.749687 99.31223 216.15353 99.0768 215.532 99.0768 
+C 214.91047 99.0768 214.314313 99.31223 213.874825 99.731241 
+C 213.435336 100.150251 213.1884 100.71863 213.1884 101.3112 
+C 213.1884 101.90377 213.435336 102.472149 213.874825 102.891159 
+C 214.314313 103.31017 214.91047 103.5456 215.532 103.5456 
+z
+" clip-path="url(#p5fb9ab0b52)" style="fill: #f6c445"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 223.902 103.5456 
+C 224.52353 103.5456 225.119687 103.31017 225.559175 102.891159 
+C 225.998664 102.472149 226.2456 101.90377 226.2456 101.3112 
+C 226.2456 100.71863 225.998664 100.150251 225.559175 99.731241 
+C 225.119687 99.31223 224.52353 99.0768 223.902 99.0768 
+C 223.28047 99.0768 222.684313 99.31223 222.244825 99.731241 
+C 221.805336 100.150251 221.5584 100.71863 221.5584 101.3112 
+C 221.5584 101.90377 221.805336 102.472149 222.244825 102.891159 
+C 222.684313 103.31017 223.28047 103.5456 223.902 103.5456 
+z
+" clip-path="url(#p5fb9ab0b52)" style="fill: #8fb58f"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 202.8096 125.2512 
+L 405.6984 125.2512 
+L 405.6984 111.8448 
+L 202.8096 111.8448 
+z
+" clip-path="url(#p5fb9ab0b52)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 166.986 83.436 
+L 178.704 94.608 
+" clip-path="url(#p5fb9ab0b52)" style="fill: none; stroke: #555555; stroke-width: 1.2; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="43.11" y="79.668287" transform="rotate(-0 43.11 79.668287)">order.yaml</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="44.784" y="99.116109" transform="rotate(-0 44.784 99.116109)">kind: Deployment</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="44.784" y="113.480109" transform="rotate(-0 44.784 113.480109)">name: order</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #e4572e; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="44.784" y="127.844109" transform="rotate(-0 44.784 127.844109)">replicas: 2</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="44.784" y="142.15725" transform="rotate(-0 44.784 142.15725)">image: order:1</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="304.254" y="104.622137" transform="rotate(-0 304.254 104.622137)">터미널</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #e4572e; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="207.162" y="121.460109" transform="rotate(-0 207.162 121.460109)">$ kubectl apply -f order.yaml</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="207.162" y="137.384016" transform="rotate(-0 207.162 137.384016)">deployment.apps/order configured</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #e4572e; font: 700 11.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="218.88" y="194.175578" transform="rotate(-0 218.88 194.175578)">이번에는 원하는 상태를 3개에서 2개로 고쳐 보내요</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p5fb9ab0b52">
+   <rect x="18" y="18" width="401.76" height="210.672"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -104,6 +104,26 @@ nav:
         - 13. 고유 사용자 수는 왜 근삿값일까요: elasticsearch/13-cardinality.md
         - 14. 노드가 죽어도 왜 데이터가 안 사라질까요: elasticsearch/14-replication.md
         - 15. 벡터 검색은 어떻게 비슷한 걸 찾을까요: elasticsearch/15-hnsw.md
+      - 3단계 · 쿠버네티스:
+        - kubernetes/index.md
+        - 1. 컨테이너는 작은 가상 머신일까요: kubernetes/01-container.md
+        - 2. 이미지는 왜 층층이 쌓여 있을까요: kubernetes/02-image-layers.md
+        - 3. 컨테이너 안의 root는 진짜 root일까요: kubernetes/03-user-and-permissions.md
+        - 4. 컨테이너끼리는 왜 완전히 떨어져 있지 않을까요: kubernetes/04-shared-kernel.md
+        - 5. microVM은 어떻게 빠르면서도 안전할까요: kubernetes/05-microvm.md
+        - 6. VM과 컨테이너 사이에는 무엇이 있을까요: kubernetes/06-sandbox-runtimes.md
+        - 7. 쿠버네티스는 명령을 어떻게 따를까요: kubernetes/07-reconcile-loop.md
+        - 8. 설정 한 줄 바꿨는데 왜 파드가 전부 다시 뜰까요: kubernetes/08-rolling-update.md
+        - 9. 파드 IP가 계속 바뀌는데 어떻게 찾아갈까요: kubernetes/09-service.md
+        - 10. 예약(requests)과 한도(limits)는 무엇이 다를까요: kubernetes/10-requests-limits.md
+        - 11. 파드는 사라지는데 데이터는 어디에 둘까요: kubernetes/11-persistent-volume.md
+        - 12. Longhorn은 디스크 하나를 어떻게 여러 노드에 나눠 둘까요: kubernetes/12-longhorn.md
+        - 13. 스냅샷은 어떻게 순식간에 찍힐까요: kubernetes/13-snapshot.md
+        - 14. 더 빠른 저장 엔진(Longhorn v2)은 무엇이 다를까요: kubernetes/14-longhorn-v2-spdk.md
+        - 15. 큰 이미지는 왜 받는 데 오래 걸릴까요: kubernetes/15-image-pull.md
+        - 16. 자바 서비스는 왜 늦게 뜰까요: kubernetes/16-jvm-startup.md
+        - 17. Secret은 왜 암호가 아닐까요: kubernetes/17-secret.md
+        - 18. 권한은 왜 꼭 필요한 만큼만 줄까요: kubernetes/18-least-privilege.md
   - 과학:
       - science.md
       - 인체:
