@@ -57,103 +57,103 @@ nav:
       - paths.md
       - 1단계 · 컴퓨터:
         - computer/index.md
-        - 1. 컴퓨터는 무엇을 할 줄 아나요: computer/01-what-computers-do.md
-        - 2. 컴퓨터는 사진을 어떻게 기억하나요: computer/02-how-computers-keep-pictures.md
-        - 3. 컴퓨터는 글자를 어떻게 기억하나요: computer/03-how-computers-keep-letters.md
-        - 4. 컴퓨터 속 숫자는 어떻게 생겼나요: computer/04-what-numbers-look-like.md
-        - 5. 컴퓨터는 어디에 기억해 두나요: computer/05-where-computers-remember.md
-        - 6. 컴퓨터에게 일을 어떻게 시키나요: computer/06-how-to-tell-computers.md
-        - 7. 컴퓨터도 틀릴까요: computer/07-can-computers-be-wrong.md
-        - 8. 영상은 어떻게 움직일까요: computer/08-how-videos-move.md
-        - 9. 내가 누른 걸 컴퓨터는 어떻게 알까요: computer/09-how-touch-works.md
-        - 10. 남이 봐도 못 읽는 메시지는 어떻게 만들까요: computer/10-how-to-keep-messages-secret.md
-        - 11. 메시지는 어떤 길로 갈까요: computer/11-how-messages-travel.md
-        - 12. 검색하면 어떻게 바로 찾을까요: computer/12-how-search-works.md
+        - 1. 컴퓨터가 하는 일, 더하기, 비교, 바꿔 적기: computer/01-what-computers-do.md
+        - 2. 사진을 숫자로 기억하기, 픽셀과 색 번호: computer/02-how-computers-keep-pictures.md
+        - 3. 글자 번호표, 컴퓨터가 글자를 기억하고 보내는 방법: computer/03-how-computers-keep-letters.md
+        - 4. 비트, 켜짐과 꺼짐으로 숫자를 적는 방법: computer/04-what-numbers-look-like.md
+        - 5. 메모리와 저장 장치, 컴퓨터가 숫자를 적어 두는 두 곳: computer/05-where-computers-remember.md
+        - 6. 코드와 반복, 쪽지 한 장으로 백 칸 가기: computer/06-how-to-tell-computers.md
+        - 7. 버그와 디버깅, 컴퓨터가 엉뚱하게 움직일 때: computer/07-can-computers-be-wrong.md
+        - 8. 프레임, 영상이 움직여 보이는 까닭: computer/08-how-videos-move.md
+        - 9. 화면 터치, 누른 자리를 컴퓨터가 알아내는 법: computer/09-how-touch-works.md
+        - 10. 암호와 열쇠, 남이 못 읽게 메시지를 바꾸는 법: computer/10-how-to-keep-messages-secret.md
+        - 11. 메시지가 가는 길, 인터넷과 서버: computer/11-how-messages-travel.md
+        - 12. 검색과 색인, 쌓인 메시지에서 낱말 찾기: computer/12-how-search-works.md
       - 2단계 · 알고리즘:
         - algorithms/index.md
-        - 1. 양말이 두 배면 일은 몇 배가 될까요: algorithms/01-why-big-o.md
-        - 2. 사물함은 왜 몇 번 칸이든 바로 찾을까요: algorithms/02-why-arrays-are-fast.md
-        - 3. 업다운 놀이는 왜 금방 맞힐까요: algorithms/03-why-sorted-is-fast.md
-        - 4. 손에 든 카드는 어떻게 정리할까요: algorithms/04-insertion-sort.md
-        - 5. 카드를 반씩 나눠 정리하면 왜 빠를까요: algorithms/05-merge-sort.md
-        - 6. 기준 카드 하나로 나누면 어떻게 정렬될까요: algorithms/06-quick-sort.md
-        - 7. 파이썬은 카드를 어떻게 정렬할까요: algorithms/07-timsort.md
-        - 8. 비교하지 않고 정렬할 수 있을까요: algorithms/08-counting-sort.md
-        - 9. 이름으로 어떻게 바로 찾을까요: algorithms/09-hash.md
-        - 10. 가장 급한 것을 어떻게 늘 빨리 꺼낼까요: algorithms/10-heap.md
-        - 11. 창고 속 카드는 어떻게 빨리 찾을까요: algorithms/11-btree.md
-        - 12. 친구의 친구까지 빠짐없이 찾으려면: algorithms/12-bfs-dfs.md
+        - 1. 빅오, 양말이 두 배가 되면 늘어나는 일: algorithms/01-why-big-o.md
+        - 2. 배열, 사물함처럼 번호로 바로 꺼내는 칸: algorithms/02-why-arrays-are-fast.md
+        - 3. 이진 탐색, 가운데부터 보면 빨리 찾는 까닭: algorithms/03-why-sorted-is-fast.md
+        - 4. 삽입 정렬, 손에 든 카드를 한 장씩 끼워 정리하기: algorithms/04-insertion-sort.md
+        - 5. 병합 정렬, 반씩 나눠 정렬하고 맨 앞끼리 합치기: algorithms/05-merge-sort.md
+        - 6. 퀵 정렬, 기준 카드 하나로 나누어 정렬하기: algorithms/06-quick-sort.md
+        - 7. 팀 정렬, 파이썬이 이미 정리된 줄을 살려 정렬하는 법: algorithms/07-timsort.md
+        - 8. 비교 정렬의 한계와 계수 정렬, 상자에 나눠 담아 정렬하는 법: algorithms/08-counting-sort.md
+        - 9. 해시, 이름으로 칸을 바로 찾는 규칙: algorithms/09-hash.md
+        - 10. 힙, 가장 급한 것을 늘 빨리 꺼내는 대진표: algorithms/10-heap.md
+        - 11. B-트리, 안내 상자로 먼 창고에서 카드 찾기: algorithms/11-btree.md
+        - 12. BFS와 DFS, 친구의 친구까지 빠짐없이 찾아가기: algorithms/12-bfs-dfs.md
       - 2단계 · AI:
         - ai/index.md
-        - 1. 다음 낱말 맞히기, 자판과 챗봇이 하는 일: ai/01-next-word.md
+        - 1. 다음 낱말 맞히기, 휴대폰 자판과 챗봇이 하는 일: ai/01-next-word.md
         - 2. 토큰, 챗봇이 글을 자르는 조각: ai/02-tokens.md
       - 3단계 · Elasticsearch:
         - elasticsearch/index.md
-        - 1. 검색 엔진은 왜 목록을 거꾸로 만들어 둘까요: elasticsearch/01-inverted-index.md
-        - 2. 같은 글자인데 왜 검색이 안 될까요: elasticsearch/02-analyzer.md
-        - 3. 샤드 수는 왜 나중에 못 바꿀까요: elasticsearch/03-routing.md
-        - 4. 저장했는데 왜 바로 검색이 안 될까요: elasticsearch/04-refresh.md
-        - 5. 지운 문서는 언제 실제로 사라질까요: elasticsearch/05-merge.md
-        - 6. 낱말이 수십만 개여도 역색인은 왜 작을까요: elasticsearch/06-terms-postings.md
-        - 7. AND 검색은 어떻게 빨리 겹치는 걸 찾을까요: elasticsearch/07-intersection.md
-        - 8. 같은 검색어인데 왜 환경마다 순위가 다를까요: elasticsearch/08-bm25.md
-        - 9. 상위 10개만 필요하면 왜 다 계산하지 않아도 될까요: elasticsearch/09-top-k.md
-        - 10. 정렬·집계는 왜 역색인을 쓰지 않을까요: elasticsearch/10-doc-values.md
-        - 11. 숫자·날짜 범위 검색은 왜 빠를까요: elasticsearch/11-bkd.md
-        - 12. 샤드 여러 개의 결과를 어떻게 합칠까요: elasticsearch/12-distributed-search.md
-        - 13. 고유 사용자 수는 왜 근삿값일까요: elasticsearch/13-cardinality.md
-        - 14. 노드가 죽어도 왜 데이터가 안 사라질까요: elasticsearch/14-replication.md
-        - 15. 벡터 검색은 어떻게 비슷한 걸 찾을까요: elasticsearch/15-hnsw.md
+        - 1. 역색인, 검색 엔진이 낱말에서 글로 가는 목록: elasticsearch/01-inverted-index.md
+        - 2. 분석기, ES가 글을 낱말로 자르는 방법: elasticsearch/02-analyzer.md
+        - 3. 샤드와 라우팅, 문서가 갈 샤드를 정하는 계산: elasticsearch/03-routing.md
+        - 4. refresh, 저장한 글이 1초 늦게 검색되는 이유: elasticsearch/04-refresh.md
+        - 5. 지운 문서가 사라지는 때, 삭제 표시와 병합: elasticsearch/05-merge.md
+        - 6. 역색인을 작게 담는 법, 앞부분 나눠 쓰기와 차이값: elasticsearch/06-terms-postings.md
+        - 7. AND 검색, 짧은 목록을 따라 건너뛰기: elasticsearch/07-intersection.md
+        - 8. BM25, ES가 검색 결과에 점수를 매기는 방법: elasticsearch/08-bm25.md
+        - 9. 위 10개만 찾기, 문턱 아래 문서는 점수를 계산하지 않아요: elasticsearch/09-top-k.md
+        - 10. doc values, 정렬과 집계가 읽는 문서별 값 열: elasticsearch/10-doc-values.md
+        - 11. BKD 트리, 숫자·날짜 범위를 찾는 나무: elasticsearch/11-bkd.md
+        - 12. 분산 검색, 샤드 여러 개의 결과를 하나로 합치는 법: elasticsearch/12-distributed-search.md
+        - 13. 고유 사용자 수 어림하기, cardinality 집계와 HyperLogLog: elasticsearch/13-cardinality.md
+        - 14. 노드가 꺼져도 데이터가 남는 까닭, 복제본과 체크포인트: elasticsearch/14-replication.md
+        - 15. HNSW, 벡터 검색이 뜻이 비슷한 글을 빨리 찾는 길: elasticsearch/15-hnsw.md
       - 3단계 · 쿠버네티스:
         - kubernetes/index.md
-        - 1. 컨테이너는 작은 가상 머신일까요: kubernetes/01-container.md
-        - 2. 이미지는 왜 층층이 쌓여 있을까요: kubernetes/02-image-layers.md
-        - 3. 컨테이너 안의 root는 진짜 root일까요: kubernetes/03-user-and-permissions.md
-        - 4. 컨테이너끼리는 왜 완전히 떨어져 있지 않을까요: kubernetes/04-shared-kernel.md
-        - 5. microVM은 어떻게 빠르면서도 안전할까요: kubernetes/05-microvm.md
-        - 6. VM과 컨테이너 사이에는 무엇이 있을까요: kubernetes/06-sandbox-runtimes.md
-        - 7. 쿠버네티스는 명령을 어떻게 따를까요: kubernetes/07-reconcile-loop.md
-        - 8. 설정 한 줄 바꿨는데 왜 파드가 전부 다시 뜰까요: kubernetes/08-rolling-update.md
-        - 9. 파드 IP가 계속 바뀌는데 어떻게 찾아갈까요: kubernetes/09-service.md
-        - 10. 예약(requests)과 한도(limits)는 무엇이 다를까요: kubernetes/10-requests-limits.md
-        - 11. 파드는 사라지는데 데이터는 어디에 둘까요: kubernetes/11-persistent-volume.md
-        - 12. Longhorn은 디스크 하나를 어떻게 여러 노드에 나눠 둘까요: kubernetes/12-longhorn.md
-        - 13. 스냅샷은 어떻게 순식간에 찍힐까요: kubernetes/13-snapshot.md
-        - 14. 더 빠른 저장 엔진(Longhorn v2)은 무엇이 다를까요: kubernetes/14-longhorn-v2-spdk.md
-        - 15. 큰 이미지는 왜 받는 데 오래 걸릴까요: kubernetes/15-image-pull.md
-        - 16. 자바 서비스는 왜 늦게 뜰까요: kubernetes/16-jvm-startup.md
-        - 17. Secret은 왜 암호가 아닐까요: kubernetes/17-secret.md
-        - 18. 권한은 왜 꼭 필요한 만큼만 줄까요: kubernetes/18-least-privilege.md
+        - 1. 컨테이너, 칸막이와 한도를 씌운 프로그램: kubernetes/01-container.md
+        - 2. 이미지와 레이어, 층층이 쌓인 컨테이너의 틀: kubernetes/02-image-layers.md
+        - 3. 파일 주인 번호, 컨테이너 안의 root와 fsGroup: kubernetes/03-user-and-permissions.md
+        - 4. 같이 쓰는 커널, 컨테이너 칸막이가 뚫리는 길: kubernetes/04-shared-kernel.md
+        - 5. microVM, 자기 커널을 갖고도 빨리 뜨는 작은 VM: kubernetes/05-microvm.md
+        - 6. gVisor와 RuntimeClass, 파드마다 벽의 두께 고르기: kubernetes/06-sandbox-runtimes.md
+        - 7. 조정 루프, 쿠버네티스가 원하는 상태를 지키는 방법: kubernetes/07-reconcile-loop.md
+        - 8. 롤링 업데이트, 설정 한 줄에 파드가 모두 바뀌는 까닭: kubernetes/08-rolling-update.md
+        - 9. Service, 자꾸 바뀌는 파드를 이름 하나로 찾아가기: kubernetes/09-service.md
+        - 10. requests와 limits, 파드가 쓰는 CPU와 메모리 정하기: kubernetes/10-requests-limits.md
+        - 11. PV와 PVC, 파드가 사라져도 남는 디스크: kubernetes/11-persistent-volume.md
+        - 12. Longhorn, 노드 하나가 죽어도 남는 디스크: kubernetes/12-longhorn.md
+        - 13. 스냅샷, 디스크를 순식간에 찍고 되돌리는 방법: kubernetes/13-snapshot.md
+        - 14. Longhorn v2 엔진, 커널을 건너뛰고 디스크를 다루는 저장 엔진: kubernetes/14-longhorn-v2-spdk.md
+        - 15. 이미지 받기, 새 노드에서 컨테이너가 늦게 뜨는 까닭: kubernetes/15-image-pull.md
+        - 16. 자바 프로그램의 시작 준비, 클래스 읽기, 예열, 미리 저장하기: kubernetes/16-jvm-startup.md
+        - 17. Secret, 쿠버네티스가 비밀번호를 담는 봉투: kubernetes/17-secret.md
+        - 18. 최소 권한, 들어갈 방의 열쇠만 주기: kubernetes/18-least-privilege.md
       - 3단계 · 보안:
         - security/index.md
-        - 1. 디지털 서명, 로그인 토큰을 아무도 고쳐 쓰지 못하는 까닭: security/01-signature.md
+        - 1. 디지털 서명, 고쳐 쓴 로그인 토큰이 들키는 까닭: security/01-signature.md
   - 과학:
       - science.md
       - 인체:
         - body/index.md
-        - 1. 우리 몸은 무엇으로 만들어졌을까요: body/01-cells.md
-        - 2. 숨은 왜 쉬지 않고 쉴까요: body/02-breathing.md
-        - 3. 밥을 먹으면 어디로 갈까요: body/03-digestion.md
-        - 4. 피는 왜 온몸을 돌까요: body/04-blood.md
-        - 5. 심장은 왜 쉬지 않고 뛸까요: body/05-heart.md
-        - 6. 다치면 피는 어떻게 멈출까요: body/06-clotting.md
-        - 7. 땀은 왜 날까요? 모공은 왜 있을까요: body/07-sweat.md
-        - 8. 손톱과 머리카락은 왜 잘라도 안 아플까요: body/08-nails-hair.md
-        - 9. 뼈와 근육은 어떻게 몸을 움직일까요: body/09-bones-muscles.md
-        - 10. 눈은 어떻게 볼까요: body/10-eyes.md
-        - 11. 뇌는 어떻게 몸에 명령할까요: body/11-brain.md
-        - 12. 감기에 걸리면 몸은 어떻게 싸울까요: body/12-immune.md
+        - 1. 세포, 몸을 이루는 작은 방: body/01-cells.md
+        - 2. 숨, 산소가 들어오고 다 쓴 숨이 나가는 길: body/02-breathing.md
+        - 3. 소화, 밥 한 숟가락이 몸속에서 가는 길: body/03-digestion.md
+        - 4. 피, 산소와 영양을 온몸에 나르는 길: body/04-blood.md
+        - 5. 심장, 쉬지 않고 피를 짜서 미는 근육 주머니: body/05-heart.md
+        - 6. 피가 멈추는 과정, 혈소판 마개에서 딱지까지: body/06-clotting.md
+        - 7. 땀, 몸이 열을 식히는 방법: body/07-sweat.md
+        - 8. 손톱과 머리카락, 잘라도 아프지 않은 까닭: body/08-nails-hair.md
+        - 9. 뼈와 근육, 팔을 굽히고 펴는 방법: body/09-bones-muscles.md
+        - 10. 눈이 보는 방법, 빛에서 뇌까지: body/10-eyes.md
+        - 11. 뇌와 척수, 알림을 받아 몸에 명령하는 길: body/11-brain.md
+        - 12. 면역, 몸이 감기를 막고 물리치는 방법: body/12-immune.md
       - 물질과 에너지:
         - matter/index.md
-        - 1. 물, 돌, 공기는 무엇으로 되어 있을까요: matter/01-particles.md
-        - 2. 얼음, 물, 수증기는 왜 모양이 다를까요: matter/02-states.md
-        - 3. 열은 무엇일까요: matter/03-heat.md
-        - 4. 물은 왜 마르면 시원할까요: matter/04-evaporation.md
-        - 5. 소금은 물에 녹아 어디로 갈까요: matter/05-dissolving.md
-        - 6. 얼음은 왜 물에 뜰까요: matter/06-density.md
-        - 7. 불은 왜 탈까요: matter/07-burning.md
-        - 8. 에너지는 어디서 와서 어디로 갈까요: matter/08-energy.md
-        - 9. 소리는 어떻게 귀까지 올까요: matter/09-sound.md
-        - 10. 빛은 무엇일까요: matter/10-light.md
-        - 11. 전기는 무엇일까요: matter/11-electricity.md
-        - 12. 자석은 왜 붙을까요: matter/12-magnets.md
+        - 1. 알갱이와 원자, 물, 돌, 공기를 이루는 조각: matter/01-particles.md
+        - 2. 얼음, 물, 수증기, 같은 알갱이의 세 모습: matter/02-states.md
+        - 3. 온도와 열, 알갱이의 꿈틀거림이 옮겨 가는 일: matter/03-heat.md
+        - 4. 증발, 물이 마를 때 시원해지는 일: matter/04-evaporation.md
+        - 5. 소금이 물에 녹는 일, 알갱이가 하나씩 떨어져 나가요: matter/05-dissolving.md
+        - 6. 밀도, 얼음이 물에 뜨는 까닭: matter/06-density.md
+        - 7. 불과 녹, 원자가 산소와 짝을 바꾸는 일: matter/07-burning.md
+        - 8. 에너지, 모습은 바뀌어도 없어지지 않는 것: matter/08-energy.md
+        - 9. 소리, 떨림이 공기를 타고 귀까지 가는 길: matter/09-sound.md
+        - 10. 빛, 곧게 가다가 튕기고 꺾이는 길: matter/10-light.md
+        - 11. 전기와 회로, 꼬마전구에 불이 켜지는 길: matter/11-electricity.md
+        - 12. 자석, 쇠를 끌어당기는 보이지 않는 힘: matter/12-magnets.md

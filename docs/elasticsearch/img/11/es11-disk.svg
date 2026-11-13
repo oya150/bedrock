@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-01T10:13:22.168412</dc:date>
+    <dc:date>2026-11-13T22:12:29.449074</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 26.0352 39.28896 26.0352 41.2848
 L 26.0352 174.3408 
 Q 26.0352 176.33664 28.044 176.33664 
 z
-" clip-path="url(#pf07ff762da)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#pffcc12a0e1)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 38.088 96.1704 
@@ -48,7 +48,7 @@ L 202.14 96.1704
 L 202.14 71.2224 
 L 38.088 71.2224 
 z
-" clip-path="url(#pf07ff762da)" style="fill: #ffffff; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #c9ccd1; stroke-linejoin: miter"/>
+" clip-path="url(#pffcc12a0e1)" style="fill: #ffffff; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #c9ccd1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 38.088 129.4344 
@@ -56,7 +56,7 @@ L 202.14 129.4344
 L 202.14 104.4864 
 L 38.088 104.4864 
 z
-" clip-path="url(#pf07ff762da)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 2.2; stroke-linejoin: miter"/>
+" clip-path="url(#pffcc12a0e1)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 2.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 38.088 162.6984 
@@ -64,7 +64,7 @@ L 202.14 162.6984
 L 202.14 137.7504 
 L 38.088 137.7504 
 z
-" clip-path="url(#pf07ff762da)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#pffcc12a0e1)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 225.576 176.33664 
@@ -77,7 +77,7 @@ Q 223.5672 39.28896 223.5672 41.2848
 L 223.5672 174.3408 
 Q 223.5672 176.33664 225.576 176.33664 
 z
-" clip-path="url(#pf07ff762da)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#pffcc12a0e1)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 235.62 96.1704 
@@ -85,7 +85,7 @@ L 399.672 96.1704
 L 399.672 71.2224 
 L 235.62 71.2224 
 z
-" clip-path="url(#pf07ff762da)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#pffcc12a0e1)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_8">
     <path d="M 235.62 129.4344 
@@ -93,7 +93,7 @@ L 399.672 129.4344
 L 399.672 104.4864 
 L 235.62 104.4864 
 z
-" clip-path="url(#pf07ff762da)" style="fill: #ffffff; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #c9ccd1; stroke-linejoin: miter"/>
+" clip-path="url(#pffcc12a0e1)" style="fill: #ffffff; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #c9ccd1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_9">
     <path d="M 235.62 162.6984 
@@ -101,7 +101,7 @@ L 399.672 162.6984
 L 399.672 137.7504 
 L 235.62 137.7504 
 z
-" clip-path="url(#pf07ff762da)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#pffcc12a0e1)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="120.114" y="60.436725" transform="rotate(-0 120.114 60.436725)">가격 (long)</text>
@@ -127,13 +127,10 @@ z
    <g id="text_8">
     <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="317.646" y="153.810572" transform="rotate(-0 317.646 153.810572)">doc values</text>
    </g>
-   <g id="text_9">
-    <text style="fill: #e4572e; font: 700 12.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="218.88" y="201.782827" transform="rotate(-0 218.88 201.782827)">숫자 필드는 역색인 대신 BKD에 담겨요</text>
-   </g>
   </g>
  </g>
  <defs>
-  <clipPath id="pf07ff762da">
+  <clipPath id="pffcc12a0e1">
    <rect x="18" y="18" width="401.76" height="199.584"/>
   </clipPath>
  </defs>

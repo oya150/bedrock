@@ -28,7 +28,13 @@ LIGHT = "#e9ecef"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    # FIG_FMT=png FIG_OUT=폴더 로 확인용 PNG 사본을 만든다.
+    fmt = os.environ.get("FIG_FMT", "svg")
+    out = os.environ.get("FIG_OUT", OUT)
+    os.makedirs(out, exist_ok=True)
+    if fmt != "svg":
+        name = name.rsplit(".", 1)[0] + "." + fmt
+    fig.savefig(os.path.join(out, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -75,42 +81,14 @@ fig, ax = canvas(11.0, 4.6, 18.0, 7.6)
 kid(ax, 2.0, 0.4, 1.2)
 for k, t in enumerate(["1?", "2?", "3?", "4?", "5?", "6?", "…"]):
     bubble(ax, 3.6 + (k % 4) * 1.15, 6.4 - (k // 4) * 1.0, t, fs=12)
-ax.text(5.3, 3.6, "운 나쁘면 100번", ha="center", va="center", fontsize=13, fontweight="bold")
+ax.text(5.3, 3.6, "최대 100번", ha="center", va="center", fontsize=13, fontweight="bold")
 kid(ax, 11.0, 0.4, 1.2)
 for k, (t, a) in enumerate([("50?", "업!"), ("75?", "업!"), ("88?", "업!")]):
     bubble(ax, 13.0, 6.5 - k * 1.05, t, color=RED, fc="#fbe3dc", fs=12)
     bubble(ax, 15.0, 6.5 - k * 1.05, a, fs=12)
-ax.text(14.0, 3.0, "일곱 번 안에 꼭!", ha="center", va="center", fontsize=13, color=RED, fontweight="bold")
+ax.text(14.0, 3.0, "최대 7번", ha="center", va="center", fontsize=13, color=RED, fontweight="bold")
 ax.plot([9.0, 9.0], [0.3, 7.2], color=GREY, lw=1.2, ls="--")
 save(fig, "a03-game.svg")
-
-# 2. 이 편의 지도
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["하나씩 부르기", "가운데 부르기", "반씩 버리면 몇 번?", "차례대로 놓여야"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=12, fontweight="bold")
-    if i == 0:
-        for k in range(5):
-            card(ax, x + 0.35 + k * 0.62, 2.2, 0.6, 0.8, k + 1, fs=10)
-        for k in range(4):
-            arrow(ax, (x + 0.65 + k * 0.62, 3.15), (x + 1.27 + k * 0.62, 3.15), lw=1.3, rad=-0.6, ms=10)
-    elif i == 1:
-        for k in range(5):
-            card(ax, x + 0.35 + k * 0.62, 2.2, 0.6, 0.8, (k + 1) * 20, hot=(k == 2), gone=(k < 2), fs=10)
-        arrow(ax, (x + 0.35 + 2.5 * 0.62, 3.8), (x + 0.35 + 2.5 * 0.62, 3.1), color=RED, lw=2)
-    elif i == 2:
-        for k, wid in enumerate([3.0, 1.5, 0.75, 0.38]):
-            ax.add_patch(Rectangle((x + 0.4, 3.3 - k * 0.42), wid, 0.3, fc=BLUE, ec=INK, lw=1))
-    else:
-        for k, n in enumerate([3, 8, 12, 20, 31]):
-            card(ax, x + 0.35 + k * 0.62, 2.7, 0.6, 0.6, n, fs=9)
-        for k, n in enumerate([20, 3, 31, 8, 12]):
-            card(ax, x + 0.35 + k * 0.62, 1.6, 0.6, 0.6, n, fs=9)
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "a03-map.svg")
 
 # 3. 가운데를 부르면 반씩 버린다 (운이 제일 나쁠 때: 정답 100, 늘 "업!")
 steps = [(1, 100, 50, "업!"), (51, 100, 75, "업!"), (76, 100, 88, "업!"), (89, 100, 94, "업!"),
@@ -130,7 +108,7 @@ for r, (lo, hi, mid, ans) in enumerate(steps):
             color=RED if r == 6 else "#222", fontweight="bold")
     nxt = steps[r + 1] if r < 6 else None
     if nxt:
-        ax.text(16.6, y + 0.27, f"→ 남은 숫자 {nxt[1] - nxt[0] + 1}개", ha="left", va="center", fontsize=11)
+        ax.text(16.6, y + 0.27, f"→ 남은 {nxt[1] - nxt[0] + 1}개", ha="left", va="center", fontsize=11)
 ax.text(X0, 10.55, "1", ha="center", va="bottom", fontsize=10)
 ax.text(X0 + W, 10.55, "100", ha="center", va="bottom", fontsize=10)
 save(fig, "a03-halves.svg")
@@ -151,7 +129,6 @@ for label, seq, y in rows:
     arrow(ax, (x - 0.47, y + 0.35), (x - 0.05, y + 0.35), color=RED, lw=1.6, ms=12)
     ax.text(x - 0.25, y + 0.95, f"{len(seq)}번", ha="center", va="center", fontsize=9, color=RED, fontweight="bold")
     ax.text(x + 0.05, y + 0.35, "정답!", ha="left", va="center", fontsize=12, color=RED, fontweight="bold")
-ax.text(2.0, 6.15, "부를 때마다 남은 숫자 (친구가 늘 \"업!\"이라고 할 때)", ha="left", va="center", fontsize=11, color=INK)
 for _, _, y in rows:
     ax.text(2.52, y - 0.3, "부르기 전", ha="center", va="center", fontsize=9, color=INK)
 save(fig, "a03-steps.svg")
@@ -174,34 +151,47 @@ for title, bars, col, gx in groups:
 ax.plot([0.6, 16.4], [base, base], color=INK, lw=1.4)
 save(fig, "a03-bars.svg")
 
-# 6. 차례대로 놓여 있어야 반을 버린다
-fig, ax = canvas(11.6, 4.6, 19.0, 7.6)
+# 6. 컴퓨터가 차례대로 놓인 카드 15장에서 57을 찾는다: 가운데 카드만 네 번 본다
 sorted_nums = [3, 8, 12, 15, 20, 26, 31, 40, 44, 51, 57, 63, 70, 82, 95]
+trace = [(0, 14, 7, "40 < 57"), (8, 14, 11, "63 > 57"), (8, 10, 9, "51 < 57"), (10, 10, 10, "57 찾음")]
+fig, ax = canvas(11.6, 5.4, 19.4, 9.0)
+cw = 1.0
+for r, (lo, hi, mid, lab) in enumerate(trace):
+    y = 7.2 - r * 2.1
+    ax.text(0.1, y + 0.5, f"{r + 1}번째", ha="left", va="center", fontsize=11, fontweight="bold")
+    for k, n in enumerate(sorted_nums):
+        card(ax, 1.6 + k * cw, y, cw, 1.0, n, hot=(k == mid), gone=not (lo <= k <= hi), fs=10)
+    ax.text(17.0, y + 0.5, lab, ha="left", va="center", fontsize=12, fontweight="bold",
+            color=RED if r == 3 else "#222")
+save(fig, "a03-cards.svg")
+
+# 7. 차례대로 놓여 있어야 반을 버린다
+fig, ax = canvas(11.6, 4.2, 19.0, 7.0)
 mixed = [44, 8, 70, 15, 95, 26, 3, 40, 63, 51, 12, 82, 31, 57, 20]
 cw = 1.1
-ax.text(0.3, 7.1, "차례대로 놓인 카드에서 57 찾기", ha="left", va="center", fontsize=13, fontweight="bold")
+ax.text(0.6, 6.5, "차례대로", ha="left", va="center", fontsize=13, fontweight="bold")
 for k, n in enumerate(sorted_nums):
-    card(ax, 0.6 + k * cw, 5.2, cw, 1.1, n, hot=(k == 7), gone=(k < 7))
-ax.text(0.6 + 3.5 * cw, 4.75, "40보다 작은 쪽은 버려요", ha="center", va="center", fontsize=11, color=INK)
-ax.text(0.3, 3.4, "뒤죽박죽 카드에서 57 찾기", ha="left", va="center", fontsize=13, fontweight="bold")
+    card(ax, 0.6 + k * cw, 4.6, cw, 1.1, n, hot=(k == 7), gone=(k < 7))
+ax.text(0.6 + 3.5 * cw, 4.15, "버림", ha="center", va="center", fontsize=11, color=INK)
+ax.text(0.6 + 11 * cw, 4.15, "57은 여기", ha="center", va="center", fontsize=11, color=INK)
+ax.text(0.6, 2.9, "뒤죽박죽", ha="left", va="center", fontsize=13, fontweight="bold")
 for k, n in enumerate(mixed):
-    card(ax, 0.6 + k * cw, 1.5, cw, 1.1, n, hot=(k == 7))
-ax.text(0.6 + 7.5 * cw, 0.9, "가운데가 40이어도, 57이 어느 쪽에 있는지 몰라요", ha="center", va="center",
-        fontsize=11, color=RED, fontweight="bold")
+    card(ax, 0.6 + k * cw, 1.0, cw, 1.1, n, hot=(k == 7))
+ax.text(0.6 + 3.5 * cw, 0.55, "왼쪽?", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(0.6 + 11.5 * cw, 0.55, "오른쪽?", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
 save(fig, "a03-sorted.svg")
 
-# 7. 정렬된 카드 사이에 25 넣기: 뒤 카드를 한 칸씩 옮긴다
-fig, ax = canvas(11.0, 3.4, 18.0, 5.6)
+# 8. 정렬된 카드 사이에 25 넣기: 뒤 카드를 한 칸씩 옮긴다
+fig, ax = canvas(11.0, 3.2, 18.0, 5.2)
 row = [3, 8, 12, 20, 31, 44, 57]
 cw = 1.5
 for k, n in enumerate(row):
-    card(ax, 1.0 + k * cw, 1.6, cw, 1.2, n)
-ax.add_patch(Rectangle((1.0 + 7 * cw, 1.6), cw, 1.2, fc="white", ec=INK, lw=1.4, ls="--"))
+    card(ax, 1.0 + k * cw, 1.0, cw, 1.2, n)
+ax.add_patch(Rectangle((1.0 + 7 * cw, 1.0), cw, 1.2, fc="white", ec=INK, lw=1.4, ls="--"))
 for k in range(6, 3, -1):
-    arrow(ax, (1.0 + (k + 0.5) * cw, 2.95), (1.0 + (k + 1.5) * cw, 2.95), color=RED, lw=1.6, rad=-0.6, ms=12)
-ax.text(1.0 + 3.7 * cw, 4.9, "25", ha="center", va="center", fontsize=13, color=RED, fontweight="bold",
+    arrow(ax, (1.0 + (k + 0.5) * cw, 2.35), (1.0 + (k + 1.5) * cw, 2.35), color=RED, lw=1.6, rad=-0.6, ms=12)
+ax.text(1.0 + 3.7 * cw, 4.4, "25", ha="center", va="center", fontsize=13, color=RED, fontweight="bold",
         bbox=dict(boxstyle="round,pad=0.3", fc="#fbe3dc", ec=RED, lw=1.6))
-arrow(ax, (1.0 + 3.9 * cw, 4.5), (1.0 + 4.4 * cw, 3.1), color=RED, lw=2, rad=-0.2)
-ax.text(1.0 + 4 * cw, 0.9, "20과 31 사이에 넣으려면, 31·44·57을 한 칸씩 옮겨야 해요", ha="center", va="center",
-        fontsize=12, color=RED, fontweight="bold")
+arrow(ax, (1.0 + 3.9 * cw, 4.0), (1.0 + 4.0 * cw, 2.5), color=RED, lw=2, rad=-0.2)
+ax.text(1.0 + 6.5 * cw, 3.75, "3장 옮김", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
 save(fig, "a03-insert.svg")

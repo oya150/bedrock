@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-22T19:38:29.282161</dc:date>
+    <dc:date>2026-11-13T22:07:52.109040</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 192.096 166.104
 L 192.096 51.66 
 L 51.48 51.66 
 z
-" clip-path="url(#pf79bf86a0d)" style="fill: #e8d3b0; stroke: #555555; stroke-width: 1.6; stroke-linejoin: miter"/>
+" clip-path="url(#p792c8a0dd6)" style="fill: #e8d3b0; stroke: #555555; stroke-width: 1.6; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 68.35392 108.882 
@@ -43,7 +43,7 @@ L 175.22208 108.882
 L 175.22208 67.68216 
 L 68.35392 67.68216 
 z
-" clip-path="url(#pf79bf86a0d)" style="fill: #ffffff; stroke: #555555; stroke-linejoin: miter"/>
+" clip-path="url(#p792c8a0dd6)" style="fill: #ffffff; stroke: #555555; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 305.928 166.104 
@@ -51,7 +51,7 @@ L 446.544 166.104
 L 446.544 51.66 
 L 305.928 51.66 
 z
-" clip-path="url(#pf79bf86a0d)" style="fill: #e4572e; stroke: #555555; stroke-width: 1.6; stroke-linejoin: miter"/>
+" clip-path="url(#p792c8a0dd6)" style="fill: #e4572e; stroke: #555555; stroke-width: 1.6; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 322.80192 108.882 
@@ -59,7 +59,7 @@ L 429.67008 108.882
 L 429.67008 67.68216 
 L 322.80192 67.68216 
 z
-" clip-path="url(#pf79bf86a0d)" style="fill: #ffffff; stroke: #555555; stroke-linejoin: miter"/>
+" clip-path="url(#p792c8a0dd6)" style="fill: #ffffff; stroke: #555555; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="121.788" y="91.593017" transform="rotate(-0 121.788 91.593017)">받는 사람: 친구</text>
@@ -71,7 +71,7 @@ z
     <text style="fill: #222222; font: 700 13px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="121.788" y="186.3" transform="rotate(-0 121.788 186.3)">택배 상자</text>
    </g>
    <g id="text_4">
-    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="376.236" y="91.593017" transform="rotate(-0 376.236 91.593017)">받는 사람: 친구</text>
+    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="376.236" y="91.593017" transform="rotate(-0 376.236 91.593017)">받는 곳: 서버</text>
    </g>
    <g id="text_5">
     <text style="fill: #ffffff; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="376.236" y="141.135031" transform="rotate(-0 376.236 141.135031)">바다 가자</text>
@@ -82,7 +82,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pf79bf86a0d">
+  <clipPath id="p792c8a0dd6">
    <rect x="18" y="18" width="468.72" height="188.496"/>
   </clipPath>
  </defs>

@@ -12,7 +12,8 @@ matplotlib.use("svg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc, Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "body", "img", "09")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "body", "img", "09")
+FMT = os.environ.get("FIG_FMT", "svg")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -29,7 +30,9 @@ LIGHT = "#e9ecef"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    if FMT != "svg":
+        name = name.rsplit(".", 1)[0] + "." + FMT
+    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -119,117 +122,155 @@ def arm(ax, sx, sy, ang, upper=4.0, fore=3.6, bent=True, label=True):
     return (ex, ey), (hx, hy)
 
 
-# 1. 여는 장면: 팔을 굽혀 알통
-fig, ax = canvas(10.0, 4.8, 16.0, 7.6)
-kid(ax, 3.4, 0.6, 3.0)
-ax.plot([3.4 + 1.05, 5.2], [0.6 + 3.0, 0.6 + 3.0], color=INK, lw=2)
-ax.plot([5.2, 5.2], [3.6, 5.2], color=INK, lw=2)
-ax.add_patch(Ellipse((4.75, 3.85), 0.9, 0.55, fc=CELL, ec=RED, lw=1.4))
-ax.text(4.75, 2.9, "알통!", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
-ax.text(8.0, 5.4, "팔을 굽히면 위팔 앞이 불룩\n벽을 밀며 펴면 위팔 뒤가 단단", ha="left", va="center", fontsize=12)
-ax.text(10.6, 2.4, "어떻게 움직이는 걸까?", ha="center", va="center", fontsize=13, color=RED, fontweight="bold")
+# 1. 알통: 위팔, 아래팔, 팔꿈치
+fig, ax = canvas(6.0, 4.6, 8.0, 6.2)
+kid(ax, 3.0, 0.4, 3.0)
+ax.plot([3.0 + 1.05, 4.9], [0.4 + 3.0, 0.4 + 3.0], color=INK, lw=2)
+ax.plot([4.9, 4.9], [3.4, 5.2], color=INK, lw=2)
+ax.add_patch(Ellipse((4.3, 3.65), 0.95, 0.55, fc=CELL, ec=RED, lw=1.6))
+ax.text(4.3, 4.35, "알통", ha="center", va="center", fontsize=13, color=RED, fontweight="bold")
+ax.text(4.0, 2.95, "위팔", ha="center", va="center", fontsize=11)
+ax.text(5.15, 4.6, "아래팔", ha="left", va="center", fontsize=11)
+ax.text(5.15, 3.25, "팔꿈치", ha="left", va="center", fontsize=11)
 save(fig, "b09-flex.svg")
 
-# 2. 이 편의 지도
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["뼈가 하는 일", "뼈에 붙은 근육은\n당기기만 해요", "짝 근육", "관절은 문의 경첩처럼"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=11, fontweight="bold")
-    cx = x + 1.9
-    if i == 0:
-        bone(ax, (cx - 1.0, 2.6), (cx + 1.0, 2.6), w=0.45)
-    elif i == 1:
-        muscle(ax, (cx - 1.0, 2.6), (cx + 0.4, 2.6), fat=0.7)
-        arrow(ax, (cx + 0.9, 2.6), (cx + 0.3, 2.6), color=RED, lw=1.6, ms=10)
-    elif i == 2:
-        muscle(ax, (cx - 1.0, 3.0), (cx + 1.0, 3.0), fat=0.5, fc=RED)
-        muscle(ax, (cx - 1.0, 2.2), (cx + 1.0, 2.2), fat=0.5)
-    else:
-        ax.plot([cx - 1.4, cx - 1.4], [1.6, 3.6], color=INK, lw=3)
-        ax.plot([cx - 1.4, cx + 1.0], [2.0, 3.2], color="#b58b5a", lw=5)
-        ax.add_patch(Circle((cx - 1.4, 2.0), 0.18, fc=YEL, ec=INK, lw=1))
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "b09-map.svg")
-
-# 3. 뼈가 하는 일: 받치기, 지키기, 피 세포 만들기
-fig, ax = canvas(11.0, 4.6, 18.0, 7.6)
-# 받치기: 텐트
+# 2. 뼈가 하는 일: 받치기, 지키기, 피 세포 만들기
+fig, ax = canvas(11.0, 4.4, 18.0, 7.2)
 ax.add_patch(Polygon([(0.6, 1.4), (2.8, 5.4), (5.0, 1.4)], closed=True, fc=CELL, ec=INK, lw=1.4))
-ax.plot([2.8, 2.8], [1.4, 5.4], color=INK, lw=3)
-ax.text(2.8, 0.7, "받쳐요", ha="center", va="center", fontsize=12, fontweight="bold")
-ax.text(2.8, 6.4, "텐트의 기둥처럼", ha="center", va="center", fontsize=10)
-# 지키기: 갈비뼈 우리
+ax.plot([2.8, 2.8], [1.4, 5.4], color=RED, lw=3.5)
+ax.text(3.1, 4.2, "기둥", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(2.8, 0.6, "받치기", ha="center", va="center", fontsize=13, fontweight="bold")
 for k in range(5):
     ax.add_patch(Arc((9.0, 3.6), 3.4 - k * 0.1, 3.2 - k * 0.5, theta1=200, theta2=340, color=INK, lw=2.4))
-    ax.add_patch(Arc((9.0, 3.6 + k * 0.0), 3.4 - k * 0.1, 3.2 - k * 0.5, theta1=20, theta2=160, color=INK, lw=2.4))
+    ax.add_patch(Arc((9.0, 3.6), 3.4 - k * 0.1, 3.2 - k * 0.5, theta1=20, theta2=160, color=INK, lw=2.4))
 ax.add_patch(Ellipse((9.2, 3.5), 0.9, 1.1, fc=MUSCLE, ec=RED, lw=1.4))
-ax.text(9.0, 0.7, "지켜요", ha="center", va="center", fontsize=12, fontweight="bold")
-ax.text(9.0, 6.4, "갈비뼈가 심장을", ha="center", va="center", fontsize=10)
-# 피 세포 만들기
+ax.text(9.0, 5.9, "갈비뼈", ha="center", va="center", fontsize=11)
+ax.text(10.0, 3.5, "심장", ha="left", va="center", fontsize=10, color=RED)
+ax.text(9.0, 0.6, "지키기", ha="center", va="center", fontsize=13, fontweight="bold")
 bone(ax, (13.0, 3.6), (17.0, 3.6), w=1.4)
 ax.add_patch(Ellipse((15.0, 3.6), 2.6, 0.7, fc="#f2b8a6", ec=RED, lw=1))
 for k in range(5):
     ax.add_patch(Circle((14.1 + k * 0.45, 3.6 + 0.12 * (k % 2)), 0.12, fc=RED, ec=RED))
-ax.text(15.0, 0.7, "피의 세포를 만들어요", ha="center", va="center", fontsize=12, fontweight="bold")
-ax.text(15.0, 6.4, "뼈 속 붉은 곳에서", ha="center", va="center", fontsize=10)
+ax.text(15.0, 5.0, "뼈 속 붉은 곳", ha="center", va="center", fontsize=11, color=RED)
+ax.text(15.0, 0.6, "피 세포 만들기", ha="center", va="center", fontsize=13, fontweight="bold")
 save(fig, "b09-bone.svg")
 
-# 4. 근육은 당기기만: 줄다리기 줄
-fig, ax = canvas(11.0, 4.0, 18.0, 6.6)
+# 3. 근육은 힘줄로 뼈를 당겨요
+fig, ax = canvas(8.0, 3.6, 12.6, 5.8)
 bone(ax, (1.0, 2.0), (6.0, 2.0), w=0.5)
-bone(ax, (6.4, 2.0), (11.0, 2.0), w=0.5)
+bone(ax, (6.4, 2.0), (11.6, 2.0), w=0.5)
 ax.add_patch(Circle((6.2, 2.0), 0.35, fc=BONE, ec=INK, lw=1.4))
 muscle(ax, (1.6, 3.2), (6.9, 3.0), fat=1.0, fc=RED)
-ax.plot([6.9, 7.4], [3.0, 2.3], color=TENDON, lw=3)
-ax.plot([1.6, 1.4], [3.2, 2.3], color=TENDON, lw=3)
+ax.plot([6.9, 7.6], [3.0, 2.3], color=TENDON, lw=3.5)
+ax.plot([1.6, 1.4], [3.2, 2.3], color=TENDON, lw=3.5)
 arrow(ax, (6.2, 4.4), (3.6, 4.4), color=RED, lw=2.2)
-ax.text(4.2, 5.0, "짧아지면서 당겨요", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
-ax.text(7.9, 3.4, "힘줄", ha="left", va="center", fontsize=10, color="#8a6d3b", fontweight="bold")
-ax.plot([12.4, 12.4], [0.6, 6.0], color=GREY, lw=1.2, ls="--")
-ax.plot([13.4, 17.4], [3.4, 3.4], color="#b58b5a", lw=4)
-arrow(ax, (14.8, 4.3), (13.4, 4.3), color=INK, lw=1.8)
-ax.text(15.4, 5.2, "줄은 당길 수만 있어요", ha="center", va="center", fontsize=11)
-ax.text(15.4, 2.2, "밀면 휘어져요", ha="center", va="center", fontsize=10)
-ax.plot([13.4, 14.4, 15.4, 16.4, 17.4], [1.2, 1.6, 1.2, 1.6, 1.2], color="#b58b5a", lw=4)
+ax.text(4.9, 5.0, "짧아져요", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(4.0, 3.1, "근육", ha="center", va="center", fontsize=11, color="white", fontweight="bold")
+ax.text(8.0, 3.0, "힘줄", ha="left", va="center", fontsize=11, color="#8a6d3b", fontweight="bold")
+ax.text(3.5, 1.2, "뼈", ha="center", va="center", fontsize=11)
+ax.text(9.0, 1.2, "뼈", ha="center", va="center", fontsize=11)
 save(fig, "b09-pull.svg")
 
+# 4. 줄은 당길 수만 있어요
+fig, ax = canvas(10.0, 3.2, 17.0, 5.4)
+def crate(x, y):
+    ax.add_patch(Rectangle((x, y), 1.4, 1.4, fc=BONE, ec=INK, lw=1.4))
+crate(5.6, 1.6)
+ax.plot([1.0, 5.6], [2.3, 2.3], color="#b58b5a", lw=4)
+arrow(ax, (1.6, 3.2), (0.4, 3.2), color=INK, lw=2)
+arrow(ax, (6.9, 3.4), (5.9, 3.4), color=INK, lw=1.6, ms=12)
+ax.text(3.6, 0.7, "당기기", ha="center", va="center", fontsize=13, fontweight="bold")
+ax.text(1.0, 4.0, "당겨요", ha="center", va="center", fontsize=10)
+ax.text(6.3, 4.2, "끌려와요", ha="center", va="center", fontsize=10)
+ax.plot([8.5, 8.5], [0.3, 4.8], color=GREY, lw=1.2, ls="--")
+crate(14.8, 1.6)
+xs = [10.0, 10.9, 11.8, 12.7, 13.6, 14.8]
+ys = [2.3, 3.0, 1.6, 3.0, 1.6, 2.3]
+ax.plot(xs, ys, color=RED, lw=4)
+arrow(ax, (9.2, 3.6), (10.4, 3.6), color=INK, lw=2)
+ax.text(9.6, 4.3, "밀어요", ha="center", va="center", fontsize=10)
+ax.text(15.5, 3.6, "그대로", ha="center", va="center", fontsize=10)
+ax.text(12.4, 0.7, "밀기", ha="center", va="center", fontsize=13, fontweight="bold", color=RED)
+ax.text(12.4, 4.4, "휘어요", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
+save(fig, "b09-rope.svg")
+
 # 5. 짝 근육: 굽히기 / 펴기
-fig, ax = canvas(11.0, 5.4, 18.0, 8.8)
+fig, ax = canvas(10.0, 5.2, 18.0, 9.0)
 arm(ax, 3.0, 7.6, ang=60, bent=True)
-ax.text(3.6, -0.5, "굽힐 때: 앞 근육이 당겨요", ha="center", va="center", fontsize=11, fontweight="bold")
-ax.text(5.4, 6.2, "앞", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
-ax.text(1.4, 6.2, "뒤", ha="right", va="center", fontsize=11, fontweight="bold")
-ax.plot([9.0, 9.0], [0.4, 8.4], color=GREY, lw=1.2, ls="--")
+ax.text(3.6, -0.5, "굽힐 때", ha="center", va="center", fontsize=13, fontweight="bold")
+ax.text(5.4, 6.2, "앞", ha="left", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(1.4, 6.2, "뒤", ha="right", va="center", fontsize=12, fontweight="bold")
+ax.plot([9.0, 9.0], [0.0, 8.4], color=GREY, lw=1.2, ls="--")
 arm(ax, 12.0, 7.6, ang=-90, bent=False)
-ax.text(13.0, -0.5, "펼 때: 뒤 근육이 당겨요", ha="center", va="center", fontsize=11, fontweight="bold")
-ax.text(14.4, 6.2, "앞", ha="left", va="center", fontsize=11, fontweight="bold")
-ax.text(10.4, 6.2, "뒤", ha="right", va="center", fontsize=11, color=RED, fontweight="bold")
-ax.text(9.0, 8.6, "빨간 근육이 당기는 근육이에요. 다른 쪽은 풀려서 늘어나요", ha="center", va="center", fontsize=10)
-ax.set_ylim(-1.0, 9.0)
+ax.text(13.0, -0.5, "펼 때", ha="center", va="center", fontsize=13, fontweight="bold")
+ax.text(14.4, 6.2, "앞", ha="left", va="center", fontsize=12, fontweight="bold")
+ax.text(10.4, 6.2, "뒤", ha="right", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.set_ylim(-1.0, 8.4)
 save(fig, "b09-pair.svg")
 
-# 6. 관절은 문의 경첩처럼
-fig, ax = canvas(11.0, 4.4, 18.0, 7.2)
+# 6. 관절: 뼈와 뼈가 만나 움직이는 곳
+fig, ax = canvas(6.4, 5.6, 9.0, 8.0)
+J = dict(shoulder_r=(5.0, 5.6), elbow_r=(6.2, 4.4), wrist_r=(7.2, 5.4), shoulder_l=(3.0, 5.6),
+         elbow_l=(2.2, 4.2), wrist_l=(2.4, 2.9), hip=(4.0, 3.2), knee_r=(5.0, 1.8), ankle_r=(4.9, 0.4),
+         knee_l=(3.2, 1.9), ankle_l=(3.4, 0.4))
+ax.add_patch(Circle((4.0, 6.6), 0.55, fc="white", ec=INK, lw=1.6))
+segs = [((4.0, 6.05), (4.0, 3.2)), (J["shoulder_l"], J["shoulder_r"]), (J["shoulder_r"], J["elbow_r"]),
+        (J["elbow_r"], J["wrist_r"]), (J["shoulder_l"], J["elbow_l"]), (J["elbow_l"], J["wrist_l"]),
+        ((3.4, 3.2), (4.6, 3.2)), ((4.6, 3.2), J["knee_r"]), (J["knee_r"], J["ankle_r"]),
+        ((3.4, 3.2), J["knee_l"]), (J["knee_l"], J["ankle_l"])]
+for a, b in segs:
+    ax.plot([a[0], b[0]], [a[1], b[1]], color=INK, lw=3, solid_capstyle="round")
+for k in ["shoulder_r", "elbow_r", "wrist_r", "shoulder_l", "elbow_l", "wrist_l", "knee_r", "ankle_r", "knee_l", "ankle_l"]:
+    ax.add_patch(Circle(J[k], 0.17, fc=RED, ec=RED, zorder=5))
+lab = {"elbow_r": ("팔꿈치", 0.3, -0.1, "left"), "wrist_r": ("손목", 0.3, 0.1, "left"),
+       "shoulder_r": ("어깨", 0.3, 0.3, "left"), "knee_r": ("무릎", 0.35, 0.0, "left"),
+       "ankle_r": ("발목", 0.35, 0.0, "left")}
+for k, (t, dx, dy, ha) in lab.items():
+    ax.text(J[k][0] + dx, J[k][1] + dy, t, ha=ha, va="center", fontsize=11, color=RED, fontweight="bold")
+save(fig, "b09-joints.svg")
+
+# 7. 팔꿈치는 문 경첩처럼
+fig, ax = canvas(10.0, 4.2, 17.0, 7.0)
+ax.plot([1.0, 1.0], [0.6, 6.4], color=INK, lw=5)
+ax.text(0.6, 6.0, "벽", ha="right", va="center", fontsize=11)
+ax.plot([1.0, 7.0], [1.6, 1.6], color="#d8c4a4", lw=7, solid_capstyle="round")
+ax.plot([1.0, 6.4], [1.6, 4.6], color="#b58b5a", lw=8, solid_capstyle="round")
+ax.add_patch(Circle((1.0, 1.6), 0.34, fc=RED, ec=INK, lw=1.4, zorder=5))
+ax.add_patch(Arc((1.0, 1.6), 12.0, 12.0, theta1=4, theta2=26, color=INK, lw=1.4, ls="--"))
+ax.text(1.5, 0.8, "경첩", ha="left", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(4.6, 4.7, "문짝", ha="center", va="center", fontsize=11)
+ax.plot([8.7, 8.7], [0.3, 6.6], color=GREY, lw=1.2, ls="--")
+bone(ax, (10.6, 6.2), (10.6, 1.8), w=0.5)
+bone(ax, (10.6, 1.8), (15.6, 1.8), w=0.42)
+ax.plot([10.6, 15.0], [1.8, 4.6], color=INK, lw=1.2, ls=":")
+ax.add_patch(Circle((10.6, 1.8), 0.42, fc=RED, ec=INK, lw=1.4, zorder=5))
+ax.add_patch(Arc((10.6, 1.8), 10.6, 10.6, theta1=4, theta2=30, color=INK, lw=1.4, ls="--"))
+ax.text(10.0, 4.5, "위팔뼈", ha="right", va="center", fontsize=11)
+ax.text(13.6, 1.0, "아래팔뼈", ha="center", va="center", fontsize=11)
+ax.text(10.9, 0.7, "팔꿈치", ha="left", va="center", fontsize=12, color=RED, fontweight="bold")
+save(fig, "b09-hinge.svg")
+
+# 8. 관절 가까이를 조금 당기면 끝은 크게 움직여요
+fig, ax = canvas(10.0, 4.2, 18.0, 7.2)
 ax.plot([1.0, 1.0], [0.8, 6.6], color=INK, lw=5)
 ax.plot([1.0, 7.6], [1.6, 4.4], color="#b58b5a", lw=8, solid_capstyle="round")
-ax.add_patch(Circle((1.0, 1.6), 0.32, fc=YEL, ec=INK, lw=1.4))
-ax.text(1.6, 0.9, "경첩", ha="left", va="center", fontsize=10, fontweight="bold")
-arrow(ax, (2.3, 1.5), (2.0, 2.4), color=RED, lw=1.8, ms=12)
+ax.add_patch(Circle((1.0, 1.6), 0.32, fc=YEL, ec=INK, lw=1.4, zorder=5))
+ax.text(1.6, 0.9, "경첩", ha="left", va="center", fontsize=11)
+arrow(ax, (2.4, 1.5), (2.05, 2.4), color=RED, lw=2, ms=12)
+ax.text(2.7, 1.5, "조금", ha="left", va="center", fontsize=12, color=RED, fontweight="bold")
 ax.add_patch(Arc((1.0, 1.6), 14.4, 14.4, theta1=23, theta2=48, color=INK, lw=1.4, ls="--"))
-ax.text(5.6, 6.4, "문 끝은 크게 움직여요", ha="center", va="center", fontsize=10)
-ax.text(4.5, 0.2, "경첩 옆을 조금만 밀어도 문 끝은 크게 움직여요", ha="center", va="center", fontsize=10, fontweight="bold")
+ax.text(6.4, 6.4, "크게", ha="center", va="center", fontsize=12, fontweight="bold")
+ax.text(7.9, 4.3, "문 끝", ha="left", va="center", fontsize=11)
 ax.plot([9.4, 9.4], [0.4, 6.8], color=GREY, lw=1.2, ls="--")
 bone(ax, (11.4, 6.2), (11.4, 2.4), w=0.5)
 bone(ax, (11.4, 2.4), (16.6, 4.6), w=0.42)
-ax.add_patch(Circle((11.4, 2.4), 0.42, fc=YEL, ec=INK, lw=1.6))
+ax.add_patch(Circle((11.4, 2.4), 0.42, fc=YEL, ec=INK, lw=1.6, zorder=5))
 muscle(ax, (11.9, 5.8), (12.4, 2.95), fat=0.8, fc=RED)
-ax.text(10.8, 1.6, "관절(팔꿈치)", ha="center", va="center", fontsize=11, fontweight="bold")
-arrow(ax, (12.9, 3.6), (12.6, 4.2), color=RED, lw=1.4, ms=10)
-ax.add_patch(Arc((11.4, 2.4), 10.0, 10.0, theta1=10, theta2=40, color=INK, lw=1.4, ls="--"))
-ax.text(16.6, 6.2, "손은 크게 움직여요", ha="center", va="center", fontsize=10)
-ax.text(14.0, 0.2, "근육은 관절 가까이를 조금만 당겨요", ha="center", va="center", fontsize=10, fontweight="bold")
-ax.set_ylim(-0.3, 7.2)
+ax.text(10.9, 1.6, "팔꿈치", ha="center", va="center", fontsize=11)
+arrow(ax, (12.9, 3.0), (12.6, 3.9), color=RED, lw=2, ms=12)
+ax.text(13.1, 2.7, "조금", ha="left", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.add_patch(Arc((11.4, 2.4), 11.0, 11.0, theta1=23, theta2=48, color=INK, lw=1.4, ls="--"))
+ax.text(15.6, 6.6, "크게", ha="center", va="center", fontsize=12, fontweight="bold")
+ax.text(16.9, 4.5, "손", ha="left", va="center", fontsize=11)
+ax.set_ylim(-0.1, 7.2)
 save(fig, "b09-lever.svg")

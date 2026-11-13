@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-23T23:43:24.221198</dc:date>
+    <dc:date>2026-11-13T21:47:50.217489</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 45.2025 44.4264 45.2025 48.492
 L 45.2025 68.82 
 Q 45.2025 72.8856 49.3875 72.8856 
 z
-" clip-path="url(#p614892602d)" style="fill: #f6d8c4; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p8a80d1cf5f)" style="fill: #f6d8c4; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 70.3125 95.924 
@@ -53,7 +53,7 @@ C 59.392378 77.904822 58.10625 80.921222 58.10625 84.066
 C 58.10625 87.210778 59.392378 90.227178 61.681378 92.450872 
 C 63.970378 94.674566 67.075365 95.924 70.3125 95.924 
 z
-" clip-path="url(#p614892602d)" style="fill: #f08c6c; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p8a80d1cf5f)" style="fill: #f08c6c; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 439.9875 234.832 
@@ -66,19 +66,24 @@ C 429.067378 216.812822 427.78125 219.829222 427.78125 222.974
 C 427.78125 226.118778 429.067378 229.135178 431.356378 231.358872 
 C 433.645378 233.582566 436.750365 234.832 439.9875 234.832 
 z
-" clip-path="url(#p614892602d)" style="fill: #f08c6c; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p8a80d1cf5f)" style="fill: #f08c6c; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_1">
     <path d="M 35.4375 234.832 
 L 558.5625 234.832 
-" clip-path="url(#p614892602d)" style="fill: none; stroke: #555555; stroke-width: 1.6; stroke-linecap: square"/>
+" clip-path="url(#p8a80d1cf5f)" style="fill: none; stroke: #555555; stroke-width: 1.6; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
-    <path d="M 70.3125 97.618 
-L 70.3125 221.28 
-" clip-path="url(#p614892602d)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #555555"/>
+    <path d="M 38.925 84.066 
+L 471.375 84.066 
+" clip-path="url(#p8a80d1cf5f)" style="fill: none; stroke-dasharray: 5.18,2.24; stroke-dashoffset: 0; stroke: #e4572e; stroke-width: 1.4"/>
    </g>
    <g id="line2d_3">
+    <path d="M 70.3125 97.618 
+L 70.3125 221.28 
+" clip-path="url(#p8a80d1cf5f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #555555"/>
+   </g>
+   <g id="line2d_4">
     <path d="M 70.3125 222.974 
 L 74.0325 207.25368 
 L 77.7525 192.61752 
@@ -110,9 +115,9 @@ L 170.7525 179.06552
 L 174.4725 192.61752 
 L 178.1925 207.25368 
 L 181.9125 222.974 
-" clip-path="url(#p614892602d)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #555555"/>
+" clip-path="url(#p8a80d1cf5f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #555555"/>
    </g>
-   <g id="line2d_4">
+   <g id="line2d_5">
     <path d="M 181.9125 222.974 
 L 185.05125 212.057111 
 L 188.19 201.893111 
@@ -144,9 +149,9 @@ L 266.65875 192.482
 L 269.7975 201.893111 
 L 272.93625 212.057111 
 L 276.075 222.974 
-" clip-path="url(#p614892602d)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #555555"/>
+" clip-path="url(#p8a80d1cf5f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #555555"/>
    </g>
-   <g id="line2d_5">
+   <g id="line2d_6">
     <path d="M 276.075 222.974 
 L 278.6325 215.987191 
 L 281.19 209.482231 
@@ -178,9 +183,9 @@ L 345.1275 203.45912
 L 347.685 209.482231 
 L 350.2425 215.987191 
 L 352.8 222.974 
-" clip-path="url(#p614892602d)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #555555"/>
+" clip-path="url(#p8a80d1cf5f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #555555"/>
    </g>
-   <g id="line2d_6">
+   <g id="line2d_7">
     <path d="M 352.8 222.974 
 L 354.77625 219.04392 
 L 356.7525 215.38488 
@@ -212,15 +217,27 @@ L 406.15875 211.99688
 L 408.135 215.38488 
 L 410.11125 219.04392 
 L 412.0875 222.974 
-" clip-path="url(#p614892602d)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #555555"/>
+" clip-path="url(#p8a80d1cf5f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #555555"/>
    </g>
    <g id="text_1">
-    <text style="fill: #e4572e; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="297" y="35.525125" transform="rotate(-0 297 35.525125)">공은 왜 점점 덜 튈까?</text>
+    <text style="fill: #e4572e; font: 700 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="478.35" y="87.542484" transform="rotate(-0 478.35 87.542484)">처음 높이</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="126.1125" y="94.265164" transform="rotate(-0 126.1125 94.265164)">1</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="228.99375" y="131.533164" transform="rotate(-0 228.99375 131.533164)">2</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="314.4375" y="162.025164" transform="rotate(-0 314.4375 162.025164)">3</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="382.44375" y="185.741164" transform="rotate(-0 382.44375 185.741164)">4</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p614892602d">
+  <clipPath id="p8a80d1cf5f">
    <rect x="18" y="18" width="558" height="243.936"/>
   </clipPath>
  </defs>

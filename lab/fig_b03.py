@@ -8,7 +8,7 @@ import os
 
 import matplotlib
 
-matplotlib.use("svg")
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc, Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
@@ -29,7 +29,13 @@ LIGHT = "#e9ecef"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    # FIG_FMT=png FIG_OUT=폴더 로 확인용 PNG 사본을 만든다.
+    fmt = os.environ.get("FIG_FMT", "svg")
+    out = os.environ.get("FIG_OUT", OUT)
+    os.makedirs(out, exist_ok=True)
+    if fmt != "svg":
+        name = name.rsplit(".", 1)[0] + "." + fmt
+    fig.savefig(os.path.join(out, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -89,61 +95,32 @@ def grain(ax, cx, cy, w, h, ang=0, fc=FOOD):
     ax.add_patch(Ellipse((cx, cy), w, h, angle=ang, fc=fc, ec=INK, lw=1.2))
 
 
-# 1. 여는 장면: 밥알은 세포보다 훨씬 커요
-fig, ax = canvas(11.0, 4.8, 18.0, 7.8)
+# 1. 밥알은 세포보다 훨씬 커요
+fig, ax = canvas(11.0, 4.4, 18.0, 7.0)
 ax.add_patch(Ellipse((2.6, 3.4), 3.6, 1.2, fc="white", ec=INK, lw=1.6))
 ax.add_patch(Polygon([(0.8, 3.4), (4.4, 3.4), (3.9, 1.6), (1.3, 1.6)], closed=True, fc="white", ec=INK, lw=1.6))
 for k in range(9):
     grain(ax, 1.4 + (k % 5) * 0.55, 3.6 + (k // 5) * 0.35, 0.5, 0.26, ang=20 * (k % 3))
 ax.text(2.6, 0.9, "밥 한 그릇", ha="center", va="center", fontsize=12, fontweight="bold")
 grain(ax, 8.2, 5.4, 3.0, 1.5, ang=10)
-ax.text(8.2, 3.9, "밥알 하나", ha="center", va="center", fontsize=11)
-ax.add_patch(Circle((14.6, 4.6), 0.55, fc=CELL, ec=RED, lw=1.6))
-ax.text(14.6, 3.6, "세포", ha="center", va="center", fontsize=11, fontweight="bold")
-arrow(ax, (10.0, 5.3), (13.7, 4.8), color=GREY, lw=1.8)
-ax.text(11.9, 5.7, "그대로는 못 들어가요", ha="center", va="center", fontsize=10, color=INK)
+ax.text(8.2, 3.9, "밥알 하나", ha="center", va="center", fontsize=12)
+ax.add_patch(Circle((15.0, 4.0), 0.55, fc=CELL, ec=RED, lw=1.6))
+ax.text(15.0, 3.0, "세포", ha="center", va="center", fontsize=12, fontweight="bold")
+arrow(ax, (10.0, 5.3), (14.3, 4.4), color=GREY, lw=1.8)
+ax.text(11.6, 5.9, "그대로", ha="center", va="center", fontsize=11, color=INK)
+cx, cy, d = 12.4, 4.95, 0.3
+ax.plot([cx - d, cx + d], [cy - d, cy + d], color=INK, lw=2.4)
+ax.plot([cx - d, cx + d], [cy + d, cy - d], color=INK, lw=2.4)
 for k in range(6):
     ax.add_patch(Circle((9.0 + k * 0.35, 2.0 + 0.15 * (k % 2)), 0.07, fc=RED, ec=RED))
-arrow(ax, (11.2, 2.1), (14.0, 4.1), color=RED, lw=1.8)
-ax.text(9.9, 1.4, "밥알을 쪼갠 것", ha="center", va="center", fontsize=9)
-ax.text(13.6, 1.6, "아주 작게 쪼개면 들어가요", ha="center", va="center", fontsize=10, color=RED, fontweight="bold")
-ax.text(9.0, 7.3, "크기는 실제와 맞추지 않았어요. 진짜 세포는 밥알보다 훨씬 더 작아요", ha="center", va="center",
-        fontsize=10, color=INK)
+ax.text(9.9, 1.4, "쪼갠 영양", ha="center", va="center", fontsize=11)
+arrow(ax, (11.2, 2.1), (14.5, 3.6), color=RED, lw=1.8)
+ax.text(13.4, 2.1, "잘게 쪼개면", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
 save(fig, "b03-rice.svg")
 
-# 2. 이 편의 지도
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["입에서 잘게", "위에서 죽처럼", "작은창자에서 받아요", "큰창자에서 물을"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=12, fontweight="bold")
-    cx = x + 1.9
-    if i == 0:
-        grain(ax, cx - 0.7, 2.6, 1.0, 0.6)
-        arrow(ax, (cx - 0.1, 2.6), (cx + 0.4, 2.6), lw=1.4, ms=10)
-        for k in range(4):
-            grain(ax, cx + 0.7 + (k % 2) * 0.35, 2.4 + (k // 2) * 0.4, 0.28, 0.18)
-    elif i == 1:
-        ax.add_patch(Ellipse((cx, 2.5), 2.2, 1.6, fc=FOOD, ec=INK, lw=1.4))
-        for k in range(3):
-            ax.plot([cx - 0.7 + k * 0.5, cx - 0.5 + k * 0.5], [2.3, 2.7], color=INK, lw=1)
-    elif i == 2:
-        ax.plot([x + 0.4, x + 3.4], [2.0, 2.0], color=INK, lw=1.4)
-        for k in range(6):
-            ax.add_patch(FancyBboxPatch((x + 0.55 + k * 0.48, 2.0), 0.25, 0.8, boxstyle="round,pad=0.05",
-                                        fc=CELL, ec=RED, lw=1))
-    else:
-        for k in range(3):
-            ax.add_patch(Circle((cx - 0.6 + k * 0.6, 2.6), 0.18, fc=WATER, ec=WATER))
-        arrow(ax, (cx, 2.3), (cx, 1.5), color=WATER, lw=1.4, ms=10)
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "b03-map.svg")
-
-# 3. 먹은 것이 가는 길
-fig, ax = canvas(9.0, 8.4, 14.0, 12.4)
-ax.set_ylim(-0.8, 12.4)
+# 2. 먹은 것이 가는 길
+fig, ax = canvas(9.0, 8.0, 14.0, 12.4)
+ax.set_ylim(-0.4, 12.4)
 ax.add_patch(Ellipse((7.0, 11.0), 2.2, 1.4, fc=SKIN, ec=INK, lw=1.4))
 ax.text(8.6, 11.0, "입", ha="left", va="center", fontsize=12, fontweight="bold")
 ax.plot([7.0, 7.0], [10.3, 7.6], color=INK, lw=7, solid_capstyle="round")
@@ -151,12 +128,11 @@ ax.plot([7.0, 7.0], [10.3, 7.6], color=FOOD, lw=4, solid_capstyle="round")
 ax.text(7.5, 9.0, "식도", ha="left", va="center", fontsize=12, fontweight="bold")
 ax.add_patch(Ellipse((7.9, 6.8), 3.0, 1.9, angle=-20, fc=FOOD, ec=INK, lw=1.6))
 ax.text(10.0, 7.4, "위", ha="left", va="center", fontsize=12, fontweight="bold")
-# 큰창자: 왼쪽 아래에서 올라가 위를 가로지르고 오른쪽으로 내려가요
 ax.plot([3.4, 3.4, 10.6, 10.6], [1.6, 5.2, 5.2, 0.9], color="#b58b5a", lw=10, solid_capstyle="round",
         solid_joinstyle="round")
-arrow(ax, (10.6, 0.9), (10.6, 0.2), color="#8b6b43", lw=2)
+arrow(ax, (10.6, 0.9), (10.6, 0.0), color="#8b6b43", lw=2)
+ax.text(11.0, 0.1, "똥", ha="left", va="center", fontsize=12, fontweight="bold")
 ax.text(11.2, 3.6, "큰창자", ha="left", va="center", fontsize=12, fontweight="bold")
-# 작은창자: 위 아래에서 시작해 꼬불꼬불, 왼쪽 아래 큰창자 시작점으로
 xs, ys = [], []
 for k in range(240):
     t = k / 239
@@ -167,92 +143,117 @@ ax.plot(xs, ys, color=RED, lw=3.5)
 ax.plot([xs[-1], 3.4], [ys[-1], 1.6], color=RED, lw=3.5)
 ax.text(1.0, 3.2, "작은창자", ha="left", va="center", fontsize=12, color=RED, fontweight="bold")
 arrow(ax, (2.6, 3.0), (5.9, 3.0), color=RED, lw=1.4, ms=12)
-ax.text(6.0, -0.3, "모양과 크기는 실제와 맞추지 않았어요", ha="center", va="center", fontsize=10)
 save(fig, "b03-path.svg")
 
-# 4. 입: 씹고, 침이 섞이고, 삼킬 때 숨길 뚜껑이 닫혀요
-fig, ax = canvas(11.0, 4.8, 18.0, 7.8)
-grain(ax, 1.6, 5.0, 1.8, 1.0)
-arrow(ax, (2.8, 5.0), (4.0, 5.0))
+# 3. 입: 이로 씹고 침이 섞여요
+fig, ax = canvas(8.0, 3.6, 12.0, 5.4)
+grain(ax, 1.8, 3.2, 2.2, 1.2)
+ax.text(1.8, 1.6, "밥알", ha="center", va="center", fontsize=12, fontweight="bold")
+arrow(ax, (3.3, 3.2), (5.0, 3.2))
+ax.text(4.15, 3.75, "이로 씹기", ha="center", va="center", fontsize=11)
 for k in range(8):
-    grain(ax, 4.6 + (k % 4) * 0.55, 4.7 + (k // 4) * 0.6, 0.45, 0.28, ang=30 * k)
-for k in range(5):
-    ax.add_patch(Circle((4.8 + k * 0.4, 3.8), 0.09, fc=WATER, ec=WATER))
-ax.text(4.1, 2.9, "이로 잘게 씹고, 침이 섞여요", ha="center", va="center", fontsize=11)
-ax.text(4.1, 2.2, "(오래 씹으면 단맛이 나기도 해요)", ha="center", va="center", fontsize=10)
-ax.plot([8.6, 8.6], [0.5, 7.4], color=GREY, lw=1.2, ls="--")
-# 두 관: 앞쪽 숨관, 뒤쪽 식도
-ax.add_patch(Rectangle((11.0, 0.6), 1.2, 4.6, fc="white", ec=INK, lw=1.6))
-ax.text(11.6, 0.2, "숨관", ha="center", va="center", fontsize=11, fontweight="bold")
-ax.add_patch(Rectangle((14.0, 0.6), 1.2, 4.6, fc=FOOD, ec=INK, lw=1.6))
-ax.text(14.6, 0.2, "식도", ha="center", va="center", fontsize=11, fontweight="bold")
-ax.add_patch(Polygon([(10.9, 5.2), (12.3, 5.2), (12.6, 5.75)], closed=True, fc=RED, ec=RED, lw=1))
-ax.text(10.4, 6.3, "뚜껑이 숨관을 덮어요", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
-ax.add_patch(Circle((13.1, 6.6), 0.35, fc=FOOD, ec=INK, lw=1.2))
-arrow(ax, (13.3, 6.2), (14.5, 4.8), color=INK, lw=1.6)
-ax.text(15.8, 6.8, "꿀꺽!", ha="center", va="center", fontsize=12, fontweight="bold")
+    grain(ax, 6.2 + (k % 4) * 0.8, 3.0 + (k // 4) * 0.8, 0.6, 0.36, ang=30 * k)
+for k, (x, y) in enumerate([(6.6, 3.4), (7.4, 2.6), (8.2, 3.45), (9.0, 2.65), (6.0, 2.4), (8.6, 4.2), (7.0, 4.2)]):
+    ax.add_patch(Circle((x, y), 0.13, fc=WATER, ec=WATER))
+ax.text(7.4, 1.6, "잘게 부순 밥", ha="center", va="center", fontsize=12, fontweight="bold")
+ax.add_patch(Circle((10.4, 3.6), 0.13, fc=WATER, ec=WATER))
+ax.text(10.7, 3.6, "침", ha="left", va="center", fontsize=12, color=WATER, fontweight="bold")
 save(fig, "b03-mouth.svg")
 
-# 5. 위: 주머니가 꿈틀거리며 섞고, 시큼한 위액이 녹여요
-fig, ax = canvas(10.0, 5.0, 16.0, 8.0)
+# 4. 삼킬 때 뚜껑이 숨관을 덮어요
+fig, ax = canvas(6.0, 5.0, 9.0, 7.6)
+ax.add_patch(Rectangle((1.8, 0.8), 1.2, 4.4, fc="white", ec=INK, lw=1.6))
+ax.text(2.4, 0.3, "숨관", ha="center", va="center", fontsize=12, fontweight="bold")
+ax.add_patch(Rectangle((5.0, 0.8), 1.2, 4.4, fc=FOOD, ec=INK, lw=1.6))
+ax.text(5.6, 0.3, "식도", ha="center", va="center", fontsize=12, fontweight="bold")
+ax.add_patch(Polygon([(1.7, 5.2), (3.1, 5.2), (3.4, 5.75)], closed=True, fc=RED, ec=RED, lw=1))
+ax.text(1.2, 6.2, "뚜껑", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+arrow(ax, (1.45, 5.95), (2.0, 5.45), color=RED, lw=1.2, ms=10)
+ax.add_patch(Circle((4.1, 6.8), 0.4, fc=FOOD, ec=INK, lw=1.2))
+ax.text(4.1, 7.5, "밥", ha="center", va="center", fontsize=12, fontweight="bold")
+arrow(ax, (4.35, 6.35), (5.5, 4.9), color=INK, lw=1.6)
+save(fig, "b03-swallow.svg")
+
+# 5. 식도 근육이 밥 위를 조이며 밀어 내려요 (세 칸)
+fig, ax = canvas(8.0, 5.2, 12.0, 8.0)
+for i, by in enumerate([5.0, 3.5, 2.0]):
+    cx = 2.0 + i * 4.0
+    pinch = by + 1.0
+    ys = [7.0, pinch + 0.45, pinch, pinch - 0.45, 0.6]
+    for sgn in (-1, 1):
+        xs = [cx + sgn * 0.7, cx + sgn * 0.7, cx + sgn * 0.22, cx + sgn * 0.7, cx + sgn * 0.7]
+        ax.plot(xs, ys, color=INK, lw=1.8)
+        ax.plot(xs[1:4], ys[1:4], color=RED, lw=3.2)
+    ax.add_patch(Ellipse((cx, by), 1.1, 1.3, fc=FOOD, ec=INK, lw=1.2))
+    ax.text(cx, 7.6, str(i + 1), ha="center", va="center", fontsize=14, fontweight="bold")
+    if i < 2:
+        arrow(ax, (cx + 1.2, 3.8), (cx + 2.8, 3.8), color=GREY, lw=1.6)
+ax.text(2.0 + 1.0, 6.0, "조임", ha="left", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(2.0 - 1.0, 5.0, "밥", ha="right", va="center", fontsize=12, fontweight="bold")
+ax.text(6.0, 0.1, "식도", ha="center", va="center", fontsize=12, fontweight="bold")
+save(fig, "b03-squeeze.svg")
+
+# 6. 위: 꿈틀거리며 섞고 위액이 풀어요
+fig, ax = canvas(10.0, 4.8, 16.0, 7.8)
 ax.add_patch(Ellipse((8.0, 4.0), 7.4, 4.6, angle=-15, fc=FOOD, ec=INK, lw=2))
-ax.plot([6.0, 5.4], [6.0, 7.6], color=INK, lw=6, solid_capstyle="round")
-ax.text(4.6, 7.4, "식도에서", ha="center", va="center", fontsize=10)
-ax.plot([11.2, 12.6], [2.6, 1.6], color=RED, lw=4, solid_capstyle="round")
-ax.text(13.6, 1.4, "작은창자로", ha="center", va="center", fontsize=10, color=RED)
+ax.plot([6.0, 5.4], [6.0, 7.4], color=INK, lw=6, solid_capstyle="round")
+ax.text(4.6, 7.3, "식도", ha="center", va="center", fontsize=12, fontweight="bold")
+ax.plot([11.2, 12.6], [2.6, 1.6], color=INK, lw=6, solid_capstyle="round")
+ax.text(13.0, 1.0, "작은창자", ha="center", va="center", fontsize=12, fontweight="bold")
 for k in range(10):
     grain(ax, 6.0 + (k % 5) * 0.9, 3.4 + (k // 5) * 1.1, 0.5 - 0.03 * k, 0.3 - 0.015 * k, ang=40 * k)
 for k in range(7):
-    ax.add_patch(Circle((5.6 + k * 0.75, 5.3 - 0.2 * (k % 2)), 0.1, fc=YEL, ec="#c9a227"))
-arrow(ax, (3.4, 4.0), (4.6, 4.6), color=INK, lw=1.6, rad=-0.4)
-arrow(ax, (12.6, 4.0), (11.4, 3.4), color=INK, lw=1.6, rad=-0.4)
-ax.text(2.0, 5.0, "근육이\n꿈틀", ha="center", va="center", fontsize=10)
-ax.text(11.0, 7.4, "위는 꿈틀거리며 먹은 것을 섞어요", ha="center", va="center", fontsize=11)
-ax.text(7.0, 0.3, "노란 방울은 시큼한 위액이에요. 먹은 것을 풀어 죽처럼 만들어요", ha="center", va="center",
-        fontsize=11, color="#8a6d00")
+    ax.add_patch(Circle((5.6 + k * 0.75, 5.3 - 0.2 * (k % 2)), 0.12, fc=YEL, ec="#c9a227"))
+arrow(ax, (3.4, 4.0), (4.6, 4.6), color=RED, lw=1.8, rad=-0.4)
+arrow(ax, (12.6, 4.0), (11.4, 3.4), color=RED, lw=1.8, rad=-0.4)
+ax.text(2.9, 3.5, "근육", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(13.6, 4.6, "근육", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(10.6, 6.6, "위액", ha="left", va="center", fontsize=12, color="#8a6d00", fontweight="bold")
+arrow(ax, (10.5, 6.5), (9.9, 5.6), color="#8a6d00", lw=1.2, ms=10)
+ax.text(8.0, 7.6, "위", ha="center", va="center", fontsize=13, fontweight="bold")
 save(fig, "b03-stomach.svg")
 
-# 6. 작은창자 벽: 손가락 같은 돌기가 많아서 벽이 넓어요
-fig, ax = canvas(11.0, 4.8, 18.0, 7.8)
+# 7. 작은창자 벽: 돌기가 많아서 테두리가 길어요
+fig, ax = canvas(11.0, 4.6, 18.0, 7.6)
 ax.add_patch(Rectangle((0.6, 2.0), 6.4, 0.5, fc=CELL, ec="none"))
 ax.plot([0.6, 7.0], [2.5, 2.5], color=RED, lw=2.6)
 for k in range(10):
     ax.add_patch(Circle((1.0 + k * 0.62, 6.4 + 0.25 * (k % 2)), 0.08, fc=RED, ec=RED))
-ax.text(3.8, 7.4, "잘게 쪼갠 영양", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
-ax.text(3.8, 1.2, "매끈한 벽", ha="center", va="center", fontsize=12, fontweight="bold")
-ax.plot([8.8, 8.8], [0.5, 7.2], color=GREY, lw=1.2, ls="--")
+ax.text(3.8, 7.3, "영양", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(3.8, 1.3, "매끈한 벽", ha="center", va="center", fontsize=12, fontweight="bold")
+ax.text(3.8, 0.5, "짧은 테두리", ha="center", va="center", fontsize=11, color=RED)
+ax.plot([8.8, 8.8], [0.2, 7.4], color=GREY, lw=1.2, ls="--")
 ax.add_patch(Rectangle((10.2, 2.0), 6.6, 0.5, fc=CELL, ec="none"))
-ax.plot([10.2, 16.8], [2.0, 2.0], color=RED, lw=2.6)
+ax.plot([10.2, 16.8], [2.0, 2.0], color=INK, lw=1.2)
 for k in range(8):
     x0 = 10.4 + k * 0.8
     ax.add_patch(FancyBboxPatch((x0, 2.5), 0.45, 2.6, boxstyle="round,pad=0.12", fc=CELL, ec=RED, lw=2.6))
     ax.plot([x0 + 0.22, x0 + 0.22], [2.2, 4.9], color="#c0392b", lw=0.9)
-ax.text(17.4, 4.6, "돌기", ha="left", va="center", fontsize=11, fontweight="bold")
+ax.text(17.4, 4.6, "돌기", ha="left", va="center", fontsize=12, fontweight="bold")
 arrow(ax, (17.3, 4.6), (16.75, 4.4), color=INK, lw=1.2, ms=10)
-ax.text(17.4, 3.4, "핏줄", ha="left", va="center", fontsize=11, color="#c0392b", fontweight="bold")
+ax.text(17.4, 3.4, "핏줄", ha="left", va="center", fontsize=12, color="#c0392b", fontweight="bold")
 arrow(ax, (17.3, 3.4), (16.4, 3.4), color="#c0392b", lw=1.2, ms=10)
-ax.text(13.5, 1.2, "손가락 같은 돌기가 빽빽한 벽", ha="center", va="center", fontsize=12, fontweight="bold")
 for k in range(10):
     ax.add_patch(Circle((10.6 + k * 0.62, 6.4 + 0.25 * (k % 2)), 0.08, fc=RED, ec=RED))
-ax.text(13.5, 7.4, "잘게 쪼갠 영양", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
-ax.text(9.0, 0.3, "빨간 테두리가 영양이 드나드는 벽이에요. 테두리가 길수록 영양이 많이 들어가요", ha="center",
-        va="center", fontsize=11)
+ax.text(13.5, 7.3, "영양", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(13.5, 1.3, "돌기가 솟은 벽", ha="center", va="center", fontsize=12, fontweight="bold")
+ax.text(13.5, 0.5, "긴 테두리", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
 save(fig, "b03-villi.svg")
 
-# 7. 큰창자: 물을 거둬들이고 남은 것은 똥으로
+# 8. 큰창자: 물을 거둬들이고 남은 것은 똥으로
 fig, ax = canvas(11.0, 3.8, 18.0, 6.2)
 ax.add_patch(FancyBboxPatch((0.8, 2.2), 14.0, 1.6, boxstyle="round,pad=0.3", fc="#efe2cf", ec="#b58b5a", lw=2))
 for k, x in enumerate([2.0, 5.6, 9.2, 12.8]):
     n = 5 - k
     for j in range(n):
         ax.add_patch(Circle((x + (j - (n - 1) / 2) * 0.22, 3.0), 0.09, fc=WATER, ec=WATER))
-    ax.add_patch(Ellipse((x, 3.0), 1.0 + 0.0 * k, 0.8, fc="none", ec="#8b6b43", lw=1.2, ls="--"))
+    ax.add_patch(Ellipse((x, 3.0), 1.3, 0.8, fc="none", ec="#8b6b43", lw=1.2, ls="--"))
+    ax.text(x, 1.4, f"물 {n}", ha="center", va="center", fontsize=11)
 for x in [3.8, 7.4, 11.0]:
     arrow(ax, (x, 4.2), (x, 5.4), color=WATER, lw=1.6, ms=12)
-ax.text(7.4, 5.8, "남은 물을 마지막으로 거둬들여요", ha="center", va="center", fontsize=11, color=WATER,
-        fontweight="bold")
+ax.text(7.4, 5.85, "몸으로", ha="center", va="center", fontsize=12, color=WATER, fontweight="bold")
 arrow(ax, (15.2, 3.0), (16.6, 3.0), color=INK, lw=2)
 ax.text(16.9, 3.0, "똥", ha="left", va="center", fontsize=13, fontweight="bold")
-arrow(ax, (1.4, 2.5), (3.4, 2.5), color=INK, lw=1.4, ms=10)
-ax.text(7.8, 1.0, "갈수록 물이 줄어 단단해져요", ha="center", va="center", fontsize=11)
+ax.text(2.0, 0.6, "묽음", ha="center", va="center", fontsize=11)
+ax.text(12.8, 0.6, "단단함", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
 save(fig, "b03-large.svg")

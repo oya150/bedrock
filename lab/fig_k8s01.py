@@ -11,8 +11,8 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "es"))
-from figkit import (GREY, INK, LIGHT, NOTE, PAPER, PINK, RED, arrow, box, bubble,  # noqa: E402
-                    canvas, cell, cells, label, moral, outdir, save, stage)
+from figkit import (GREY, INK, LIGHT, NOTE, PAPER, PINK, RED, arrow, box,  # noqa: E402
+                    canvas, cell, label, outdir, save, stage)
 from matplotlib.patches import Circle, Polygon, Rectangle  # noqa: E402
 
 OUT = outdir("01", topic="kubernetes")
@@ -126,85 +126,58 @@ def ps_list(ax, hot=(), y0=6.2):
     rows(ax, 6.1, y0 - 1.45, 5.5, PS, hot=hot)
 
 
-def opening(ax, step):
-    if step == 1:
-        ctr_list(ax, hot=True)
-        label(ax, 2.8, 2.7, "빵집 주문 앱 부품 셋을\n컨테이너 셋으로 띄웠어요", fs=11, color=RED)
-    elif step == 2:
-        ctr_list(ax)
-        ps_list(ax, hot=(2, 3, 4))
-        label(ax, 8.85, 1.3, "컨테이너 안 프로그램이\n밖의 목록에도 보여요", fs=11, color=RED)
-    else:
-        ctr_list(ax, hot=1)
-        ps_list(ax, hot=(3,))
-        arrow(ax, (5.25, 4.25), (6.05, 3.3), color=RED, ms=14, rad=-0.2)
-        label(ax, 3.3, 2.75, "같은 프로그램", fs=11, color=RED, bold=True)
-        moral(ax, 6.0, 0.6, "컨테이너 안 주문 처리가 이 컴퓨터의 231번 프로그램이에요")
+def opening(ax):
+    ctr_list(ax, hot=1)
+    ps_list(ax, hot=(3,))
+    arrow(ax, (5.25, 4.25), (6.05, 3.3), color=RED, ms=14, rad=-0.2)
+    label(ax, 3.3, 2.75, "같은 프로그램", fs=11, color=RED, bold=True)
 
 
 # ── 가상 머신: 땅 위에 집을 따로 지어요 ───────────────────────────
 HX = [0.6, 4.4, 8.2]
 
 
-def vm(ax, step):
+def vm(ax):
     ground(ax, 0.3, 11.7, 1.3)
     for k, p in enumerate(PARTS):
-        house(ax, HX[k], 1.3, 3.2, 3.0, p, kern_hot=(step == 2), hide=(step == 3))
-    if step == 1:
-        label(ax, 6.0, 6.25, "가상 머신 셋 = 따로 지은 집 세 채", fs=11.5, color=RED, bold=True)
-    elif step == 2:
-        label(ax, 6.0, 6.25, "집마다 관리실(커널)을 따로 켜요", fs=11.5, color=RED, bold=True)
-    else:
-        label(ax, 6.0, 6.25, "밖에서는 가상 머신 셋만 보여요", fs=11.5, color=RED, bold=True)
-        moral(ax, 6.0, 0.2, "가상 머신은 커널까지 갖춘 컴퓨터 한 대를 통째로 흉내 내요")
+        house(ax, HX[k], 1.3, 3.2, 3.0, p, kern_hot=True)
+    label(ax, 6.0, 6.25, "가상 머신 셋 = 집 세 채 = 커널 셋", fs=11.5, color=RED, bold=True)
 
 
 # ── 컨테이너 프로그램은 같은 커널에 부탁해요 ─────────────────────
 BX, BY, BW, BH = 1.5, 1.0, 9.0, 3.8
 
 
-def shared(ax, step):
-    cs = building(ax, BX, BY, BW, BH, PARTS, walls=False, kern_hot=(step == 1))
-    if step == 1:
-        for cx, cy in cs:
-            arrow(ax, (cx, cy - 0.35), (cx, BY + 0.8), color=RED, ms=13)
-        label(ax, 6.0, 6.25, "세 프로그램이 모두 이 건물의 관리실에 부탁해요", fs=11, color=RED, bold=True)
-    else:
-        for k, (cx, cy) in enumerate(cs):
-            label(ax, cx, cy + 0.6, f"{230 + k}번", fs=11, color=RED, bold=True)
-        label(ax, 6.0, 6.25, "목록에 보인 번호가 이 프로그램들이에요", fs=11, color=INK)
-        moral(ax, 6.0, 0.35, "컨테이너 안 프로그램도 이 컴퓨터의 보통 프로세스예요")
+def shared(ax):
+    cs = building(ax, BX, BY, BW, BH, PARTS, walls=False, kern_hot=True)
+    for k, (cx, cy) in enumerate(cs):
+        arrow(ax, (cx, cy - 0.35), (cx, BY + 0.8), color=RED, ms=13)
+        label(ax, cx, cy + 0.6, f"{230 + k}번", fs=11, color=RED, bold=True)
 
 
 # ── 칸막이: 리눅스 네임스페이스 ───────────────────────────────────
 def ns(ax, step):
-    if step < 3:
-        cs = building(ax, 0.4, 1.0, 7.4, 3.8, PARTS, walls=(step == 2), wall_hot=(step == 2), room_hot=(1,) if step == 1 else ())
-        x0 = 8.3
-        if step == 1:
-            for k in (0, 2):
-                ax.annotate("", xy=(cs[k][0], cs[k][1] + 0.35), xytext=(cs[1][0], cs[1][1] + 0.35),
-                            arrowprops=dict(arrowstyle="-|>", color=RED, lw=1.6, ls="--"))
-            label(ax, x0, 4.4, "주문 처리 눈에\n다 보여요:", fs=10.5, ha="left", color=RED, bold=True)
-            label(ax, x0, 3.1, "· 다른 프로그램 목록\n· 다른 프로그램의 파일\n· 같은 네트워크 문", fs=10.5,
-                  ha="left", color=RED)
-        else:
-            label(ax, x0, 4.4, "칸막이를 치면\n자기 칸만 보여요", fs=10.5, ha="left", color=RED, bold=True)
-            label(ax, x0, 3.1, "· 자기 프로그램 목록\n· 자기 파일\n· 자기 네트워크 문", fs=10.5, ha="left", color=INK)
+    if step == 1:
+        cs = building(ax, 0.4, 1.0, 7.4, 3.8, PARTS, walls=False, room_hot=(1,))
+        for k in (0, 2):
+            ax.annotate("", xy=(cs[k][0], cs[k][1] + 0.35), xytext=(cs[1][0], cs[1][1] + 0.35),
+                        arrowprops=dict(arrowstyle="-|>", color=RED, lw=1.6, ls="--"))
+        label(ax, 8.3, 4.4, "주문 처리 눈에\n보이는 것", fs=10.5, ha="left", color=RED, bold=True)
+        label(ax, 8.3, 3.1, "· 다른 프로그램 목록\n· 다른 프로그램 파일\n· 같은 네트워크 문", fs=10.5,
+              ha="left", color=RED)
     else:
-        building(ax, 0.4, 1.0, 7.4, 3.8, PARTS, walls=True, room_hot=(1,))
-        window(ax, 8.2, 1.6, 3.6, 3.6, "주문 처리 칸 안에서", hot=True)
+        building(ax, 0.4, 1.0, 7.4, 3.8, PARTS, walls=True, wall_hot=True, room_hot=(1,))
+        window(ax, 8.2, 1.6, 3.6, 3.6, "주문 처리 칸 안", hot=True)
         label(ax, 8.4, 4.4, "번호", fs=9.5, ha="left", color=INK)
         label(ax, 9.35, 4.4, "프로그램", fs=9.5, ha="left", color=INK)
         ax.plot([8.35, 11.65], [4.2, 4.2], color=INK, lw=0.8)
         rows(ax, 8.3, 3.85, 3.4, [("1", "주문 처리")], hot=(0,))
-        label(ax, 10.0, 2.6, "다른 칸은\n목록에 없어요", fs=10, color=RED)
-        moral(ax, 6.0, 0.25, "칸막이 안에서는 자기 것만 보이고, 관리실은 여전히 하나예요")
+        label(ax, 10.0, 2.6, "다른 칸: 안 보임", fs=10, color=RED)
 
 
 # ── 사용량 한도: cgroup ───────────────────────────────────────────
-def memrow(ax, use, hot=(), cap=None, x=0.5, y=5.5):
-    """건물 메모리 12칸. use=[(이름, 칸 수)]. hot=빨강 칠할 부품 번호. cap=부품별 한도 칸 수."""
+def memrow(ax, use, hot=(), x=0.5, y=5.5):
+    """건물 메모리 12칸. use=[(이름, 칸 수)]. hot=빨강 칠할 부품 번호."""
     label(ax, x, y + 0.85, "건물 메모리 12칸", fs=10.5, ha="left", bold=True)
     k = 0
     for i, (name, n) in enumerate(use):
@@ -218,119 +191,63 @@ def memrow(ax, use, hot=(), cap=None, x=0.5, y=5.5):
 
 def cg(ax, step):
     if step == 1:
-        memrow(ax, [("주문 화면", 2), ("주문 처리", 2), ("주문 장부", 5)], hot=(2,))
+        memrow(ax, [("주문 화면", 2), ("주문 처리", 2), ("주문 장부", 8)], hot=(2,))
         building(ax, 1.5, 0.8, 9.0, 3.5, PARTS, room_hot=(2,), title=None)
-        label(ax, 9.0, 4.85, "장부가 점점 커져요", fs=10.5, color=RED, bold=True)
-    elif step == 2:
-        memrow(ax, [("주문 화면", 2), ("주문 처리", 2), ("주문 장부", 8)], hot=(0, 1))
-        building(ax, 1.5, 0.8, 9.0, 3.5, PARTS, room_hot=(0, 1), title=None)
-        label(ax, 6.0, 4.85, "화면과 처리는 더 받을 메모리가 없어요", fs=10.5, color=RED, bold=True)
+        label(ax, 6.0, 4.85, "장부 8칸 · 빈칸 0", fs=10.5, color=RED, bold=True)
     else:
         memrow(ax, [("주문 화면", 2), ("주문 처리", 2), ("주문 장부", 4)])
         for x0, n in ((0.5, 2), (2.3, 2), (4.1, 4)):
             ax.plot([x0 + n * 0.9 - 0.025] * 2, [5.35, 6.25], color=RED, lw=2.4)
-        label(ax, 7.85, 6.35, "빨간 선 = 칸마다 정한 한도", fs=10, ha="left", color=RED, bold=True)
+        label(ax, 7.85, 6.35, "빨간 선 = 한도", fs=10, ha="left", color=RED, bold=True)
         building(ax, 1.5, 1.0, 9.0, 3.3, ["화면 ≤ 2칸", "처리 ≤ 2칸", "장부 ≤ 4칸"], room_hot=(0, 1, 2), title=None)
-        moral(ax, 6.0, 0.3, "한도가 있으면 한 칸이 건물 메모리를 다 쓰지 못해요")
 
 
-# ── 가볍지만 관리실을 같이 써요 ───────────────────────────────────
-def compare(ax, step):
+# ── 가볍지만 커널을 같이 써요 ─────────────────────────────────────
+def compare(ax):
     ground(ax, 0.2, 6.0, 1.5, name="가상 머신")
     for k in range(3):
-        house(ax, 0.4 + k * 1.9, 1.5, 1.6, 2.6, "", kern="커널")
+        house(ax, 0.4 + k * 1.9, 1.5, 1.6, 2.6, "", kern="커널", kern_hot=True)
     for k, p in enumerate(PARTS):
         label(ax, 1.2 + k * 1.9, 3.45, p, fs=9, color="#222")
-    building(ax, 6.6, 1.2, 5.1, 3.0, PARTS, title="컨테이너", kern_hot=(step == 2), fs=9)
-    if step == 1:
-        label(ax, 3.1, 5.5, "켤 때: 관리실 셋부터 켜요", fs=10.5, color=INK)
-        label(ax, 9.15, 5.5, "켤 때: 프로그램만 켜요", fs=10.5, color=RED, bold=True)
-    else:
-        label(ax, 3.1, 5.5, "집마다 관리실이 따로", fs=10.5, color=INK)
-        label(ax, 9.15, 5.5, "관리실 하나를 같이 써요", fs=10.5, color=RED, bold=True)
-        moral(ax, 6.0, 0.25, "관리실에 구멍이 나면 칸막이 모두가 위험해요 (4편)")
+    building(ax, 6.6, 1.2, 5.1, 3.0, PARTS, title="컨테이너", kern_hot=True, kern="커널", fs=9)
+    label(ax, 3.1, 5.5, "커널 3개", fs=11.5, color=RED, bold=True)
+    label(ax, 9.15, 5.5, "커널 1개", fs=11.5, color=RED, bold=True)
 
 
 # ── 판단 (한 장) ──────────────────────────────────────────────────
 def decide():
     fig, ax = canvas(10, 4.2, 15, 6.4)
     box(ax, 0.3, 4.6, 6.2, 1.3, fc=NOTE)
-    label(ax, 3.4, 5.25, "한 컴퓨터에서 프로그램 여럿을\n서로 떼어 돌리나요?", fs=10.5, bold=True)
+    label(ax, 3.4, 5.25, "프로그램 여럿을\n서로 떼어 돌리나요?", fs=10.5, bold=True)
     arrow(ax, (6.6, 5.25), (8.4, 5.25))
     label(ax, 7.5, 5.55, "아니요", fs=10, color=INK)
     box(ax, 8.5, 4.6, 6.2, 1.3, fc=PAPER)
-    label(ax, 11.6, 5.25, "그냥 프로그램으로 돌려요", fs=10.5)
+    label(ax, 11.6, 5.25, "그냥 프로그램으로", fs=10.5)
     arrow(ax, (3.4, 4.5), (3.4, 3.5)); label(ax, 3.7, 4.0, "예", fs=10, color=INK, ha="left")
     box(ax, 0.3, 2.1, 6.2, 1.3, fc=NOTE)
-    label(ax, 3.4, 2.75, "다른 커널이 필요하거나\n믿을 수 없는 남의 코드인가요?", fs=10.5, bold=True)
+    label(ax, 3.4, 2.75, "다른 커널이 필요하거나\n믿을 수 없는 코드인가요?", fs=10.5, bold=True)
     arrow(ax, (6.6, 2.75), (8.4, 2.75)); label(ax, 7.5, 3.05, "예", fs=10, color=INK)
     box(ax, 8.5, 2.1, 6.2, 1.3, fc=PAPER)
-    label(ax, 11.6, 2.75, "커널을 따로 주는 가상 머신\n(4·5편)", fs=10.5)
+    label(ax, 11.6, 2.75, "커널을 따로 주는 방법\n(5·6편)", fs=10.5)
     arrow(ax, (3.4, 2.0), (3.4, 1.3), color=RED); label(ax, 3.7, 1.65, "아니요", fs=10, color=RED, ha="left")
     box(ax, 0.3, 0.1, 6.2, 1.1, fc=PINK, ec=RED)
     label(ax, 3.4, 0.65, "컨테이너", fs=11, color=RED, bold=True)
     save(fig, OUT, "k8s01-decide.svg")
 
 
-# ── 정리: 처음 장면으로 돌아가기 ───────────────────────────────────
-def back(ax, step):
-    ctr_list(ax, dim=(step == 2))
-    ps_list(ax, hot=(2, 3, 4) if step == 1 else ())
-    if step == 1:
-        ax.add_patch(Rectangle((6.05, 2.45), 5.6, 1.55, fill=False, ec=RED, lw=2.0, ls="--"))
-        label(ax, 8.85, 1.35, "같은 관리실 위의 보통 프로세스 셋", fs=10.5, color=RED, bold=True)
-    else:
-        window(ax, 0.3, 0.9, 5.0, 2.0, "주문 처리 칸 안에서", hot=True)
-        rows(ax, 0.45, 1.95, 4.7, [("1", "주문 처리")], hot=(0,))
-        label(ax, 8.85, 1.35, "밖에서 231번, 칸 안에서 1번", fs=10.5, color=RED, bold=True)
-        moral(ax, 6.0, 0.3, "커널은 같이 쓰고, 칸막이와 한도만 따로 씌웠어요")
-
-
-# ── 정리: 낱말 카드 ────────────────────────────────────────────────
-def cards():
-    fig, ax = canvas(6.4, 7.9, 9.8, 12.2)
-    W, H = 4.6, 3.8
-
-    def card(i, name, line):
-        col, row = i % 2, i // 2
-        x, y = 0.2 + col * 4.9, 8.2 - row * 4.05
-        box(ax, x, y, W, H, fc="white")
-        label(ax, x + 0.25, y + H - 0.4, name, fs=12.5, ha="left", bold=True)
-        label(ax, x + W / 2, y + 0.6, line, fs=10, color=INK)
-        return x, y
-
-    x, y = card(0, "프로세스", "실행 중인 프로그램 하나")
-    cell(ax, x + 0.5, y + 1.6, 0.9, 0.7, "231", hot=True, fs=10.5)
-    cell(ax, x + 1.5, y + 1.6, 2.4, 0.7, "주문 처리", fs=10.5)
-    x, y = card(1, "커널", "하드웨어를 프로그램들에\n나눠 주는 운영체제의 중심")
-    ax.add_patch(Rectangle((x + 0.6, y + 1.5), 3.4, 0.7, fc=PINK, ec=RED, lw=1.8))
-    label(ax, x + 2.3, y + 1.85, "관리실 · 커널", fs=10.5, color=RED, bold=True)
-    for k in range(3):
-        arrow(ax, (x + 1.2 + k * 1.1, y + 2.85), (x + 1.2 + k * 1.1, y + 2.3), color=INK, ms=9, lw=1.3)
-    x, y = card(2, "가상 머신", "커널까지 갖춘 컴퓨터 한 대를\n통째로 흉내 낸 것")
-    house(ax, x + 1.5, y + 1.3, 1.6, 1.4, "", kern_hot=True, kern="커널")
-    x, y = card(3, "컨테이너", "커널을 같이 쓰는 프로세스에\n칸막이와 한도를 씌운 것")
-    building(ax, x + 0.5, y + 1.15, 3.6, 1.7, ["", ""], title=None, kern="커널", room_hot=(1,), fs=8)
-    x, y = card(4, "리눅스 네임스페이스", "칸 안에서 자기 프로그램·파일·\n네트워크만 보이게 하는 칸막이")
-    ax.add_patch(Rectangle((x + 0.6, y + 1.4), 3.4, 1.4, fc=NOTE, ec=INK, lw=1.2))
-    ax.plot([x + 2.3, x + 2.3], [y + 1.4, y + 2.8], color=RED, lw=4)
-    label(ax, x + 1.45, y + 2.1, "1번", fs=10.5)
-    label(ax, x + 3.15, y + 2.1, "1번", fs=10.5)
-    x, y = card(5, "cgroup", "칸마다 메모리·CPU를\n얼마까지 쓸지 정한 한도")
-    for k in range(6):
-        cell(ax, x + 0.5 + k * 0.6, y + 1.7, 0.55, 0.55, "", hot=(k < 4), fs=8)
-    ax.plot([x + 0.5 + 4 * 0.6 - 0.025] * 2, [y + 1.55, y + 2.4], color=RED, lw=2.4)
-    save(fig, OUT, "k8s01-cards.svg")
+def one(draw, name, size=(7.2, 3.8), lim=(12, 6.6)):
+    """한 장 그림."""
+    fig, ax = canvas(*size, *lim)
+    draw(ax)
+    save(fig, OUT, name)
 
 
 if __name__ == "__main__":
     S, L = (7.2, 3.8), (12, 6.6)
-    stage(opening, 3, OUT, "k8s01-open", S, L)
-    stage(vm, 3, OUT, "k8s01-vm", S, L)
-    stage(shared, 2, OUT, "k8s01-shared", S, L)
-    stage(ns, 3, OUT, "k8s01-ns", S, L)
-    stage(cg, 3, OUT, "k8s01-cg", S, L)
-    stage(compare, 2, OUT, "k8s01-compare", S, L)
+    one(opening, "k8s01-open.svg")
+    one(vm, "k8s01-vm.svg")
+    one(shared, "k8s01-shared.svg")
+    stage(ns, 2, OUT, "k8s01-ns", S, L)
+    stage(cg, 2, OUT, "k8s01-cg", S, L)
+    one(compare, "k8s01-compare.svg")
     decide()
-    stage(back, 2, OUT, "k8s01-back", S, L)
-    cards()

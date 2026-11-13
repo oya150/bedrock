@@ -1,4 +1,5 @@
 """알고리즘 12편 그림 만들기. 실행: python lab/fig_12.py  → docs/algorithms/img/12/*.svg
+확인용 PNG: FIG_FMT=png FIG_OUT=<폴더> python lab/fig_12.py
 
 글자는 SVG 안에 글자로 남긴다(글꼴 모양을 파일에 넣지 않는다). 보는 쪽 글꼴로 그려진다.
 카드는 차분한 색으로, 강조(새로 받은 카드, 비교 화살표, 많이 든 일)만 빨강으로 칠한다.
@@ -12,7 +13,8 @@ matplotlib.use("svg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc, Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "algorithms", "img", "12")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "algorithms", "img", "12")
+FMT = os.environ.get("FIG_FMT", "svg")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -29,7 +31,9 @@ LIGHT = "#e9ecef"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    if FMT != "svg":
+        name = name.rsplit(".", 1)[0] + "." + FMT
+    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -102,95 +106,73 @@ def graph(ax, dx=0.0, dy=0.0, s=1.0, color=None, label=None, hot_edges=(), fs=11
                     bbox=dict(boxstyle="circle,pad=0.15", fc="white", ec=RED, lw=1.0))
 
 
-# 1. 여는 장면: 친구 그림
+# 그림 1. 친구 그림
 fig, ax = canvas(11.6, 5.2, 16.0, 8.6)
 graph(ax, color={"나": RED})
-ax.text(8.0, 8.3, "선으로 이어진 사이는 서로 친구예요. 서준이까지 소식이 가려면?", ha="center", va="center",
+ax.text(8.0, 8.3, "소식: 나 → … → 서준?", ha="center", va="center",
         fontsize=12, bbox=dict(boxstyle="round,pad=0.4", fc="white", ec=INK, lw=1.2))
 save(fig, "a12-friends.svg")
 
-# 2. 이 편의 지도
-fig, ax = canvas(13.6, 2.9, 24.2, 4.6)
-titles = ["친구 그림", "가까운 친구부터", "줄 서서 차례로", "한 길로 끝까지", "접시 쌓고 돌아가기"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=12, fontweight="bold")
-    if i == 0:
-        pts = {"a": (0.5, 2.6), "b": (1.3, 3.3), "c": (1.3, 1.9), "d": (2.1, 2.6), "e": (2.9, 3.3), "f": (3.3, 2.0)}
-        for u, v in [("a", "b"), ("a", "c"), ("b", "d"), ("c", "d"), ("b", "e"), ("d", "f"), ("e", "f")]:
-            ax.plot([x + pts[u][0], x + pts[v][0]], [pts[u][1], pts[v][1]], color=GREY, lw=1.2)
-        for u, (px, py) in pts.items():
-            ax.add_patch(Circle((x + px, py), 0.17, fc=RED if u == "a" else NOTE, ec=INK, lw=1))
-    elif i == 1:
-        for k, rr in enumerate([0.3, 0.75, 1.2]):
-            ax.add_patch(Circle((x + 1.9, 2.6), rr, fc="none", ec=RED if k == 0 else GREY, lw=1.4))
-        ax.add_patch(Circle((x + 1.9, 2.6), 0.12, fc=RED, ec=RED))
-    elif i == 2:
-        for k in range(4):
-            ax.add_patch(Circle((x + 0.7 + k * 0.8, 2.6), 0.25, fc=RED if k == 0 else NOTE, ec=INK, lw=1))
-        arrow(ax, (x + 0.5, 3.3), (x + 0.1, 3.3), color=RED, lw=1.2, ms=9)
-    elif i == 3:
-        pts = [(0.5, 3.2), (1.3, 2.6), (2.1, 3.2), (2.9, 2.4)]
-        for (a1, b1), (a2, b2) in zip(pts, pts[1:]):
-            arrow(ax, (x + a1, b1), (x + a2, b2), color=RED, lw=1.4, ms=9)
-    else:
-        for k in range(4):
-            ax.add_patch(Rectangle((x + 1.2, 1.5 + k * 0.45), 1.4, 0.35, fc=RED if k == 3 else NOTE, ec=INK, lw=1))
-    if i < 4:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "a12-map.svg")
+# 그림 2. 줄 세우기: 꺼낸 친구와 남은 줄(새로 선 친구는 빨강)
+lines = [("나", ["민준", "서연"], 2), ("민준", ["서연", "지우", "하준"], 2), ("서연", ["지우", "하준", "도윤"], 1),
+         ("지우", ["하준", "도윤", "하은"], 1), ("하준", ["도윤", "하은"], 0), ("도윤", ["하은"], 0),
+         ("하은", ["서준"], 1), ("서준", [], 0)]
+fig, ax = canvas(7.6, 6.6, 11.0, 9.6)
+ax.text(0.4, 9.0, "꺼낸 친구", ha="left", va="center", fontsize=12, fontweight="bold")
+ax.text(4.2, 9.0, "남은 줄 (앞 ← → 뒤)", ha="left", va="center", fontsize=12, fontweight="bold")
+for k, (who, q, new) in enumerate(lines):
+    y = 8.0 - k * 1.0
+    ax.text(0.6, y, f"{k + 1}. {who}", ha="left", va="center", fontsize=12, fontweight="bold")
+    for j, nm in enumerate(q):
+        hot = j >= len(q) - new
+        ax.text(4.8 + j * 1.9, y, nm, ha="center", va="center", fontsize=11, color=RED if hot else "#222",
+                fontweight="bold" if hot else "normal",
+                bbox=dict(boxstyle="round,pad=0.3", fc="#fbe3dc" if hot else NOTE, ec=RED if hot else INK,
+                          lw=1.4 if hot else 0.8))
+    if not q:
+        ax.text(4.2, y, "(빈 줄)", ha="left", va="center", fontsize=11, color=INK)
+save(fig, "a12-queue.svg")
 
-# 3. 가까운 친구부터: 단계 색칠 + 줄 상태
+# 그림 3. 가까운 친구부터: 선을 몇 번 건너야 닿는지
 STEP = {"나": 0, "민준": 1, "서연": 1, "지우": 2, "하준": 2, "도윤": 2, "하은": 3, "서준": 4}
 SHADE = {0: RED, 1: "#f2a58e", 2: "#f8d3c7", 3: "#fbe3dc", 4: "#fdf1ec"}
-fig, ax = canvas(12.4, 9.4, 20.4, 15.6)
-graph(ax, dx=2.0, dy=6.6, s=1.0, color={k: SHADE[v] for k, v in STEP.items()},
-      label={k: str(v) for k, v in STEP.items() if v})
-ax.text(10.2, 15.2, "동그라미 옆 숫자: 나에게서 친구 선을 몇 번 건너야 닿는지", ha="center", va="center", fontsize=11)
-lines = [("나", ["민준", "서연"]), ("민준", ["서연", "지우", "하준"]), ("서연", ["지우", "하준", "도윤"]),
-         ("지우", ["하준", "도윤", "하은"]), ("하준", ["도윤", "하은"]), ("도윤", ["하은"]), ("하은", ["서준"]),
-         ("서준", [])]
-ax.text(0.4, 6.0, "꺼낸 친구", ha="left", va="center", fontsize=11, fontweight="bold")
-ax.text(3.6, 6.0, "남은 줄 (앞 ← → 뒤)", ha="left", va="center", fontsize=11, fontweight="bold")
-for k, (who, q) in enumerate(lines):
-    y = 5.3 - k * 0.68
-    ax.text(0.6, y, f"{k + 1}. {who}", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
-    for j, nm in enumerate(q):
-        ax.text(3.9 + j * 1.6, y, nm, ha="center", va="center", fontsize=10,
-                bbox=dict(boxstyle="round,pad=0.25", fc=NOTE, ec=INK, lw=0.8))
+fig, ax = canvas(11.6, 5.2, 16.0, 8.6)
+graph(ax, color={k: SHADE[v] for k, v in STEP.items()}, label={k: str(v) for k, v in STEP.items() if v})
 save(fig, "a12-bfs.svg")
 
-# 4. 한 길로 끝까지: 걸어온 길과 돌아가기
+# 그림 4. 서준에게 소식이 온 길
+fig, ax = canvas(11.6, 5.2, 16.0, 8.6)
+route = [("나", "민준"), ("민준", "지우"), ("지우", "하은"), ("하은", "서준")]
+graph(ax, color={"나": RED, "서준": RED}, hot_edges=route)
+save(fig, "a12-path.svg")
+
+# 그림 5. 한 길로 끝까지: 찾은 순서와 돌아가기
 ORDER = {"나": 1, "민준": 2, "지우": 3, "하은": 4, "도윤": 5, "서연": 6, "하준": 7, "서준": 8}
-fig, ax = canvas(12.4, 7.0, 20.4, 11.6)
+fig, ax = canvas(11.6, 5.6, 16.0, 9.2)
 path = [("나", "민준"), ("민준", "지우"), ("지우", "하은"), ("하은", "도윤"), ("도윤", "서연"), ("서연", "하준"),
         ("하은", "서준")]
-graph(ax, dx=2.0, dy=2.4, s=1.0, color={"나": RED}, label={k: str(v) for k, v in ORDER.items()}, hot_edges=path)
+graph(ax, color={"나": RED}, label={k: str(v) for k, v in ORDER.items()}, hot_edges=path)
 for a, b in path:
     (x1, y1), (x2, y2) = POS[a], POS[b]
-    mx, my = 2.0 + (x1 + x2) / 2, 2.4 + (y1 + y2) / 2
-    ax.add_patch(FancyArrowPatch((2.0 + x1 + (x2 - x1) * 0.35, 2.4 + y1 + (y2 - y1) * 0.35),
-                                 (2.0 + x1 + (x2 - x1) * 0.6, 2.4 + y1 + (y2 - y1) * 0.6),
+    ax.add_patch(FancyArrowPatch((x1 + (x2 - x1) * 0.35, y1 + (y2 - y1) * 0.35),
+                                 (x1 + (x2 - x1) * 0.6, y1 + (y2 - y1) * 0.6),
                                  arrowstyle="-|>", mutation_scale=16, color=RED, lw=0))
 for a, b in [("하준", "서연"), ("서연", "도윤"), ("도윤", "하은")]:
     (x1, y1), (x2, y2) = POS[a], POS[b]
     dx_, dy_ = x2 - x1, y2 - y1
     n = (dx_ ** 2 + dy_ ** 2) ** 0.5
     ox, oy = -dy_ / n * 0.38, dx_ / n * 0.38
-    ax.add_patch(FancyArrowPatch((2.0 + x1 + dx_ * 0.2 + ox, 2.4 + y1 + dy_ * 0.2 + oy),
-                                 (2.0 + x1 + dx_ * 0.8 + ox, 2.4 + y1 + dy_ * 0.8 + oy),
+    ax.add_patch(FancyArrowPatch((x1 + dx_ * 0.2 + ox, y1 + dy_ * 0.2 + oy),
+                                 (x1 + dx_ * 0.8 + ox, y1 + dy_ * 0.8 + oy),
                                  arrowstyle="-|>", mutation_scale=12, color=INK, lw=1.2, ls="--"))
-ax.text(10.2, 11.0, "빨간 선을 따라 한 길로 가요. 동그라미 옆 숫자는 찾은 순서", ha="center", va="center", fontsize=11)
-ax.text(10.2, 0.9, "하준에서 더 갈 곳이 없어 서연, 도윤, 하은으로 돌아가요. 하은에서 서준으로 가요", ha="center",
-        va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(9.0, 8.8, "빨간 화살표: 가기   점선 화살표: 돌아가기", ha="center", va="center", fontsize=11)
 save(fig, "a12-dfs.svg")
 
-# 5. 접시 쌓기: 걸어온 길을 쌓았다가 돌아가며 빼기
+# 그림 6. 접시 쌓기: 걸어온 길을 쌓았다가 돌아가며 빼기
 fig, ax = canvas(12.4, 5.0, 20.4, 8.2)
-stacks = [(["나", "민준", "지우", "하은", "도윤", "서연", "하준"], "① 하준까지 왔어요"),
-          (["나", "민준", "지우", "하은"], "② 하준, 서연, 도윤 접시를 빼며 돌아가요"),
-          (["나", "민준", "지우", "하은", "서준"], "③ 하은에서 서준으로 가요")]
+stacks = [(["나", "민준", "지우", "하은", "도윤", "서연", "하준"], "① 하준까지"),
+          (["나", "민준", "지우", "하은"], "② 하준, 서연, 도윤 빼기"),
+          (["나", "민준", "지우", "하은", "서준"], "③ 서준 쌓기")]
 for k, (st, cap) in enumerate(stacks):
     x = 1.0 + k * 6.6
     for j, nm in enumerate(st):
@@ -198,7 +180,36 @@ for k, (st, cap) in enumerate(stacks):
         ax.add_patch(Rectangle((x + 0.6, 1.2 + j * 0.8), 3.2, 0.62, fc=RED if top else NOTE, ec=INK, lw=1.2))
         ax.text(x + 2.2, 1.51 + j * 0.8, nm, ha="center", va="center", fontsize=11,
                 color="white" if top else "#222", fontweight="bold")
-    ax.text(x + 2.2, 0.5, cap, ha="center", va="center", fontsize=10, fontweight="bold")
-ax.text(10.2, 7.6, "맨 위 접시가 지금 있는 친구예요. 새 친구는 위에 쌓아요. 돌아갈 때는 맨 위부터 빼요", ha="center",
-        va="center", fontsize=11, color=RED)
+    ax.text(x + 2.2, 0.5, cap, ha="center", va="center", fontsize=11, fontweight="bold")
 save(fig, "a12-stack.svg")
+
+# 그림 7. 큐와 스택: 민준, 서연 차례로 넣고 하나 꺼내기
+fig, ax = canvas(11.6, 4.4, 19.0, 7.2)
+ax.text(4.6, 6.6, "큐", ha="center", va="center", fontsize=14, fontweight="bold")
+for j, nm in enumerate(["민준", "서연"]):
+    hot = nm == "민준"
+    ax.add_patch(Rectangle((2.4 + j * 2.2, 3.0), 2.0, 1.0, fc="#fbe3dc" if hot else NOTE, ec=RED if hot else INK,
+                           lw=2.0 if hot else 1.2))
+    ax.text(3.4 + j * 2.2, 3.5, nm, ha="center", va="center", fontsize=12, fontweight="bold",
+            color=RED if hot else "#222")
+ax.plot([2.2, 7.0], [2.85, 2.85], color=INK, lw=1.2)
+ax.plot([2.2, 7.0], [4.15, 4.15], color=INK, lw=1.2)
+arrow(ax, (8.6, 3.5), (7.0, 3.5), color=INK, lw=1.6)
+ax.text(8.0, 2.4, "넣기", ha="center", va="center", fontsize=11)
+arrow(ax, (2.2, 3.5), (0.4, 3.5), color=RED, lw=2.0)
+ax.text(1.2, 2.4, "꺼내기", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(4.6, 1.2, "먼저 넣은 민준", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(14.4, 6.6, "스택", ha="center", va="center", fontsize=14, fontweight="bold")
+for j, nm in enumerate(["민준", "서연"]):
+    hot = nm == "서연"
+    ax.add_patch(Rectangle((13.2, 2.0 + j * 1.2), 2.4, 1.0, fc="#fbe3dc" if hot else NOTE, ec=RED if hot else INK,
+                           lw=2.0 if hot else 1.2))
+    ax.text(14.4, 2.5 + j * 1.2, nm, ha="center", va="center", fontsize=12, fontweight="bold",
+            color=RED if hot else "#222")
+ax.plot([13.0, 13.0, 15.8, 15.8], [5.0, 1.85, 1.85, 5.0], color=INK, lw=1.2)
+arrow(ax, (12.0, 5.8), (13.6, 4.6), color=INK, lw=1.6)
+ax.text(11.6, 6.2, "넣기", ha="center", va="center", fontsize=11)
+arrow(ax, (15.2, 4.6), (16.8, 5.8), color=RED, lw=2.0)
+ax.text(17.4, 6.2, "꺼내기", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(14.4, 1.0, "나중에 넣은 서연", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+save(fig, "a12-compare.svg")

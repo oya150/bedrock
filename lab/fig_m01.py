@@ -1,4 +1,5 @@
 """물질과 에너지 1편 그림 만들기. 실행: python lab/fig_m01.py  → docs/matter/img/01/*.svg
+검토용 PNG가 필요하면 FIG_FMT=png FIG_OUT=<폴더> 로 실행한다.
 
 글자는 SVG 안에 글자로 남긴다(글꼴 모양을 파일에 넣지 않는다). 보는 쪽 글꼴로 그려진다.
 카드는 차분한 색으로, 강조(새로 받은 카드, 비교 화살표, 많이 든 일)만 빨강으로 칠한다.
@@ -8,11 +9,12 @@ import os
 
 import matplotlib
 
-matplotlib.use("svg")
+matplotlib.use("svg" if os.environ.get("FIG_FMT", "svg") == "svg" else "agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc, Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "01")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "01")
+FMT = os.environ.get("FIG_FMT", "svg")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -29,7 +31,9 @@ LIGHT = "#e9ecef"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    if FMT != "svg":
+        name = name.rsplit(".", 1)[0] + "." + FMT
+    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -112,42 +116,16 @@ for k in range(16):
 arrow(ax, (12.2, 2.8), (13.4, 2.8))
 ax.add_patch(Circle((15.4, 2.8), 1.2, fc="white", ec=INK, lw=1.4, ls="--"))
 ax.text(15.4, 2.8, "?", ha="center", va="center", fontsize=26, color=RED, fontweight="bold")
-ax.text(9.0, 0.6, "쪼개고 또 쪼개면 마지막에는 무엇이 남을까?", ha="center", va="center", fontsize=12, color=RED,
-        fontweight="bold")
+for x, lab in [(2.0, "1"), (6.45, "4"), (10.7, "16")]:
+    ax.text(x, 0.9, lab + "조각", ha="center", va="center", fontsize=11)
 ax.text(2.0, 4.6, "각설탕", ha="center", va="center", fontsize=11)
 save(fig, "m01-split.svg")
-
-# 2. 이 편의 지도
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["멀리서 보면 매끈해도", "눈에 안 보이는 알갱이", "알갱이는 꿈틀거려요", "알갱이끼리 섞여요"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=11, fontweight="bold")
-    cx = x + 1.9
-    if i == 0:
-        for k in range(3):
-            ax.add_patch(Rectangle((x + 0.6 + k * 1.0, 2.0), 0.9 - k * 0.25, 0.9 - k * 0.25, fc=SUGAR, ec=INK, lw=1))
-    elif i == 1:
-        for k in range(9):
-            ax.add_patch(Circle((cx - 0.6 + (k % 3) * 0.6, 2.0 + (k // 3) * 0.5), 0.18, fc=WATER, ec=INK, lw=0.6))
-    elif i == 2:
-        ax.add_patch(Circle((cx, 2.6), 0.3, fc=WATER, ec=INK, lw=0.8))
-        wiggle(ax, cx, 2.6, s=0.35)
-    else:
-        for (dx, dy) in [(-0.9, 0.1), (-0.5, 0.55), (0.0, -0.1), (0.5, 0.6), (0.95, 0.0), (-0.3, -0.45), (0.6, -0.5)]:
-            ax.add_patch(Circle((cx + dx, 2.5 + dy), 0.16, fc=WATER, ec=INK, lw=0.6))
-        for (dx, dy) in [(-0.45, 0.05), (0.45, 0.1)]:
-            ax.add_patch(Circle((cx + dx, 2.5 + dy), 0.24, fc=SUGAR, ec=RED, lw=1.0))
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "m01-map.svg")
 
 # 3. 모래사장: 멀리서는 매끈, 가까이서는 알갱이
 fig, ax = canvas(11.0, 4.0, 18.0, 6.6)
 ax.add_patch(Rectangle((0.6, 1.4), 7.0, 2.4, fc=SAND, ec=INK, lw=1.2))
 ax.add_patch(Rectangle((0.6, 3.8), 7.0, 1.6, fc="#cfe3f3", ec=INK, lw=1.2))
-ax.text(4.1, 0.8, "멀리서 본 모래사장: 매끈해 보여요", ha="center", va="center", fontsize=11)
+ax.text(4.1, 0.8, "멀리서", ha="center", va="center", fontsize=12, fontweight="bold")
 ax.add_patch(Circle((5.6, 2.4), 0.5, fc="none", ec=RED, lw=1.6))
 ax.plot([6.1, 10.0], [2.6, 3.6], color=RED, lw=1.2, ls="--")
 ax.add_patch(Circle((13.2, 3.2), 2.6, fc="#fff8ea", ec=RED, lw=2))
@@ -156,8 +134,7 @@ for k in range(26):
     rr = 2.2 * math.sqrt(random.uniform(0, 1))
     ax.add_patch(Ellipse((13.2 + rr * math.cos(a), 3.2 + rr * math.sin(a)), 0.55, 0.42, angle=random.uniform(0, 180),
                          fc=SAND, ec=INK, lw=0.8))
-ax.text(13.2, 0.2, "가까이서 보면: 모래알이 따로따로", ha="center", va="center", fontsize=11, color=RED,
-        fontweight="bold")
+ax.text(13.2, 0.2, "가까이서", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
 save(fig, "m01-sand.svg")
 
 # 4. 크기 비교 사다리: 손 → 모래알 → 세포 → 알갱이
@@ -169,15 +146,14 @@ for k, (lab, x, r) in enumerate(steps):
     elif k == 1:
         ax.add_patch(Ellipse((x, 3.3), 2 * r, 1.6 * r, fc=SAND, ec=INK, lw=1.2))
     elif k == 2:
-        ax.add_patch(Circle((x, 3.3), r, fc="#fbe3dc", ec=RED, lw=1.2))
+        ax.add_patch(Circle((x, 3.3), r, fc="#f3e6ef", ec=INK, lw=1.2))
     else:
-        ax.add_patch(Circle((x, 3.3), r, fc=ATOM, ec=INK, lw=0.8))
-    ax.text(x, 1.0, lab, ha="center", va="center", fontsize=11, fontweight="bold")
+        ax.add_patch(Circle((x, 3.3), r, fc=ATOM, ec=RED, lw=1.4))
+        ax.add_patch(Circle((x, 3.3), 0.6, fc="none", ec=RED, lw=1.2, ls="--"))
+    ax.text(x, 1.0, lab, ha="center", va="center", fontsize=11, fontweight="bold", color=RED if k == 3 else "#222")
     if k < 3:
         arrow(ax, (x + 1.6, 3.3), (x + 2.6, 3.3))
         ax.text(x + 2.1, 4.0, "훨씬 작게", ha="center", va="center", fontsize=9)
-ax.text(9.0, 6.0, "한 칸 갈 때마다 아주 많이 작아져요 (크기는 실제와 맞추지 않았어요)", ha="center", va="center",
-        fontsize=10, color=RED)
 save(fig, "m01-size.svg")
 
 # 5. 알갱이는 꿈틀거려요: 물감 퍼지기
@@ -194,8 +170,6 @@ for k, (x, spread, lab) in enumerate([(2.6, 0.4, "처음"), (8.6, 1.2, "조금 �
     ax.text(x, 0.6, lab, ha="center", va="center", fontsize=11, fontweight="bold")
     if k < 2:
         arrow(ax, (x + 2.3, 3.6), (x + 3.7, 3.6))
-ax.text(9.0, 7.0, "젓지 않았는데도 물감이 저절로 퍼져요", ha="center", va="center", fontsize=11, color=RED,
-        fontweight="bold")
 save(fig, "m01-spread.svg")
 
 # 6. 알갱이끼리 섞여요: 설탕이 물에 녹아요
@@ -211,7 +185,7 @@ def scatter(x0, y0, w, h, n, r, taken, tries=20000):
 
 
 fig, ax = canvas(11.0, 4.4, 18.0, 7.2)
-for k, (x, sugar_in, lab) in enumerate([(4.0, False, "각설탕을 물에 넣으면"), (13.0, True, "설탕 알갱이가 물 알갱이 사이사이로 섞여 들어가요")]):
+for k, (x, sugar_in, lab) in enumerate([(4.0, False, "넣었을 때"), (13.0, True, "녹은 뒤")]):
     ax.add_patch(Rectangle((x - 3.0, 1.2), 6.0, 4.8, fc="#eef5fb", ec=INK, lw=1.4))
     taken = []
     if sugar_in:
@@ -234,9 +208,8 @@ for k, (x, sugar_in, lab) in enumerate([(4.0, False, "각설탕을 물에 넣으
         ax.annotate("물 알갱이", (wx + 0.15, wy + 0.15), (x + 1.6, 6.5), fontsize=10, color=INK, fontweight="bold",
                     arrowprops=dict(arrowstyle="-", color=INK, lw=1))
         ax.text(x, 3.05, "각설탕", ha="center", va="center", fontsize=10, color=RED, fontweight="bold")
-    ax.text(x, 0.6, lab, ha="center", va="center", fontsize=10, fontweight="bold")
+    ax.text(x, 0.6, lab, ha="center", va="center", fontsize=11, fontweight="bold")
 arrow(ax, (7.3, 3.6), (9.7, 3.6))
-ax.text(9.0, 7.1, "크기는 실제와 맞추지 않았어요", ha="center", va="center", fontsize=9)
 save(fig, "m01-gaps.svg")
 
 # 7. 물 알갱이 하나: 원자 셋
@@ -245,14 +218,14 @@ ax.add_patch(Circle((3.0, 2.5), 1.7, fc="#eef5fb", ec=WATER, lw=1.6, ls="--"))
 ax.add_patch(Circle((3.0, 2.8), 0.85, fc=ATOM, ec=INK, lw=1.4))
 ax.add_patch(Circle((1.95, 2.05), 0.5, fc="white", ec=INK, lw=1.4))
 ax.add_patch(Circle((4.05, 2.05), 0.5, fc="white", ec=INK, lw=1.4))
-ax.text(3.0, 0.3, "원자 셋이 꼭 붙은 물 알갱이 하나", ha="center", va="center", fontsize=11, fontweight="bold")
+ax.text(3.0, 0.3, "원자 3개 = 물 알갱이 1개", ha="center", va="center", fontsize=11, fontweight="bold")
 arrow(ax, (5.2, 2.5), (7.0, 2.5))
 ax.text(6.1, 3.2, "간단히", ha="center", va="center", fontsize=9)
 ax.add_patch(Circle((8.0, 2.5), 0.32, fc=WATER, ec=INK, lw=1.0))
-ax.text(8.0, 1.5, "파란 동그라미", ha="center", va="center", fontsize=10)
+ax.text(8.0, 1.5, "물 알갱이 1개", ha="center", va="center", fontsize=10)
 arrow(ax, (9.0, 2.5), (10.4, 2.5))
 for k in range(24):
     x, y = 11.2 + (k % 6) * 0.85 + random.uniform(-0.08, 0.08), 1.3 + (k // 6) * 0.75 + random.uniform(-0.08, 0.08)
     ax.add_patch(Circle((x, y), 0.3, fc=WATER, ec=INK, lw=0.6))
-ax.text(13.3, 4.6, "아주 많이 모이면 물 한 방울", ha="center", va="center", fontsize=10)
+ax.text(13.3, 4.6, "물 한 방울", ha="center", va="center", fontsize=11, fontweight="bold")
 save(fig, "m01-water.svg")

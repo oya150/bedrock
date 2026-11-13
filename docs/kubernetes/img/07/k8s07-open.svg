@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="437.76pt" height="274.392pt" viewBox="0 0 437.76 274.392" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-13T22:10:16.452229</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 274.392 
+L 437.76 274.392 
+L 437.76 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 28.044 246.459 
+L 409.716 246.459 
+L 409.716 21.311 
+L 28.044 21.311 
+z
+" clip-path="url(#p634ab53e13)" style="fill: #ffffff; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 28.044 35.2172 
+L 409.716 35.2172 
+L 409.716 21.311 
+L 28.044 21.311 
+z
+" clip-path="url(#p634ab53e13)" style="fill: #e9ecef; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 36.414 30.5818 
+C 37.03553 30.5818 37.631687 30.337593 38.071175 29.902961 
+C 38.510664 29.46833 38.7576 28.878761 38.7576 28.2641 
+C 38.7576 27.649439 38.510664 27.05987 38.071175 26.625239 
+C 37.631687 26.190607 37.03553 25.9464 36.414 25.9464 
+C 35.79247 25.9464 35.196313 26.190607 34.756825 26.625239 
+C 34.317336 27.05987 34.0704 27.649439 34.0704 28.2641 
+C 34.0704 28.878761 34.317336 29.46833 34.756825 29.902961 
+C 35.196313 30.337593 35.79247 30.5818 36.414 30.5818 
+z
+" clip-path="url(#p634ab53e13)" style="fill: #e4572e"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 44.784 30.5818 
+C 45.40553 30.5818 46.001687 30.337593 46.441175 29.902961 
+C 46.880664 29.46833 47.1276 28.878761 47.1276 28.2641 
+C 47.1276 27.649439 46.880664 27.05987 46.441175 26.625239 
+C 46.001687 26.190607 45.40553 25.9464 44.784 25.9464 
+C 44.16247 25.9464 43.566313 26.190607 43.126825 26.625239 
+C 42.687336 27.05987 42.4404 27.649439 42.4404 28.2641 
+C 42.4404 28.878761 42.687336 29.46833 43.126825 29.902961 
+C 43.566313 30.337593 44.16247 30.5818 44.784 30.5818 
+z
+" clip-path="url(#p634ab53e13)" style="fill: #f6c445"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 53.154 30.5818 
+C 53.77553 30.5818 54.371687 30.337593 54.811175 29.902961 
+C 55.250664 29.46833 55.4976 28.878761 55.4976 28.2641 
+C 55.4976 27.649439 55.250664 27.05987 54.811175 26.625239 
+C 54.371687 26.190607 53.77553 25.9464 53.154 25.9464 
+C 52.53247 25.9464 51.936313 26.190607 51.496825 26.625239 
+C 51.057336 27.05987 50.8104 27.649439 50.8104 28.2641 
+C 50.8104 28.878761 51.057336 29.46833 51.496825 29.902961 
+C 51.936313 30.337593 52.53247 30.5818 53.154 30.5818 
+z
+" clip-path="url(#p634ab53e13)" style="fill: #8fb58f"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 32.0616 135.8716 
+L 405.6984 135.8716 
+L 405.6984 121.9654 
+L 32.0616 121.9654 
+z
+" clip-path="url(#p634ab53e13)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 32.0616 235.2016 
+L 405.6984 235.2016 
+L 405.6984 221.2954 
+L 32.0616 221.2954 
+z
+" clip-path="url(#p634ab53e13)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="218.88" y="31.575037" transform="rotate(-0 218.88 31.575037)">터미널</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #222222; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="36.414" y="49.019516" transform="rotate(-0 36.414 49.019516)">$ kubectl get pods</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="36.414" y="65.610609" transform="rotate(-0 36.414 65.610609)">NAME                READY   AGE</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="36.414" y="82.144281" transform="rotate(-0 36.414 82.144281)">order-7c9d-k2p4q    1/1     2d</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="36.414" y="98.720609" transform="rotate(-0 36.414 98.720609)">order-7c9d-m8x1z    1/1     2d</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="36.414" y="115.275609" transform="rotate(-0 36.414 115.275609)">order-7c9d-t5r7v    1/1     2d</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #e4572e; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="36.414" y="131.819945" transform="rotate(-0 36.414 131.819945)">$ kubectl delete pod order-7c9d-k2p4q</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="36.414" y="148.374945" transform="rotate(-0 36.414 148.374945)">pod "order-7c9d-k2p4q" deleted</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #222222; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="36.414" y="164.904516" transform="rotate(-0 36.414 164.904516)">$ kubectl get pods</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="36.414" y="181.495609" transform="rotate(-0 36.414 181.495609)">NAME                READY   AGE</text>
+   </g>
+   <g id="text_11">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="36.414" y="198.050609" transform="rotate(-0 36.414 198.050609)">order-7c9d-m8x1z    1/1     2d</text>
+   </g>
+   <g id="text_12">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="36.414" y="214.605609" transform="rotate(-0 36.414 214.605609)">order-7c9d-t5r7v    1/1     2d</text>
+   </g>
+   <g id="text_13">
+    <text style="fill: #e4572e; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="36.414" y="231.160609" transform="rotate(-0 36.414 231.160609)">order-7c9d-w8n3m    1/1     3s</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p634ab53e13">
+   <rect x="18" y="18" width="401.76" height="238.392"/>
+  </clipPath>
+ </defs>
+</svg>

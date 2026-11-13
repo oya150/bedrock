@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-22T16:02:11.301457</dc:date>
+    <dc:date>2026-11-13T21:39:52.583291</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 28.4625 49.416 28.4625 52.906667
 L 28.4625 178.570667 
 Q 28.4625 182.061333 31.95 182.061333 
 z
-" clip-path="url(#pf36b37b555)" style="fill: #f6c445; stroke: #b8901e; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#pe015f817ce)" style="fill: #f6c445; stroke: #b8901e; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 133.0875 86.068 
@@ -53,7 +53,7 @@ Q 131.34375 61.633333 131.34375 63.378667
 L 131.34375 84.322667 
 Q 131.34375 86.068 133.0875 86.068 
 z
-" clip-path="url(#pf36b37b555)" style="fill: #ffffff; stroke: #b8901e; stroke-linejoin: miter"/>
+" clip-path="url(#pe015f817ce)" style="fill: #ffffff; stroke: #b8901e; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 59.85 156.928533 
@@ -66,7 +66,7 @@ Q 57.06 109.455467 57.06 112.248
 L 57.06 154.136 
 Q 57.06 156.928533 59.85 156.928533 
 z
-" clip-path="url(#pf36b37b555)" style="fill: #7fb3d5; stroke: #2e86ab; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#pe015f817ce)" style="fill: #7fb3d5; stroke: #2e86ab; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 269.1 164.608 
@@ -74,7 +74,7 @@ L 506.25 164.608
 L 506.25 66.869333 
 L 269.1 66.869333 
 z
-" clip-path="url(#pf36b37b555)" style="fill: #2b2b2b"/>
+" clip-path="url(#pe015f817ce)" style="fill: #2b2b2b"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 700 14px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="45.9" y="78.527542" transform="rotate(-0 45.9 78.527542)">반복하기</text>
@@ -95,10 +95,10 @@ z
     <text style="fill: #ffffff; font: 13px 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="283.05" y="98.337167" transform="rotate(-0 283.05 98.337167)">for i in range(</text>
    </g>
    <g id="text_7">
-    <text style="fill: #e4572e; font: 700 13px 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="403.36875" y="98.381854" transform="rotate(-0 403.36875 98.381854)">5</text>
+    <text style="fill: #e4572e; font: 700 13px 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="397.44" y="98.381854" transform="rotate(-0 397.44 98.381854)">5</text>
    </g>
    <g id="text_8">
-    <text style="fill: #ffffff; font: 13px 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="413.83125" y="98.416385" transform="rotate(-0 413.83125 98.416385)">):</text>
+    <text style="fill: #ffffff; font: 13px 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="407.9025" y="98.416385" transform="rotate(-0 407.9025 98.416385)">):</text>
    </g>
    <g id="text_9">
     <text style="fill: #ffffff; font: 13px 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="307.4625" y="140.089073" transform="rotate(-0 307.4625 140.089073)">move_right()</text>
@@ -109,7 +109,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pf36b37b555">
+  <clipPath id="pe015f817ce">
    <rect x="18" y="18" width="502.2" height="188.496"/>
   </clipPath>
  </defs>

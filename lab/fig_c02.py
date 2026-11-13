@@ -1,17 +1,19 @@
 """컴퓨터 2편 그림 만들기. 실행: python lab/fig_c02.py  → docs/computer/img/02/*.svg
 
 글자는 SVG 안에 글자로 남긴다(글꼴 모양을 파일에 넣지 않는다). 보는 쪽 글꼴로 그려진다.
+그림 안 글씨는 낱말과 숫자만 둔다. 검토용 PNG가 필요하면 FIG_FMT=png FIG_OUT=<폴더> 로 실행한다.
 그림 속 노랑·검정·흰색은 사진 내용이고, 강조는 빨강 하나만 쓴다.
 """
 import os
 
 import matplotlib
 
-matplotlib.use("svg")
+FMT = os.environ.get("FIG_FMT", "svg")
+matplotlib.use("agg" if FMT == "png" else "svg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch, Rectangle, Wedge
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "computer", "img", "02")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "computer", "img", "02")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -40,6 +42,8 @@ SMILE = [
 
 
 def save(fig, name):
+    if FMT == "png":
+        name = name.replace(".svg", ".png")
     fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
     plt.close(fig)
 
@@ -109,35 +113,10 @@ box(ax, 0.6, 0.3, 2.8, 4.8, fc=PAPER)
 smooth_face(ax, 2.0, 2.7, 1.0)
 ax.text(2.0, 0.75, "휴대폰 사진", ha="center", fontsize=12)
 arrow(ax, (3.8, 2.7), (6.6, 2.7))
-ax.text(5.2, 3.15, "끝까지 키우면", ha="center", fontsize=13)
+ax.text(5.2, 3.15, "크게, 더 크게", ha="center", fontsize=13)
 grid(ax, SMILE, 7.2, 0.6, 4.2, lines=True)
-ax.text(9.3, 0.1, "작은 네모 칸이 보여요", ha="center", fontsize=12)
+ax.text(9.3, 0.1, "작은 네모 칸", ha="center", fontsize=12)
 save(fig, "c02-zoom.svg")
-
-# 2. 이 편의 지도: 네모 칸 → 칸마다 색 하나 → 색마다 번호 → 칸마다 번호 적기 (본문 목록과 같은 말)
-fig, ax = canvas(11.0, 3.2, 17.6, 5.0)
-steps = ["사진은 네모 칸", "칸마다 색 하나", "색마다 번호", "칸마다 번호 적기"]
-mini = [[2, 2], [1, 2]]
-for i, t in enumerate(steps):
-    x = 0.3 + i * 4.4
-    box(ax, x, 0.4, 3.4, 4.2)
-    ax.text(x + 0.3, 4.2, str(i + 1), fontsize=12, color=INK, fontweight="bold")
-    cx = x + 0.95
-    if i == 0:
-        grid(ax, mini, cx, 1.6, 1.5)
-    elif i == 1:
-        ax.add_patch(Rectangle((cx + 0.35, 1.95), 0.8, 0.8, fc=PALETTE[2], ec=GREY))
-    elif i == 2:
-        for k, v in enumerate((2, 1)):
-            yy = 2.75 - k * 1.0
-            ax.add_patch(Rectangle((cx, yy), 0.7, 0.7, fc=PALETTE[v], ec=GREY))
-            ax.text(cx + 1.0, yy + 0.35, f"= {v}", va="center", fontsize=14)
-    else:
-        grid(ax, mini, cx, 1.6, 1.5, numbers=True)
-    ax.text(x + 1.7, 0.9, t, ha="center", va="center", fontsize=13, fontweight="bold")
-    if i < 3:
-        arrow(ax, (x + 3.55, 2.5), (x + 4.25, 2.5))
-save(fig, "c02-map.svg")
 
 # 3. 픽셀: 8칸 × 8칸 웃는 얼굴, 칸 하나에 이름표
 fig, ax = canvas(6.6, 4.6, 10, 7.0)
@@ -163,8 +142,8 @@ save(fig, "c02-palette.svg")
 fig, ax = canvas(9.4, 4.4, 15, 7.0)
 c = grid(ax, SMILE, 0.4, 0.6, 5.6, numbers=True)
 grid(ax, SMILE, 9.0, 0.6, 5.6)
-ax.text(3.2, 0.05, "컴퓨터가 적어 둔 번호", ha="center", fontsize=13)
-ax.text(11.8, 0.05, "화면에 칠한 모습", ha="center", fontsize=13)
+ax.text(3.2, 0.05, "적어 둔 번호", ha="center", fontsize=13)
+ax.text(11.8, 0.05, "칠한 모습", ha="center", fontsize=13)
 # 맨 윗줄 셋째 칸
 lx, ly = 0.4 + 2 * c, 0.6 + 5.6 - c
 rx = 9.0 + 2 * c
@@ -172,12 +151,12 @@ ax.add_patch(Rectangle((lx, ly), c, c, fc="none", ec=RED, lw=3))
 ax.add_patch(Rectangle((rx, ly), c, c, fc="none", ec=RED, lw=3))
 ax.add_patch(FancyArrowPatch((lx + c, ly + c * 0.5), (rx, ly + c * 0.5), arrowstyle="-|>",
                              mutation_scale=18, color=RED, lw=2, connectionstyle="arc3,rad=-0.25"))
-ax.text(7.5, 3.2, "2번은\n노랑", ha="center", va="center", fontsize=13, color=RED, fontweight="bold")
+ax.text(7.5, 3.2, "2 = 노랑", ha="center", va="center", fontsize=13, color=RED, fontweight="bold")
 save(fig, "c02-numbers.svg")
 
 # 6. 칸이 많을수록 부드럽다
 fig, ax = canvas(10.0, 3.8, 16, 6.0)
-for i, (n, label) in enumerate([(8, "칸이 적으면"), (16, "칸이 더 많으면"), (48, "칸이 아주 많으면")]):
+for i, (n, label) in enumerate([(8, "8 × 8칸"), (16, "16 × 16칸"), (48, "48 × 48칸")]):
     x = 0.5 + i * 5.3
     # 칸이 적은 그림은 앞에서 본 8칸 얼굴과 같게 그린다
     grid(ax, SMILE if n == 8 else raster_face(n), x, 1.0, 4.4, lines=(n <= 16))
@@ -196,5 +175,24 @@ for r in range(4):
         ax.plot([4.35, 0.65], [y - 0.15, y - 0.85], color=GREY, lw=1.2, ls="--")
 ax.text(0.5, 4.75, "시작", fontsize=11, color=RED)
 save(fig, "c02-order.svg")
+
+# 8. 번호만 받아 칠하기: 들은 번호 16개 → 4칸 × 4칸
+TREE = [[0, 1, 1, 0], [1, 1, 1, 1], [0, 1, 1, 0], [0, 1, 1, 0]]
+fig, ax = canvas(9.6, 3.6, 16, 6.0)
+ax.text(4.3, 5.3, "들은 번호", ha="center", fontsize=13, color=INK)
+flat = [v for row in TREE for v in row]
+for i, v in enumerate(flat):
+    r, k = divmod(i, 4)
+    x, y = 0.4 + k * 0.5 + r * 2.15, 4.2
+    hot = r == 0
+    ax.add_patch(Rectangle((x, y), 0.48, 0.6, fc="white", ec=RED if hot else GREY, lw=2 if hot else 1))
+    ax.text(x + 0.24, y + 0.3, str(v), ha="center", va="center", fontsize=13, color=RED if hot else "#222")
+for r in range(4):
+    ax.text(0.4 + r * 2.15 + 1.0, 3.7, f"{r + 1}줄", ha="center", fontsize=10, color=RED if r == 0 else INK)
+arrow(ax, (8.6, 3.0), (10.2, 3.0))
+c = grid(ax, TREE, 10.6, 0.6, 4.4)
+ax.add_patch(Rectangle((10.6, 0.6 + 4.4 - c), 4.4, c, fc="none", ec=RED, lw=3))
+ax.text(12.8, 0.1, "칠한 그림", ha="center", fontsize=13)
+save(fig, "c02-phone.svg")
 
 print("ok")

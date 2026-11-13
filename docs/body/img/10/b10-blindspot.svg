@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-23T22:17:16.390056</dc:date>
+    <dc:date>2026-11-13T21:41:40.535416</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 562.05 148.416
 L 562.05 31.728 
 L 31.95 31.728 
 z
-" clip-path="url(#p9fd869decb)" style="fill: #ffffff; stroke: #c9ccd1; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p1bc6d08ea2)" style="fill: #ffffff; stroke: #c9ccd1; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 450.45 108.948 
@@ -48,7 +48,7 @@ C 433.289808 80.26441 431.26875 85.066026 431.26875 90.072
 C 431.26875 95.077974 433.289808 99.87959 436.886808 103.419348 
 C 440.483809 106.959106 445.363073 108.948 450.45 108.948 
 z
-" clip-path="url(#p9fd869decb)" style="fill: #555555; stroke: #555555; stroke-linejoin: miter"/>
+" clip-path="url(#p1bc6d08ea2)" style="fill: #555555; stroke: #555555; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 700 40px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="122.625" y="103.112625" transform="rotate(-0 122.625 103.112625)">+</text>
@@ -56,7 +56,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p9fd869decb">
+  <clipPath id="p1bc6d08ea2">
    <rect x="18" y="18" width="558" height="144.144"/>
   </clipPath>
  </defs>

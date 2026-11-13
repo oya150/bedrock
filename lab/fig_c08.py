@@ -11,7 +11,8 @@ matplotlib.use("svg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "computer", "img", "08")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "computer", "img", "08")
+FMT = os.environ.get("FIG_FMT", "svg")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -26,7 +27,7 @@ RED, GREY, INK, PAPER, NOTE, YEL = "#e4572e", "#c9ccd1", "#555", "#f4f6f8", "#ff
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    fig.savefig(os.path.join(OUT, name.replace(".svg", "." + FMT)), bbox_inches="tight", pad_inches=0.25)
     plt.close(fig)
 
 
@@ -86,32 +87,6 @@ ball(ax, 6.2, 4.3, 0.42)
 pause_icon(ax, 5.2, 1.1, 0.42)
 save(fig, "c08-pause.svg")
 
-# 2. 이 편의 지도: 멈춘 화면 한 장 → 사진 여러 장 → 빨리 넘기기 → 1초에 30장
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["멈춘 화면 한 장", "사진 여러 장", "빨리 넘기기", "1초에 30장"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=13, fontweight="bold")
-    if i == 0:
-        frame(ax, x + 0.8, 1.6, 2.2, 1.7, 0.5)
-    elif i == 1:
-        for k in range(3):
-            frame(ax, x + 0.5 + k * 0.35, 1.5 + k * 0.3, 2.2, 1.5, 0.2 + 0.3 * k, lw=1.2)
-    elif i == 2:
-        for k in range(4):
-            ax.add_patch(Rectangle((x + 0.6 + k * 0.12, 1.5 + k * 0.08), 2.3, 1.6, fc="white", ec=GREY, lw=1.0))
-        ball(ax, x + 2.2, 2.2, 0.22)
-        ax.add_patch(FancyArrowPatch((x + 0.9, 3.55), (x + 3.0, 3.55), arrowstyle="-|>", mutation_scale=14,
-                                     color=INK, lw=1.6, connectionstyle="arc3,rad=-0.3"))
-    else:
-        for k in range(30):
-            r, c = divmod(k, 10)
-            ax.add_patch(Rectangle((x + 0.35 + c * 0.31, 2.95 - r * 0.42), 0.26, 0.34, fc="white", ec=INK, lw=0.8))
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "c08-map.svg")
-
 # 3. 프레임: 멈춘 화면 한 장을 크게 보면 칸이 보인다(2편과 같은 모양)
 fig, ax = canvas(8.6, 3.6, 14.4, 6.0)
 frame(ax, 0.4, 1.3, 4.6, 3.4, 0.5)
@@ -131,12 +106,13 @@ ax.text(x0 + n * c / 2, y0 + n * c + 0.35, "칸마다 색 번호", ha="center", 
 save(fig, "c08-frame.svg")
 
 # 4. 공책 귀퉁이 그림: 공이 한 장마다 조금씩 옆으로
-fig, ax = canvas(10.4, 2.8, 17.4, 4.6)
+fig, ax = canvas(10.4, 3.29, 17.4, 5.4)
 for k in range(5):
-    frame(ax, 0.4 + k * 3.4, 1.4, 2.8, 2.2, k / 4, num=k + 1)
-ax.add_patch(FancyArrowPatch((1.0, 4.2), (16.0, 4.2), arrowstyle="-|>", mutation_scale=18,
+    frame(ax, 0.4 + k * 3.4, 2.2, 2.8, 2.2, k / 4, num=k + 1)
+ax.add_patch(FancyArrowPatch((1.0, 5.0), (16.0, 5.0), arrowstyle="-|>", mutation_scale=18,
                              color=INK, lw=1.8))
-ax.text(8.5, 4.45, "휘리릭 넘기기", ha="center", va="bottom", fontsize=13, color=INK)
+ax.text(8.5, 5.25, "휘리릭 넘기기", ha="center", va="bottom", fontsize=13, color=INK)
+ax.text(8.5, 0.7, "공책 다섯 장", ha="center", va="bottom", fontsize=13, fontweight="bold", color=INK)
 save(fig, "c08-flip.svg")
 
 # 5. 1초에 30장: "하나" 하고 셀 동안 지나가는 프레임
@@ -146,7 +122,7 @@ for k in range(30):
     x, y = 0.4 + col * 1.7, 4.9 - r * 1.6
     frame(ax, x, y, 1.4, 1.1, k / 29, lw=1.0)
     ax.text(x + 0.7, y - 0.12, str(k + 1), ha="center", va="top", fontsize=9, color=INK)
-ax.text(8.7, 0.1, "\"하나\" 하고 셀 동안 프레임 30장", ha="center", fontsize=14, fontweight="bold")
+ax.text(8.7, 0.1, "1초 = 프레임 30장", ha="center", fontsize=14, fontweight="bold")
 save(fig, "c08-second.svg")
 
 # 6. 10초 영상: 1초마다 30장씩 쌓여 300장
@@ -160,7 +136,61 @@ for i in range(10):
     ax.text(x + 0.65, 1.2 + h + 0.12, f"{30 * (i + 1)}장", ha="center", va="bottom", fontsize=10,
             color=RED if i == 9 else INK, fontweight="bold" if i == 9 else "normal")
     ax.text(x + 0.65, 0.95, f"{i + 1}초", ha="center", va="top", fontsize=11, color=INK)
-ax.text(8.65, 0.05, "1초마다 프레임이 30장씩 늘어나요", ha="center", fontsize=13, fontweight="bold")
 save(fig, "c08-size.svg")
+
+# 7. 손으로 넘길 때와 휴대폰이 바꿀 때: 1초 동안 그림이 바뀌는 때
+fig, ax = canvas(10.4, 3.0, 17.4, 5.0)
+L, R = 2.4, 16.6
+hand = [0.0, 0.07, 0.11, 0.22, 0.27, 0.45, 0.52, 0.58, 0.81, 0.9]
+for row, y, label in ((0, 3.4, "공책"), (1, 1.5, "휴대폰")):
+    ax.text(0.3, y, label, va="center", fontsize=14, fontweight="bold")
+    ax.plot([L, R], [y, y], color=GREY, lw=1.4)
+    ticks = hand if row == 0 else [k / 30 for k in range(30)]
+    for t in ticks:
+        x = L + (R - L) * t
+        ax.plot([x, x], [y - 0.35, y + 0.35], color=INK, lw=2.0 if row == 0 else 1.4)
+# 손으로 넘길 때 크게 벌어진 틈
+g0, g1 = L + (R - L) * 0.58, L + (R - L) * 0.81
+ax.plot([g0, g0, g1, g1], [3.4 + 0.55, 3.4 + 0.75, 3.4 + 0.75, 3.4 + 0.55], color=RED, lw=2.2)
+ax.plot([L, L, R, R], [0.75, 0.55, 0.55, 0.75], color=INK, lw=1.4)
+ax.text((L + R) / 2, 0.35, "1초", ha="center", va="top", fontsize=13, color=INK)
+save(fig, "c08-pace.svg")
+
+# 8. 바뀐 칸: 공이 한 칸 옮겨 간 두 프레임과 달라진 칸
+n, c = 8, 0.5
+
+
+def cells(cx):
+    out = {}
+    for r in range(n):
+        for k in range(n):
+            if r == 0:
+                out[(r, k)] = "ground"
+            elif (k - cx) ** 2 + (r - 4) ** 2 <= 4.5:
+                out[(r, k)] = "ball"
+            else:
+                out[(r, k)] = "sky"
+    return out
+
+
+A, B = cells(2.5), cells(3.5)
+changed = {key for key in A if A[key] != B[key]}
+fig, ax = canvas(10.4, 3.4, 17.4, 5.6)
+colors = {"ground": GREY, "ball": RED, "sky": "white"}
+for i, (title, grid) in enumerate((("1번 프레임", A), ("2번 프레임", B), ("바뀐 칸", None))):
+    x0 = 0.6 + i * 5.9
+    for (r, k), v in A.items():
+        if grid is None:
+            fc = RED if (r, k) in changed else "white"
+        else:
+            fc = colors[grid[(r, k)]]
+        ax.add_patch(Rectangle((x0 + k * c, 1.0 + r * c), c, c, fc=fc, ec="#d9dce0", lw=0.8))
+    label = title if grid is not None else f"{title} {len(changed)}"
+    ax.text(x0 + n * c / 2, 0.75, label, ha="center", va="top", fontsize=13,
+            fontweight="bold", color=RED if grid is None else INK)
+    if i < 2:
+        arrow(ax, (x0 + n * c + 0.35, 3.0), (x0 + 5.9 - 0.35, 3.0))
+print("바뀐 칸", len(changed))
+save(fig, "c08-diff.svg")
 
 print("ok")

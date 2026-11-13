@@ -1,245 +1,174 @@
 """알고리즘 7편 그림 만들기. 실행: python lab/fig_07.py  → docs/algorithms/img/07/*.svg
 
-글자는 SVG 안에 글자로 남긴다(글꼴 모양을 파일에 넣지 않는다). 보는 쪽 글꼴로 그려진다.
-카드는 차분한 색으로, 강조(새로 받은 카드, 비교 화살표, 많이 든 일)만 빨강으로 칠한다.
+예시는 친구 둘이 정리한 카드 64장(홀수 32장 줄 + 짝수 32장 줄)을 편 끝까지 잇는다.
+그림 안 글씨는 낱말과 숫자만 둔다. 문장은 본문과 그림 설명에 둔다(쉬운글-정책 5장).
+숫자는 모두 독자가 그림에서 셀 수 있는 것이다. 검토용 PNG는 FIG_FMT=png FIG_OUT=<폴더>.
 """
 import os
+import random
+import sys
 
-import matplotlib
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "es"))
+from figkit import BLUE, GREY, INK, NOTE, PINK, RED, arrow, canvas, cells, label, outdir, save  # noqa: E402
+from matplotlib.patches import Circle, FancyBboxPatch, Rectangle  # noqa: E402
 
-matplotlib.use("svg")
-import matplotlib.pyplot as plt
-from matplotlib.patches import Arc, Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
-
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "algorithms", "img", "07")
-os.makedirs(OUT, exist_ok=True)
-
-plt.rcParams.update({
-    "font.family": ["Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "sans-serif"],
-    "svg.fonttype": "none",
-    "text.color": "#222",
-    "figure.facecolor": "white",
-    "savefig.facecolor": "white",
-})
-
-RED, GREY, INK, PAPER, NOTE, YEL = "#e4572e", "#c9ccd1", "#555", "#f4f6f8", "#fffdf5", "#f6c445"
-BLUE, GREEN = "#7da2c8", "#8fb58f"
-LIGHT = "#e9ecef"
+OUT = outdir("07", "algorithms")
 
 
-def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
-    plt.close(fig)
+def frame(ax, x0, x1, y, h, color, lw=2.2):
+    """이어진 줄 하나를 감싸는 둥근 테두리."""
+    ax.add_patch(FancyBboxPatch((x0 - 0.08, y - 0.08), x1 - x0 + 0.16, h + 0.16, boxstyle="round,pad=0.04",
+                                fc="none", ec=color, lw=lw))
 
 
-def canvas(w, h, xmax, ymax):
-    fig, ax = plt.subplots(figsize=(w, h))
-    ax.set_xlim(0, xmax); ax.set_ylim(0, ymax); ax.axis("off")
-    return fig, ax
+def dot_cell(ax, x, y, w, h):
+    label(ax, x + w / 2, y + h / 2, "…", fs=13, color=INK)
+    return x + w
 
 
-def box(ax, x, y, w, h, fc="white", ec=INK, lw=1.8):
-    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.08", fc=fc, ec=ec, lw=lw))
+def short_row(ax, x, y, head, tail, w=0.5, h=0.55, gap=0.06, hot=(), fs=10.5):
+    """head 카드 몇 장, …, tail 카드 몇 장. 끝 x를 돌려준다."""
+    x = cells(ax, x, y, head, w=w, h=h, gap=gap, hot=hot, fs=fs) + gap
+    x = dot_cell(ax, x, y, w, h) + gap
+    return cells(ax, x, y, tail, w=w, h=h, gap=gap, fs=fs)
 
 
-def arrow(ax, a, b, color=INK, lw=2, rad=0.0, ms=18):
-    ax.add_patch(FancyArrowPatch(a, b, arrowstyle="-|>", mutation_scale=ms, color=color, lw=lw,
-                                 connectionstyle=f"arc3,rad={rad}"))
-
-
-def kid(ax, cx, y, s=1.0):
-    ax.add_patch(Circle((cx, y + 1.55 * s), 0.32 * s, fc="white", ec=INK, lw=1.6))
-    ax.add_patch(Circle((cx - 0.11 * s, y + 1.6 * s), 0.035 * s, fc=INK))
-    ax.add_patch(Circle((cx + 0.11 * s, y + 1.6 * s), 0.035 * s, fc=INK))
-    ax.add_patch(Arc((cx, y + 1.5 * s), 0.3 * s, 0.2 * s, theta1=200, theta2=340, color=INK, lw=1.4))
-    ax.plot([cx, cx], [y + 1.23 * s, y + 0.55 * s], color=INK, lw=2)
-    ax.plot([cx, cx - 0.3 * s], [y + 0.55 * s, y], color=INK, lw=2)
-    ax.plot([cx, cx + 0.3 * s], [y + 0.55 * s, y], color=INK, lw=2)
-    ax.plot([cx - 0.35 * s, cx + 0.35 * s], [y + 1.0 * s, y + 1.0 * s], color=INK, lw=2)
-
-
-def card(ax, x, y, w, h, num, hot=False, gone=False, fs=12):
-    fc = LIGHT if gone else ("#fbe3dc" if hot else NOTE)
-    ax.add_patch(Rectangle((x, y), w, h, fc=fc, ec=RED if hot else (GREY if gone else INK), lw=2.2 if hot else 1.2))
-    ax.text(x + w / 2, y + h / 2, str(num), ha="center", va="center", fontsize=fs,
-            color=RED if hot else (GREY if gone else "#222"), fontweight="bold")
-
-
-def stones(ax, x, y, n, color=INK, r=0.13, gap=0.34):
-    for k in range(n):
-        ax.add_patch(Circle((x + k * gap, y), r, fc=color, ec=color))
-
-
-def row(ax, x, y, nums, cw=0.9, ch=1.1, gap=0.1, hot=(), fs=12, gone=()):
-    for k, n in enumerate(nums):
-        card(ax, x + k * (cw + gap), y, cw, ch, n, hot=(k in hot), gone=(k in gone), fs=fs)
-    return x + len(nums) * (cw + gap) - gap
-
-
-
-def dots(ax, x, y, w=0.9, h=1.1, fs=14, color=INK):
-    ax.text(x + w / 2, y + h / 2, "…", ha="center", va="center", fontsize=fs, color=color)
-    return x + w + 0.1
-
-
-def run_box(ax, x0, x1, y, h, color, label=None, fs=11):
-    ax.add_patch(FancyBboxPatch((x0 - 0.12, y - 0.12), x1 - x0 + 0.24, h + 0.24, boxstyle="round,pad=0.05",
-                                fc="none", ec=color, lw=2.4))
-    if label:
-        ax.text((x0 + x1) / 2, y + h + 0.45, label, ha="center", va="center", fontsize=fs, color=color,
-                fontweight="bold")
-
-
-ODD = list(range(1, 65, 2))
-EVEN = list(range(2, 65, 2))
-
-
-def friends_row(ax, x, y, cw=0.8, ch=1.0, fs=11, labels=True):
-    """홀수 줄 1, 3, 5, …, 63 다음에 짝수 줄 2, 4, 6, …, 64를 이어 놓은 64장."""
-    x0 = x
-    x = row(ax, x, y, [1, 3, 5], cw=cw, ch=ch, fs=fs) + 0.1
-    x = dots(ax, x, y, w=cw, h=ch)
-    x = row(ax, x, y, [63], cw=cw, ch=ch, fs=fs)
-    run_box(ax, x0, x, y, ch, RED, "홀수 32장 줄" if labels else None)
-    x += 0.5
-    x1 = x
-    x = row(ax, x, y, [2, 4, 6], cw=cw, ch=ch, fs=fs) + 0.1
-    x = dots(ax, x, y, w=cw, h=ch)
-    x = row(ax, x, y, [64], cw=cw, ch=ch, fs=fs)
-    run_box(ax, x1, x, y, ch, BLUE, "짝수 32장 줄" if labels else None)
-    return x0, x1 - 0.5, x1, x
-
-
-# 1. 여는 장면: 친구 둘이 정리한 카드를 이어 놓았다. 파이썬은 먼저 무엇을 볼까?
-fig, ax = canvas(11.0, 4.8, 18.0, 7.8)
-kid(ax, 1.4, 2.6, 1.4)
-ax.text(1.4, 1.9, "나", ha="center", va="center", fontsize=12, fontweight="bold")
-row(ax, 3.4, 5.6, [1, 3, 5], cw=0.8, ch=1.0)
-dots(ax, 5.8, 5.6, w=0.8, h=1.0)
-row(ax, 6.7, 5.6, [63], cw=0.8, ch=1.0)
-ax.text(5.5, 7.2, "친구 1이 정리한 홀수 카드", ha="center", va="center", fontsize=11, fontweight="bold")
-row(ax, 10.6, 5.6, [2, 4, 6], cw=0.8, ch=1.0)
-dots(ax, 13.0, 5.6, w=0.8, h=1.0)
-row(ax, 13.9, 5.6, [64], cw=0.8, ch=1.0)
-ax.text(12.7, 7.2, "친구 2가 정리한 짝수 카드", ha="center", va="center", fontsize=11, fontweight="bold")
-arrow(ax, (5.5, 5.4), (7.3, 3.4), color=INK, lw=1.6, rad=0.15)
-arrow(ax, (12.7, 5.4), (10.9, 3.4), color=INK, lw=1.6, rad=-0.15)
-friends_row(ax, 3.4, 1.6, labels=False)
-ax.text(9.1, 0.9, "그냥 이어 놓은 카드 64장", ha="center", va="center", fontsize=11)
-ax.text(17.3, 2.1, "?", ha="center", va="center", fontsize=34, color=RED, fontweight="bold")
-save(fig, "a07-friends.svg")
-
-# 2. 이 편의 지도
-fig, ax = canvas(13.6, 2.9, 24.2, 4.6)
-titles = ["이어진 줄 찾기", "거꾸로 줄 뒤집기", "줄 둘 합치기", "짧은 줄 늘리기", "뒤죽박죽이면"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=12, fontweight="bold")
-    if i == 0:
-        row(ax, x + 0.4, 2.3, [1, 2, 3, 4], cw=0.5, ch=0.6, fs=9)
-        stones(ax, x + 0.95, 3.2, 3, color=RED, r=0.09, gap=0.6)
-    elif i == 1:
-        row(ax, x + 0.4, 2.9, [4, 3, 2, 1], cw=0.5, ch=0.6, fs=9)
-        row(ax, x + 0.4, 1.7, [1, 2, 3, 4], cw=0.5, ch=0.6, fs=9, hot=range(4))
-        arrow(ax, (x + 3.2, 3.1), (x + 3.2, 2.0), color=RED, lw=1.4, rad=-0.5, ms=10)
-    elif i == 2:
-        for k, col in enumerate([RED, BLUE]):
-            ax.add_patch(Rectangle((x + 0.4 + k * 1.6, 2.9), 1.4, 0.5, fc=NOTE, ec=col, lw=1.8))
-        ax.add_patch(Rectangle((x + 0.4, 1.7), 3.0, 0.5, fc=NOTE, ec=INK, lw=1.2))
-    elif i == 3:
-        row(ax, x + 0.4, 2.9, [3, 7], cw=0.5, ch=0.6, fs=9)
-        row(ax, x + 1.8, 2.9, [5], cw=0.5, ch=0.6, fs=9, hot=(0,))
-        row(ax, x + 0.4, 1.7, [3, 5, 7], cw=0.5, ch=0.6, fs=9)
-    else:
-        for k, (v, col) in enumerate([(307, GREY), (306, RED)]):
-            ax.add_patch(Rectangle((x + 1.0 + k * 1.2, 1.5), 0.7, v / 307 * 1.9, fc=col, ec=INK, lw=1))
-    if i < 4:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "a07-map.svg")
-
-
-def neighbor_stones(ax, x, y, n, cw, gap, ch):
+def neighbor_dots(ax, x, y, n, w, gap, color=RED):
+    """이웃한 두 장 사이 위마다 점 하나(비교 한 번)."""
     for k in range(n - 1):
-        cx = x + k * (cw + gap) + cw + gap / 2
-        ax.add_patch(Circle((cx, y + ch + 0.35), 0.15, fc=RED, ec=RED))
+        ax.add_patch(Circle((x + k * (w + gap) + w + gap / 2, y), 0.09, fc=color, ec=color))
 
 
-# 3. 이미 차례대로: 이웃끼리 7번 비교하면 끝
-fig, ax = canvas(10.4, 3.4, 17.0, 5.6)
-cw, gap = 1.3, 0.55
-row(ax, 0.8, 1.8, list(range(1, 9)), cw=cw, ch=1.4, gap=gap, fs=15)
-neighbor_stones(ax, 0.8, 1.8, 8, cw, gap, 1.4)
-ax.text(0.8, 4.4, "이웃한 두 장마다 바둑돌 하나: 1과 2, 2와 3, … 7과 8", ha="left", va="center", fontsize=11)
-ax.text(8.5, 0.8, "비교 7번. 처음부터 끝까지 이어진 줄이에요. 끝!", ha="center", va="center", fontsize=13,
-        color=RED, fontweight="bold")
-save(fig, "a07-asc.svg")
+# 1. 친구 둘이 정리한 카드를 이어 놓았다
+fig, ax = canvas(7.2, 3.0, 12, 5.0)
+label(ax, 2.9, 4.6, "친구 1: 홀수 32장", fs=11, bold=True)
+short_row(ax, 0.9, 3.5, [1, 3, 5], [63])
+label(ax, 9.1, 4.6, "친구 2: 짝수 32장", fs=11, bold=True)
+short_row(ax, 7.1, 3.5, [2, 4, 6], [64])
+x0 = 3.08
+arrow(ax, (2.9, 3.35), (4.4, 1.6), lw=1.5, ms=13)
+arrow(ax, (9.1, 3.35), (7.6, 1.6), lw=1.5, ms=13)
+x1 = short_row(ax, x0, 0.85, [1, 3, 5], [63])
+frame(ax, x0, x1, 0.85, 0.55, RED)
+x2 = short_row(ax, x1 + 0.35, 0.85, [2, 4, 6], [64])
+frame(ax, x1 + 0.35, x2, 0.85, 0.55, BLUE)
+label(ax, 6.0, 0.25, "64장", fs=11, color=INK)
+save(fig, OUT, "a07-friends.svg")
 
-# 4. 거꾸로 이어진 줄: 7번 비교하고 통째로 뒤집기
-fig, ax = canvas(10.4, 6.0, 17.0, 9.8)
-row(ax, 0.8, 6.6, list(range(8, 0, -1)), cw=cw, ch=1.4, gap=gap, fs=15)
-neighbor_stones(ax, 0.8, 6.6, 8, cw, gap, 1.4)
-ax.text(0.8, 9.2, "이웃끼리 비교하면 계속 작아져요. 비교 7번", ha="left", va="center", fontsize=11)
+# 2. 이미 차례대로: 이웃끼리 7번 비교하면 끝
+W, G = 1.0, 0.35
+fig, ax = canvas(7.2, 2.1, 12, 3.4)
+cells(ax, 0.6, 1.1, list(range(1, 9)), w=W, h=1.0, gap=G, fs=15)
+neighbor_dots(ax, 0.6, 2.45, 8, W, G)
+label(ax, 6.0, 0.45, "비교 7번", fs=12.5, color=RED, bold=True)
+save(fig, OUT, "a07-asc.svg")
+
+# 3. 거꾸로 이어진 줄: 7번 비교하고 통째로 뒤집기
+fig, ax = canvas(7.2, 4.0, 12, 6.6)
+cells(ax, 0.6, 4.6, list(range(8, 0, -1)), w=W, h=1.0, gap=G, fs=15)
+neighbor_dots(ax, 0.6, 5.95, 8, W, G)
+label(ax, 11.6, 6.35, "비교 7번", fs=11, color=RED, ha="right", bold=True)
 for k in range(4):
-    a = 0.8 + k * (cw + gap) + cw / 2
-    b = 0.8 + (7 - k) * (cw + gap) + cw / 2
-    ax.add_patch(FancyArrowPatch((a, 6.4), (b, 6.4), arrowstyle="<|-|>", mutation_scale=12, color=RED, lw=1.4,
-                                 connectionstyle=f"arc3,rad={0.25 + k * 0.08}"))
-ax.text(8.5, 3.9, "양 끝부터 맞바꿔 통째로 뒤집어요", ha="center", va="center", fontsize=12, color=RED,
-        fontweight="bold")
-row(ax, 0.8, 1.6, list(range(1, 9)), cw=cw, ch=1.4, gap=gap, fs=15, hot=range(8))
-ax.text(8.5, 0.6, "모두 7번 (4편 방법은 28번)", ha="center", va="center", fontsize=13, color=RED, fontweight="bold")
-save(fig, "a07-desc.svg")
+    a = 0.6 + k * (W + G) + W / 2
+    b = 0.6 + (7 - k) * (W + G) + W / 2
+    arrow(ax, (a, 4.45), (b, 4.45), color=RED, lw=1.3, rad=0.22 + k * 0.06, ms=11, style="<|-|>")
+label(ax, 6.0, 2.0, "뒤집기", fs=12, color=RED, bold=True)
+cells(ax, 0.6, 0.4, list(range(1, 9)), w=W, h=1.0, gap=G, hot=range(8), fs=15)
+save(fig, OUT, "a07-desc.svg")
 
-# 5. 줄 둘을 찾아 합치기 (64장)
-fig, ax = canvas(11.6, 5.4, 19.0, 8.8)
-a0, a1, b0, b1 = friends_row(ax, 0.8, 6.0)
-ax.text(a1 + 0.25, 5.3, "여기서 끊겼어요(63 다음 2)", ha="center", va="center", fontsize=10, color=INK)
-arrow(ax, ((a0 + a1) / 2, 5.6), (5.0, 3.6), color=RED, lw=1.6, rad=0.1)
-arrow(ax, ((b0 + b1) / 2, 5.6), (7.6, 3.6), color=BLUE, lw=1.6, rad=-0.1)
-x = row(ax, 2.4, 2.0, [1, 2, 3, 4, 5], cw=0.8, ch=1.0, fs=11) + 0.1
-x = dots(ax, x, 2.0, w=0.8, h=1.0)
-row(ax, x, 2.0, [63, 64], cw=0.8, ch=1.0, fs=11)
-ax.text(6.0, 1.2, "5편처럼 맨 앞끼리 비교하며 합쳐요", ha="center", va="center", fontsize=11, color=RED,
-        fontweight="bold")
-base, scale = 1.0, 5.6 / 559
-for k, (name, v, col) in enumerate([("4편 방법", 559, GREY), ("5편 방법", 223, GREY), ("팀 정렬", 126, RED)]):
-    bx = 12.6 + k * 2.1
-    ax.add_patch(Rectangle((bx, base), 1.5, v * scale, fc=col, ec=INK, lw=1.2))
-    ax.text(bx + 0.75, base + v * scale + 0.15, f"{v}번", ha="center", va="bottom", fontsize=12, fontweight="bold",
-            color=RED if col == RED else "#222")
-    ax.text(bx + 0.75, base - 0.3, name, ha="center", va="top", fontsize=11, fontweight="bold",
-            color=RED if col == RED else "#222")
-save(fig, "a07-merge.svg")
+# 4. 친구 카드 64장에서 이어진 줄 찾기: 63 다음 2에서 끊긴다
+fig, ax = canvas(7.2, 2.6, 12, 4.3)
+w, gap, y = 0.62, 0.08, 1.6
+x = xa0 = 1.5
+x = cells(ax, x, y, [1, 3, 5], w=w, h=0.7, gap=gap, fs=11) + gap
+x = dot_cell(ax, x, y, w, 0.7) + gap
+xa1 = x = cells(ax, x, y, [61, 63], w=w, h=0.7, gap=gap, fs=11, hot=(1,))
+x = xb0 = x + 0.35
+x = cells(ax, x, y, [2, 4], w=w, h=0.7, gap=gap, fs=11, hot=(0,)) + gap
+x = dot_cell(ax, x, y, w, 0.7) + gap
+xb1 = cells(ax, x, y, [62, 64], w=w, h=0.7, gap=gap, fs=11)
+frame(ax, xa0, xa1, y, 0.7, RED)
+frame(ax, xb0, xb1, y, 0.7, BLUE)
+ax.add_patch(Rectangle((xa1 + 0.135, y - 0.3), 0.08, 1.3, fc=RED, ec=RED))
+label(ax, xa1 + 0.175, 3.55, "63 > 2", fs=11.5, color=RED, bold=True)
+label(ax, (xa0 + xa1) / 2, 0.9, "줄 1: 32장", fs=11, color=INK)
+label(ax, (xb0 + xb1) / 2, 0.9, "줄 2: 32장", fs=11, color=INK)
+label(ax, 6.0, 0.25, "이웃 비교 63번", fs=11.5, color=RED, bold=True)
+save(fig, OUT, "a07-find.svg")
 
-# 6. 짧은 줄은 끼워서 늘려요
-fig, ax = canvas(10.4, 4.6, 17.0, 7.6)
-ax.text(0.5, 7.0, "뒤죽박죽 카드: 이어진 줄이 짧아요", ha="left", va="center", fontsize=12, fontweight="bold")
-row(ax, 0.8, 4.8, [3, 7], cw=1.2, ch=1.4, fs=15)
-run_box(ax, 0.8, 0.8 + 2.5, 4.8, 1.4, RED)
-row(ax, 4.6, 4.8, [5, 1, 9], cw=1.2, ch=1.4, fs=15, hot=range(3))
-ax.text(5.0 + 1.9, 6.6, "한 장씩 끼워 넣어요", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
-arrow(ax, (8.6, 5.5), (10.4, 5.5), color=INK, lw=1.8)
-row(ax, 10.8, 4.8, [1, 3, 5, 7, 9], cw=1.0, ch=1.4, fs=14)
-run_box(ax, 10.8, 10.8 + 5 * 1.1 - 0.1, 4.8, 1.4, RED)
-ax.text(8.5, 2.6, "한 장씩 끼워서 줄을 길게 만든 다음", ha="center", va="center", fontsize=12)
-ax.text(8.5, 1.6, "긴 줄끼리 5편처럼 합쳐요", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
-save(fig, "a07-extend.svg")
+# 5. 줄 둘을 맨 앞끼리 비교하며 합치기
+fig, ax = canvas(7.2, 3.3, 12, 5.4)
+xa = short_row(ax, 1.5, 4.3, [1, 3, 5], [63], w=0.55, h=0.6, hot=(0,))
+frame(ax, 1.5, xa, 4.3, 0.6, RED)
+xb = short_row(ax, 7.5, 4.3, [2, 4, 6], [64], w=0.55, h=0.6, hot=(0,))
+frame(ax, 7.5, xb, 4.3, 0.6, BLUE)
+label(ax, 6.0, 4.6, "1 < 2", fs=11.5, color=RED, bold=True)
+arrow(ax, (3.0, 4.05), (4.6, 2.35), lw=1.5, ms=13)
+arrow(ax, (9.0, 4.05), (7.4, 2.35), lw=1.5, ms=13)
+x = cells(ax, 3.28, 1.4, [1, 2, 3, 4, 5], w=0.55, h=0.6, gap=0.06, hot=(0,), fs=10.5) + 0.06
+x = dot_cell(ax, x, 1.4, 0.55, 0.6) + 0.06
+x = cells(ax, x, 1.4, [62, 63, 64], w=0.55, h=0.6, gap=0.06, fs=10.5)
+frame(ax, 3.28, x, 1.4, 0.6, INK, lw=1.6)
+label(ax, 6.0, 0.55, "합치기 비교 63번", fs=11.5, color=RED, bold=True)
+save(fig, OUT, "a07-merge.svg")
 
-# 7. 비교 수: 5편 방법 vs 팀 정렬 (막대 높이는 실제 비율대로)
-fig, ax = canvas(10.4, 5.6, 17.0, 9.2)
-base = 1.4
-scale = 6.6 / 307
-for k, (name, a, b) in enumerate([("친구 둘이 정리한 카드 64장", 223, 126), ("뒤죽박죽 카드 64장", 307, 306)]):
-    gx = 2.0 + k * 7.0
-    for j, (v, col) in enumerate([(a, GREY), (b, RED)]):
-        bx = gx + j * 2.2
-        h = v * scale
-        ax.add_patch(Rectangle((bx, base), 1.7, h, fc=col, ec=INK, lw=1.2))
-        ax.text(bx + 0.85, base + h + 0.15, f"{v}번", ha="center", va="bottom", fontsize=12, fontweight="bold",
-                color=RED if col == RED else "#222")
-        ax.text(bx + 0.85, base - 0.3, "5편 방법" if j == 0 else "팀 정렬", ha="center", va="top", fontsize=11,
-                color=RED if col == RED else "#222", fontweight="bold")
-    ax.text(gx + 1.95, base - 1.0, name, ha="center", va="top", fontsize=12, fontweight="bold")
-ax.plot([0.8, 16.4], [base, base], color=INK, lw=1.4)
-save(fig, "a07-bars.svg")
+# 6. 5편 방법은 합치기 여섯 층, 팀 정렬은 한 번
+fig, ax = canvas(7.2, 3.6, 12, 6.0)
+label(ax, 2.9, 5.65, "5편 방법", fs=11.5, bold=True)
+LW, LX = 5.2, 0.3
+for lv in range(7):                       # 1덩이, 2덩이, …, 64덩이
+    n = 2 ** lv
+    yy = 4.8 - lv * 0.68
+    bw = LW / n
+    for k in range(n):
+        ax.add_patch(Rectangle((LX + k * bw, yy), bw, 0.42, fc=NOTE, ec=INK, lw=0.4 if n > 16 else 0.9))
+label(ax, 2.9, 0.25, "합치기 6층", fs=11.5, color=RED, bold=True)
+ax.plot([6.45, 6.45], [0.3, 5.7], color=GREY, lw=1)
+label(ax, 9.3, 5.65, "팀 정렬", fs=11.5, bold=True)
+ax.add_patch(Rectangle((7.0, 4.8), 4.6, 0.42, fc=NOTE, ec=INK, lw=0.9))
+ax.add_patch(Rectangle((7.0, 4.12), 2.3, 0.42, fc=NOTE, ec=RED, lw=1.6))
+ax.add_patch(Rectangle((9.3, 4.12), 2.3, 0.42, fc=NOTE, ec=BLUE, lw=1.6))
+label(ax, 9.3, 0.25, "합치기 1번", fs=11.5, color=RED, bold=True)
+save(fig, OUT, "a07-layers.svg")
+
+# 7. 짧은 줄은 끼워서 늘려요
+fig, ax = canvas(7.2, 1.6, 12, 2.6)
+cells(ax, 0.4, 0.4, [3, 7], w=0.8, h=0.9, gap=0.1, fs=14)
+frame(ax, 0.4, 2.1, 0.4, 0.9, RED)
+cells(ax, 2.5, 0.4, [5, 1, 9], w=0.8, h=0.9, gap=0.1, hot=range(3), fs=14)
+label(ax, 1.25, 2.1, "줄 2장", fs=11, color=INK)
+label(ax, 3.85, 2.1, "끼우기", fs=11, color=RED, bold=True)
+arrow(ax, (5.4, 0.85), (6.3, 0.85), lw=1.6, ms=14)
+cells(ax, 6.6, 0.4, [1, 3, 5, 7, 9], w=0.8, h=0.9, gap=0.1, fs=14)
+frame(ax, 6.6, 6.6 + 5 * 0.9 - 0.1, 0.4, 0.9, RED)
+label(ax, 8.85, 2.1, "줄 5장", fs=11, color=INK)
+save(fig, OUT, "a07-extend.svg")
+
+# 8. 뒤죽박죽 64장: 짧은 줄 → 32장씩 늘리기 → 한 번 합치기
+random.seed(3)                            # lab/07_timsort.py 와 같은 뒤죽박죽 순서
+MIXED = random.sample(range(1, 65), 64)
+RUNS = [[MIXED[0]]]
+for a, b in zip(MIXED, MIXED[1:]):
+    if a < b:
+        RUNS[-1].append(b)
+    else:
+        RUNS.append([b])
+fig, ax = canvas(7.2, 3.5, 12, 5.8)
+cw = 11.2 / 64
+x = 0.4
+for r in RUNS:
+    rw = len(r) * cw
+    ax.add_patch(Rectangle((x, 4.6), rw - 0.04, 0.55, fc=NOTE, ec=INK, lw=0.7))
+    x += rw
+label(ax, 6.0, 5.5, f"뒤죽박죽 64장 (나누면 줄 {len(RUNS)}개)", fs=11, color=INK)
+arrow(ax, (6.0, 4.45), (6.0, 3.6), lw=1.5, ms=13)
+label(ax, 6.3, 4.0, "첫 줄부터 32장까지 끼우기", fs=10.5, color=RED, ha="left", bold=True)
+ax.add_patch(Rectangle((0.4, 2.8), 5.56, 0.6, fc=PINK, ec=RED, lw=1.8))
+ax.add_patch(Rectangle((6.04, 2.8), 5.56, 0.6, fc=PINK, ec=RED, lw=1.8))
+label(ax, 3.18, 3.1, "32장", fs=11.5, color=RED, bold=True)
+label(ax, 8.82, 3.1, "32장", fs=11.5, color=RED, bold=True)
+arrow(ax, (6.0, 2.65), (6.0, 1.8), lw=1.5, ms=13)
+label(ax, 6.3, 2.2, "합치기", fs=10.5, color=INK, ha="left", bold=True)
+ax.add_patch(Rectangle((0.4, 1.0), 11.2, 0.6, fc=NOTE, ec=INK, lw=1.4))
+label(ax, 6.0, 1.3, "64장", fs=11.5, bold=True)
+save(fig, OUT, "a07-random.svg")

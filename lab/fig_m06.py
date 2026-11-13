@@ -28,8 +28,16 @@ BLUE, GREEN = "#7da2c8", "#8fb58f"
 LIGHT = "#e9ecef"
 
 
+FMT = os.environ.get("FIG_FMT", "svg")
+if os.environ.get("FIG_OUT"):
+    OUT = os.environ["FIG_OUT"]
+    os.makedirs(OUT, exist_ok=True)
+
+
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    if FMT != "svg":
+        name = name.rsplit(".", 1)[0] + "." + FMT
+    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -170,50 +178,21 @@ def honeycomb(x0, y0, cols, rows, a=0.42):
     return sorted(pts), [(x0 + c * w + (w / 2 if r % 2 else 0), y0 + r * h) for r in range(rows) for c in range(cols)]
 
 
-# 1. 여는 장면
-fig, ax = canvas(8.0, 4.2, 13.0, 6.8)
-cup(ax, 3.5, 0.6, 5.0, 4.6)
-ax.add_patch(Rectangle((3.75, 0.65), 4.5, 3.6, fc="#cfe3f3", ec="none"))
-ax.add_patch(Rectangle((4.6, 3.05), 1.4, 1.35, fc=ICE, ec=INK, lw=1.4))
-ax.plot([3.75, 8.25], [4.25, 4.25], color=WATER, lw=1.2)
-ax.add_patch(Ellipse((6.9, 0.95), 1.0, 0.55, fc=STONE, ec=INK, lw=1.2))
-ax.annotate("얼음", (6.0, 4.3), (9.4, 4.9), fontsize=10, arrowprops=dict(arrowstyle="-", color=INK, lw=1))
-ax.annotate("돌멩이", (7.4, 1.0), (9.4, 1.0), fontsize=10, arrowprops=dict(arrowstyle="-", color=INK, lw=1))
-ax.text(6.5, 6.3, "같은 물인데 얼음은 왜 뜰까?", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+# 1. 여는 장면: 얼음은 뜨고 돌멩이는 가라앉아요
+fig, ax = canvas(7.0, 4.2, 11.6, 6.8)
+cup(ax, 2.0, 0.6, 5.0, 4.6)
+ax.add_patch(Rectangle((2.25, 0.65), 4.5, 3.6, fc="#cfe3f3", ec="none"))
+ax.add_patch(Rectangle((3.1, 3.05), 1.4, 1.35, fc=ICE, ec=INK, lw=1.4))
+ax.plot([2.25, 6.75], [4.25, 4.25], color=WATER, lw=1.2)
+ax.add_patch(Ellipse((5.4, 0.95), 1.0, 0.55, fc=STONE, ec=INK, lw=1.2))
+ax.annotate("얼음", (4.5, 4.3), (7.9, 4.9), fontsize=11, arrowprops=dict(arrowstyle="-", color=INK, lw=1))
+ax.annotate("돌멩이", (5.9, 1.0), (7.9, 1.0), fontsize=11, arrowprops=dict(arrowstyle="-", color=INK, lw=1))
+ax.text(3.8, 5.6, "?", ha="center", va="center", fontsize=30, color=RED, fontweight="bold")
 save(fig, "m06-cup.svg")
 
-# 2. 이 편의 지도
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["같은 크기에 얼마나 무거울까", "물보다 가벼우면 떠요", "물은 얼면 듬성듬성", "얼음은 조금 가벼워요"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=9.5, fontweight="bold")
-    cx = x + 1.9
-    if i == 0:
-        for bx, n in [(cx - 1.4, 9), (cx + 0.2, 3)]:
-            ax.add_patch(Rectangle((bx, 1.7), 1.2, 1.2, fc="white", ec=INK, lw=1))
-            for k in range(n):
-                particle(ax, bx + 0.25 + (k % 3) * 0.35 + (0.1 if n < 9 else 0), 1.95 + (k // 3) * 0.35 + (0.3 if n < 9 else 0), r=0.12)
-    elif i in (1, 3):
-        ax.add_patch(Rectangle((cx - 1.4, 1.6), 2.8, 1.6, fc="#cfe3f3", ec=INK, lw=1))
-        if i == 1:
-            ax.add_patch(Rectangle((cx - 1.1, 3.0), 1.2, 0.35, fc=WOOD, ec=INK, lw=1))
-            ax.add_patch(Ellipse((cx + 0.7, 1.8), 0.5, 0.3, fc=STONE, ec=INK, lw=1))
-        else:
-            ax.add_patch(Rectangle((cx - 0.5, 2.6), 1.0, 0.75, fc=ICE, ec=INK, lw=1))
-    else:
-        hx = [(cx + 0.55 * math.cos(math.radians(90 + 60 * k)), 2.5 + 0.55 * math.sin(math.radians(90 + 60 * k))) for k in range(7)]
-        ax.plot([p[0] for p in hx], [p[1] for p in hx], color=INK, lw=1.2, zorder=3)
-        for p in hx[:6]:
-            ax.add_patch(Circle(p, 0.15, fc=WATER, ec=INK, lw=0.7, zorder=4))
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "m06-map.svg")
-
-# 3. 같은 크기 상자
-fig, ax = canvas(9.0, 4.0, 15.0, 6.6)
-for x, dense, lab in [(1.2, True, "빽빽해요: 무거워요"), (8.6, False, "듬성듬성해요: 가벼워요")]:
+# 2. 같은 크기 상자
+fig, ax = canvas(8.0, 3.8, 13.6, 6.4)
+for x, dense, lab in [(1.0, True, "빽빽"), (8.0, False, "듬성듬성")]:
     ax.add_patch(Rectangle((x, 1.4), 4.4, 4.4, fc="white", ec=INK, lw=1.6))
     if dense:
         for i in range(8):
@@ -222,29 +201,63 @@ for x, dense, lab in [(1.2, True, "빽빽해요: 무거워요"), (8.6, False, "�
     else:
         for (dx, dy) in [(0.8, 1.0), (2.4, 0.8), (3.6, 1.6), (1.4, 2.4), (3.0, 3.0), (0.9, 3.7), (2.2, 3.9), (3.7, 3.8)]:
             particle(ax, x + dx, 1.4 + dy, r=0.22, fc=STONE)
-    ax.text(x + 2.2, 0.8, lab, ha="center", va="center", fontsize=11, fontweight="bold")
+    ax.text(x + 2.2, 0.8, lab, ha="center", va="center", fontsize=12, fontweight="bold")
 save(fig, "m06-boxes.svg")
 
-# 4. 통나무와 조약돌
-fig, ax = canvas(9.0, 4.0, 15.0, 6.6)
+
+# 3. 저울: 같은 크기의 물과 대어 보기
+def scale(ax, y, left_fc, tilt, name, lab, col):
+    ax.add_patch(Polygon([(4.6, y), (5.4, y), (5.0, y + 1.0)], closed=True, fc=GREY, ec=INK, lw=1))
+    lx, rx = 2.6, 7.4
+    ly, ry = y + 1.0 + tilt, y + 1.0 - tilt
+    ax.plot([lx, rx], [ly, ry], color=INK, lw=2)
+    for x, yy in [(lx, ly), (rx, ry)]:
+        ax.plot([x - 0.9, x + 0.9], [yy - 0.05, yy - 0.05], color=INK, lw=2)
+    ax.add_patch(Rectangle((lx - 0.5, ly), 1.0, 1.0, fc=left_fc, ec=INK, lw=1.2))
+    ax.add_patch(Rectangle((rx - 0.5, ry), 1.0, 1.0, fc="white", ec=INK, lw=1.2))
+    ax.add_patch(Rectangle((rx - 0.45, ry + 0.05), 0.9, 0.85, fc="#cfe3f3", ec="none"))
+    ax.text(lx, ly - 0.45, name, ha="center", va="center", fontsize=11)
+    ax.text(rx, ry - 0.45, "같은 크기의 물", ha="center", va="center", fontsize=11)
+    ax.text(9.2, y + 1.3, lab, ha="left", va="center", fontsize=13, color=col, fontweight="bold")
+
+
+fig, ax = canvas(8.0, 4.8, 12.4, 8.0)
+scale(ax, 4.6, WOOD, 0.35, "나무", "뜸", INK)
+scale(ax, 0.6, STONE, -0.35, "돌멩이", "가라앉음", RED)
+save(fig, "m06-scale.svg")
+
+# 4. 통나무와 돌멩이
+fig, ax = canvas(7.6, 3.8, 12.4, 6.2)
 ax.add_patch(Rectangle((0.8, 0.6), 8.4, 4.4, fc="#cfe3f3", ec=INK, lw=1.4))
 ax.add_patch(FancyBboxPatch((1.6, 4.55), 4.4, 0.7, boxstyle="round,pad=0.1", fc=WOOD, ec=INK, lw=1.2))
 ax.add_patch(Ellipse((6.0, 4.9), 0.5, 0.8, fc="#e0c49e", ec=INK, lw=1.2))
-ax.add_patch(Ellipse((7.4, 0.85), 0.5, 0.3, fc=STONE, ec=INK, lw=1.2))
-ax.text(9.6, 5.0, "통나무: 같은 크기의\n물보다 가벼워요", ha="left", va="center", fontsize=10.5, fontweight="bold")
-ax.text(9.6, 1.0, "돌멩이: 같은 크기의\n물보다 무거워요", ha="left", va="center", fontsize=10.5, fontweight="bold",
-        color=RED)
+ax.add_patch(Ellipse((7.4, 0.85), 0.5, 0.3, fc=STONE, ec=RED, lw=1.8))
+ax.text(9.6, 4.9, "큰 통나무", ha="left", va="center", fontsize=11, fontweight="bold")
+ax.text(9.6, 0.9, "작은 돌멩이", ha="left", va="center", fontsize=11, fontweight="bold", color=RED)
 save(fig, "m06-log.svg")
 
-# 5. 물과 얼음 고리
-fig, ax = canvas(10.0, 4.6, 16.0, 7.4)
+# 5. 쇠 덩어리와 쇠 배
+fig, ax = canvas(8.6, 3.8, 14.4, 6.2)
+for x0 in (0.4, 7.6):
+    ax.add_patch(Rectangle((x0, 0.6), 6.4, 4.2, fc="#cfe3f3", ec=INK, lw=1.4))
+ax.add_patch(Rectangle((3.0, 0.62), 1.2, 0.8, fc=STONE, ec=INK, lw=1.4))
+ax.text(3.6, 0.1, "쇠 덩어리", ha="center", va="center", fontsize=11, fontweight="bold")
+hull = [(8.6, 5.6), (13.0, 5.6), (12.4, 4.0), (9.2, 4.0)]
+ax.add_patch(Polygon(hull, closed=True, fc="white", ec=INK, lw=2.4))
+ax.add_patch(Polygon([(8.75, 5.5), (12.85, 5.5), (12.32, 4.12), (9.28, 4.12)], closed=True, fc="#fbe3dc", ec="none"))
+ax.text(10.8, 4.85, "공기", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(10.8, 0.1, "쇠 배", ha="center", va="center", fontsize=11, fontweight="bold")
+save(fig, "m06-ship.svg")
+
+# 6. 물과 얼음 고리 (같은 수의 알갱이)
+fig, ax = canvas(10.0, 4.4, 16.0, 6.8)
 pts, centers = honeycomb(9.5, 1.7, 4, 4, a=0.5)
 n = len(pts)
 box(ax, 0.6, 1.0, 6.2, 4.8, fc="#eef5fb")
-ax.text(3.7, 0.4, "물: 바짝 모여 있어요", ha="center", va="center", fontsize=11, fontweight="bold")
+ax.text(3.7, 0.4, "물", ha="center", va="center", fontsize=12, fontweight="bold")
 placed = []
 y = 1.35
-while len(placed) < n and y < 5.6:
+while len(placed) < n:
     x = 0.95 + random.uniform(0, 0.2)
     while x < 6.55 and len(placed) < n:
         placed.append((x + random.uniform(-0.05, 0.05), y + random.uniform(-0.05, 0.05)))
@@ -260,41 +273,23 @@ for i, p in enumerate(pts):
 for p in pts:
     ax.add_patch(Circle(p, 0.19, fc=WATER, ec=INK, lw=0.7, zorder=4))
 cx, cy = centers[9]
-ax.annotate("빈 자리", (cx, cy), (cx + 0.3, 6.5), fontsize=10, color=RED, fontweight="bold", ha="center",
+ax.add_patch(Circle((cx, cy), 0.28, fc="none", ec=RED, lw=1.8, zorder=5))
+ax.annotate("빈 자리", (cx, cy + 0.3), (cx + 0.3, 6.4), fontsize=11, color=RED, fontweight="bold", ha="center",
             arrowprops=dict(arrowstyle="-", color=RED, lw=1))
-ax.text(12.0, 0.4, "얼음: 여섯씩 이어진 고리", ha="center", va="center", fontsize=11, fontweight="bold")
-ax.text(5.0, 7.0, "같은 수의 알갱이가 얼음이 되면 자리를 더 차지해요", ha="center", va="center", fontsize=10)
+ax.text(12.0, 0.4, "얼음", ha="center", va="center", fontsize=12, fontweight="bold")
+print("m06-rings 알갱이 수", n, len(placed))
 save(fig, "m06-rings.svg")
 
-# 6. 가득 채워 얼리면
-fig, ax = canvas(9.0, 3.8, 15.0, 6.2)
+# 7. 얼리면 높이가 올라가요
+fig, ax = canvas(7.6, 3.6, 12.4, 5.6)
 cup(ax, 1.0, 0.6, 3.2, 3.8)
 ax.add_patch(Polygon([(1.14, 3.7), (4.06, 3.7), (3.95, 0.65), (1.25, 0.65)], closed=True, fc="#cfe3f3", ec="none"))
-ax.plot([0.8, 4.4], [3.7, 3.7], color=RED, lw=1.2, ls="--")
+ax.plot([0.8, 4.4], [3.7, 3.7], color=RED, lw=1.4, ls="--")
+ax.text(2.6, 0.1, "물", ha="center", va="center", fontsize=11, fontweight="bold")
 arrow(ax, (5.0, 2.4), (7.0, 2.4))
-ax.text(6.0, 3.0, "냉동실에서 얼리면", ha="center", va="center", fontsize=9)
+ax.text(6.0, 3.0, "얼리기", ha="center", va="center", fontsize=11)
 cup(ax, 7.8, 0.6, 3.2, 3.8)
 ax.add_patch(Polygon([(7.89, 4.05), (10.91, 4.05), (10.75, 0.65), (8.05, 0.65)], closed=True, fc=ICE, ec="none"))
-ax.plot([7.6, 11.2], [3.7, 3.7], color=RED, lw=1.2, ls="--")
-ax.text(11.6, 4.2, "얼면 높이가\n올라가요", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.plot([7.6, 11.2], [3.7, 3.7], color=RED, lw=1.4, ls="--")
+ax.text(9.4, 0.1, "얼음", ha="center", va="center", fontsize=11, fontweight="bold")
 save(fig, "m06-freeze.svg")
-
-# 7. 저울: 같은 크기의 물과 대어 보기
-def scale(ax, y, left_fc, tilt, lab, col):
-    ax.add_patch(Polygon([(4.6, y), (5.4, y), (5.0, y + 1.0)], closed=True, fc=GREY, ec=INK, lw=1))
-    lx, rx = 2.6, 7.4
-    ly, ry = y + 1.0 + tilt, y + 1.0 - tilt
-    ax.plot([lx, rx], [ly, ry], color=INK, lw=2)
-    for x, yy in [(lx, ly), (rx, ry)]:
-        ax.plot([x - 0.9, x + 0.9], [yy - 0.05, yy - 0.05], color=INK, lw=2)
-    ax.add_patch(Rectangle((lx - 0.5, ly), 1.0, 1.0, fc=left_fc, ec=INK, lw=1.2))
-    ax.add_patch(Rectangle((rx - 0.5, ry), 1.0, 1.0, fc="white", ec=INK, lw=1.2))
-    ax.add_patch(Rectangle((rx - 0.45, ry + 0.05), 0.9, 0.85, fc="#cfe3f3", ec="none"))
-    ax.text(rx, ry - 0.45, "같은 크기의 물", ha="center", va="center", fontsize=9)
-    ax.text(9.2, y + 1.3, lab, ha="left", va="center", fontsize=11, color=col, fontweight="bold")
-
-
-fig, ax = canvas(9.0, 4.8, 15.0, 8.0)
-scale(ax, 4.6, WOOD, 0.35, "나무가 가벼워요: 떠요", INK)
-scale(ax, 0.6, STONE, -0.35, "돌멩이가 무거워요: 가라앉아요", RED)
-save(fig, "m06-scale.svg")

@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-08T10:45:55.814150</dc:date>
+    <dc:date>2026-11-13T22:07:08.643996</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -30,102 +30,93 @@ z
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 18 228.672 
-L 419.76 228.672 
-L 419.76 18 
-L 18 18 
-L 18 228.672 
-z
-" clip-path="url(#p009f92d13b)" style="fill: none"/>
-   </g>
-   <g id="patch_3">
     <path d="M 84.96 196.752 
 L 352.8 196.752 
 L 352.8 62.688 
 L 84.96 62.688 
 z
-" clip-path="url(#p009f92d13b)" style="fill: #ffffff; stroke: #555555; stroke-width: 2.2; stroke-linejoin: miter"/>
+" clip-path="url(#pd84f9881d8)" style="fill: #ffffff; stroke: #555555; stroke-width: 2.2; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_4">
+   <g id="patch_3">
     <path d="M 79.938 62.688 
 L 357.822 62.688 
 L 357.822 56.304 
 L 79.938 56.304 
 z
-" clip-path="url(#p009f92d13b)" style="fill: #555555; stroke: #555555; stroke-linejoin: miter"/>
+" clip-path="url(#pd84f9881d8)" style="fill: #555555; stroke: #555555; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_5">
+   <g id="patch_4">
     <path d="M 89.982 191.964 
 L 347.778 191.964 
 L 347.778 172.812 
 L 89.982 172.812 
 z
-" clip-path="url(#p009f92d13b)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#pd84f9881d8)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_6">
+   <g id="patch_5">
     <path d="M 91.656 168.024 
 L 174.24 168.024 
 L 174.24 67.476 
 L 91.656 67.476 
 z
-" clip-path="url(#p009f92d13b)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#pd84f9881d8)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_7">
+   <g id="patch_6">
     <path d="M 106.164 126.6876 
 L 159.732 126.6876 
 L 159.732 108.8124 
 L 106.164 108.8124 
 z
-" clip-path="url(#p009f92d13b)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#pd84f9881d8)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_8">
+   <g id="patch_7">
     <path d="M 177.588 168.024 
 L 260.172 168.024 
 L 260.172 67.476 
 L 177.588 67.476 
 z
-" clip-path="url(#p009f92d13b)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#pd84f9881d8)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_9">
+   <g id="patch_8">
     <path d="M 192.096 126.6876 
 L 245.664 126.6876 
 L 245.664 108.8124 
 L 192.096 108.8124 
 z
-" clip-path="url(#p009f92d13b)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#pd84f9881d8)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_10">
+   <g id="patch_9">
     <path d="M 263.52 168.024 
 L 346.104 168.024 
 L 346.104 67.476 
 L 263.52 67.476 
 z
-" clip-path="url(#p009f92d13b)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#pd84f9881d8)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_11">
+   <g id="patch_10">
     <path d="M 278.028 126.6876 
 L 331.596 126.6876 
 L 331.596 108.8124 
 L 278.028 108.8124 
 z
-" clip-path="url(#p009f92d13b)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#pd84f9881d8)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_1">
     <path d="M 175.914 169.62 
 L 175.914 67.476 
-" clip-path="url(#p009f92d13b)" style="fill: none; stroke: #555555; stroke-width: 3.2"/>
+" clip-path="url(#pd84f9881d8)" style="fill: none; stroke: #555555; stroke-width: 3.2"/>
    </g>
    <g id="line2d_2">
     <path d="M 261.846 169.62 
 L 261.846 67.476 
-" clip-path="url(#p009f92d13b)" style="fill: none; stroke: #555555; stroke-width: 3.2"/>
+" clip-path="url(#pd84f9881d8)" style="fill: none; stroke: #555555; stroke-width: 3.2"/>
    </g>
    <g id="line2d_3">
     <path d="M 101.7 190.368 
 L 110.07 182.388 
 L 103.374 179.196 
 L 111.744 171.216 
-" clip-path="url(#p009f92d13b)" style="fill: none; stroke: #e4572e; stroke-width: 2.2; stroke-linecap: square"/>
+" clip-path="url(#pd84f9881d8)" style="fill: none; stroke: #e4572e; stroke-width: 2.2; stroke-linecap: square"/>
    </g>
    <g id="text_1">
     <text style="fill: #555555; font: 700 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="218.88" y="50.847806" transform="rotate(-0 218.88 50.847806)">건물 = 컴퓨터 한 대</text>
@@ -142,13 +133,10 @@ L 111.744 171.216
    <g id="text_5">
     <text style="fill: #222222; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="304.812" y="121.231406" transform="rotate(-0 304.812 121.231406)">주문 장부</text>
    </g>
-   <g id="text_6">
-    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="218.88" y="219.612203" transform="rotate(-0 218.88 219.612203)">관리실 하나가 뚫리면 모든 칸이 열려요 (4편)</text>
-   </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p009f92d13b">
+  <clipPath id="pd84f9881d8">
    <rect x="18" y="18" width="401.76" height="210.672"/>
   </clipPath>
  </defs>

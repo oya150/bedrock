@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="437.76pt" height="252.216pt" viewBox="0 0 437.76 252.216" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-13T22:10:34.376509</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 252.216 
+L 437.76 252.216 
+L 437.76 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 28.044 201.456 
+L 182.052 201.456 
+L 182.052 40.932 
+L 28.044 40.932 
+z
+" clip-path="url(#p24a30655f6)" style="fill: #ffffff; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 38.088 170.0064 
+L 175.356 170.0064 
+L 175.356 112.6764 
+L 38.088 112.6764 
+z
+" clip-path="url(#p24a30655f6)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 40.0968 147.7296 
+L 173.3472 147.7296 
+L 173.3472 134.6256 
+L 40.0968 134.6256 
+z
+" clip-path="url(#p24a30655f6)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 195.444 214.56 
+L 409.716 214.56 
+L 409.716 34.38 
+L 195.444 34.38 
+z
+" clip-path="url(#p24a30655f6)" style="fill: #ffffff; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 195.444 48.1392 
+L 409.716 48.1392 
+L 409.716 34.38 
+L 195.444 34.38 
+z
+" clip-path="url(#p24a30655f6)" style="fill: #e9ecef; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 203.814 43.5528 
+C 204.43553 43.5528 205.031687 43.311174 205.471175 42.881137 
+C 205.910664 42.451101 206.1576 41.867764 206.1576 41.2596 
+C 206.1576 40.651436 205.910664 40.068099 205.471175 39.638063 
+C 205.031687 39.208026 204.43553 38.9664 203.814 38.9664 
+C 203.19247 38.9664 202.596313 39.208026 202.156825 39.638063 
+C 201.717336 40.068099 201.4704 40.651436 201.4704 41.2596 
+C 201.4704 41.867764 201.717336 42.451101 202.156825 42.881137 
+C 202.596313 43.311174 203.19247 43.5528 203.814 43.5528 
+z
+" clip-path="url(#p24a30655f6)" style="fill: #e4572e"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 212.184 43.5528 
+C 212.80553 43.5528 213.401687 43.311174 213.841175 42.881137 
+C 214.280664 42.451101 214.5276 41.867764 214.5276 41.2596 
+C 214.5276 40.651436 214.280664 40.068099 213.841175 39.638063 
+C 213.401687 39.208026 212.80553 38.9664 212.184 38.9664 
+C 211.56247 38.9664 210.966313 39.208026 210.526825 39.638063 
+C 210.087336 40.068099 209.8404 40.651436 209.8404 41.2596 
+C 209.8404 41.867764 210.087336 42.451101 210.526825 42.881137 
+C 210.966313 43.311174 211.56247 43.5528 212.184 43.5528 
+z
+" clip-path="url(#p24a30655f6)" style="fill: #f6c445"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 220.554 43.5528 
+C 221.17553 43.5528 221.771687 43.311174 222.211175 42.881137 
+C 222.650664 42.451101 222.8976 41.867764 222.8976 41.2596 
+C 222.8976 40.651436 222.650664 40.068099 222.211175 39.638063 
+C 221.771687 39.208026 221.17553 38.9664 220.554 38.9664 
+C 219.93247 38.9664 219.336313 39.208026 218.896825 39.638063 
+C 218.457336 40.068099 218.2104 40.651436 218.2104 41.2596 
+C 218.2104 41.867764 218.457336 42.451101 218.896825 42.881137 
+C 219.336313 43.311174 219.93247 43.5528 220.554 43.5528 
+z
+" clip-path="url(#p24a30655f6)" style="fill: #8fb58f"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 199.4616 131.3496 
+L 405.6984 131.3496 
+L 405.6984 117.5904 
+L 199.4616 117.5904 
+z
+" clip-path="url(#p24a30655f6)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 199.4616 147.7296 
+L 405.6984 147.7296 
+L 405.6984 133.9704 
+L 199.4616 133.9704 
+z
+" clip-path="url(#p24a30655f6)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 199.4616 164.1096 
+L 405.6984 164.1096 
+L 405.6984 150.3504 
+L 199.4616 150.3504 
+z
+" clip-path="url(#p24a30655f6)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 170.334 40.932 
+L 182.052 52.398 
+" clip-path="url(#p24a30655f6)" style="fill: none; stroke: #555555; stroke-width: 1.2; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="33.066" y="36.979487" transform="rotate(-0 33.066 36.979487)">order.yaml</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="34.74" y="58.586109" transform="rotate(-0 34.74 58.586109)">kind: Deployment</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="34.74" y="74.310909" transform="rotate(-0 34.74 74.310909)">name: order</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="34.74" y="90.035709" transform="rotate(-0 34.74 90.035709)">replicas: 3</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="34.74" y="105.760509" transform="rotate(-0 34.74 105.760509)">template:</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #222222; font: 10px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="43.11" y="126.8674" transform="rotate(-0 43.11 126.8674)">image: order:1</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #e4572e; font: 700 10px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="43.11" y="143.951037" transform="rotate(-0 43.11 143.951037)">env: CLOSE_TIME=22:00</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #222222; font: 10px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="43.11" y="160.951863" transform="rotate(-0 43.11 160.951863)">hostAliases: ledger</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="302.58" y="44.570537" transform="rotate(-0 302.58 44.570537)">터미널</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #222222; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="203.814" y="61.862109" transform="rotate(-0 203.814 61.862109)">$ kubectl apply -f order.yaml</text>
+   </g>
+   <g id="text_11">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="203.814" y="78.206016" transform="rotate(-0 203.814 78.206016)">deployment.apps/order configured</text>
+   </g>
+   <g id="text_12">
+    <text style="fill: #222222; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="203.814" y="94.586016" transform="rotate(-0 203.814 94.586016)">$ kubectl get pods</text>
+   </g>
+   <g id="text_13">
+    <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="203.814" y="111.002109" transform="rotate(-0 203.814 111.002109)">NAME                READY   AGE</text>
+   </g>
+   <g id="text_14">
+    <text style="fill: #e4572e; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="203.814" y="127.382109" transform="rotate(-0 203.814 127.382109)">order-5f8b-a3k9d    1/1     40s</text>
+   </g>
+   <g id="text_15">
+    <text style="fill: #e4572e; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="203.814" y="143.740781" transform="rotate(-0 203.814 143.740781)">order-5f8b-h6q2s    1/1     25s</text>
+   </g>
+   <g id="text_16">
+    <text style="fill: #e4572e; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="203.814" y="160.142109" transform="rotate(-0 203.814 160.142109)">order-5f8b-z7c4p    1/1     9s</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p24a30655f6">
+   <rect x="18" y="18" width="401.76" height="216.216"/>
+  </clipPath>
+ </defs>
+</svg>

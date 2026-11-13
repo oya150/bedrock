@@ -1,17 +1,20 @@
 """컴퓨터 3편 그림 만들기. 실행: python lab/fig_c03.py  → docs/computer/img/03/*.svg
 
+확인용 PNG: FIG_FMT=png FIG_OUT=<폴더> python lab/fig_c03.py
 글자는 SVG 안에 글자로 남긴다(글꼴 모양을 파일에 넣지 않는다). 보는 쪽 글꼴로 그려진다.
 웃는 얼굴은 글꼴마다 모양이 달라서 글자 대신 도형으로 그린다. 강조는 빨강 하나만 쓴다.
 """
+import math
 import os
 
 import matplotlib
 
 matplotlib.use("svg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch, Rectangle, Wedge
+from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch, Polygon, Rectangle, Wedge
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "computer", "img", "03")
+FMT = os.environ.get("FIG_FMT", "svg")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "computer", "img", "03")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -30,7 +33,8 @@ WORD = ["사", "랑", "해", "요", SMILE]
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    fig.savefig(os.path.join(OUT, name.replace(".svg", "." + FMT)), bbox_inches="tight", pad_inches=0.25,
+                dpi=110)
     plt.close(fig)
 
 
@@ -53,6 +57,16 @@ def smiley(ax, cx, cy, r):
     for dx in (-0.35, 0.35):
         ax.add_patch(Circle((cx + dx * r, cy + 0.22 * r), 0.12 * r, fc="#222"))
     ax.add_patch(Wedge((cx, cy - 0.05 * r), 0.55 * r, 200, 340, width=0.14 * r, fc="#222"))
+
+
+def star(ax, cx, cy, r):
+    """새 이모지 자리에 그리는 별 도형."""
+    pts = []
+    for k in range(10):
+        a = math.pi / 2 + k * math.pi / 5
+        rr = r if k % 2 == 0 else r * 0.45
+        pts.append((cx + rr * math.cos(a), cy + rr * math.sin(a)))
+    ax.add_patch(Polygon(pts, closed=True, fc=YEL, ec="#b8901e", lw=1))
 
 
 def glyph(ax, ch, cx, cy, size=20, color="#222"):
@@ -87,26 +101,23 @@ arrow(ax, (4.8, 3.1), (8.2, 3.1))
 ax.text(6.5, 3.5, "보내기", ha="center", fontsize=13)
 save(fig, "c03-send.svg")
 
-# 2. 이 편의 지도: 글자 → 번호로 바꾸기 → 번호 보내기 → 번호 받기 → 다시 글자
-fig, ax = canvas(12.4, 3.0, 20.0, 4.5)
-steps = ["글자", "번호로\n바꾸기", "번호\n보내기", "번호\n받기", "다시\n글자"]
-for i, t in enumerate(steps):
-    x = 0.3 + i * 4.0
-    box(ax, x, 0.4, 3.2, 3.2)
-    ax.text(x + 1.6, 2.75, t, ha="center", va="center", fontsize=13, fontweight="bold")
-    for k, ch in enumerate(WORD):
-        cx = x + 0.4 + k * 0.6
-        if i in (0, 4):
-            glyph(ax, ch, cx, 1.1, size=13)
-        else:
-            ax.text(cx, 1.1, str(MINE[ch]), ha="center", va="center", fontsize=13, color=INK)
-    if i < 4:
-        arrow(ax, (x + 3.35, 2.0), (x + 3.85, 2.0))
-ax.text(9.9, 4.05, "가는 중", ha="center", fontsize=12, color=INK)
-for x0, x1, who in [(0.3, 7.5, "내 휴대폰"), (12.3, 19.5, "할머니 휴대폰")]:
-    ax.plot([x0, x1], [3.85, 3.85], color=INK, lw=1.2)
-    ax.text((x0 + x1) / 2, 4.05, who, ha="center", fontsize=12, color=INK)
-save(fig, "c03-map.svg")
+# 2. 사진은 칸마다 색 번호가 됐다(2편의 색 번호표: 0 흰색, 1 검정, 2 노랑). 글자는?
+fig, ax = canvas(8.6, 3.6, 13.4, 5.6)
+ax.text(2.6, 5.15, "사진", ha="center", fontsize=14, fontweight="bold")
+ax.text(9.4, 5.15, "글자", ha="center", fontsize=14, fontweight="bold")
+colors = {0: "white", 1: "#222", 2: YEL}
+pic = [[2, 2, 2], [1, 2, 1], [2, 1, 2]]
+for r, row in enumerate(pic):
+    for c, v in enumerate(row):
+        x, y = 0.5 + c * 1.4, 3.3 - r * 1.4
+        ax.add_patch(Rectangle((x, y), 1.4, 1.4, fc=colors[v], ec=GREY, lw=1.2))
+        ax.text(x + 0.7, y + 0.7, str(v), ha="center", va="center", fontsize=15,
+                color="white" if v == 1 else "#222", fontweight="bold")
+for i, ch in enumerate(["사", "랑", "해", "요"]):
+    x = 6.8 + i * 1.35
+    cell(ax, x, 3.0, 1.2, 1.2, ch=ch, size=20)
+    cell(ax, x, 1.4, 1.2, 1.2, ch="?", size=22, ec=RED, lw=2, color=RED)
+save(fig, "c03-only-numbers.svg")
 
 # 3. 글자 번호표
 fig, ax = canvas(7.4, 2.6, 11, 4.0)
@@ -147,25 +158,31 @@ for i in range(5):
     cell(ax, x, 0.8, 1.2, 1.2, ch=GRANDMA[i + 1], size=20, ec=RED if wrong else GREY, lw=3 if wrong else 1.2,
          color=RED if wrong else "#222")
     ax.add_patch(FancyArrowPatch((x + 0.6, 4.2), (x + 0.6, 2.1), arrowstyle="-|>", mutation_scale=14, color=GREY, lw=1.2))
-ax.text(7.75, 0.2, "할머니 표(만약에): 1번은 고, 2번은 래", ha="center", va="center", fontsize=12, color=RED)
+ax.text(7.75, 0.15, "다른 표: 1 → 고, 2 → 래", ha="center", va="center", fontsize=12, color=RED)
 save(fig, "c03-wrong.svg")
 
-# 6. 세상 글자가 다 들어 있는 큰 표의 한 부분. 번호는 유니코드 실제 값(1,000보다 작은 것만 숫자로)
-fig, ax = canvas(8.4, 4.4, 12.6, 6.6)
-for row, chars, y in [(0, ["A", "B", "C", "D", "E"], 4.2), (1, ["가", SMILE], 1.4)]:
-    for k, ch in enumerate(chars):
-        x = 0.6 + k * 2.3
-        cell(ax, x, y, 1.8, 1.4, ch=ch, size=22)
-        if row == 0:
-            cell(ax, x, y - 0.9, 1.8, 0.9, num=ord(ch), size=15, color=INK)
-        elif ch == "가":
-            # 1,000 상한의 유일한 예외(정책 1장): 한글의 진짜 번호 하나를 보여 준다
-            cell(ax, x, y - 0.9, 1.8, 0.9, num=ord(ch), size=15, color=RED)
-        else:
-            ax.add_patch(Rectangle((x, y - 0.9), 1.8, 0.9, fc="white", ec=GREY, lw=1.2))
-            ax.text(x + 0.9, y - 0.45, "더 큰 번호", ha="center", va="center", fontsize=12, color=INK)
-ax.text(6.3, 6.25, "문자 코드의 한 조각", ha="center", fontsize=13, color=INK)
-ax.text(12.4, 6.1, "⋯", fontsize=20, color=INK, ha="right")
+# 6. 문자 코드(유니코드)의 실제 번호 몇 개. 번호는 파이썬 ord()로 낸 값
+fig, ax = canvas(9.4, 3.4, 14.4, 5.0)
+ax.text(7.2, 4.4, "유니코드", ha="center", fontsize=13, color=INK)
+for k, ch in enumerate(["A", "B", "a", "가", SMILE]):
+    x = 0.5 + k * 2.8
+    hot = ch == "가"
+    cell(ax, x, 2.2, 2.3, 1.6, ch=ch, size=24)
+    cell(ax, x, 1.0, 2.3, 1.2, num=ord(ch), size=15, color=RED if hot else INK,
+         ec=RED if hot else GREY, lw=2.5 if hot else 1.2)
 save(fig, "c03-world.svg")
+
+# 7. 번호는 왔는데 그림이 없으면 빈 네모
+fig, ax = canvas(8.6, 4.4, 13, 6.6)
+cell(ax, 4.9, 5.0, 3.2, 1.1, num="새 이모지 번호", size=12, color=INK)
+for x, has, label in [(0.6, True, "그림 있음"), (8.0, False, "그림 없음")]:
+    box(ax, x, 0.5, 4.4, 3.4, fc=PAPER)
+    ax.text(x + 2.2, 0.85, label, ha="center", fontsize=12, color=INK if has else RED)
+    if has:
+        star(ax, x + 2.2, 2.45, 0.75)
+    else:
+        ax.add_patch(Rectangle((x + 1.6, 1.8), 1.2, 1.3, fc="white", ec=RED, lw=2.5))
+    arrow(ax, (6.5, 4.9), (x + 2.2, 4.0))
+save(fig, "c03-tofu.svg")
 
 print("ok")

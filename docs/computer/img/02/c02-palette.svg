@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-22T11:46:15.035634</dc:date>
+    <dc:date>2026-11-13T21:39:25.361684</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 81.916364 128.88
 L 81.916364 77.136 
 L 32.203636 77.136 
 z
-" clip-path="url(#p67f74e9b04)" style="fill: #ffffff; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p44442f2a38)" style="fill: #ffffff; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 160.036364 128.88 
@@ -43,7 +43,7 @@ L 209.749091 128.88
 L 209.749091 77.136 
 L 160.036364 77.136 
 z
-" clip-path="url(#p67f74e9b04)" style="fill: #222222; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p44442f2a38)" style="fill: #222222; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 287.869091 128.88 
@@ -51,7 +51,7 @@ L 337.581818 128.88
 L 337.581818 77.136 
 L 287.869091 77.136 
 z
-" clip-path="url(#p67f74e9b04)" style="fill: #f6c445; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p44442f2a38)" style="fill: #f6c445; stroke: #555555; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #555555; font: 14px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="213.3" y="36.48" transform="rotate(-0 213.3 36.48)">색 번호표</text>
@@ -77,7 +77,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p67f74e9b04">
+  <clipPath id="p44442f2a38">
    <rect x="18" y="18" width="390.6" height="133.056"/>
   </clipPath>
  </defs>

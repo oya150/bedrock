@@ -2,16 +2,18 @@
 
 글자는 SVG 안에 글자로 남긴다(글꼴 모양을 파일에 넣지 않는다). 보는 쪽 글꼴로 그려진다.
 바뀐 글자(암호)와 열쇠만 빨강으로 칠한다.
+확인용 PNG: FIG_FMT=png FIG_OUT=<폴더> python lab/fig_c10.py
 """
 import os
 
 import matplotlib
 
-matplotlib.use("svg")
+FMT = os.environ.get("FIG_FMT", "svg")
+matplotlib.use("svg" if FMT == "svg" else "agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "computer", "img", "10")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "computer", "img", "10")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -27,7 +29,8 @@ ROW = "가나다라마바사아자차카타파하"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    name = name.replace(".svg", "." + FMT)
+    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -112,29 +115,6 @@ note(ax, xs[2] - 0.75, 2.05, 1.5, 0.9, "바다 가자", size=11)
 question(ax, xs[2] + 1.3, 4.0)
 save(fig, "c10-note.svg")
 
-# 2. 이 편의 지도: 쪽지 → 바꾸는 규칙 → 비밀 숫자(열쇠) → 번호에 더하기
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["쪽지", "한 칸씩 밀기", "열쇠", "번호에 더하기"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=13, fontweight="bold")
-    if i == 0:
-        note(ax, x + 0.8, 1.7, 2.2, 1.5, "바다 가자", size=12)
-    elif i == 1:
-        ax.text(x + 1.0, 2.5, "바", ha="center", va="center", fontsize=22, fontweight="bold")
-        arrow(ax, (x + 1.45, 2.5), (x + 2.35, 2.5))
-        ax.text(x + 2.8, 2.5, "사", ha="center", va="center", fontsize=22, fontweight="bold", color=RED)
-    elif i == 2:
-        ax.text(x + 1.9, 2.5, "1", ha="center", va="center", fontsize=30, fontweight="bold", color=RED)
-        ax.add_patch(Circle((x + 1.9, 2.5), 0.65, fc="none", ec=RED, lw=2))
-    else:
-        ax.text(x + 1.9, 3.1, "바는 6", ha="center", va="center", fontsize=14, color=INK)
-        ax.text(x + 1.9, 2.2, "6 + 1 = 7", ha="center", va="center", fontsize=17, fontweight="bold")
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "c10-map.svg")
-
 # 3. 번호로만 쓰면: 번호표를 가진 사람은 누구나 읽는다
 fig, ax = canvas(10.4, 3.6, 17.4, 6.0)
 strip(ax, 4.2, 4.3, ROW, c=0.66, hl=(0, 2, 5, 8), hl_color=INK, nums=True)
@@ -145,7 +125,7 @@ kid(ax, 9.3, 0.5, 2.4)
 arrow(ax, (3.6, 1.7), (8.5, 1.7))
 note(ax, 11.0, 1.0, 3.0, 1.4, "바다 가자", size=16)
 arrow(ax, (10.1, 1.7), (10.9, 1.7))
-ax.text(12.5, 0.55, "중간 친구도 읽어요", ha="center", fontsize=12, color=INK)
+ax.text(12.5, 0.55, "중간 친구", ha="center", fontsize=12, color=INK)
 save(fig, "c10-plain.svg")
 
 # 4. 한 칸씩 밀기: 윗줄 글자를 바로 아래 글자로
@@ -158,7 +138,7 @@ ax.text(x0 - 0.3, 4.6 + c / 2, "원래 글자", ha="right", va="center", fontsiz
 ax.text(x0 - 0.3, 2.6 + c / 2, "바꿀 글자", ha="right", va="center", fontsize=12, color=RED)
 for i in sel:
     arrow(ax, (x0 + i * c + c / 2, 4.55), (x0 + i * c + c / 2, 2.6 + c + 0.05), lw=1.6)
-ax.text(x0 + 13.5 * c, 2.45, "하 다음은 다시 가", ha="center", va="top", fontsize=10, color=INK)
+ax.text(x0 + 13.5 * c, 2.45, "하 → 가", ha="center", va="top", fontsize=10, color=INK)
 ax.text(5.0, 1.0, "바다 가자", ha="center", va="center", fontsize=18, fontweight="bold")
 arrow(ax, (7.0, 1.0), (9.4, 1.0))
 ax.text(11.6, 1.0, shift("바다 가자", 1), ha="center", va="center", fontsize=18, fontweight="bold",
@@ -201,5 +181,43 @@ ax.text((9.8 + 14.0) / 2, 3.55, "보내기", ha="center", va="bottom", fontsize=
 ax.text(5.6, 4.6, "내 휴대폰", ha="center", fontsize=12, color=INK)
 ax.text(16.0, 4.6, "친구 휴대폰", ha="center", fontsize=12, color=INK)
 save(fig, "c10-add.svg")
+
+# 7. 글자 바퀴: 하 다음은 다시 가, 14칸 밀면 제자리
+import math
+fig, ax = canvas(5.6, 5.6, 9.0, 9.0)
+cx, cy, R = 4.5, 4.5, 3.3
+for i, ch in enumerate(ROW):
+    ang = math.pi / 2 - 2 * math.pi * i / len(ROW)
+    x, y = cx + R * math.cos(ang), cy + R * math.sin(ang)
+    on = ch in "하가"
+    ax.add_patch(Circle((x, y), 0.46, fc="white", ec=RED if on else INK, lw=2.2 if on else 1.2))
+    ax.text(x, y, ch, ha="center", va="center", fontsize=15, color=RED if on else "#222",
+            fontweight="bold" if on else "normal")
+    ax.text(cx + (R - 0.95) * math.cos(ang), cy + (R - 0.95) * math.sin(ang), str(i + 1),
+            ha="center", va="center", fontsize=10, color=INK)
+a0 = math.pi / 2 - 2 * math.pi * 13 / len(ROW)
+a1 = math.pi / 2
+R2 = R + 0.85
+arrow(ax, (cx + R2 * math.cos(a0), cy + R2 * math.sin(a0)), (cx + R2 * math.cos(a1) - 0.2, cy + R2 * math.sin(a1)),
+      color=RED, rad=-0.3)
+ax.text(cx, cy, "14글자", ha="center", va="center", fontsize=16, fontweight="bold", color=INK)
+save(fig, "c10-wheel.svg")
+
+# 8. 열쇠를 모르면 하나씩 되돌려 본다: 자바 라타
+fig, ax = canvas(8.4, 4.0, 14.0, 6.6)
+secret = shift("바다 가자", 3)
+ax.text(2.0, 5.6, secret, ha="center", va="center", fontsize=18, fontweight="bold", color=RED)
+ax.text(2.0, 4.8, "받은 쪽지", ha="center", va="center", fontsize=11, color=INK)
+for row, k in enumerate((1, 2, 3)):
+    y = 3.6 - row * 1.2
+    on = k == 3
+    ax.text(5.6, y, f"{k}칸 되돌리기", ha="right", va="center", fontsize=13, color=RED if on else INK,
+            fontweight="bold" if on else "normal")
+    arrow(ax, (6.0, y), (7.6, y), color=RED if on else INK)
+    ax.text(9.9, y, shift(secret, -k), ha="center", va="center", fontsize=17, color=RED if on else "#222",
+            fontweight="bold" if on else "normal")
+    ax.text(12.4, y, "O" if on else "X", ha="center", va="center", fontsize=16, color=RED if on else GREY,
+            fontweight="bold")
+save(fig, "c10-try.svg")
 
 print("ok")

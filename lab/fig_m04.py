@@ -8,11 +8,12 @@ import os
 
 import matplotlib
 
-matplotlib.use("svg")
+matplotlib.use("svg" if os.environ.get("FIG_FMT", "svg") == "svg" else "agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc, Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "04")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "04")
+FMT = os.environ.get("FIG_FMT", "svg")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -29,7 +30,8 @@ LIGHT = "#e9ecef"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    name = name.rsplit(".", 1)[0] + "." + FMT
+    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -165,49 +167,17 @@ def wind(ax, x, y, n=3, L=1.6):
 
 
 # 1. 여는 장면: 수영장에서 나오면
-fig, ax = canvas(9.0, 4.4, 15.0, 7.2)
+fig, ax = canvas(7.0, 3.6, 11.0, 5.6)
 kid(ax, 5.0, 0.8, 2.2)
 for (dx, dy) in [(-0.7, 3.4), (0.6, 3.0), (-0.4, 2.0), (0.8, 1.6), (-0.9, 1.2)]:
     ax.add_patch(Ellipse((5.0 + dx, 0.8 + dy), 0.18, 0.28, fc=WATER, ec=INK, lw=0.6))
 wind(ax, 0.6, 2.2, n=4, L=2.4)
-ax.text(1.8, 1.6, "바람", ha="center", va="center", fontsize=10)
-ax.text(7.2, 3.6, "으슬으슬", ha="left", va="center", fontsize=12, fontweight="bold")
-ax.text(7.5, 6.6, "물에서 나와 바람을 맞으면 왜 추울까?", ha="center", va="center", fontsize=12, color=RED,
-        fontweight="bold")
+ax.text(1.8, 1.6, "바람", ha="center", va="center", fontsize=12)
+ax.text(7.2, 3.6, "으슬으슬", ha="left", va="center", fontsize=13, color=RED, fontweight="bold")
 save(fig, "m04-pool.svg")
 
-# 2. 이 편의 지도
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["끓지 않아도 날아가요", "센 알갱이가 먼저 나가요", "남은 물은 식어요", "빨리 마르는 때"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=10.5, fontweight="bold")
-    cx = x + 1.9
-    if i in (0, 1, 2):
-        ax.add_patch(Rectangle((cx - 1.4, 1.5), 2.8, 0.9, fc="#eef5fb", ec=INK, lw=1))
-    if i == 0:
-        particle(ax, cx + 0.3, 3.0, r=0.17)
-        arrow(ax, (cx + 0.4, 3.15), (cx + 0.8, 3.6), color=RED, lw=1.4, ms=9)
-    elif i == 1:
-        for k in range(3):
-            particle(ax, cx - 0.8 + k * 0.8, 1.95, r=0.17)
-        particle(ax, cx, 2.9, r=0.17)
-        arrow(ax, (cx + 0.12, 3.05), (cx + 0.9, 3.6), color=RED, lw=1.8, ms=10)
-    elif i == 2:
-        for k in range(4):
-            particle(ax, cx - 1.0 + k * 0.65, 1.95, r=0.17)
-            arrow(ax, (cx - 0.82 + k * 0.65, 1.95), (cx - 0.6 + k * 0.65, 2.1), color=INK, lw=0.8, ms=6)
-    else:
-        ax.plot([cx - 1.6, cx + 1.6], [3.4, 3.4], color=INK, lw=1)
-        towel(ax, cx - 0.4, 2.0, 1.4, 1.4)
-        wind(ax, cx - 1.6, 2.2, n=3, L=1.0)
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "m04-map.svg")
-
-# 3. 표면에서 날아가는 알갱이
-fig, ax = canvas(10.0, 4.6, 16.0, 7.4)
+# 2. 표면에서 날아가는 알갱이
+fig, ax = canvas(9.0, 4.6, 14.0, 7.4)
 ax.add_patch(Rectangle((0.6, 0.8), 9.0, 3.6, fc="#eef5fb", ec=INK, lw=1.4))
 for i in range(4):
     for j in range(9):
@@ -220,13 +190,12 @@ for (x, y) in [(3.0, 5.4), (6.8, 6.1)]:
     particle(ax, x, y)
     arrow(ax, (x + 0.1, y + 0.25), (x + 0.6, y + 1.0), color=RED, lw=1.6, ms=10)
     ax.plot([x - 0.2, x - 0.6], [y - 0.3, y - 0.9], color=RED, lw=1, ls=":")
-ax.text(7.6, 6.6, "아주 세게 꿈틀거리는\n알갱이가 날아가요", ha="left", va="center", fontsize=11, color=RED,
-        fontweight="bold")
-ax.text(10.2, 2.6, "물", ha="left", va="center", fontsize=11)
+ax.text(10.2, 2.6, "물", ha="left", va="center", fontsize=12)
+ax.text(10.2, 5.6, "공기", ha="left", va="center", fontsize=12)
 save(fig, "m04-surface.svg")
 
-# 4. 구슬 쟁반
-fig, ax = canvas(10.0, 4.0, 16.0, 6.6)
+# 3. 구슬 쟁반
+fig, ax = canvas(8.0, 3.6, 12.0, 5.8)
 MARBLE = "#cfd8e3"
 ax.add_patch(Rectangle((1.0, 1.0), 7.0, 0.25, fc="#c8a27a", ec=INK, lw=1.2))
 ax.add_patch(Rectangle((1.0, 1.25), 0.25, 0.7, fc="#c8a27a", ec=INK, lw=1.2))
@@ -239,34 +208,55 @@ for (x, y) in [(8.9, 2.7), (2.0, 3.9)]:
     ax.add_patch(Circle((x, y), 0.38, fc=MARBLE, ec=INK, lw=1.2))
 arrow(ax, (9.3, 2.85), (10.6, 3.3), color=RED, lw=2.2)
 arrow(ax, (1.6, 4.1), (0.5, 4.7), color=RED, lw=2.2)
-ax.annotate("턱", (8.0, 1.9), (8.6, 0.6), fontsize=10, arrowprops=dict(arrowstyle="-", color=INK, lw=1))
-ax.text(12.4, 4.6, "세게 구르는 구슬만\n턱을 넘어가요", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
-ax.text(12.4, 1.6, "느린 구슬이\n쟁반에 남아요", ha="center", va="center", fontsize=11, fontweight="bold")
+ax.text(10.0, 3.8, "빠름", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(1.0, 5.2, "빠름", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(4.5, 0.45, "느림", ha="center", va="center", fontsize=11)
+ax.annotate("턱", (8.0, 1.9), (8.6, 0.6), fontsize=11, arrowprops=dict(arrowstyle="-", color=INK, lw=1))
 save(fig, "m04-tray.svg")
 
-# 5. 손등 위 물
-fig, ax = canvas(10.0, 4.6, 16.0, 7.4)
+# 4. 손등 위 물
+fig, ax = canvas(8.0, 4.6, 12.5, 7.4)
 ax.add_patch(FancyBboxPatch((0.8, 0.6), 8.4, 1.6, boxstyle="round,pad=0.3", fc="#f6d8c4", ec=INK, lw=1.4))
-ax.text(5.0, 1.2, "손등", ha="center", va="center", fontsize=10)
+ax.text(5.0, 1.0, "손등", ha="center", va="center", fontsize=11)
 ax.add_patch(Rectangle((1.4, 2.3), 7.2, 1.3, fc="#eef5fb", ec=INK, lw=1.0))
 for j in range(8):
     mover(ax, 1.9 + j * 0.9, 2.95, [0.12, 0.2, 0.15, 0.25, 0.1, 0.18, 0.22, 0.14][j], r=0.22)
 for x in (2.6, 5.0, 7.4):
-    arrow(ax, (x, 1.7), (x, 2.5), color=RED, lw=2.0, ms=12)
+    arrow(ax, (x, 1.5), (x, 2.5), color=RED, lw=2.0, ms=12)
+ax.text(3.8, 1.9, "열", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
 for (x, y) in [(3.6, 4.8), (6.4, 5.4)]:
     particle(ax, x, y, r=0.22)
     arrow(ax, (x + 0.1, y + 0.25), (x + 0.5, y + 1.0), color=RED, lw=1.6, ms=10)
-ax.text(9.6, 5.2, "센 알갱이가 날아가요", ha="left", va="center", fontsize=11)
-ax.text(9.6, 3.0, "남은 물이 차가워져요", ha="left", va="center", fontsize=11, fontweight="bold")
-ax.text(9.6, 1.6, "손에서 물로 열이 옮겨 가요", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(9.6, 5.2, "날아간 알갱이", ha="left", va="center", fontsize=11)
+ax.text(9.6, 3.0, "남은 물", ha="left", va="center", fontsize=11, fontweight="bold")
 save(fig, "m04-hand.svg")
+
+# 5. 돌아오는 알갱이와 바람
+fig, ax = canvas(10.0, 4.0, 16.0, 6.4)
+for i, (lab, windy) in enumerate([("바람 없음", False), ("바람", True)]):
+    x = 0.4 + i * 8.0
+    ax.add_patch(Rectangle((x, 0.9), 6.6, 1.4, fc="#eef5fb", ec=INK, lw=1.2))
+    for j in range(7):
+        particle(ax, x + 0.5 + j * 0.93, 1.6, r=0.22)
+    ax.text(x + 3.3, 0.35, lab, ha="center", va="center", fontsize=12, fontweight="bold")
+    if not windy:
+        for (px, py) in [(x + 1.5, 4.2), (x + 3.4, 3.4), (x + 5.2, 4.6)]:
+            particle(ax, px, py, r=0.22)
+        arrow(ax, (x + 3.4, 3.1), (x + 3.4, 2.4), color=RED, lw=1.8, ms=12)
+        arrow(ax, (x + 1.5, 3.9), (x + 1.7, 2.4), color=RED, lw=1.8, ms=12)
+    else:
+        wind(ax, x + 0.2, 3.2, n=3, L=2.0)
+        for (px, py) in [(x + 4.4, 3.4), (x + 5.4, 4.3), (x + 6.4, 3.7)]:
+            particle(ax, px, py, r=0.22)
+            arrow(ax, (px + 0.25, py), (px + 1.0, py + 0.1), color=INK, lw=1.4, ms=10)
+save(fig, "m04-return.svg")
 
 # 6. 빨리 마르는 때
 fig, ax = canvas(11.0, 3.8, 18.0, 6.2)
-for i, lab in enumerate(["바람이 불 때", "따뜻할 때", "넓게 펼칠 때"]):
+for i, lab in enumerate(["바람", "햇볕", "넓게 펼치기"]):
     x = 0.3 + i * 6.0
     box(ax, x, 0.5, 5.4, 5.0, fc=NOTE)
-    ax.text(x + 2.7, 1.0, lab, ha="center", va="center", fontsize=11, fontweight="bold")
+    ax.text(x + 2.7, 1.0, lab, ha="center", va="center", fontsize=12, fontweight="bold")
     if i == 0:
         ax.plot([x + 0.4, x + 5.0], [4.6, 4.6], color=INK, lw=1)
         towel(ax, x + 2.6, 2.4, 1.6, 2.2)
@@ -283,6 +273,4 @@ for i, lab in enumerate(["바람이 불 때", "따뜻할 때", "넓게 펼칠 �
         ax.plot([x + 0.4, x + 5.0], [4.6, 4.6], color=INK, lw=1)
         towel(ax, x + 0.6, 2.0, 2.6, 2.6)
         towel(ax, x + 3.8, 3.6, 0.8, 1.0)
-        ax.text(x + 1.9, 1.6, "펼친 수건", ha="center", va="center", fontsize=9)
-        ax.text(x + 4.2, 3.2, "접은 수건", ha="center", va="center", fontsize=9)
 save(fig, "m04-fast.svg")

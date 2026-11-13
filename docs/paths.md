@@ -4,9 +4,9 @@
 
 | 단계 | 갈래 | 누구를 생각하고 썼나 |
 |---|---|---|
-| 1단계 · 누구나 | [컴퓨터](computer/index.md) | 덧셈과 뺄셈을 아는 누구나 |
+| 1단계 · 누구나 | [컴퓨터](computer/index.md) | 더하기와 빼기를 아는 누구나 |
 | 2단계 · 코드 입문 | [알고리즘](algorithms/index.md), [AI](ai/index.md) | 코드를 막 배우기 시작한 분 |
-| 3단계 · 실제 소프트웨어 | [Elasticsearch](elasticsearch/index.md), [쿠버네티스](kubernetes/index.md) | 프로그램을 조금 다뤄 본 분 |
+| 3단계 · 실제 소프트웨어 | [Elasticsearch](elasticsearch/index.md), [쿠버네티스](kubernetes/index.md), [보안](security/index.md) | 프로그램을 조금 다뤄 본 분 |
 
 단계가 달라도 같은 생각이 이어져요. 1단계 컴퓨터 12편의 도감 찾아보기는 2단계에서 업다운 놀이와 B-트리로 다시 나오고 3단계에서는 검색 엔진의 역색인이 돼요. 아래 그림은 이렇게 이어지는 글을 선으로 묶은 거예요.
 
@@ -22,4 +22,4 @@
 
 **이름으로 자리 정하기**: [알고리즘 9편](algorithms/09-hash.md) → [ES 3편](elasticsearch/03-routing.md) → [ES 13편](elasticsearch/13-cardinality.md)
 
-글마다 제목 아래에 단계 딱지가 붙어 있어요. 3단계 글 머리의 "먼저 읽으면 좋은 글"과 1·2단계 글 끝의 "다음 단계에서 이어져요"를 따라가도 이 길을 그대로 걸을 수 있어요.
+글마다 제목 아래에 단계 딱지가 붙어 있어요. 3단계 글 머리의 "먼저 읽으면 좋은 글"을 따라가도 이 길을 그대로 걸을 수 있어요.

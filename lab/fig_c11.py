@@ -27,7 +27,13 @@ BOX = "#e8d3b0"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    # FIG_FMT=png FIG_OUT=폴더 로 확인용 PNG 사본을 만든다.
+    fmt = os.environ.get("FIG_FMT", "svg")
+    out = os.environ.get("FIG_OUT", OUT)
+    os.makedirs(out, exist_ok=True)
+    if fmt != "svg":
+        name = name.rsplit(".", 1)[0] + "." + fmt
+    fig.savefig(os.path.join(out, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -135,33 +141,11 @@ phone(ax, 12.2, 0.9, 3.2, on=True, text="바다 가자")
 ax.text(12.2, 0.6, "친구 (켬)", ha="center", va="top", fontsize=12, color=INK)
 save(fig, "c11-night.svg")
 
-# 2. 이 편의 지도: 받는 사람 적기 → 여러 곳 거치기 → 맡아 두기 → 친구 휴대폰
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["받는 사람 적기", "여러 곳 거치기", "맡아 두기", "친구 휴대폰"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=13, fontweight="bold")
-    if i == 0:
-        parcel(ax, x + 0.8, 1.6, 2.2, 1.8, "받는 사람: 친구", red=True, size=7.5)
-    elif i == 1:
-        for k in range(3):
-            computer(ax, x + 0.75 + k * 1.15, 2.0, s=0.7)
-    elif i == 2:
-        server(ax, x + 1.2, 1.45, 1.4, 2.2)
-        ax.add_patch(Rectangle((x + 1.5, 1.45 + 2.2 / 3 + 0.08), 0.8, 0.5, fc=RED, ec=INK, lw=1.2))
-    else:
-        phone(ax, x + 1.9, 1.4, 2.3, on=True)
-        ax.add_patch(FancyBboxPatch((x + 1.6, 2.5), 0.6, 0.3, boxstyle="round,pad=0.05", fc=RED, ec=RED))
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "c11-map.svg")
-
-# 3. 받는 사람 적기: 택배 상자와 메시지 상자
+# 3. 가야 할 곳 적기: 택배 상자는 친구, 메시지 상자는 서버
 fig, ax = canvas(8.4, 3.4, 14.0, 5.6)
 parcel(ax, 1.0, 1.2, 4.2, 3.4, "받는 사람: 친구", inner="장난감")
 ax.text(3.1, 0.6, "택배 상자", ha="center", fontsize=13, fontweight="bold")
-parcel(ax, 8.6, 1.2, 4.2, 3.4, "받는 사람: 친구", inner="바다 가자", red=True)
+parcel(ax, 8.6, 1.2, 4.2, 3.4, "받는 곳: 서버", inner="바다 가자", red=True)
 ax.text(10.7, 0.6, "메시지", ha="center", fontsize=13, fontweight="bold")
 save(fig, "c11-label.svg")
 
@@ -179,10 +163,11 @@ phone(ax, 1.4, 0.4, 2.0, on=True)
 for k, cx in enumerate((5.4, 9.2, 13.0)):
     computer(ax, cx, 0.8)
 phone(ax, 17.0, 0.4, 2.0, on=True)
+ax.text(1.4, 0.25, "나", ha="center", va="top", fontsize=11, color=INK)
+ax.text(17.0, 0.25, "친구", ha="center", va="top", fontsize=11, color=INK)
 for a, b in ((2.2, 4.6), (6.2, 8.4), (10.0, 12.2), (13.8, 16.3)):
     arrow(ax, (a, 1.3), (b, 1.3), color=RED)
-ax.text(9.2, 2.35, "어디로 가는지만 보고 넘겨요", ha="center", fontsize=11, color=INK)
-ax.text(9.2, 0.15, "눈 깜짝할 사이", ha="center", fontsize=11, color=RED)
+ax.text(9.2, 2.35, "눈 깜짝할 사이", ha="center", fontsize=11, color=RED)
 save(fig, "c11-route.svg")
 
 # 5. 서버가 맡아 둔다: 밤에는 선반에, 아침에 친구 휴대폰으로
@@ -196,15 +181,82 @@ ax.text(8.75, 0.9 + 4.6 / 3 + 0.52, "친구", ha="center", va="center", fontsize
 ax.add_patch(Rectangle((6.6, 0.9 + 2 * 4.6 / 3 + 0.12), 1.5, 0.8, fc=BOX, ec=INK, lw=1.2))
 moon(ax, 0.9, 5.9, 0.3); ax.text(1.4, 5.9, "밤", va="center", fontsize=12, fontweight="bold")
 phone(ax, 2.4, 1.2, 3.4, on=False)
-ax.text(2.4, 0.85, "꺼져 있어요", ha="center", va="top", fontsize=11, color=INK)
+ax.text(2.4, 0.85, "꺼짐", ha="center", va="top", fontsize=11, color=INK)
 ax.add_patch(FancyArrowPatch((6.05, 3.0), (3.5, 3.0), arrowstyle="-|>", mutation_scale=16, color=GREY, lw=1.8,
                              ls="--"))
 ax.text(4.78, 3.0, "×", ha="center", va="center", fontsize=22, color=INK, fontweight="bold")
-ax.text(4.78, 2.4, "못 건네요", ha="center", va="top", fontsize=10, color=INK)
 sun(ax, 12.6, 5.9, 0.3); ax.text(13.1, 5.9, "아침", va="center", fontsize=12, fontweight="bold")
 phone(ax, 13.8, 1.2, 3.4, on=True, text="바다 가자")
-ax.text(13.8, 0.85, "켜면 건네요", ha="center", va="top", fontsize=11, color=INK)
+ax.text(13.8, 0.85, "켬", ha="center", va="top", fontsize=11, color=INK)
 arrow(ax, (9.95, 3.0), (12.7, 3.0), color=RED)
 save(fig, "c11-server.svg")
+
+# 6. 인터넷: 그물처럼 이어진 컴퓨터 사이로 빨간 길 하나
+fig, ax = canvas(10.4, 4.6, 17.4, 7.6)
+nodes = {
+    "a": (4.0, 5.8), "b": (4.2, 3.6), "c": (3.8, 1.4),
+    "d": (7.2, 6.2), "e": (7.6, 3.8), "f": (7.0, 1.2),
+    "g": (10.4, 5.6), "h": (10.2, 3.2), "i": (10.6, 1.0),
+    "j": (13.4, 6.0), "k": (13.2, 3.7), "l": (13.6, 1.5),
+}
+links = ["ab", "bc", "ad", "be", "cf", "de", "ef", "dg", "eh", "fi", "gh", "hi", "gj", "hk", "il",
+         "jk", "kl", "ae", "eg", "hl", "bf"]
+path = ["b", "e", "h", "k"]
+on_path = {"".join(sorted(path[k:k + 2])) for k in range(len(path) - 1)}
+for l in links:
+    (x1, y1), (x2, y2) = nodes[l[0]], nodes[l[1]]
+    red = "".join(sorted(l)) in on_path
+    ax.plot([x1, x2], [y1, y2], color=RED if red else GREY, lw=3.2 if red else 1.6, zorder=1)
+for key, (cx, cy) in nodes.items():
+    computer(ax, cx, cy - 0.35, s=0.7)
+phone(ax, 0.9, 2.3, 2.6, on=True)
+ax.text(0.9, 2.0, "나", ha="center", va="top", fontsize=12, color=INK)
+phone(ax, 16.4, 2.3, 2.6, on=True)
+ax.text(16.4, 2.0, "친구", ha="center", va="top", fontsize=12, color=INK)
+arrow(ax, (1.65, 3.6), (3.6, 3.6), color=RED, lw=2.6)
+arrow(ax, (13.75, 3.6), (15.65, 3.6), color=RED, lw=2.6)
+ax.text(8.7, 7.35, "인터넷", ha="center", fontsize=14, fontweight="bold")
+save(fig, "c11-net.svg")
+
+
+# 7. 큰 사진은 조각으로: 나누기 → 뒤죽박죽 도착 → 번호대로 이어 붙이기
+SKY, SEA = "#cfe3f3", "#7da2c8"
+
+
+def piece(ax, x, y, s, k, num=True):
+    """바다 사진의 네 조각. 1·2는 하늘, 3·4는 바다. 1에는 해, 4에는 배."""
+    ax.add_patch(Rectangle((x, y), s, s, fc=SKY if k <= 2 else SEA, ec=INK, lw=1.4))
+    if k == 1:
+        sun(ax, x + s * 0.5, y + s * 0.5, s * 0.22)
+    if k == 2:
+        ax.add_patch(Circle((x + s * 0.4, y + s * 0.55), s * 0.14, fc="white", ec="none"))
+        ax.add_patch(Circle((x + s * 0.58, y + s * 0.6), s * 0.17, fc="white", ec="none"))
+    if k in (3, 4):
+        for w in range(2):
+            yy = y + s * (0.35 + 0.3 * w)
+            ax.plot([x + s * 0.15, x + s * 0.85], [yy, yy], color="white", lw=1.6)
+    if k == 4:
+        ax.add_patch(Polygon([(x + s * 0.3, y + s * 0.2), (x + s * 0.7, y + s * 0.2), (x + s * 0.62, y + s * 0.08),
+                              (x + s * 0.38, y + s * 0.08)], closed=True, fc=BOX, ec=INK, lw=1))
+    if num:
+        ax.add_patch(Circle((x + s * 0.16, y + s * 0.84), s * 0.13, fc=RED, ec="white", lw=1))
+        ax.text(x + s * 0.16, y + s * 0.84, str(k), ha="center", va="center", fontsize=11, color="white",
+                fontweight="bold")
+
+
+fig, ax = canvas(11.6, 3.8, 19.4, 6.4)
+S = 1.6
+ax.text(2.0, 5.9, "나", ha="center", fontsize=13, fontweight="bold")
+for k, (dx, dy) in enumerate([(0, 1), (1, 1), (0, 0), (1, 0)], start=1):
+    piece(ax, 0.4 + dx * (S + 0.3), 1.3 + dy * (S + 0.3), S, k)
+arrow(ax, (4.3, 3.0), (5.5, 3.0))
+ax.text(9.7, 5.9, "도착 차례", ha="center", fontsize=13, fontweight="bold")
+for i, k in enumerate([3, 1, 4, 2]):
+    piece(ax, 5.9 + i * (S + 0.35), 2.2, S, k)
+arrow(ax, (13.75, 3.0), (14.95, 3.0))
+ax.text(17.0, 5.9, "친구", ha="center", fontsize=13, fontweight="bold")
+for k, (dx, dy) in enumerate([(0, 1), (1, 1), (0, 0), (1, 0)], start=1):
+    piece(ax, 15.4 + dx * S, 1.3 + dy * S, S, k)
+save(fig, "c11-pieces.svg")
 
 print("ok")

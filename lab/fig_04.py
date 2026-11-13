@@ -28,7 +28,13 @@ LIGHT = "#e9ecef"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    # FIG_FMT=png FIG_OUT=폴더 로 확인용 PNG 사본을 만든다.
+    fmt = os.environ.get("FIG_FMT", "svg")
+    out = os.environ.get("FIG_OUT", OUT)
+    os.makedirs(out, exist_ok=True)
+    if fmt != "svg":
+        name = name.rsplit(".", 1)[0] + "." + fmt
+    fig.savefig(os.path.join(out, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -83,40 +89,12 @@ ax.text(6.6, 1.6, "손에 든 카드", ha="center", va="center", fontsize=12, co
 ax.text(10.0, 5.9, "새로 받은 카드", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
 save(fig, "a04-hand.svg")
 
-# 2. 이 편의 지도
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["한 장씩 끼우기", "몇 번 비교할까", "카드가 많아지면", "거의 차례대로면"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=12, fontweight="bold")
-    if i == 0:
-        for k, n in enumerate([3, 7, 9]):
-            card(ax, x + 0.5 + k * 0.75, 1.9, 0.6, 0.8, n, fs=10)
-        card(ax, x + 1.6, 3.0, 0.6, 0.7, 5, hot=True, fs=10)
-        arrow(ax, (x + 1.6, 3.2), (x + 1.25, 2.8), color=RED, lw=1.6, ms=10)
-    elif i == 1:
-        stones(ax, x + 0.6, 3.2, 4, color=BLUE, r=0.12, gap=0.32)
-        stones(ax, x + 0.6, 2.6, 10, color=RED, r=0.12, gap=0.28)
-        ax.text(x + 0.45, 3.2, "", ha="right")
-    elif i == 2:
-        for k, v in enumerate([10, 45, 190]):
-            h = 0.12 + v / 190 * 1.9
-            ax.add_patch(Rectangle((x + 0.7 + k * 0.9, 1.5), 0.6, h, fc=RED, ec=INK, lw=1))
-    else:
-        for k, n in enumerate([1, 2, 3, 4, 6, 7]):
-            card(ax, x + 0.35 + k * 0.5, 2.0, 0.48, 0.7, n, fs=9)
-        card(ax, x + 3.0, 3.0, 0.48, 0.6, 5, hot=True, fs=9)
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "a04-map.svg")
-
 # 3. 카드를 7, 3, 9, 5 순서로 받으며 손에 끼우기
 fig, ax = canvas(11.0, 6.4, 18.0, 10.4)
 deal = [(7, [7], 0), (3, [3, 7], 1), (9, [3, 7, 9], 1), (5, [3, 5, 7, 9], 3)]
 ax.text(1.4, 9.9, "받은 카드", ha="center", va="center", fontsize=12, fontweight="bold")
-ax.text(7.0, 9.9, "끼운 뒤 손", ha="center", va="center", fontsize=12, fontweight="bold")
-ax.text(14.5, 9.9, "비교한 횟수", ha="center", va="center", fontsize=12, fontweight="bold")
+ax.text(7.0, 9.9, "손", ha="center", va="center", fontsize=12, fontweight="bold")
+ax.text(14.5, 9.9, "비교", ha="center", va="center", fontsize=12, fontweight="bold")
 for r, (new, hand, cmp_) in enumerate(deal):
     y = 7.6 - r * 2.2
     ax.text(0.0, y + 0.6, f"{r + 1}", ha="left", va="center", fontsize=12, color=INK, fontweight="bold")
@@ -141,16 +119,16 @@ for k, n in enumerate([9, 7, 3]):
     ax.text(xs[n] + cw / 2, 4.3, "①②③"[k], ha="center", va="center", fontsize=15, color=RED, fontweight="bold")
 arrow(ax, (11.2, 4.0), (3.3, 4.0), color=RED, lw=1.8, rad=0.25, ms=14)
 ax.plot([3.3, 3.3], [1.5, 4.1], color=RED, lw=2.4, ls="--")
-ax.text(xs[9] + cw / 2, 1.2, "5가 더 작아요", ha="center", va="center", fontsize=11)
-ax.text(xs[7] + cw / 2, 1.2, "5가 더 작아요", ha="center", va="center", fontsize=11)
-ax.text(xs[3] + cw / 2, 1.2, "5가 더 커요", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
-ax.text(3.3, 0.45, "3과 7 사이에 끼워요", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(xs[9] + cw / 2, 1.2, "5 < 9", ha="center", va="center", fontsize=11)
+ax.text(xs[7] + cw / 2, 1.2, "5 < 7", ha="center", va="center", fontsize=11)
+ax.text(xs[3] + cw / 2, 1.2, "5 > 3", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(3.3, 0.45, "여기", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
 save(fig, "a04-insert.svg")
 
 # 5. 다섯 장: 차례대로 받으면 4번, 거꾸로 받으면 10번
 fig, ax = canvas(11.0, 5.4, 18.0, 8.8)
-rows = [("차례대로 받으면", [1, 2, 3, 4, 5], [0, 1, 1, 1, 1], 5.2, BLUE),
-        ("거꾸로 받으면", [5, 4, 3, 2, 1], [0, 1, 2, 3, 4], 1.0, RED)]
+rows = [("차례대로", [1, 2, 3, 4, 5], [0, 1, 1, 1, 1], 5.2, BLUE),
+        ("거꾸로", [5, 4, 3, 2, 1], [0, 1, 2, 3, 4], 1.0, RED)]
 for title, seq, cnt, y, col in rows:
     ax.text(0.2, y + 2.6, title, ha="left", va="center", fontsize=13, fontweight="bold")
     for k, (n, c) in enumerate(zip(seq, cnt)):
@@ -162,7 +140,7 @@ for title, seq, cnt, y, col in rows:
             ax.text(x + 0.55, y + 0.55, "없음", ha="center", va="center", fontsize=10, color=INK)
     ax.text(13.6, y + 1.5, f"모두 {sum(cnt)}번", ha="left", va="center", fontsize=16, fontweight="bold",
             color=RED if col == RED else "#222")
-ax.text(0.6, 8.6, "바둑돌 하나 = 두 장을 한 번 비교", ha="left", va="center", fontsize=11, color=INK)
+ax.text(0.6, 8.6, "● = 비교 1번", ha="left", va="center", fontsize=11, color=INK)
 save(fig, "a04-count.svg")
 
 # 6. 카드가 많아지면: 막대 높이를 실제 비율대로
@@ -180,9 +158,9 @@ for k, (n, up, down) in enumerate([(5, 4, 10), (10, 9, 45), (20, 19, 190)]):
     ax.text(gx + 1.7, base - 0.35, f"카드 {n}장", ha="center", va="top", fontsize=12, fontweight="bold")
 ax.plot([0.8, 16.4], [base, base], color=INK, lw=1.4)
 ax.add_patch(Rectangle((1.4, 8.6), 0.5, 0.35, fc=BLUE, ec=INK, lw=1))
-ax.text(2.1, 8.77, "차례대로 받으면", ha="left", va="center", fontsize=11)
+ax.text(2.1, 8.77, "차례대로", ha="left", va="center", fontsize=11)
 ax.add_patch(Rectangle((5.6, 8.6), 0.5, 0.35, fc=RED, ec=INK, lw=1))
-ax.text(6.3, 8.77, "거꾸로 받으면", ha="left", va="center", fontsize=11)
+ax.text(6.3, 8.77, "거꾸로", ha="left", va="center", fontsize=11)
 save(fig, "a04-bars.svg")
 
 # 7. 거의 차례대로: 1~9에서 5만 맨 끝에 왔다
@@ -199,6 +177,5 @@ for k, t in enumerate(targets):
             bbox=dict(boxstyle="circle,pad=0.2", fc="white", ec=RED, lw=1.4))
 arrow(ax, (0.6 + 8 * cw + 1.2, 4.3), (0.6 + 4 * cw - 0.07, 4.3), color=RED, lw=1.6, rad=0.2, ms=12)
 ax.plot([0.6 + 4 * cw - 0.07] * 2, [1.4, 4.3], color=RED, lw=2.2, ls="--")
-ax.text(0.6 + 1.5 * cw, 0.9, "1, 2, 3은 보지 않아요", ha="center", va="center", fontsize=11, color=INK)
-ax.text(0.6 + 6 * cw, 0.9, "비교 5번이면 끝", ha="center", va="center", fontsize=13, color=RED, fontweight="bold")
+ax.text(0.6 + 6 * cw, 0.9, "비교 5번", ha="center", va="center", fontsize=13, color=RED, fontweight="bold")
 save(fig, "a04-almost.svg")

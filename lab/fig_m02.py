@@ -1,4 +1,5 @@
 """물질과 에너지 2편 그림 만들기. 실행: python lab/fig_m02.py  → docs/matter/img/02/*.svg
+검토용 PNG가 필요하면 FIG_FMT=png FIG_OUT=<폴더> 로 실행한다.
 
 글자는 SVG 안에 글자로 남긴다(글꼴 모양을 파일에 넣지 않는다). 보는 쪽 글꼴로 그려진다.
 카드는 차분한 색으로, 강조(새로 받은 카드, 비교 화살표, 많이 든 일)만 빨강으로 칠한다.
@@ -8,11 +9,12 @@ import os
 
 import matplotlib
 
-matplotlib.use("svg")
+matplotlib.use("svg" if os.environ.get("FIG_FMT", "svg") == "svg" else "agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc, Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "02")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "02")
+FMT = os.environ.get("FIG_FMT", "svg")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -29,7 +31,9 @@ LIGHT = "#e9ecef"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    if FMT != "svg":
+        name = name.rsplit(".", 1)[0] + "." + FMT
+    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -147,55 +151,25 @@ for k in range(3):
     ax.add_patch(FancyArrowPatch((13.6 + k * 1.0, 3.3), (13.6 + k * 1.0, 5.0), arrowstyle="-|>", mutation_scale=12,
                                  color=WATER, lw=1.4, ls="--"))
 ax.text(14.6, 0.8, "수증기", ha="center", va="center", fontsize=12, fontweight="bold")
-ax.text(14.6, 5.5, "눈에 안 보여요", ha="center", va="center", fontsize=9)
-ax.text(9.0, 6.4, "셋 다 물인데 왜 모양이 다를까?", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(14.6, 5.6, "?", ha="center", va="center", fontsize=20, color=RED, fontweight="bold")
 save(fig, "m02-three.svg")
-
-# 2. 이 편의 지도
-fig, ax = canvas(12.6, 2.4, 24.2, 4.6)
-titles = ["모두 물 알갱이", "얼음: 꼭 붙어서", "물: 스치며 지나가요", "수증기: 흩어져서", "식으면 다시 모여요"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=11, fontweight="bold")
-    cx = x + 1.9
-    if i == 0:
-        particle(ax, cx, 2.6, r=0.4)
-    elif i == 1:
-        for a in range(3):
-            for b in range(3):
-                particle(ax, cx - 0.4 + b * 0.4, 2.2 + a * 0.4, r=0.17)
-    elif i == 2:
-        for (dx, dy) in [(-0.36, 0.0), (0.0, -0.1), (0.36, 0.05), (-0.18, 0.32), (0.2, 0.33), (-0.3, -0.34), (0.22, -0.4)]:
-            particle(ax, cx + dx, 2.6 + dy, r=0.17)
-    elif i == 3:
-        for (dx, dy) in [(-1.0, 0.5), (0.8, 0.7), (-0.2, -0.3), (1.1, -0.4)]:
-            particle(ax, cx + dx, 2.6 + dy, r=0.17)
-    else:
-        arrow(ax, (cx - 1.2, 2.6), (cx + 0.1, 2.6), color=WATER, lw=2)
-        ax.add_patch(Ellipse((cx + 0.6, 2.6), 0.5, 0.7, fc=WATER, ec=INK, lw=0.8))
-    if i < 4:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "m02-map.svg")
 
 # 3. 세 모습 나란히 (알갱이 그림)
 fig, ax = canvas(11.0, 4.6, 18.0, 7.6)
 box(ax, 0.4, 1.4, 5.2, 5.0, fc=ICE)
 solid(ax, 1.1, 2.2, rows=7, cols=8, gap=0.5)
-ax.text(3.0, 0.8, "얼음: 꼭 붙어 제자리에서 떨어요", ha="center", va="center", fontsize=10, fontweight="bold")
+ax.text(3.0, 0.8, "얼음 (고체)", ha="center", va="center", fontsize=10, fontweight="bold")
 box(ax, 6.4, 1.4, 5.2, 5.0, fc="#eef5fb")
 liquid(ax, 6.5, 1.5, 5.0, 4.8, n=75)
-ax.text(9.0, 0.8, "물: 붙은 채 스치며 지나가요", ha="center", va="center", fontsize=10, fontweight="bold")
+ax.text(9.0, 0.8, "물 (액체)", ha="center", va="center", fontsize=10, fontweight="bold")
 box(ax, 12.4, 1.4, 5.2, 5.0, fc="white")
 gas(ax, 12.5, 1.5, 5.0, 4.8, n=7)
-ax.text(15.0, 0.8, "수증기: 멀리 떨어져 날아다녀요", ha="center", va="center", fontsize=10, fontweight="bold")
-ax.text(9.0, 7.2, "모두 같은 물 알갱이예요 (크기와 거리는 실제와 맞추지 않았어요)", ha="center", va="center",
-        fontsize=10)
+ax.text(15.0, 0.8, "수증기 (기체)", ha="center", va="center", fontsize=10, fontweight="bold")
 save(fig, "m02-particles.svg")
 
 # 4. 운동장 비유
 fig, ax = canvas(11.0, 4.0, 18.0, 6.6)
-for k, (x, mode, lab) in enumerate([(3.0, 0, "줄 서서 제자리 콩콩"), (9.0, 1, "붐비는 복도에서 스치며 지나가요"), (15.0, 2, "흩어져 뛰어다녀요")]):
+for k, (x, mode, lab) in enumerate([(3.0, 0, "줄 서서 콩콩"), (9.0, 1, "붐비는 복도"), (15.0, 2, "흩어져 뛰기")]):
     box(ax, x - 2.6, 1.3, 5.2, 4.6, fc=NOTE)
     if mode == 0:
         for i in range(2):
@@ -210,8 +184,8 @@ for k, (x, mode, lab) in enumerate([(3.0, 0, "줄 서서 제자리 콩콩"), (9.
         for (dx, dy) in [(-1.8, 2.8), (1.4, 3.6), (-0.4, 1.6), (1.8, 1.7)]:
             kid(ax, x + dx, dy, 0.7)
     ax.text(x, 0.7, lab, ha="center", va="center", fontsize=11, fontweight="bold")
-ax.text(9.0, 6.3, "얼음, 물, 수증기의 알갱이는 이런 아이들과 닮았어요", ha="center", va="center", fontsize=11, color=RED,
-        fontweight="bold")
+for x, lab in [(3.0, "얼음"), (9.0, "물"), (15.0, "수증기")]:
+    ax.text(x, 6.3, lab, ha="center", va="center", fontsize=12, fontweight="bold")
 save(fig, "m02-playground.svg")
 
 # 5. 데우면 풀려나고 식히면 붙어요
@@ -229,7 +203,6 @@ arrow(ax, (12.9, 2.4), (11.4, 2.4), color=WATER, lw=2.2)
 for xm in (5.85, 12.15):
     ax.text(xm, 4.1, "데우면", ha="center", va="center", fontsize=10, color=RED, fontweight="bold")
     ax.text(xm, 1.9, "식히면", ha="center", va="center", fontsize=10, color=WATER, fontweight="bold")
-ax.text(9.0, 5.8, "데우면 알갱이가 세게 꿈틀거려 풀려나고 식히면 약해져 다시 붙어요", ha="center", va="center", fontsize=10)
 ax.text(2.7, 0.6, "얼음", ha="center", va="center", fontsize=11, fontweight="bold")
 ax.text(9.0, 0.6, "물", ha="center", va="center", fontsize=11, fontweight="bold")
 ax.text(15.3, 0.6, "수증기", ha="center", va="center", fontsize=11, fontweight="bold")
@@ -250,9 +223,9 @@ for k in range(8):
     p = (random.uniform(0.6, 3.6), random.uniform(1.5, 5.5))
     particle(ax, *p, r=0.2)
     arrow(ax, (p[0] + 0.25, p[1]), (p[0] + 1.0, p[1] + random.uniform(-0.2, 0.2)), color=WATER, lw=1.4, ms=10)
-ax.text(2.1, 6.3, "공기 속 보이지 않는\n물 알갱이(수증기)", ha="center", va="center", fontsize=10)
-ax.text(2.4, 0.5, "차가운 컵에 닿으면\n모여서 물방울이 돼요", ha="center", va="center", fontsize=11, color=RED,
-        fontweight="bold")
+ax.text(2.1, 6.3, "공기 속 수증기", ha="center", va="center", fontsize=11)
+ax.annotate("물방울", (4.75, 2.2), (2.4, 0.6), fontsize=12, color=RED, fontweight="bold", ha="center", va="center",
+            arrowprops=dict(arrowstyle="-", color=RED, lw=1.2))
 save(fig, "m02-cold-cup.svg")
 
 # 7. 냄비 위: 맑은 곳과 하얀 김
@@ -268,8 +241,8 @@ for k in range(9):
                          random.uniform(0.5, 0.8), fc="#e8edf2", ec="#b0bcc8", lw=0.8))
 for k in range(14):
     ax.add_patch(Circle((3.0 + random.uniform(0, 2.4), 5.8 + random.uniform(0, 1.4)), 0.05, fc=WATER, ec="none"))
-ax.annotate("맑아요: 수증기(눈에 안 보여요)", (5.6, 3.8), (7.6, 3.8), fontsize=11, va="center",
+ax.annotate("맑음: 수증기", (5.6, 3.8), (7.6, 3.8), fontsize=11, va="center",
             arrowprops=dict(arrowstyle="-", color=INK, lw=1))
-ax.annotate("하얀 김: 식어서 생긴 아주 작은 물방울", (5.8, 6.5), (7.6, 6.5), fontsize=11, va="center", color=RED,
+ax.annotate("하얀 김: 작은 물방울", (5.8, 6.5), (7.6, 6.5), fontsize=11, va="center", color=RED,
             fontweight="bold", arrowprops=dict(arrowstyle="-", color=RED, lw=1))
 save(fig, "m02-steam.svg")

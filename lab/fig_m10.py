@@ -1,4 +1,5 @@
 """물질과 에너지 10편 그림 만들기. 실행: python lab/fig_m10.py  → docs/matter/img/10/*.svg
+검토용 PNG가 필요하면 FIG_FMT=png FIG_OUT=<폴더> 로 실행한다.
 
 글자는 SVG 안에 글자로 남긴다(글꼴 모양을 파일에 넣지 않는다). 보는 쪽 글꼴로 그려진다.
 카드는 차분한 색으로, 강조(새로 받은 카드, 비교 화살표, 많이 든 일)만 빨강으로 칠한다.
@@ -8,11 +9,12 @@ import os
 
 import matplotlib
 
-matplotlib.use("svg")
+matplotlib.use("svg" if os.environ.get("FIG_FMT", "svg") == "svg" else "agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc, Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "10")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "10")
+FMT = os.environ.get("FIG_FMT", "svg")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -29,7 +31,9 @@ LIGHT = "#e9ecef"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    if FMT != "svg":
+        name = name.rsplit(".", 1)[0] + "." + FMT
+    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -181,131 +185,157 @@ def apple(ax, x, y, r=0.45):
     ax.plot([x, x + 0.05], [y + r, y + r + 0.25], color=INK, lw=1.5)
 
 
-# 1. 여는 장면: 컵 속 젓가락
-fig, ax = canvas(9.0, 4.4, 15.0, 7.4)
+STICK = "#b5835a"
+
+
+def stick(ax, a, b, alpha=1.0):
+    ax.plot([a[0], b[0]], [a[1], b[1]], color=STICK, lw=5, solid_capstyle="round", alpha=alpha)
+
+
+# 1. 컵 속 젓가락은 꺾여 보이고 꺼내면 곧아요
+fig, ax = canvas(9.0, 3.9, 15.0, 6.6)
 cup(ax, 2.0, 0.6, 3.6, 4.4, fc="white")
 ax.add_patch(Polygon([(2.18, 2.8), (5.42, 2.8), (5.3, 0.65), (2.3, 0.65)], closed=True, fc="#cfe3f3", ec="none"))
-ax.plot([1.6, 3.3], [5.6, 2.8], color="#b5835a", lw=5, solid_capstyle="round")
-ax.plot([3.3, 4.9], [2.8, 1.5], color="#b5835a", lw=5, solid_capstyle="round")
+stick(ax, (1.6, 5.6), (3.3, 2.8))
+stick(ax, (3.3, 2.8), (4.9, 1.5))
 ax.plot([2.1, 5.5], [2.8, 2.8], color=WATER, lw=1.2)
-ax.plot([8.6, 12.4], [1.0, 5.0], color="#b5835a", lw=5, solid_capstyle="round")
-ax.text(10.8, 0.6, "꺼낸 젓가락은 곧아요", ha="center", va="center", fontsize=10)
-ax.text(7.5, 6.9, "젓가락은 왜 꺾여 보일까?", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.add_patch(Circle((3.3, 2.8), 0.45, fc="none", ec=RED, lw=2))
+stick(ax, (8.6, 1.0), (12.4, 5.0))
+ax.text(3.8, 0.05, "물컵 속", ha="center", va="center", fontsize=11, fontweight="bold")
+ax.text(10.5, 0.05, "꺼낸 젓가락", ha="center", va="center", fontsize=11, fontweight="bold")
 save(fig, "m10-chopstick.svg")
 
-# 2. 이 편의 지도
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["빛은 곧게 가요", "부딪히면 튕겨요", "물을 지나면 꺾여요", "흰빛 속 여러 색"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=10.5, fontweight="bold")
-    cx = x + 1.9
-    if i == 0:
-        ax.add_patch(Circle((cx - 1.2, 2.6), 0.25, fc=YEL, ec=INK, lw=1))
-        ray(ax, (cx - 0.9, 2.6), (cx + 0.1, 2.6), lw=1.6)
-        ax.add_patch(Circle((cx + 0.35, 2.6), 0.22, fc=GREY, ec=INK, lw=1))
-        ax.add_patch(Rectangle((cx + 0.6, 2.38), 0.8, 0.44, fc="#555", ec="none", alpha=0.5))
-    elif i == 1:
-        ax.plot([cx - 0.9, cx + 0.9], [1.8, 1.8], color=INK, lw=3)
-        ray(ax, (cx - 1.2, 3.4), (cx, 1.85), lw=1.6, head=False)
-        ray(ax, (cx, 1.85), (cx + 1.2, 3.4), lw=1.6)
-    elif i == 2:
-        ax.add_patch(Rectangle((cx - 1.4, 1.5), 2.8, 1.0, fc="#cfe3f3", ec="none"))
-        ray(ax, (cx - 1.2, 3.5), (cx - 0.2, 2.5), lw=1.6, head=False)
-        ray(ax, (cx - 0.2, 2.5), (cx + 0.2, 1.6), lw=1.6)
-    else:
-        ray(ax, (cx - 1.4, 2.6), (cx - 0.3, 2.6), color="#999", lw=2, head=False)
-        for k, c in enumerate(RAINBOW):
-            ray(ax, (cx - 0.3, 2.6), (cx + 1.3, 3.2 - k * 0.24), color=c, lw=1.4, head=False)
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "m10-map.svg")
 
-# 3. 그림자
-fig, ax = canvas(10.0, 5.0, 16.0, 8.0)
-# 위: 높이 비추면 짧은 그림자
-y0 = 4.4
-ax.plot([0.5, 13.5], [y0, y0], color=INK, lw=1.2)
-torch(ax, 5.0, y0 + 2.6, ang=-55, s=0.8)
-for k, ey in enumerate((1.45, 1.0, 0.55)):
-    ray(ax, (5.45 + 0.12 * k, y0 + 2.05 - 0.1 * k), (6.85, y0 + ey), lw=1.2, head=False)
-kid(ax, 7.0, y0, 0.8)
-ax.add_patch(Polygon([(7.25, y0), (8.4, y0), (8.4, y0 + 0.12), (7.25, y0 + 0.12)], closed=True, fc="#444", alpha=0.7))
-ax.text(11.0, y0 + 1.5, "높이 비추면\n그림자가 짧아요", ha="left", va="center", fontsize=10.5)
-# 아래: 낮게 비추면 긴 그림자
-y0 = 0.5
-ax.plot([0.5, 13.5], [y0, y0], color=INK, lw=1.2)
-torch(ax, 1.8, y0 + 0.5, ang=0, s=0.9)
-for yy, ey in ((0.3, 0.4), (0.5, 0.85), (0.7, 1.3)):
-    ray(ax, (2.3, y0 + yy), (6.85, y0 + ey), lw=1.2, head=False)
-kid(ax, 7.0, y0, 0.8)
-ax.add_patch(Polygon([(7.25, y0), (13.5, y0), (13.5, y0 + 0.12), (7.25, y0 + 0.12)], closed=True, fc="#444", alpha=0.7))
-ax.text(11.0, y0 + 1.5, "낮게 비추면\n그림자가 길어요", ha="left", va="center", fontsize=10.5, color=RED, fontweight="bold")
+# 2. 그림자: 머리 꼭대기를 스친 빛이 닿는 곳까지가 그림자
+def shadow_row(ax, y0, src, hot):
+    ax.plot([0.5, 15.5], [y0, y0], color=INK, lw=1.2)
+    kx, kh = 6.0, 2.15
+    kid(ax, kx, y0, 1.15)
+    top = (kx, y0 + kh)
+    t = (src[1] - y0) / (src[1] - top[1])
+    end = (src[0] + (top[0] - src[0]) * t, y0)
+    ax.add_patch(Rectangle((kx, y0 - 0.08), end[0] - kx, 0.22, fc="#444", ec="none", alpha=0.75))
+    ax.add_patch(Circle(src, 0.32, fc=YEL, ec=INK, lw=1.2))
+    ray(ax, src, end, color=RED if hot else LIGHT_C, lw=1.6, head=False)
+    for dy in (-1.4, -0.9):
+        ray(ax, src, (kx - 0.35, y0 + kh + dy), lw=1.4)
+    ax.text((kx + end[0]) / 2, y0 - 0.45, "그림자", ha="center", va="center", fontsize=10,
+            color=RED if hot else "#222", fontweight="bold" if hot else "normal")
+
+
+fig, ax = canvas(10.0, 6.0, 16.0, 9.8)
+ax.text(0.5, 9.4, "높이", ha="left", va="center", fontsize=11, fontweight="bold")
+shadow_row(ax, 5.8, (5.0, 9.4), False)
+ax.text(0.5, 4.4, "낮게", ha="left", va="center", fontsize=11, fontweight="bold", color=RED)
+shadow_row(ax, 0.8, (1.8, 4.4), True)
 save(fig, "m10-shadow.svg")
 
-# 4. 튕겨요
-fig, ax = canvas(11.0, 4.0, 18.0, 6.6)
-box(ax, 0.3, 0.4, 8.2, 5.4, fc=NOTE)
-ax.plot([2.0, 7.0], [1.2, 1.2], color=INK, lw=4)
-ax.add_patch(Rectangle((2.0, 0.8), 5.0, 0.4, fc="#dde6ee", ec=INK, lw=1))
+# 3. 튕겨요: 거울과 사과
+fig, ax = canvas(11.0, 3.8, 18.0, 6.2)
+box(ax, 0.3, 0.4, 8.2, 5.0, fc=NOTE)
+ax.add_patch(Rectangle((2.0, 1.0), 5.0, 0.35, fc="#dde6ee", ec=INK, lw=1))
+ax.plot([2.0, 7.0], [1.35, 1.35], color=INK, lw=3)
 torch(ax, 1.6, 4.6, ang=-45, s=0.9)
-ray(ax, (2.0, 4.2), (4.5, 1.25), head=False)
-ray(ax, (4.5, 1.25), (7.2, 4.4))
-ax.text(4.4, 5.3, "거울은 빛을 한 방향으로 튕겨요", ha="center", va="center", fontsize=10.5)
-box(ax, 9.3, 0.4, 8.4, 5.4, fc=NOTE)
-ax.add_patch(Circle((10.6, 4.6), 0.4, fc=YEL, ec=INK, lw=1))
-apple(ax, 12.6, 1.6)
-ray(ax, (10.9, 4.3), (12.4, 2.1))
-ray(ax, (13.0, 1.9), (15.8, 3.6), color=RED)
+ray(ax, (2.0, 4.2), (4.5, 1.4), head=False)
+ray(ax, (4.5, 1.4), (7.2, 4.4), color=RED)
+ax.text(4.5, 0.75, "거울", ha="center", va="center", fontsize=11, fontweight="bold")
+box(ax, 9.3, 0.4, 8.4, 5.0, fc=NOTE)
+ax.add_patch(Circle((10.6, 4.4), 0.4, fc=YEL, ec=INK, lw=1))
+apple(ax, 12.6, 1.8)
+ray(ax, (10.9, 4.1), (12.4, 2.3))
+ray(ax, (13.0, 2.1), (15.8, 3.6), color=RED)
 for (dx, dy) in [(-1.6, 0.9), (-1.0, 1.6), (0.9, -0.6), (1.4, 0.3), (0.2, 1.8)]:
-    ray(ax, (12.6 + dx * 0.3, 1.6 + dy * 0.3), (12.6 + dx, 1.6 + dy), color=RED, lw=1.0)
+    ray(ax, (12.6 + dx * 0.3, 1.8 + dy * 0.3), (12.6 + dx, 1.8 + dy), color=RED, lw=1.0)
 eye(ax, 16.4, 3.9, 1.0, facing=-1)
-ax.text(13.5, 5.3, "사과는 빛을 여러 방향으로 튕겨요", ha="center", va="center", fontsize=10.5)
+ax.text(12.6, 0.75, "사과", ha="center", va="center", fontsize=11, fontweight="bold")
 save(fig, "m10-bounce.svg")
 
-# 5. 꺾여요
-fig, ax = canvas(10.0, 5.0, 16.0, 8.0)
+# 4. 손잡은 두 친구가 땅에서 모래밭으로 비스듬히 들어가요
+fig, ax = canvas(10.0, 5.6, 16.0, 9.0)
+Y = 4.0
+ax.add_patch(Rectangle((0.3, 0.3), 15.4, Y - 0.3, fc="#efe0bf", ec="none"))
+ax.plot([0.3, 15.7], [Y, Y], color=INK, lw=1.2)
+ax.text(15.4, 8.4, "땅", ha="right", va="center", fontsize=11, fontweight="bold")
+ax.text(15.4, 0.8, "모래밭", ha="right", va="center", fontsize=11, fontweight="bold")
+th1 = math.radians(50)
+th2 = math.asin(0.55 * math.sin(th1))
+d1 = (math.sin(th1), -math.cos(th1))
+d2 = (math.sin(th2), -math.cos(th2))
+perp = (math.cos(th1), math.sin(th1))
+start = (3.0, 7.6)
+H = 0.8
+ends = [(start[0] - perp[0] * H, start[1] - perp[1] * H), (start[0] + perp[0] * H, start[1] + perp[1] * H)]
+
+
+def where(p0, t):
+    tc = (p0[1] - Y) / -d1[1]
+    if t <= tc:
+        return (p0[0] + d1[0] * t, p0[1] + d1[1] * t)
+    q = (p0[0] + d1[0] * tc, Y)
+    r = (t - tc) * 0.55
+    return (q[0] + d2[0] * r, q[1] + d2[1] * r)
+
+
+T = [0, 1.6, 3.2, 4.2, 5.2, 6.2, 8.2]
+for t in T:
+    a, b = where(ends[0], t), where(ends[1], t)
+    mixed = (a[1] < Y) != (b[1] < Y)
+    col = RED if mixed else INK
+    ax.plot([a[0], b[0]], [a[1], b[1]], color=col, lw=2.2 if mixed else 1.6)
+    for p in (a, b):
+        ax.add_patch(Circle(p, 0.17, fc=RED if mixed else WATER, ec=INK, lw=0.8))
+for p0 in ends:
+    pts = [where(p0, t / 10) for t in range(0, 83)]
+    ax.plot([p[0] for p in pts], [p[1] for p in pts], color=GREY, lw=1, ls=(0, (3, 3)))
+save(fig, "m10-sand.svg")
+
+# 5. 꺾여요: 물속 젓가락 끝이 떠 보여요
+fig, ax = canvas(8.0, 5.0, 12.0, 8.0)
 ax.add_patch(Rectangle((0.6, 0.6), 7.6, 3.4, fc="#cfe3f3", ec="none"))
 ax.plot([0.6, 8.2], [4.0, 4.0], color=WATER, lw=1.4)
-ax.plot([2.4, 3.7], [7.4, 4.0], color="#b5835a", lw=5, solid_capstyle="round")
-ax.plot([3.7, 4.8], [4.0, 1.2], color="#b5835a", lw=5, solid_capstyle="round", alpha=0.9)
+stick(ax, (2.4, 7.4), (3.7, 4.0))
+stick(ax, (3.7, 4.0), (4.8, 1.2), alpha=0.9)
 tip, A = (4.8, 1.2), (5.0, 2.5)
 for P in [(5.6, 4.0), (6.2, 4.0)]:
     ray(ax, tip, P, head=False)
     d = (P[0] - A[0], P[1] - A[1])
     ray(ax, P, (P[0] + d[0] * 1.3, P[1] + d[1] * 1.3))
-    ax.plot([P[0], A[0]], [P[1], A[1]], color=INK, lw=1.1, ls="--")
+    ax.plot([P[0], A[0]], [P[1], A[1]], color=RED, lw=1.3, ls="--")
 ax.add_patch(Ellipse((7.1, 6.6), 1.8, 0.7, fc="white", ec=INK, lw=1.2))
 ax.add_patch(Circle((6.9, 6.5), 0.2, fc=INK))
-ax.add_patch(Circle(A, 0.12, fc="none", ec=INK, lw=1.4))
-ax.annotate("보이는 끝", A, (1.4, 2.6), fontsize=10, arrowprops=dict(arrowstyle="-", color=INK, lw=1))
-ax.annotate("실제 끝", tip, (1.4, 1.2), fontsize=10, arrowprops=dict(arrowstyle="-", color=INK, lw=1))
-ax.text(9.0, 3.2, "우리는 빛이 곧게 왔다고 여겨서\n젓가락 끝이 더 위에 있는 것처럼 보여요", ha="left", va="center", fontsize=10)
-ax.text(4.4, 0.2, "꺾이는 각도는 크게 그렸어요", ha="center", va="center", fontsize=9)
+ax.add_patch(Circle(A, 0.14, fc="none", ec=RED, lw=1.8))
+ax.annotate("보이는 끝", A, (1.2, 2.6), fontsize=10.5, color=RED, fontweight="bold",
+            arrowprops=dict(arrowstyle="-", color=RED, lw=1))
+ax.annotate("실제 끝", tip, (1.2, 1.2), fontsize=10.5, arrowprops=dict(arrowstyle="-", color=INK, lw=1))
+ax.text(9.0, 4.0, "물 표면", ha="left", va="center", fontsize=10)
 save(fig, "m10-bend.svg")
 
-# 6. 무지개: 빗방울 속 반사
+# 6. 무지개: 빗방울 속에서 색이 나뉘어요
 fig, ax = canvas(10.0, 4.6, 16.0, 7.4)
 cx, cy, R = 9.0, 4.2, 2.0
 ax.add_patch(Circle((cx, cy), R, fc="#e6f0f8", ec=INK, lw=1.4))
 entry = (cx - R * math.cos(math.radians(30)), cy + R * math.sin(math.radians(30)))
 back = (cx + R * 0.95, cy - R * 0.3)
 ray(ax, (1.0, entry[1]), entry, color="#888", lw=3, head=False)
-ax.text(1.6, entry[1] + 0.4, "햇빛", ha="center", va="center", fontsize=10)
+ax.text(1.6, entry[1] + 0.4, "햇빛", ha="center", va="center", fontsize=10.5, fontweight="bold")
 ray(ax, entry, back, color="#888", lw=2, head=False)
+ends = []
 for k, c in enumerate(RAINBOW):
     ex = (cx - R * math.cos(math.radians(-35 - k * 3)), cy + R * math.sin(math.radians(-35 - k * 3)))
     ray(ax, back, ex, color=c, lw=1.1, head=False)
     ang = math.radians(200 + k * 3.2)
-    ray(ax, ex, (ex[0] + 4.2 * math.cos(ang), ex[1] + 4.2 * math.sin(ang)), color=c, lw=1.5)
-ax.text(cx, cy + R + 0.4, "빗방울", ha="center", va="center", fontsize=10)
-ax.text(12.0, 1.4, "안쪽 벽에서 튕겨 되돌아 나오며\n색마다 조금씩 다르게 꺾여 나뉘어요", ha="left", va="center", fontsize=10,
-        color=RED, fontweight="bold")
+    end = (ex[0] + 4.2 * math.cos(ang), ex[1] + 4.2 * math.sin(ang))
+    ray(ax, ex, end, color=c, lw=1.5)
+    ends.append(end)
+ax.text(ends[0][0] - 0.3, ends[0][1] + 0.1, "빨강", ha="right", va="center", fontsize=10, color=RAINBOW[0],
+        fontweight="bold")
+ax.text(ends[-1][0] - 0.3, ends[-1][1] - 0.1, "보라", ha="right", va="center", fontsize=10, color=RAINBOW[-1],
+        fontweight="bold")
+ax.text(cx, cy + R + 0.4, "빗방울", ha="center", va="center", fontsize=10.5, fontweight="bold")
 save(fig, "m10-rainbow.svg")
 
 # 7. 사과 색
-fig, ax = canvas(9.0, 3.6, 15.0, 6.0)
+fig, ax = canvas(9.0, 3.4, 15.0, 5.6)
 ax.add_patch(Circle((1.6, 4.4), 0.45, fc=YEL, ec=INK, lw=1))
 apple(ax, 7.0, 2.2, 0.8)
 for k, c in enumerate([RED, "#5aa469", "#3b7dd8"]):
@@ -313,5 +343,8 @@ for k, c in enumerate([RED, "#5aa469", "#3b7dd8"]):
 ray(ax, (7.6, 2.8), (11.6, 4.6), color=RED, lw=1.8)
 ax.add_patch(Ellipse((12.4, 4.9), 1.2, 0.55, fc="white", ec=INK, lw=1.2))
 ax.add_patch(Circle((12.2, 4.85), 0.17, fc=INK))
-ax.text(7.0, 0.6, "빨간빛은 튕기고 다른 색 빛은 사과가 삼켜요", ha="center", va="center", fontsize=10.5, fontweight="bold")
+ax.text(1.6, 3.6, "전등", ha="center", va="center", fontsize=10)
+ax.text(7.0, 0.9, "사과", ha="center", va="center", fontsize=11, fontweight="bold")
+ax.text(9.9, 4.4, "빨강", ha="center", va="center", fontsize=10, color=RED, fontweight="bold")
+ax.text(4.0, 2.2, "초록, 파랑", ha="center", va="center", fontsize=10)
 save(fig, "m10-apple.svg")

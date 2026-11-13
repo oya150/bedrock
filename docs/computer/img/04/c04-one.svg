@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-22T13:25:29.848904</dc:date>
+    <dc:date>2026-11-13T21:40:07.144080</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ C 62.78972 65.967246 59.85 73.01857 59.85 80.37
 C 59.85 87.72143 62.78972 94.772754 68.021721 99.971 
 C 73.253722 105.169246 80.350834 108.09 87.75 108.09 
 z
-" clip-path="url(#p18f2da0e07)" style="fill: #e6e8eb; stroke: #9aa0a6; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p0caa5e2d49)" style="fill: #e6e8eb; stroke: #9aa0a6; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 75.195 120.564 
@@ -48,7 +48,7 @@ L 100.305 120.564
 L 100.305 106.704 
 L 75.195 106.704 
 z
-" clip-path="url(#p18f2da0e07)" style="fill: #9aa0a6"/>
+" clip-path="url(#p0caa5e2d49)" style="fill: #9aa0a6"/>
    </g>
    <g id="patch_4">
     <path d="M 227.25 108.09 
@@ -61,7 +61,7 @@ C 202.28972 65.967246 199.35 73.01857 199.35 80.37
 C 199.35 87.72143 202.28972 94.772754 207.521721 99.971 
 C 212.753722 105.169246 219.850834 108.09 227.25 108.09 
 z
-" clip-path="url(#p18f2da0e07)" style="fill: #f6c445; stroke: #b8901e; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p0caa5e2d49)" style="fill: #f6c445; stroke: #b8901e; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 214.695 120.564 
@@ -69,7 +69,7 @@ L 239.805 120.564
 L 239.805 106.704 
 L 214.695 106.704 
 z
-" clip-path="url(#p18f2da0e07)" style="fill: #9aa0a6"/>
+" clip-path="url(#p0caa5e2d49)" style="fill: #9aa0a6"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 700 30px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="87.75" y="163.53" transform="rotate(-0 87.75 163.53)">0</text>
@@ -86,7 +86,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p18f2da0e07">
+  <clipPath id="p0caa5e2d49">
    <rect x="18" y="18" width="279" height="166.32"/>
   </clipPath>
  </defs>

@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-28T21:07:09.015377</dc:date>
+    <dc:date>2026-11-13T21:46:40.386046</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,17 +40,17 @@ Q 26.928 34.2624 26.928 36.48
 L 26.928 84.528 
 Q 26.928 86.7456 29.16 86.7456 
 z
-" clip-path="url(#p35ae265e58)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p99fe773719)" style="fill: #fffdf5; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 258.082588 60.504 
 Q 293.280439 60.504 326.242221 60.504 
-" clip-path="url(#p35ae265e58)" style="fill: none; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p99fe773719)" style="fill: none; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 319.042221 56.904 
 L 326.242221 60.504 
 L 319.042221 64.104 
 z
-" clip-path="url(#p35ae265e58)" style="fill: #e4572e; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p99fe773719)" style="fill: #e4572e; stroke: #e4572e; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="patch_4">
     <path d="M 334.2 86.7456 
@@ -63,17 +63,17 @@ Q 331.968 34.2624 331.968 36.48
 L 331.968 84.528 
 Q 331.968 86.7456 334.2 86.7456 
 z
-" clip-path="url(#p35ae265e58)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p99fe773719)" style="fill: #fbe3dc; stroke: #e4572e; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 140.76 90.22585 
 Q 140.76 104.855177 140.76 117.248437 
-" clip-path="url(#p35ae265e58)" style="fill: none; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p99fe773719)" style="fill: none; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 144.36 110.048437 
 L 140.76 117.248437 
 L 137.16 110.048437 
 z
-" clip-path="url(#p35ae265e58)" style="fill: #555555; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p99fe773719)" style="fill: #555555; stroke: #555555; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="patch_6">
     <path d="M 29.16 171.7536 
@@ -86,7 +86,7 @@ Q 26.928 122.9664 26.928 125.184
 L 26.928 169.536 
 Q 26.928 171.7536 29.16 171.7536 
 z
-" clip-path="url(#p35ae265e58)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p99fe773719)" style="fill: #f4f6f8; stroke: #555555; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 334.2 171.7536 
@@ -99,32 +99,31 @@ Q 331.968 122.9664 331.968 125.184
 L 331.968 169.536 
 Q 331.968 171.7536 334.2 171.7536 
 z
-" clip-path="url(#p35ae265e58)" style="fill: #e9ecef; stroke: #c9ccd1; stroke-width: 1.8; stroke-linejoin: miter"/>
+" clip-path="url(#p99fe773719)" style="fill: #e9ecef; stroke: #c9ccd1; stroke-width: 1.8; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
-    <text style="fill: #222222; font: 700 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="140.76" y="63.980484" transform="rotate(-0 140.76 63.980484)">이 인덱스에 앞으로 더 쓰나요?</text>
+    <text style="fill: #222222; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="140.76" y="64.146031" transform="rotate(-0 140.76 64.146031)">앞으로 더 쓰는 인덱스</text>
    </g>
    <g id="text_2">
     <text style="fill: #e4572e; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="293.28" y="52.726937" transform="rotate(-0 293.28 52.726937)">예</text>
    </g>
    <g id="text_3">
-    <text style="fill: #e4572e; font: 700 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="449.52" y="63.980484" transform="rotate(-0 449.52 63.980484)">강제 병합하지 말고 ES에 맡겨요</text>
+    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="449.52" y="64.146031" transform="rotate(-0 449.52 64.146031)">강제 병합 ✗  ES에 맡기기</text>
    </g>
    <g id="text_4">
     <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="151.92" y="108.166937" transform="rotate(-0 151.92 108.166937)">아니요</text>
    </g>
    <g id="text_5">
-    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(66.300625 145.5325)">세그먼트 하나로 강제 병합해도 좋아요</text>
-    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(73.095156 155.809375)">(검색이 빨라지고 디스크가 줄어요)</text>
+    <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="140.76" y="151.002031" transform="rotate(-0 140.76 151.002031)">세그먼트 하나로 강제 병합 ○</text>
    </g>
    <g id="text_6">
-    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(393.675469 145.525)">기간 지난 데이터를 지우려면</text>
-    <text style="fill: #555555; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(389.350469 155.82625)">기간별 인덱스를 통째로 지워요</text>
+    <text style="fill: #555555; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(414.970078 145.435219)">기간 지난 데이터</text>
+    <text style="fill: #555555; font: 10.5px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(396.264492 156.23775)">→ 기간별 인덱스째 지우기</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p35ae265e58">
+  <clipPath id="p99fe773719">
    <rect x="18" y="18" width="558" height="199.584"/>
   </clipPath>
  </defs>

@@ -1,4 +1,5 @@
 """물질과 에너지 7편 그림 만들기. 실행: python lab/fig_m07.py  → docs/matter/img/07/*.svg
+검토용 PNG가 필요하면 FIG_FMT=png FIG_OUT=<폴더> 로 실행한다.
 
 글자는 SVG 안에 글자로 남긴다(글꼴 모양을 파일에 넣지 않는다). 보는 쪽 글꼴로 그려진다.
 카드는 차분한 색으로, 강조(새로 받은 카드, 비교 화살표, 많이 든 일)만 빨강으로 칠한다.
@@ -8,11 +9,12 @@ import os
 
 import matplotlib
 
-matplotlib.use("svg")
+matplotlib.use("svg" if os.environ.get("FIG_FMT", "svg") == "svg" else "agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc, Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "07")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "07")
+FMT = os.environ.get("FIG_FMT", "svg")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -29,6 +31,7 @@ LIGHT = "#e9ecef"
 
 
 def save(fig, name):
+    name = name.rsplit(".", 1)[0] + "." + FMT
     fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
     plt.close(fig)
 
@@ -37,10 +40,6 @@ def canvas(w, h, xmax, ymax):
     fig, ax = plt.subplots(figsize=(w, h))
     ax.set_xlim(0, xmax); ax.set_ylim(0, ymax); ax.axis("off")
     return fig, ax
-
-
-def box(ax, x, y, w, h, fc="white", ec=INK, lw=1.8):
-    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.08", fc=fc, ec=ec, lw=lw))
 
 
 def arrow(ax, a, b, color=INK, lw=2, rad=0.0, ms=18):
@@ -178,64 +177,67 @@ def waves(ax, x, y, ang, L=1.0, color=RED):
     ax.plot(xs, ys, color=color, lw=1.4)
 
 
-# 1. 여는 장면: 촛불
+# 1. 촛불: 처음과 한참 뒤
 fig, ax = canvas(9.0, 4.2, 15.0, 7.0)
 for cx, h, lab in [(3.5, 2.2, "처음"), (10.5, 0.9, "한참 뒤")]:
     ax.add_patch(FancyBboxPatch((cx - 2.0, 0.6), 4.0, 1.2, boxstyle="round,pad=0.1", fc="#f6d8c4", ec=INK, lw=1.2))
     candle(ax, cx, 1.9, h)
-    flame(ax, cx, 1.9 + h + 0.2)
-    ax.text(cx, 0.2, lab, ha="center", va="center", fontsize=10)
+    ax.text(cx, 0.2, lab, ha="center", va="center", fontsize=10.5)
+# 줄어든 만큼: 빨간 점선 칸
+ax.add_patch(Rectangle((10.25, 2.8), 0.5, 1.3, fc="none", ec=RED, lw=1.8, ls="--"))
+ax.text(11.0, 3.9, "줄어든 만큼", ha="left", va="center", fontsize=10.5, color=RED, fontweight="bold")
+# 흘러내려 굳은 촛농
+ax.add_patch(Rectangle((10.7, 2.0), 0.14, 0.6, fc="#f3e3b5", ec=INK, lw=0.8))
+ax.add_patch(Ellipse((10.95, 1.98), 0.7, 0.22, fc="#f3e3b5", ec=INK, lw=0.8))
+ax.annotate("촛농", (11.2, 2.0), (12.2, 2.4), fontsize=10, va="center",
+            arrowprops=dict(arrowstyle="-", color=INK, lw=0.9))
+flame(ax, 3.5, 1.9 + 2.2 + 0.2)
 arrow(ax, (6.0, 2.6), (8.0, 2.6))
-ax.text(7.0, 6.5, "줄어든 초는 어디로 갔을까?", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
 save(fig, "m07-candle.svg")
 
-# 2. 이 편의 지도
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["원자가 짝을 바꿔요", "불에 필요한 셋", "열과 빛이 나와요", "불 없이도 바뀌어요"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=10.5, fontweight="bold")
-    cx = x + 1.9
-    if i == 0:
-        for k, c in enumerate([CARBON, OXY, OXY]):
-            block(ax, cx - 1.65 + k * 0.35, 2.0, c, 0.35)
-        arrow(ax, (cx - 0.5, 2.2), (cx + 0.1, 2.2), lw=1.2, ms=10)
-        for k, c in enumerate([OXY, CARBON, OXY]):
-            block(ax, cx + 0.3 + k * 0.35, 2.0, c, 0.35)
-    elif i == 1:
-        ax.add_patch(Rectangle((cx - 1.5, 1.8), 0.8, 0.35, fc=WOOD, ec=INK, lw=1))
-        ax.text(cx + 0.05, 1.98, "산소", ha="center", va="center", fontsize=8.5)
-        waves(ax, cx + 0.6, 1.8, math.pi / 2, 0.8)
-        flame(ax, cx, 2.6, 0.7)
-    elif i == 2:
-        flame(ax, cx, 1.8, 0.9)
-        for k in range(6):
-            a = math.radians(30 * k - 60) if k < 3 else math.radians(30 * k + 30)
-            waves(ax, cx + 0.5 * math.cos(a), 2.3 + 0.5 * math.sin(a), a, 0.6)
-    else:
-        ax.add_patch(Ellipse((cx, 2.3), 1.6, 1.0, fc=APPLE, ec=INK, lw=1))
-        ax.add_patch(Ellipse((cx, 2.3), 1.2, 0.7, fc="#c69a5b", ec="none", alpha=0.7))
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "m07-map.svg")
-
-# 3. 블록 수는 그대로, 모양은 달라요
-fig, ax = canvas(10.0, 3.8, 16.0, 6.2)
+# 2. 블록 수는 그대로, 짝만 달라요
+fig, ax = canvas(10.0, 4.6, 16.0, 7.4)
+for k, (c, lab) in enumerate([(CARBON, "탄소"), (HYD, "수소"), (OXY, "산소")]):
+    block(ax, 1.0 + k * 3.0, 6.3, c, 0.4)
+    ax.text(1.6 + k * 3.0, 6.5, lab, ha="left", va="center", fontsize=10)
 for (x, c) in [(1.0, HYD), (1.6, CARBON), (2.2, HYD)]:
     block(ax, x, 3.6, c)
-ax.text(3.2, 3.9, "초 조각", ha="left", va="center", fontsize=10)
-for x in (1.0, 1.9, 2.8):
+ax.text(3.2, 3.9, "초 조각", ha="left", va="center", fontsize=10.5)
+# 공기 속 산소는 둘씩 붙어 있다: 붙은 둘 + 떨어진 하나
+for x in (1.0, 1.6, 2.8):
     block(ax, x, 1.8, OXY)
-ax.text(3.7, 2.1, "산소", ha="left", va="center", fontsize=10)
+ax.text(3.8, 2.1, "산소", ha="left", va="center", fontsize=10.5)
 arrow(ax, (5.0, 3.0), (7.4, 3.0))
-ax.text(6.2, 3.5, "다시 이어지면", ha="center", va="center", fontsize=9)
 for (x, c) in [(9.0, OXY), (9.6, CARBON), (10.2, OXY)]:
     block(ax, x, 3.6, c)
+ax.text(11.2, 3.9, "이산화탄소", ha="left", va="center", fontsize=10.5)
 for (x, c) in [(9.0, HYD), (9.6, OXY), (10.2, HYD)]:
     block(ax, x, 1.8, c)
-ax.text(8.0, 0.7, "블록 수는 그대로, 모양은 달라요", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(11.2, 2.1, "물", ha="left", va="center", fontsize=10.5)
+for x in (1.9, 9.9):
+    ax.text(x, 0.8, "블록 6개", ha="center", va="center", fontsize=11.5, color=RED, fontweight="bold")
 save(fig, "m07-blocks.svg")
+
+# 3. 초는 기체가 되어 날아가요
+fig, ax = canvas(9.0, 5.4, 15.0, 9.0)
+ax.add_patch(Rectangle((2.6, 0.6), 2.8, 3.0, fc=WAX, ec=INK, lw=1.4))
+ax.add_patch(Ellipse((4.0, 3.6), 2.4, 0.5, fc="#f3e3b5", ec=INK, lw=1))
+ax.plot([4.0, 4.0], [3.6, 4.4], color=INK, lw=2)
+for k in range(4):
+    arrow(ax, (3.9, 3.5 + k * 0.2), (3.9, 3.7 + k * 0.2), color=INK, lw=0.8, ms=6)
+flame(ax, 4.0, 4.3, 2.4)
+for (x0, y0, cols) in [(3.0, 7.3, [OXY, CARBON, OXY]), (4.5, 8.0, [HYD, OXY, HYD])]:
+    for k, c in enumerate(cols):
+        block(ax, x0 + k * 0.32, y0, c, 0.3)
+    arrow(ax, (x0 + 0.5, y0 + 0.45), (x0 + 0.8, y0 + 0.8), color=RED, lw=1.2, ms=9)
+ax.annotate("녹은 초", (4.9, 3.6), (6.6, 3.0), fontsize=10.5, va="center",
+            arrowprops=dict(arrowstyle="-", color=INK, lw=1))
+ax.annotate("심지", (4.05, 4.1), (6.6, 4.4), fontsize=10.5, va="center",
+            arrowprops=dict(arrowstyle="-", color=INK, lw=1))
+ax.annotate("불꽃", (5.1, 5.6), (6.6, 5.8), fontsize=10.5, va="center",
+            arrowprops=dict(arrowstyle="-", color=INK, lw=1))
+ax.text(6.6, 8.0, "보이지 않는 기체", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
+save(fig, "m07-flame.svg")
 
 # 4. 불에 필요한 셋
 fig, ax = canvas(9.0, 4.6, 15.0, 7.6)
@@ -250,10 +252,25 @@ for k in range(3):
 ax.text(7.5, 0.2, "처음의 열", ha="center", va="center", fontsize=11, fontweight="bold")
 arrow(ax, (3.6, 5.2), (6.6, 4.4), color=INK, lw=1.4)
 arrow(ax, (11.6, 5.2), (8.4, 4.4), color=INK, lw=1.4)
-ax.text(10.6, 2.6, "셋이 다 있어야\n불이 붙어요", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
 save(fig, "m07-three.svg")
 
-# 5. 열과 빛 (heat)
+# 5. 유리컵을 덮으면
+fig, ax = canvas(9.0, 4.6, 15.0, 7.6)
+ax.plot([1.0, 14.0], [0.9, 0.9], color=INK, lw=1.6)
+for cx in (4.0, 11.0):
+    candle(ax, cx, 0.9, 2.6, 1.3)
+flame(ax, 4.0, 0.9 + 2.6 + 0.3, 1.3)
+ax.add_patch(Polygon([(9.5, 0.9), (9.7, 5.9), (12.3, 5.9), (12.5, 0.9)], closed=False, fc="#dbeaf5", ec=INK, lw=1.6,
+                     alpha=0.55))
+xs = [11.0 + 0.12 * math.sin(t * 0.9) for t in range(12)]
+ys = [3.8 + t * 0.12 for t in range(12)]
+ax.plot(xs, ys, color=GREY, lw=1.6)
+ax.text(4.0, 0.4, "덮지 않음", ha="center", va="center", fontsize=10.5)
+ax.text(11.0, 0.4, "컵을 덮음", ha="center", va="center", fontsize=10.5)
+ax.text(12.8, 3.6, "꺼짐", ha="left", va="center", fontsize=11.5, color=RED, fontweight="bold")
+save(fig, "m07-cup.svg")
+
+# 6. 열과 빛
 fig, ax = canvas(9.0, 4.6, 15.0, 7.6)
 candle(ax, 5.0, 0.6, 2.4, 1.4)
 flame(ax, 5.0, 3.1, 2.0)
@@ -262,39 +279,27 @@ for k, a in enumerate([20, 50, 130, 160, 80, 100]):
     waves(ax, 5.0 + 1.1 * math.cos(r), 4.2 + 1.1 * math.sin(r), r, 1.2)
 ax.add_patch(FancyArrowPatch((6.4, 3.6), (5.6, 2.9), arrowstyle="-|>", mutation_scale=14, color=RED, lw=1.6,
                              connectionstyle="arc3,rad=-0.5"))
-ax.text(7.4, 6.4, "아주 뜨거워서 빛나요", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
-ax.text(7.6, 4.6, "열이 나와요", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
-ax.text(7.0, 2.6, "그 열이 곁의 초를\n뜨겁게 해요", ha="left", va="center", fontsize=10.5)
+ax.annotate("빛", (5.35, 4.9), (7.4, 6.6), fontsize=12, fontweight="bold", va="center",
+            arrowprops=dict(arrowstyle="-", color=INK, lw=1))
+ax.text(7.6, 4.6, "열", ha="left", va="center", fontsize=12, color=RED, fontweight="bold")
+ax.text(7.0, 2.8, "초를 다시 데움", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
 save(fig, "m07-heat.svg")
 
-# 5b. 초는 기체가 되어 날아가요
-fig, ax = canvas(9.0, 5.0, 15.0, 8.4)
-ax.add_patch(Rectangle((2.6, 0.6), 2.8, 3.0, fc=WAX, ec=INK, lw=1.4))
-ax.add_patch(Ellipse((4.0, 3.6), 2.4, 0.5, fc="#f3e3b5", ec=INK, lw=1))
-ax.plot([4.0, 4.0], [3.6, 4.4], color=INK, lw=2)
-for k in range(4):
-    arrow(ax, (3.9, 3.5 + k * 0.2), (3.9, 3.7 + k * 0.2), color=INK, lw=0.8, ms=6)
-flame(ax, 4.0, 4.3, 2.4)
-for (x0, y0, cols) in [(3.2, 6.9, [OXY, CARBON, OXY]), (4.4, 7.6, [HYD, OXY, HYD])]:
-    for k, c in enumerate(cols):
-        block(ax, x0 + k * 0.32, y0, c, 0.3)
-    arrow(ax, (x0 + 0.5, y0 + 0.45), (x0 + 0.8, y0 + 0.8), color=RED, lw=1.2, ms=9)
-ax.annotate("녹은 초가 심지를 타고\n올라가 타요", (4.1, 3.9), (6.6, 3.0), fontsize=10.5,
-            arrowprops=dict(arrowstyle="-", color=INK, lw=1))
-ax.text(6.6, 7.4, "눈에 안 보이는 기체가\n되어 날아가요", ha="left", va="center", fontsize=10.5, color=RED, fontweight="bold")
-save(fig, "m07-flame.svg")
-
-# 6. 불 없이도
-fig, ax = canvas(10.0, 4.2, 16.0, 6.8)
+# 7. 불 없이도
+fig, ax = canvas(7.0, 4.4, 10.5, 6.8)
 ax.add_patch(Ellipse((2.0, 5.0), 2.2, 1.3, fc=APPLE, ec=INK, lw=1.2))
 arrow(ax, (3.6, 5.0), (5.4, 5.0))
+ax.text(4.5, 5.5, "공기", ha="center", va="center", fontsize=10)
 ax.add_patch(Ellipse((7.0, 5.0), 2.2, 1.3, fc="#c69a5b", ec=INK, lw=1.2))
-ax.text(8.8, 5.0, "사과 조각이 공기를 만나면", ha="left", va="center", fontsize=11)
+ax.text(2.0, 3.9, "사과", ha="center", va="center", fontsize=11)
+ax.text(7.0, 3.9, "갈색", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
 for x0, fc in [(1.0, "#c9ccd1"), (6.0, RUST)]:
     ax.add_patch(Rectangle((x0, 1.6), 2.4, 0.3, fc=fc, ec=INK, lw=1.2))
     ax.add_patch(Rectangle((x0 - 0.2, 1.4), 0.25, 0.7, fc=fc, ec=INK, lw=1.2))
 arrow(ax, (3.6, 1.75), (5.4, 1.75))
+ax.text(4.5, 2.3, "물, 공기", ha="center", va="center", fontsize=10)
 for k in range(8):
     ax.add_patch(Circle((6.2 + random.uniform(0, 2.2), 1.75 + random.uniform(-0.12, 0.12)), 0.05, fc="#7a3518", ec="none"))
-ax.text(8.8, 1.75, "쇠가 물과 공기를 만나면", ha="left", va="center", fontsize=11)
+ax.text(2.1, 0.8, "쇠못", ha="center", va="center", fontsize=11)
+ax.text(7.1, 0.8, "녹", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
 save(fig, "m07-slow.svg")

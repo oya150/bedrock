@@ -8,11 +8,12 @@ import os
 
 import matplotlib
 
-matplotlib.use("svg")
+matplotlib.use("svg" if os.environ.get("FIG_FMT", "svg") == "svg" else "agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc, Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "03")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "03")
+FMT = os.environ.get("FIG_FMT", "svg")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -29,7 +30,8 @@ LIGHT = "#e9ecef"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    name = name.rsplit(".", 1)[0] + "." + FMT
+    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -153,113 +155,103 @@ def hand(ax, x, y, s=1.0):
                                     boxstyle="round,pad=0.12", fc="#f6d8c4", ec=INK, lw=1.2))
 
 
+
+
+SKIN = "#f3b9a3"
+
+
 # 1. 여는 장면: 얼음을 손에 쥐면
-fig, ax = canvas(9.0, 4.4, 15.0, 7.2)
-hand(ax, 4.6, 0.3, 1.4)
-ax.add_patch(Polygon([(5.7, 1.4), (7.1, 1.4), (7.4, 2.4), (6.0, 2.4)], closed=True, fc=ICE, ec=INK, lw=1.4))
+fig, ax = canvas(7.0, 2.8, 12.0, 4.6)
+hand(ax, 3.4, 0.3, 1.4)
+ax.add_patch(Polygon([(4.5, 1.4), (5.9, 1.4), (6.2, 2.4), (4.8, 2.4)], closed=True, fc=ICE, ec=INK, lw=1.4))
 for k in range(3):
-    ax.add_patch(Ellipse((6.0 + k * 0.5, 1.25), 0.18, 0.12, fc=WATER, ec="none"))
-arrow(ax, (6.55, 0.9), (6.55, 1.35), color=RED, lw=2.4, ms=14)
-ax.text(5.9, 0.95, "열", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
-ax.text(3.8, 1.6, "손이 시려요", ha="right", va="center", fontsize=11, fontweight="bold")
-ax.annotate("얼음이 녹아요", (7.3, 2.0), (9.6, 2.0), fontsize=11, fontweight="bold", va="center",
+    ax.add_patch(Ellipse((4.8 + k * 0.5, 1.25), 0.18, 0.12, fc=WATER, ec="none"))
+arrow(ax, (5.35, 0.75), (5.35, 1.35), color=RED, lw=2.6, ms=16)
+ax.annotate("손", (3.5, 1.2), (1.6, 1.2), fontsize=13, fontweight="bold", va="center", ha="center",
             arrowprops=dict(arrowstyle="-", color=INK, lw=1))
-ax.text(7.5, 6.8, "손과 얼음 사이에서 무엇이 옮겨 갔을까?", ha="center", va="center", fontsize=12, color=RED,
-        fontweight="bold")
+ax.annotate("얼음", (6.1, 2.0), (8.4, 2.0), fontsize=13, fontweight="bold", va="center", ha="center",
+            arrowprops=dict(arrowstyle="-", color=INK, lw=1))
 save(fig, "m03-hand.svg")
 
-# 2. 이 편의 지도
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["뜨거우면 세게 꿈틀거려요", "부딪혀서 옮겨 가요", "닿은 곳부터 차례로", "같아지면 멈춰요"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=11, fontweight="bold")
-    cx = x + 1.9
-    if i == 0:
-        particle(ax, cx - 0.4, 2.6, r=0.3)
-        arrow(ax, (cx - 0.05, 2.6), (cx + 1.0, 2.9), color=RED, lw=1.8)
-    elif i == 1:
-        particle(ax, cx - 0.3, 2.6, r=0.3)
-        particle(ax, cx + 0.3, 2.6, r=0.3)
-        arrow(ax, (cx - 1.5, 2.6), (cx - 0.62, 2.6), color=RED, lw=1.8)
-    elif i == 2:
-        for k in range(5):
-            particle(ax, cx - 1.2 + k * 0.6, 2.6, r=0.2)
-        for k in range(4):
-            arrow(ax, (cx - 1.2 + k * 0.6, 3.0), (cx - 0.6 + k * 0.6, 3.0), color=RED, lw=1.0, ms=8)
-    else:
-        for dx in (-0.7, 0.7):
-            cup(ax, cx + dx - 0.5, 1.8, 1.0, 1.4)
-        ax.text(cx, 2.5, "=", ha="center", va="center", fontsize=16, fontweight="bold")
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "m03-map.svg")
-
-# 3. 찬물과 따뜻한 물
-fig, ax = canvas(10.0, 4.6, 16.0, 7.4)
-for x, strength, fc, lab in [(1.0, 0.25, "#eef5fb", "찬물: 약하게 꿈틀"), (9.0, 0.7, "#fbe9e3", "따뜻한 물: 세게 꿈틀")]:
+# 2. 찬물과 따뜻한 물
+fig, ax = canvas(10.0, 4.2, 16.0, 6.6)
+for x, strength, fc, lab in [(1.0, 0.25, "#eef5fb", "찬물"), (9.0, 0.7, "#fbe9e3", "따뜻한 물")]:
     cup(ax, x, 1.4, 6.0, 4.6, fc=fc)
     for i in range(4):
         for j in range(5):
             mover(ax, x + 1.0 + j * 1.0 + (0.5 if i % 2 else 0) + random.uniform(-0.1, 0.1),
                   2.2 + i * 1.0 + random.uniform(-0.1, 0.1), strength * random.uniform(0.8, 1.1))
-    ax.text(x + 3.0, 0.8, lab, ha="center", va="center", fontsize=11, fontweight="bold",
+    ax.text(x + 3.0, 0.8, lab, ha="center", va="center", fontsize=13, fontweight="bold",
             color=RED if strength > 0.5 else "#222")
-ax.text(8.0, 7.0, "크기와 거리는 실제와 맞추지 않았어요", ha="center", va="center", fontsize=9)
 save(fig, "m03-cups.svg")
 
-# 4. 구슬치기
-fig, ax = canvas(10.0, 4.2, 16.0, 6.8)
+# 3. 구슬치기
+fig, ax = canvas(9.0, 4.2, 14.0, 6.8)
 MARBLE = "#cfd8e3"
-ax.text(0.4, 5.6, "부딪히는 순간", ha="left", va="center", fontsize=11, fontweight="bold")
+ax.text(0.4, 5.9, "부딪히는 순간", ha="left", va="center", fontsize=12, fontweight="bold")
 ax.add_patch(Circle((5.0, 4.4), 0.45, fc=MARBLE, ec=INK, lw=1.4))
 arrow(ax, (2.2, 4.4), (4.5, 4.4), color=RED, lw=2.2)
 ax.add_patch(Circle((5.9, 4.4), 0.45, fc=MARBLE, ec=INK, lw=1.4))
 arrow(ax, (6.4, 4.4), (7.0, 4.4), color=INK, lw=1.6)
-ax.text(0.4, 2.4, "부딪힌 뒤", ha="left", va="center", fontsize=11, fontweight="bold")
+ax.text(5.0, 3.6, "빠름", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(5.9, 3.6, "느림", ha="center", va="center", fontsize=11)
+ax.text(0.4, 2.6, "부딪힌 뒤", ha="left", va="center", fontsize=12, fontweight="bold")
 ax.add_patch(Circle((4.2, 1.3), 0.45, fc=MARBLE, ec=INK, lw=1.4))
 arrow(ax, (4.7, 1.3), (5.3, 1.3), color=INK, lw=1.6)
 ax.add_patch(Circle((7.0, 1.3), 0.45, fc=MARBLE, ec=INK, lw=1.4))
 arrow(ax, (7.5, 1.3), (9.8, 1.3), color=RED, lw=2.2)
-ax.text(10.8, 2.9, "빠른 구슬은 느려지고\n느린 구슬은 빨라져요", ha="left", va="center", fontsize=11, color=RED,
-        fontweight="bold")
+ax.text(4.2, 0.5, "느림", ha="center", va="center", fontsize=11)
+ax.text(7.0, 0.5, "빠름", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
 save(fig, "m03-marbles.svg")
 
+# 4. 손과 얼음이 닿은 곳
+fig, ax = canvas(9.0, 4.6, 14.0, 7.2)
+ax.add_patch(Rectangle((0.6, 0.9), 6.0, 5.4, fc="#fbe9e3", ec=INK, lw=1.2))
+ax.add_patch(Rectangle((6.6, 0.9), 6.0, 5.4, fc="#eef5fb", ec=INK, lw=1.2))
+for i in range(5):
+    for j in range(5):
+        mover(ax, 1.3 + j * 1.15, 1.5 + i * 1.05, 0.65 * random.uniform(0.85, 1.1), fc=SKIN)
+        mover(ax, 7.3 + j * 1.15, 1.5 + i * 1.05, 0.2 * random.uniform(0.8, 1.1), color=INK)
+ax.add_patch(FancyArrowPatch((5.6, 6.75), (7.6, 6.75), arrowstyle="simple", mutation_scale=26, fc=RED, ec=RED))
+ax.text(3.6, 0.35, "손", ha="center", va="center", fontsize=13, fontweight="bold")
+ax.text(9.6, 0.35, "얼음", ha="center", va="center", fontsize=13, fontweight="bold")
+save(fig, "m03-contact.svg")
+
 # 5. 숟가락을 따라 차례로
-fig, ax = canvas(9.0, 4.8, 15.0, 8.0)
+fig, ax = canvas(8.0, 4.6, 13.0, 8.0)
 cup(ax, 1.0, 0.8, 5.0, 4.0, fc="#e8d3c0")
-ax.text(3.5, 1.8, "따뜻한 코코아", ha="center", va="center", fontsize=10)
+ax.text(3.5, 1.8, "코코아", ha="center", va="center", fontsize=12)
 ax.plot([3.0, 8.4], [3.4, 7.2], color="#9aa3ad", lw=10, solid_capstyle="round")
 for k in range(6):
     px, py = 3.6 + k * 0.95, 3.82 + k * 0.67
     particle(ax, px, py, r=0.2, fc="#b9c2cc")
     if k < 5:
         arrow(ax, (px + 0.15, py + 0.45), (px + 0.85, py + 0.95), color=RED, lw=1.2, ms=9)
-ax.text(9.0, 7.3, "열이 차례로 건너가\n손잡이까지 따뜻해져요", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(9.0, 7.3, "손잡이", ha="left", va="center", fontsize=12, fontweight="bold")
 save(fig, "m03-spoon.svg")
 
 # 6. 쇠와 나무
-fig, ax = canvas(10.0, 4.6, 16.0, 7.4)
-for x, fc, w, lab, col in [(0.6, "#9aa3ad", 4.0, "쇠 숟가락: 손에서 열이 빨리 옮겨 가요", RED),
-                           (8.6, "#c8a27a", 1.6, "나무 주걱: 천천히 옮겨 가요", INK)]:
+fig, ax = canvas(10.0, 4.4, 16.0, 7.0)
+for x, fc, w, lab, speed, col in [(0.6, "#9aa3ad", 4.0, "쇠 숟가락", "빨리", RED),
+                                  (8.6, "#c8a27a", 1.6, "나무 주걱", "천천히", INK)]:
     ax.add_patch(Rectangle((x + 0.4, 1.9), 4.6, 0.4, fc=fc, ec=INK, lw=1.2))
     ax.add_patch(Ellipse((x + 5.6, 2.1), 1.4, 0.9, fc=fc, ec=INK, lw=1.2))
     hand(ax, x + 1.0, 2.35, 0.8)
     ax.add_patch(FancyArrowPatch((x + 0.55, 3.6), (x + 0.55, 2.45), arrowstyle="simple", mutation_scale=8 + w * 6,
                                  fc=RED, ec=RED, lw=0.5))
-    ax.text(x + 3.4, 1.0, lab, ha="center", va="center", fontsize=10.5, color=col, fontweight="bold")
-ax.text(8.0, 7.0, "같은 방에 둔 둘은 온도가 같아요", ha="center", va="center", fontsize=11)
+    ax.text(x - 0.1, 3.05, "열", ha="right", va="center", fontsize=11, color=RED, fontweight="bold")
+    ax.text(x + 3.4, 1.0, lab, ha="center", va="center", fontsize=12, fontweight="bold")
+    ax.text(x + 3.4, 0.35, speed, ha="center", va="center", fontsize=11, color=col, fontweight="bold")
+ax.text(8.0, 6.7, "같은 방 · 같은 온도", ha="center", va="center", fontsize=11)
 save(fig, "m03-metal-wood.svg")
 
 # 7. 같아지면 멈춰요
-fig, ax = canvas(10.0, 4.4, 16.0, 7.0)
+fig, ax = canvas(8.0, 4.4, 12.0, 7.0)
 for y, start_fc, lab in [(4.0, "#f3c6b8", "따뜻한 우유"), (0.8, "#cfe3f3", "차가운 우유")]:
     cup(ax, 1.0, y, 1.8, 2.0, fc=start_fc)
-    ax.text(1.9, y - 0.35, lab, ha="center", va="center", fontsize=10)
+    ax.text(1.9, y - 0.35, lab, ha="center", va="center", fontsize=11)
     arrow(ax, (3.3, y + 1.0), (6.3, y + 1.0), color=INK, lw=1.8)
-    ax.text(4.8, y + 1.4, "시간이 지나면", ha="center", va="center", fontsize=9)
+    ax.text(4.8, y + 1.4, "시간", ha="center", va="center", fontsize=10)
     cup(ax, 6.8, y, 1.8, 2.0, fc="#efe9dc")
-    ax.text(7.7, y - 0.35, "방과 같은 온도", ha="center", va="center", fontsize=10)
-ax.text(10.6, 3.6, "둘 다 방과 같은\n온도가 됐어요", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
+    ax.text(7.7, y - 0.35, "방 온도", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
 save(fig, "m03-equal.svg")

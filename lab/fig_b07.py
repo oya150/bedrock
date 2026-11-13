@@ -1,18 +1,20 @@
 """인체 7편 그림 만들기. 실행: python lab/fig_b07.py  → docs/body/img/07/*.svg
 
 글자는 SVG 안에 글자로 남긴다(글꼴 모양을 파일에 넣지 않는다). 보는 쪽 글꼴로 그려진다.
-카드는 차분한 색으로, 강조(새로 받은 카드, 비교 화살표, 많이 든 일)만 빨강으로 칠한다.
+강조는 빨강 하나. 물(땀)은 파랑, 피부는 살구색으로 칠한다. 그림 안 글씨는 낱말과 숫자만.
+확인용 PNG: FIG_FMT=png FIG_OUT=/어딘가 python lab/fig_b07.py
 """
-import itertools
+import math
 import os
 
 import matplotlib
 
 matplotlib.use("svg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import Arc, Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
+from matplotlib.patches import Circle, Ellipse, FancyArrowPatch, FancyBboxPatch, Polygon, Rectangle
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "body", "img", "07")
+FMT = os.environ.get("FIG_FMT", "svg")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "body", "img", "07")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -23,13 +25,19 @@ plt.rcParams.update({
     "savefig.facecolor": "white",
 })
 
-RED, GREY, INK, PAPER, NOTE, YEL = "#e4572e", "#c9ccd1", "#555", "#f4f6f8", "#fffdf5", "#f6c445"
-BLUE, GREEN = "#7da2c8", "#8fb58f"
-LIGHT = "#e9ecef"
+RED, GREY, INK, YEL = "#e4572e", "#c9ccd1", "#555", "#f6c445"
+CELL = "#fbe3dc"
+SKIN = "#f6d8c4"
+SKIN_TOP = "#f2c9b0"
+SKIN_WARM = "#f5c2b0"
+BLOOD = "#c0392b"
+WATER = "#7da2c8"
+WATER_LIGHT = "#dbe7f3"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    name = name.rsplit(".", 1)[0] + "." + FMT
+    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -39,7 +47,7 @@ def canvas(w, h, xmax, ymax):
     return fig, ax
 
 
-def box(ax, x, y, w, h, fc="white", ec=INK, lw=1.8):
+def box(ax, x, y, w, h, fc="white", ec=INK, lw=1.6):
     ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.08", fc=fc, ec=ec, lw=lw))
 
 
@@ -48,46 +56,7 @@ def arrow(ax, a, b, color=INK, lw=2, rad=0.0, ms=18):
                                  connectionstyle=f"arc3,rad={rad}"))
 
 
-def kid(ax, cx, y, s=1.0):
-    ax.add_patch(Circle((cx, y + 1.55 * s), 0.32 * s, fc="white", ec=INK, lw=1.6))
-    ax.add_patch(Circle((cx - 0.11 * s, y + 1.6 * s), 0.035 * s, fc=INK))
-    ax.add_patch(Circle((cx + 0.11 * s, y + 1.6 * s), 0.035 * s, fc=INK))
-    ax.add_patch(Arc((cx, y + 1.5 * s), 0.3 * s, 0.2 * s, theta1=200, theta2=340, color=INK, lw=1.4))
-    ax.plot([cx, cx], [y + 1.23 * s, y + 0.55 * s], color=INK, lw=2)
-    ax.plot([cx, cx - 0.3 * s], [y + 0.55 * s, y], color=INK, lw=2)
-    ax.plot([cx, cx + 0.3 * s], [y + 0.55 * s, y], color=INK, lw=2)
-    ax.plot([cx - 0.35 * s, cx + 0.35 * s], [y + 1.0 * s, y + 1.0 * s], color=INK, lw=2)
-
-
-def card(ax, x, y, w, h, num, hot=False, gone=False, fs=12):
-    fc = LIGHT if gone else ("#fbe3dc" if hot else NOTE)
-    ax.add_patch(Rectangle((x, y), w, h, fc=fc, ec=RED if hot else (GREY if gone else INK), lw=2.2 if hot else 1.2))
-    ax.text(x + w / 2, y + h / 2, str(num), ha="center", va="center", fontsize=fs,
-            color=RED if hot else (GREY if gone else "#222"), fontweight="bold")
-
-
-def stones(ax, x, y, n, color=INK, r=0.13, gap=0.34):
-    for k in range(n):
-        ax.add_patch(Circle((x + k * gap, y), r, fc=color, ec=color))
-
-
-def row(ax, x, y, nums, cw=0.9, ch=1.1, gap=0.1, hot=(), fs=12, gone=()):
-    for k, n in enumerate(nums):
-        card(ax, x + k * (cw + gap), y, cw, ch, n, hot=(k in hot), gone=(k in gone), fs=fs)
-    return x + len(nums) * (cw + gap) - gap
-
-import math
-from matplotlib.patches import Ellipse, Polygon
-
-CELL = "#fbe3dc"
-SKIN = "#f6d8c4"
-BLOOD = "#c0392b"
-WATER = "#7da2c8"
-HEAT = "#e4572e"
-COOL = "#7da2c8"
-
-
-def wavy(ax, x, y, h=1.0, color=HEAT, lw=1.6):
+def wavy(ax, x, y, h=1.0, color=RED, lw=1.6):
     ys = [y + h * t / 30 for t in range(31)]
     xs = [x + 0.12 * math.sin(t * 0.6) for t in range(31)]
     ax.plot(xs, ys, color=color, lw=lw)
@@ -99,113 +68,145 @@ def thermo(ax, x, y, level, h=3.0):
     ax.add_patch(Rectangle((x - 0.1, y), 0.2, h * level, fc=RED, ec="none"))
 
 
-# 1. 여는 장면: 뛰고 난 뒤 이마에 땀
-fig, ax = canvas(10.0, 4.6, 16.0, 7.4)
-kid(ax, 4.0, 0.8, 3.0)
-for dx, dy in ((-0.5, 5.9), (0.45, 6.1), (0.05, 6.35)):
-    ax.add_patch(Ellipse((4.0 + dx, dy), 0.18, 0.3, fc=WATER, ec=INK, lw=0.8))
-for k in range(3):
-    wavy(ax, 6.2 + k * 0.5, 3.0, 1.6)
-ax.text(8.6, 5.4, "운동장을 뛰고 나면\n이마에 땀이 송골송골", ha="left", va="center", fontsize=12)
-ax.text(12.4, 2.2, "땀은 왜 날까?", ha="center", va="center", fontsize=13, color=RED, fontweight="bold")
-save(fig, "b07-run.svg")
+def drop(ax, x, y, s=1.0, alpha=1.0):
+    ax.add_patch(Ellipse((x, y), 0.8 * s, 0.6 * s, fc=WATER, ec=INK, lw=1, alpha=alpha))
 
-# 2. 이 편의 지도
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["몸에서 열이 나요", "늘 비슷한 온도", "땀이 마르며 식혀요", "땀구멍과 모공"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=11, fontweight="bold")
-    cx = x + 1.9
-    if i == 0:
-        ax.add_patch(Circle((cx, 2.4), 0.5, fc=CELL, ec=RED, lw=1.4))
-        for k in range(3):
-            wavy(ax, cx - 0.5 + k * 0.5, 3.0, 0.7, lw=1.2)
-    elif i == 1:
-        thermo(ax, cx, 1.9, 0.6, h=1.6)
-    elif i == 2:
-        ax.add_patch(Ellipse((cx, 2.2), 0.4, 0.6, fc=WATER, ec=INK, lw=1))
-        for k in range(3):
-            wavy(ax, cx - 0.4 + k * 0.4, 2.7, 0.7, color=HEAT, lw=1.2)
-    else:
-        ax.add_patch(Rectangle((x + 0.4, 1.6), 3.0, 0.9, fc=SKIN, ec=INK, lw=1))
-        ax.plot([cx - 0.6, cx - 0.4], [2.5, 3.4], color=INK, lw=1.4)
-        ax.add_patch(Circle((cx + 0.6, 2.5), 0.08, fc=WATER, ec=INK, lw=0.6))
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "b07-map.svg")
 
-# 3. 세포가 일하면 열이 나요
-fig, ax = canvas(10.0, 4.4, 16.0, 7.2)
-for k, (x, busy, lab) in enumerate([(3.6, False, "가만히 있을 때"), (11.6, True, "뛸 때")]):
+def skin(ax, x, y, w, h, top=0.6, fc=SKIN):
+    ax.add_patch(Rectangle((x, y), w, h, fc=fc, ec=INK, lw=1.4))
+    ax.add_patch(Rectangle((x, y + h - top), w, top, fc=SKIN_TOP, ec="none"))
+
+
+# 그림 1. 가만히 있을 때와 뛸 때 근육 세포의 열
+fig, ax = canvas(10.0, 4.0, 16.0, 6.6)
+for x, busy, lab in [(3.8, False, "가만히"), (12.0, True, "뛸 때")]:
     for j in range(3):
-        ax.add_patch(Ellipse((x - 1.2 + j * 1.2, 3.0), 1.0, 2.2, fc=CELL, ec=RED, lw=1.4))
+        ax.add_patch(Ellipse((x - 1.2 + j * 1.2, 2.6), 1.0, 2.2, fc=CELL, ec=INK, lw=1.2))
     n = 6 if busy else 2
     for j in range(n):
-        wavy(ax, x - 1.5 + j * (3.0 / max(n - 1, 1)), 4.3, 1.4 if busy else 0.8)
-    ax.text(x, 0.9, lab, ha="center", va="center", fontsize=11, fontweight="bold")
-ax.plot([7.6, 7.6], [0.4, 6.6], color=GREY, lw=1.2, ls="--")
-ax.text(8.0, 6.8, "근육 세포가 일을 많이 하면 열도 많이 나요", ha="center", va="center", fontsize=11, color=RED,
-        fontweight="bold")
+        wavy(ax, x - 1.5 + j * (3.0 / max(n - 1, 1)), 3.9, 1.6 if busy else 0.8,
+             color=RED if busy else GREY, lw=1.8 if busy else 1.4)
+    ax.text(x, 0.7, lab, ha="center", va="center", fontsize=13, fontweight="bold",
+            color=RED if busy else "#222")
+ax.text(3.8, 5.3, "열", ha="center", va="center", fontsize=11, color="#777")
+ax.text(12.0, 6.1, "열", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.plot([8.0, 8.0], [0.3, 6.3], color=GREY, lw=1.2, ls="--")
+ax.text(8.0, 0.0, "근육 세포", ha="center", va="center", fontsize=10, color="#777")
+ax.set_ylim(-0.4, 6.6)
 save(fig, "b07-heat.svg")
 
-# 4. 늘 비슷한 온도: 더우면 식히고, 추우면 데우고
-fig, ax = canvas(11.0, 5.0, 18.0, 8.2)
+# 그림 2. 온도 지킴이가 37도쯤을 지켜요
+fig, ax = canvas(11.0, 4.8, 18.0, 8.0)
 thermo(ax, 9.0, 2.0, 0.55, h=4.0)
-ax.text(9.0, 1.0, "37도쯤", ha="center", va="center", fontsize=13, fontweight="bold")
-ax.text(9.0, 7.6, "뇌의 온도 지킴이가 살펴요", ha="center", va="center", fontsize=11)
-box(ax, 0.6, 3.2, 6.4, 3.2, fc="#fdecea")
-ax.text(3.8, 5.8, "너무 더워지면", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
-ax.text(3.8, 4.6, "피부 핏줄을 넓혀 열을 보내요\n땀을 내요", ha="center", va="center", fontsize=11)
-box(ax, 11.0, 3.2, 6.4, 3.2, fc="#eaf1f8")
-ax.text(14.2, 5.8, "너무 추워지면", ha="center", va="center", fontsize=12, color=WATER, fontweight="bold")
-ax.text(14.2, 4.6, "피부 핏줄을 좁혀 열을 지켜요\n몸이 떨려 열을 만들어요", ha="center", va="center", fontsize=11)
-ax.plot([1.6, 6.0], [3.7, 3.7], color=BLOOD, lw=9, solid_capstyle="round")
-ax.plot([12.0, 16.4], [3.7, 3.7], color=BLOOD, lw=2.5, solid_capstyle="round")
-arrow(ax, (7.1, 4.8), (8.5, 4.6), color=RED, lw=1.8)
-arrow(ax, (10.9, 4.8), (9.5, 4.6), color=WATER, lw=1.8)
+ax.text(9.0, 1.0, "37도쯤", ha="center", va="center", fontsize=14, fontweight="bold")
+ax.text(9.0, 7.4, "온도 지킴이 (뇌)", ha="center", va="center", fontsize=12)
+box(ax, 0.6, 2.6, 6.2, 3.6, fc="#fdecea", ec=RED, lw=2.0)
+ax.text(3.7, 5.5, "더울 때", ha="center", va="center", fontsize=13, color=RED, fontweight="bold")
+ax.text(3.7, 4.3, "핏줄 넓게", ha="center", va="center", fontsize=12)
+ax.text(3.7, 3.3, "땀", ha="center", va="center", fontsize=12)
+box(ax, 11.2, 2.6, 6.2, 3.6, fc="#f4f6f8")
+ax.text(14.3, 5.5, "추울 때", ha="center", va="center", fontsize=13, fontweight="bold")
+ax.text(14.3, 4.3, "핏줄 좁게", ha="center", va="center", fontsize=12)
+ax.text(14.3, 3.3, "떨림", ha="center", va="center", fontsize=12)
+arrow(ax, (6.95, 4.4), (8.5, 4.4), color=RED, lw=2)
+arrow(ax, (11.05, 4.4), (9.5, 4.4), color=INK, lw=2)
 save(fig, "b07-keep.svg")
 
-# 5. 땀이 마르며 열을 가져가요
-fig, ax = canvas(11.0, 4.6, 18.0, 7.4)
-ax.add_patch(Rectangle((1.0, 1.0), 16.0, 1.6, fc=SKIN, ec=INK, lw=1.4))
-ax.text(9.0, 1.6, "피부", ha="center", va="center", fontsize=11)
+# 그림 3. 피부 핏줄: 더울 때 넓게, 추울 때 좁게
+fig, ax = canvas(11.0, 4.6, 18.0, 7.6)
+for x0, hot in [(0.6, True), (9.6, False)]:
+    w = 7.8
+    skin(ax, x0, 0.8, w, 3.6, fc=SKIN_WARM if hot else SKIN)
+    ax.plot([x0 + 0.3, x0 + w - 0.3], [3.0, 3.0], color=BLOOD, lw=14 if hot else 3.5, solid_capstyle="round")
+    n = 5 if hot else 1
+    for j in range(n):
+        xx = x0 + w / 2 + (j - (n - 1) / 2) * 1.25
+        wavy(ax, xx, 4.6, 1.5 if hot else 0.8, color=RED if hot else GREY, lw=1.8 if hot else 1.4)
+    ax.text(x0 + w / 2, 7.1, "더울 때" if hot else "추울 때", ha="center", va="center", fontsize=13,
+            fontweight="bold", color=RED if hot else "#222")
+    ax.text(x0 + w / 2, 1.6, "핏줄 넓게" if hot else "핏줄 좁게", ha="center", va="center", fontsize=11)
+ax.text(0.2, 3.0, "핏줄", ha="right", va="center", fontsize=10, color="#777")
+ax.text(0.2, 4.1, "피부 겉", ha="right", va="center", fontsize=10, color="#777")
+ax.text(7.4, 5.6, "열", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
+ax.text(14.0, 5.2, "열", ha="left", va="center", fontsize=11, color="#777")
+ax.set_xlim(-1.4, 18.0)
+save(fig, "b07-vessel.svg")
+
+# 그림 4. 땀방울이 마르며 열을 가져가요
+fig, ax = canvas(11.0, 4.2, 18.0, 6.8)
+skin(ax, 1.0, 0.9, 16.0, 1.6, top=0.4)
+ax.text(9.0, 1.4, "피부", ha="center", va="center", fontsize=11)
+sizes = [1.0, 0.8, 0.55, 0.3]
 for k, x in enumerate([3.0, 7.0, 11.0, 15.0]):
-    ax.add_patch(Ellipse((x, 2.9), 0.7, 0.55, fc=WATER, ec=INK, lw=1, alpha=1.0 - k * 0.22))
-for k, x in enumerate([7.0, 11.0, 15.0]):
+    drop(ax, x, 2.5 + 0.27 * sizes[k], s=sizes[k])
+for x in [7.0, 11.0, 15.0]:
     for j in range(2):
-        wavy(ax, x - 0.3 + j * 0.6, 3.5, 1.4, color=HEAT, lw=1.4)
-    arrow(ax, (x, 5.0), (x, 6.2), color=HEAT, lw=1.6, ms=12)
-ax.text(3.0, 4.0, "땀방울", ha="center", va="center", fontsize=11, color=WATER, fontweight="bold")
-ax.text(11.0, 6.8, "땀이 마르면서 피부의 열을 데리고 날아가요", ha="center", va="center", fontsize=11, color=RED,
-        fontweight="bold")
-arrow(ax, (2.0, 0.5), (16.0, 0.5), color=INK, lw=1.2, ms=10)
-ax.text(9.0, 0.1, "시간이 지나며 땀이 말라요", ha="center", va="center", fontsize=10)
-ax.set_ylim(-0.4, 7.4)
+        wavy(ax, x - 0.3 + j * 0.6, 3.3, 1.4, color=RED, lw=1.6)
+    arrow(ax, (x, 4.8), (x, 5.9), color=RED, lw=1.6, ms=12)
+ax.text(3.0, 3.7, "땀방울", ha="center", va="center", fontsize=11)
+ax.text(11.0, 6.4, "열", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+arrow(ax, (2.0, 0.4), (16.0, 0.4), color=INK, lw=1.2, ms=10)
+ax.text(9.0, 0.0, "시간", ha="center", va="center", fontsize=10)
+ax.set_ylim(-0.4, 6.8)
 save(fig, "b07-dry.svg")
 
-# 6. 모공과 땀구멍: 피부 단면
-fig, ax = canvas(11.0, 5.2, 18.0, 8.6)
-ax.add_patch(Rectangle((1.0, 1.0), 16.0, 5.0, fc=SKIN, ec=INK, lw=1.4))
-ax.add_patch(Rectangle((1.0, 5.2), 16.0, 0.8, fc="#f2c9b0", ec="none"))
-# 털과 모공
-ax.add_patch(Polygon([(4.6, 6.0), (5.4, 6.0), (5.3, 2.6), (4.7, 2.6)], closed=True, fc="#f2c9b0", ec=INK, lw=1.2))
-ax.plot([5.0, 5.0, 5.8], [2.8, 6.0, 7.8], color=INK, lw=2.4)
-ax.add_patch(Ellipse((6.0, 3.8), 1.0, 0.8, fc=YEL, ec=INK, lw=1))
-arrow(ax, (5.55, 3.9), (5.25, 4.4), color=INK, lw=1.2, ms=9)
-ax.text(6.7, 3.8, "기름이 나오는 곳", ha="left", va="center", fontsize=10)
-ax.text(5.0, 0.4, "모공(털구멍): 털과 기름", ha="center", va="center", fontsize=11, fontweight="bold")
-# 땀샘과 땀구멍
+# 그림 5. 마르는 땀과 흘러 떨어진 땀
+fig, ax = canvas(11.0, 4.8, 18.0, 7.8)
+skin(ax, 0.6, 1.4, 7.6, 2.2, top=0.5)
+drop(ax, 4.4, 3.8, s=0.7)
+for j in range(3):
+    wavy(ax, 3.7 + j * 0.7, 4.3, 1.5, color=RED, lw=1.8)
+arrow(ax, (4.4, 6.0), (4.4, 6.9), color=RED, lw=1.6, ms=12)
+ax.text(4.4, 0.7, "마름", ha="center", va="center", fontsize=13, fontweight="bold", color=RED)
+ax.text(5.6, 6.5, "열", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
+skin(ax, 9.8, 1.4, 5.4, 2.2, top=0.5)
+ax.plot([14.2, 15.3, 15.35, 15.35], [3.68, 3.68, 3.5, 2.3], color=WATER, lw=3, solid_capstyle="round")
+ax.add_patch(Ellipse((15.4, 1.75), 0.45, 0.65, fc=WATER, ec=INK, lw=1))
+arrow(ax, (15.4, 1.3), (15.4, 0.4), color=INK, lw=1.4, ms=12)
+wavy(ax, 12.5, 3.9, 0.7, color=GREY, lw=1.4)
+ax.text(13.6, 0.7, "떨어짐", ha="center", va="center", fontsize=13, fontweight="bold")
+ax.text(13.0, 5.0, "열", ha="left", va="center", fontsize=11, color="#777")
+ax.plot([9.0, 9.0], [0.3, 7.3], color=GREY, lw=1.2, ls="--")
+save(fig, "b07-drip.svg")
+
+# 그림 6. 땀샘에서 땀구멍까지
+fig, ax = canvas(9.0, 5.0, 14.0, 8.2)
+skin(ax, 1.0, 0.6, 12.0, 5.6, top=0.8)
+ax.text(1.4, 5.8, "피부 겉", ha="left", va="center", fontsize=10, color="#777")
+ys = [1.9 + 4.3 * t / 39 for t in range(40)]
+xs = [7.0 + 0.35 * math.sin(t * 0.8) for t in range(40)]
+ax.plot(xs, ys, color=WATER, lw=2.4)
+for k in range(5):
+    ax.add_patch(Ellipse((7.0 + 0.35 * math.cos(k * 1.3), 1.5 + 0.2 * math.sin(k * 1.3)), 1.4, 0.7,
+                         angle=k * 36, fc="none", ec=WATER, lw=2))
+ax.text(8.4, 1.4, "땀샘", ha="left", va="center", fontsize=13, fontweight="bold")
+ax.text(7.7, 3.8, "관", ha="left", va="center", fontsize=11)
+top_x = xs[-1]
+drop(ax, top_x, 6.45, s=0.6)
+arrow(ax, (top_x + 1.9, 7.4), (top_x + 0.35, 6.4), color=RED, lw=1.6, ms=12)
+ax.text(top_x + 2.0, 7.5, "땀구멍", ha="left", va="center", fontsize=13, color=RED, fontweight="bold")
+ax.set_ylim(0.2, 8.2)
+save(fig, "b07-gland.svg")
+
+# 그림 7. 모공과 땀구멍
+fig, ax = canvas(11.0, 5.0, 18.0, 8.4)
+skin(ax, 1.0, 1.0, 16.0, 5.0, top=0.8)
+ax.add_patch(Polygon([(4.6, 6.0), (5.4, 6.0), (5.3, 2.4), (4.7, 2.4)], closed=True, fc=SKIN_TOP, ec=INK, lw=1.2))
+ax.plot([5.0, 5.0, 5.9], [2.6, 6.0, 7.9], color=INK, lw=2.6)
+ax.add_patch(Ellipse((6.1, 3.8), 1.0, 0.8, fc=YEL, ec=INK, lw=1))
+arrow(ax, (5.65, 3.95), (5.3, 4.5), color=INK, lw=1.2, ms=9)
+ax.text(6.8, 3.8, "기름", ha="left", va="center", fontsize=11)
+ax.text(6.2, 7.6, "털", ha="left", va="center", fontsize=11)
+arrow(ax, (3.0, 7.3), (4.55, 6.1), color=RED, lw=1.6, ms=12)
+ax.text(2.9, 7.6, "모공", ha="center", va="center", fontsize=13, color=RED, fontweight="bold")
 xs = [12.0 + 0.3 * math.sin(t * 0.9) for t in range(20)]
 ys = [2.2 + 3.8 * t / 19 for t in range(20)]
 ax.plot(xs, ys, color=WATER, lw=2)
-ax.add_patch(Circle((12.0, 2.0), 0.6, fc="#dbe7f3", ec=WATER, lw=1.6))
-ax.text(12.8, 2.0, "땀을 만드는 곳", ha="left", va="center", fontsize=10)
-ax.add_patch(Ellipse((xs[-1], 6.3), 0.3, 0.4, fc=WATER, ec=INK, lw=0.6))
-ax.text(xs[-1] + 0.5, 6.6, "땀구멍", ha="left", va="center", fontsize=10, color=WATER, fontweight="bold")
-arrow(ax, (xs[-1] + 0.45, 6.55), (xs[-1] + 0.1, 6.05), color=WATER, lw=1.0, ms=8)
-ax.text(12.6, 0.4, "땀구멍: 땀이 나오는 작은 구멍", ha="center", va="center", fontsize=11, color=WATER, fontweight="bold")
-ax.text(9.0, 8.3, "피부를 잘라 옆에서 본 모습 (크기는 실제와 맞추지 않았어요)", ha="center", va="center", fontsize=10)
-ax.set_ylim(-0.2, 8.6)
+ax.add_patch(Circle((12.0, 2.0), 0.6, fc=WATER_LIGHT, ec=WATER, lw=1.6))
+ax.text(12.8, 2.0, "땀샘", ha="left", va="center", fontsize=11)
+drop(ax, xs[-1], 6.2, s=0.5)
+ax.text(xs[-1] + 0.6, 7.0, "땀구멍", ha="left", va="center", fontsize=13, fontweight="bold")
+ax.text(5.0, 0.4, "털, 기름", ha="center", va="center", fontsize=12)
+ax.text(12.3, 0.4, "땀", ha="center", va="center", fontsize=12)
+ax.set_ylim(-0.1, 8.4)
 save(fig, "b07-pores.svg")

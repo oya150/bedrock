@@ -1,4 +1,5 @@
 """물질과 에너지 9편 그림 만들기. 실행: python lab/fig_m09.py  → docs/matter/img/09/*.svg
+검토용 PNG가 필요하면 FIG_FMT=png FIG_OUT=<폴더> 로 실행한다.
 
 글자는 SVG 안에 글자로 남긴다(글꼴 모양을 파일에 넣지 않는다). 보는 쪽 글꼴로 그려진다.
 카드는 차분한 색으로, 강조(새로 받은 카드, 비교 화살표, 많이 든 일)만 빨강으로 칠한다.
@@ -8,11 +9,12 @@ import os
 
 import matplotlib
 
-matplotlib.use("svg")
+matplotlib.use("svg" if os.environ.get("FIG_FMT", "svg") == "svg" else "agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc, Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "09")
+OUT = os.environ.get("FIG_OUT") or os.path.join(os.path.dirname(__file__), "..", "docs", "matter", "img", "09")
+FMT = os.environ.get("FIG_FMT", "svg")
 os.makedirs(OUT, exist_ok=True)
 
 plt.rcParams.update({
@@ -29,7 +31,9 @@ LIGHT = "#e9ecef"
 
 
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25)
+    if FMT != "svg":
+        name = name.rsplit(".", 1)[0] + "." + FMT
+    fig.savefig(os.path.join(OUT, name), bbox_inches="tight", pad_inches=0.25, dpi=110)
     plt.close(fig)
 
 
@@ -191,122 +195,163 @@ def chain(ax, x0, y, n, r=0.16, base=0.42, comp=0.18, phase=0.0, fc=WATER):
     return xs
 
 
-# 1. 여는 장면: 고무줄 상자
-fig, ax = canvas(9.0, 4.0, 15.0, 6.6)
-ax.add_patch(Rectangle((1.0, 1.0), 5.0, 2.0, fc=BOXC, ec=INK, lw=1.4))
-ax.add_patch(Rectangle((1.2, 1.2), 4.6, 1.6, fc="#c9b28c", ec="none"))
-band(ax, 1.0, 6.0, 2.0, 0.35, 3)
-ax.add_patch(Ellipse((4.3, 2.9), 0.5, 0.3, fc=SKIN, ec=INK, lw=1, angle=30))
-sound(ax, 6.6, 2.2, 3, 0.5)
-ear(ax, 11.5, 2.2, 1.4)
-ax.text(11.5, 0.6, "귀", ha="center", va="center", fontsize=10)
-ax.text(7.5, 6.1, "소리는 어떻게 귀까지 올까?", ha="center", va="center", fontsize=12, color=RED, fontweight="bold")
+
+
+def openbox(ax, x, y, w=5.0, h=2.0):
+    ax.add_patch(Rectangle((x, y), w, h, fc=BOXC, ec=INK, lw=1.4))
+    ax.add_patch(Rectangle((x + 0.2, y + 0.2), w - 0.4, h - 0.4, fc="#c9b28c", ec="none"))
+
+
+def rest_band(ax, x0, x1, y, color=INK):
+    ax.plot([x0, x1], [y, y], color=color, lw=1.8)
+
+
+def lchain(ax, x0, y, n, phase, d=0.5, a=0.17, q=2 * math.pi / 8, r=0.14, hot=None):
+    """앞뒤로 밀렸다 돌아오는 알갱이 줄. k번째 알갱이는 제자리 x0+k*d 에서 a*sin(q*k-phase) 만큼 비켜 있다."""
+    xs = [x0 + k * d + a * math.sin(q * k - phase) for k in range(n)]
+    for k, xx in enumerate(xs):
+        hit = hot is not None and k == hot
+        ax.add_patch(Circle((xx, y), r * (1.15 if hit else 1), fc=RED if hit else WATER, ec=RED if hit else INK,
+                            lw=0.6))
+    return xs
+
+
+# 1. 튕기면 떨리고 잡으면 멈춰요
+fig, ax = canvas(11.0, 3.2, 18.0, 5.2)
+for i, lab in enumerate(["튕기면", "잡으면"]):
+    x = 0.4 + i * 9.0
+    openbox(ax, x, 1.4)
+    if i == 0:
+        band(ax, x, x + 5.0, 2.4, 0.4, 3, color=RED)
+        ax.add_patch(Ellipse((x + 3.4, 3.2), 0.55, 0.32, fc=SKIN, ec=INK, lw=1, angle=30))
+        sound(ax, x + 5.4, 2.4, 3, 0.5, color=RED)
+    else:
+        rest_band(ax, x, x + 5.0, 2.4)
+        ax.add_patch(Ellipse((x + 2.5, 2.62), 0.45, 0.32, fc=SKIN, ec=INK, lw=1))
+        ax.add_patch(Ellipse((x + 2.5, 2.18), 0.45, 0.32, fc=SKIN, ec=INK, lw=1))
+    ax.text(x + 2.5, 0.7, lab, ha="center", va="center", fontsize=12, fontweight="bold",
+            color=RED if i == 0 else "#222")
 save(fig, "m09-band.svg")
 
-# 2. 이 편의 지도
-fig, ax = canvas(11.6, 2.9, 19.4, 4.6)
-titles = ["소리는 떨림", "공기 알갱이가 밀고 당겨요", "크고 작게, 높고 낮게", "공기 말고도 전해져요"]
-for i, t in enumerate(titles):
-    x = 0.3 + i * 4.8
-    box(ax, x, 0.4, 3.8, 3.6)
-    ax.text(x + 1.9, 0.95, t, ha="center", va="center", fontsize=10, fontweight="bold")
-    cx = x + 1.9
-    if i == 0:
-        band(ax, cx - 1.3, cx + 1.3, 2.5, 0.3, 3)
-    elif i == 1:
-        chain(ax, cx - 1.5, 2.5, 8, r=0.1, base=0.42, comp=0.13)
-    elif i == 2:
-        wave(ax, cx - 1.4, cx + 1.4, 3.0, 0.35, 2)
-        wave(ax, cx - 1.4, cx + 1.4, 2.0, 0.15, 5)
-    else:
-        cup(ax, cx - 1.6, 2.1, 0.7, 0.8, fc="white")
-        cup(ax, cx + 0.9, 2.1, 0.7, 0.8, fc="white")
-        ax.plot([cx - 0.9, cx + 0.9], [2.5, 2.5], color=INK, lw=1)
-    if i < 3:
-        arrow(ax, (x + 3.95, 2.2), (x + 4.65, 2.2))
-save(fig, "m09-map.svg")
-
-# 3. 떨리는 것들
-fig, ax = canvas(11.0, 3.6, 18.0, 6.0)
+# 2. 소리가 나는 것은 모두 떨려요
+fig, ax = canvas(11.0, 3.2, 18.0, 5.4)
 for i, lab in enumerate(["고무줄", "북", "목"]):
     x = 0.3 + i * 6.0
     box(ax, x, 0.5, 5.4, 4.6, fc=NOTE)
     cx = x + 2.7
     if i == 0:
-        band(ax, cx - 1.8, cx + 1.8, 3.0, 0.4, 3)
+        band(ax, cx - 1.8, cx + 1.8, 3.0, 0.4, 3, color=RED)
     elif i == 1:
         ax.add_patch(Rectangle((cx - 1.4, 1.6), 2.8, 1.4, fc="#e9a96b", ec=INK, lw=1.2))
-        for k, a in enumerate([0.25, 0, -0.25]):
-            ax.add_patch(Arc((cx, 3.0), 2.8, 2 * abs(a) + 0.05, theta1=0 if a >= 0 else 180, theta2=180 if a >= 0 else 360,
-                             color=INK, lw=1.4, alpha=1.0 if a == 0 else 0.45))
+        for a in (0.25, 0, -0.25):
+            ax.add_patch(Arc((cx, 3.0), 2.8, 2 * abs(a) + 0.05, theta1=0 if a >= 0 else 180,
+                             theta2=180 if a >= 0 else 360, color=RED, lw=1.4, alpha=1.0 if a == 0 else 0.45))
     else:
         kid(ax, cx, 1.3, 1.5)
         ax.add_patch(Ellipse((cx + 0.55, 2.9), 0.45, 0.28, fc=SKIN, ec=INK, lw=1))
         for k in range(3):
-            ax.plot([cx - 0.15 + k * 0.15, cx - 0.15 + k * 0.15], [2.75, 3.05], color=RED, lw=1)
+            ax.plot([cx - 0.15 + k * 0.15, cx - 0.15 + k * 0.15], [2.75, 3.05], color=RED, lw=1.2)
         ax.text(cx + 1.3, 4.1, "아—", ha="center", va="center", fontsize=11)
     ax.text(cx, 1.0, lab, ha="center", va="center", fontsize=11, fontweight="bold")
-ax.text(9.0, 5.6, "소리가 나는 곳은 모두 떨려요", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
 save(fig, "m09-shake.svg")
 
-# 4. 공기 알갱이가 차례로 밀어요
-fig, ax = canvas(11.0, 3.8, 18.0, 6.2)
-band(ax, 0.6, 0.6, 2.6, 0.0, 1)
-ax.plot([1.0, 1.0], [1.4, 3.8], color=BAND, lw=2.4)
-ax.plot([0.8, 0.8], [1.4, 3.8], color=BAND, lw=1.4, alpha=0.4)
-ax.plot([1.2, 1.2], [1.4, 3.8], color=BAND, lw=1.4, alpha=0.4)
-xs = chain(ax, 1.7, 2.6, 30, r=0.14, base=0.48, comp=0.16)
-k = 10
-ax.annotate("", (xs[k] + 0.35, 2.15), (xs[k] - 0.35, 2.15), arrowprops=dict(arrowstyle="<|-|>", color=INK, lw=1.2))
-ax.text(xs[k], 1.6, "조금 밀렸다\n돌아와요", ha="center", va="center", fontsize=10)
-dense = min(range(3, 25), key=lambda i: xs[i + 1] - xs[i])
-sparse = max(range(3, 25), key=lambda i: xs[i + 1] - xs[i])
-ax.text((xs[dense] + xs[dense + 1]) / 2, 3.2, "촘촘해요", ha="center", va="center", fontsize=9.5)
-ax.text((xs[sparse] + xs[sparse + 1]) / 2, 3.2, "듬성해요", ha="center", va="center", fontsize=9.5)
-arrow(ax, (3.0, 4.0), (14.0, 4.0), color=RED, lw=2.2)
-ax.text(8.5, 4.6, "촘촘한 곳과 듬성한 곳이 귀까지 가요", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
-ear(ax, 16.8, 2.6, 1.4)
-ax.text(16.8, 1.0, "귀", ha="center", va="center", fontsize=10)
+# 3. 촘촘한 곳은 앞으로 가고 알갱이는 제자리 근처에 있어요 (세 줄 띠)
+fig, ax = canvas(11.0, 5.0, 18.0, 8.2)
+N, X0, D, A, L, HOT = 28, 2.4, 0.5, 0.3, 12, 13
+Q = 2 * math.pi / L
+rows = [("처음", 6.6, 0), ("조금 뒤", 4.1, 1), ("더 뒤", 1.6, 2)]
+ax.plot([X0 + HOT * D] * 2, [0.7, 7.5], color=GREY, lw=1.2, ls=(0, (4, 3)))
+for lab, y, step in rows:
+    ph = step * math.pi / 2
+    ax.text(0.2, y, lab, ha="left", va="center", fontsize=10.5, fontweight="bold")
+    bx = X0 - D + A * math.sin(-Q - ph)
+    ax.plot([bx, bx], [y - 0.7, y + 0.7], color=BAND, lw=2.4)
+    xs = lchain(ax, X0, y, N, ph, d=D, a=A, q=Q, hot=HOT)
+    k = round((math.pi + ph) / Q)
+    ax.plot([xs[k - 2], xs[k - 2], xs[k + 2], xs[k + 2]], [y + 0.32, y + 0.45, y + 0.45, y + 0.32], color=RED, lw=1.6)
+    ax.text((xs[k - 2] + xs[k + 2]) / 2, y + 0.75, "촘촘", ha="center", va="center", fontsize=9.5, color=RED,
+            fontweight="bold")
+    j = round(ph / Q) + L
+    ax.text(xs[j], y - 0.55, "듬성", ha="center", va="center", fontsize=9, color=INK)
+ax.text(1.9, 7.75, "고무줄", ha="center", va="center", fontsize=9)
+ax.text(X0 + HOT * D, 0.35, "빨간 알갱이 제자리", ha="center", va="center", fontsize=9, color=INK)
+arrow(ax, (16.6, 4.1), (17.7, 4.1), color=INK, lw=1.6)
+ax.text(17.2, 4.6, "귀 쪽", ha="center", va="center", fontsize=9.5)
 save(fig, "m09-push.svg")
 
-# 5. 크고 작게, 높고 낮게
-fig, ax = canvas(11.0, 4.4, 18.0, 7.2)
-wave(ax, 0.6, 6.0, 5.4, 0.8, 2)
-wave(ax, 7.0, 12.4, 5.4, 0.3, 2)
-ax.text(3.3, 4.1, "세게 떨면 큰 소리", ha="center", va="center", fontsize=10.5, fontweight="bold", color=RED)
-ax.text(9.7, 4.1, "살살 떨면 작은 소리", ha="center", va="center", fontsize=10.5, fontweight="bold")
-wave(ax, 0.6, 6.0, 2.0, 0.5, 7)
-wave(ax, 7.0, 12.4, 2.0, 0.5, 2)
-ax.text(3.3, 0.8, "빨리 떨면 높은 소리", ha="center", va="center", fontsize=10.5, fontweight="bold", color=RED)
-ax.text(9.7, 0.8, "천천히 떨면 낮은 소리", ha="center", va="center", fontsize=10.5, fontweight="bold")
-ax.text(6.5, 0.0, "물결은 떨림의 크기와 빠르기를 나타낸 그림이에요", ha="center", va="center", fontsize=9)
-save(fig, "m09-loud-high.svg")
-
-# 6. 실 전화기
-fig, ax = canvas(10.0, 3.6, 16.0, 6.0)
-kid(ax, 1.2, 0.8, 1.6)
-kid(ax, 14.8, 0.8, 1.6)
-ax.add_patch(Polygon([(2.0, 3.2), (2.0, 3.8), (2.8, 3.65), (2.8, 3.35)], closed=True, fc="white", ec=INK, lw=1.2))
-ax.add_patch(Polygon([(14.0, 3.2), (14.0, 3.8), (13.2, 3.65), (13.2, 3.35)], closed=True, fc="white", ec=INK, lw=1.2))
-ax.plot([2.8, 13.2], [3.5, 3.5], color=INK, lw=1.2)
-for k in range(5):
-    xx = 4.0 + k * 1.8
-    wave(ax, xx, xx + 0.9, 4.0, 0.12, 2, color=RED)
-arrow(ax, (4.0, 4.5), (12.0, 4.5), color=RED, lw=1.6)
-ax.text(8.0, 2.6, "실이 떨림을 전해요", ha="center", va="center", fontsize=11, color=RED, fontweight="bold")
-save(fig, "m09-phone.svg")
-
-# 7. 귀가 떨림을 받아요
-fig, ax = canvas(10.0, 4.0, 16.0, 6.6)
+# 4. 귀가 떨림을 받아요
+fig, ax = canvas(10.0, 3.6, 16.0, 6.2)
 ax.add_patch(Polygon([(5.0, 1.0), (5.0, 5.6), (12.0, 5.6), (12.0, 1.0)], closed=True, fc=SKIN, ec="none"))
 ax.add_patch(Rectangle((5.0, 2.8), 4.2, 1.0, fc="white", ec=INK, lw=1.2))
 ax.plot([5.0, 5.0], [1.0, 2.8], color=INK, lw=1.2); ax.plot([5.0, 5.0], [3.8, 5.6], color=INK, lw=1.2)
 for k in range(3):
-    ax.add_patch(Arc((9.2, 3.3), 0.25 + k * 0.12, 1.0, theta1=-90, theta2=90, color=INK, lw=1.6, alpha=1.0 if k == 1 else 0.4))
-ax.annotate("고막", (9.25, 3.8), (9.0, 6.2), fontsize=11, fontweight="bold", ha="center",
-            arrowprops=dict(arrowstyle="-", color=INK, lw=1))
-xs = chain(ax, 0.6, 3.3, 13, r=0.12, base=0.6, comp=0.18)
-arrow(ax, (9.6, 3.3), (11.4, 3.3), color=RED, lw=2)
-ax.text(12.4, 3.3, "뇌로", ha="left", va="center", fontsize=11, color=RED, fontweight="bold")
-ax.text(2.6, 2.3, "귓구멍으로 들어오는\n촘촘한 곳과 듬성한 곳", ha="center", va="center", fontsize=9.5)
+    ax.add_patch(Arc((9.2, 3.3), 0.25 + k * 0.12, 1.0, theta1=-90, theta2=90, color=RED, lw=1.8,
+                     alpha=1.0 if k == 1 else 0.4))
+ax.annotate("고막", (9.25, 3.8), (9.4, 6.0), fontsize=11, fontweight="bold", ha="center", color=RED,
+            arrowprops=dict(arrowstyle="-", color=RED, lw=1))
+chain(ax, 0.6, 3.3, 13, r=0.12, base=0.6, comp=0.18)
+ax.text(7.1, 2.3, "귓구멍", ha="center", va="center", fontsize=10)
+arrow(ax, (9.6, 3.3), (11.4, 3.3), color=INK, lw=2)
+ax.text(12.4, 3.3, "뇌", ha="left", va="center", fontsize=11, fontweight="bold")
 save(fig, "m09-ear.svg")
+
+# 5. 크고 작게, 높고 낮게
+fig, ax = canvas(11.0, 4.2, 18.0, 7.0)
+for (x0, y, amp, cyc, lab, hot) in [
+        (3.0, 5.2, 0.8, 2, "큰 소리", True), (10.4, 5.2, 0.3, 2, "작은 소리", False),
+        (3.0, 1.9, 0.5, 7, "높은 소리", True), (10.4, 1.9, 0.5, 2, "낮은 소리", False)]:
+    ax.plot([x0, x0 + 5.4], [y, y], color=GREY, lw=0.8, ls=(0, (3, 3)))
+    wave(ax, x0, x0 + 5.4, y, amp, cyc, color=RED if hot else INK)
+    ax.text(x0 + 2.7, y - 1.25, lab, ha="center", va="center", fontsize=11, fontweight="bold",
+            color=RED if hot else "#222")
+ax.text(0.2, 5.2, "떨림\n크기", ha="left", va="center", fontsize=10)
+ax.text(0.2, 1.9, "떨림\n빠르기", ha="left", va="center", fontsize=10)
+save(fig, "m09-loud-high.svg")
+
+# 6. 실 전화기: 팽팽하면 건너가고 느슨하면 못 가요
+fig, ax = canvas(10.0, 4.2, 16.0, 7.0)
+
+
+def phone_cup(ax, x, y, left=True):
+    if left:
+        ax.add_patch(Polygon([(x, y - 0.4), (x, y + 0.4), (x + 0.9, y + 0.25), (x + 0.9, y - 0.25)], closed=True,
+                             fc="white", ec=INK, lw=1.3))
+    else:
+        ax.add_patch(Polygon([(x, y - 0.4), (x, y + 0.4), (x - 0.9, y + 0.25), (x - 0.9, y - 0.25)], closed=True,
+                             fc="white", ec=INK, lw=1.3))
+
+
+for lab, y, tight in [("팽팽", 5.0, True), ("느슨", 1.8, False)]:
+    ax.text(0.2, y, lab, ha="left", va="center", fontsize=11, fontweight="bold", color=RED if tight else "#222")
+    phone_cup(ax, 1.8, y, True)
+    phone_cup(ax, 14.2, y, False)
+    ax.text(1.4, y + 0.75, "아", ha="center", va="center", fontsize=10)
+    if tight:
+        ax.plot([2.7, 13.3], [y, y], color=INK, lw=1.2)
+        for k in range(5):
+            xx = 3.6 + k * 1.9
+            wave(ax, xx, xx + 0.9, y + 0.35, 0.12, 2, color=RED)
+        sound(ax, 14.4, y, 2, 0.4, color=RED)
+        ear(ax, 15.4, y, 0.8)
+    else:
+        xs = [2.7 + 10.6 * t / 60 for t in range(61)]
+        ax.plot(xs, [y - 1.1 * math.sin(math.pi * t / 60) for t in range(61)], color=INK, lw=1.2)
+        wave(ax, 3.0, 3.9, y + 0.1, 0.12, 2, color=RED)
+        ear(ax, 15.4, y, 0.8)
+save(fig, "m09-phone.svg")
+
+# 7. 밀어 줄 알갱이가 없으면 전해지지 않아요
+fig, ax = canvas(11.0, 3.4, 18.0, 5.6)
+for i, lab in enumerate(["공기 있음", "공기 없음"]):
+    x = 0.3 + i * 9.0
+    box(ax, x, 0.4, 8.4, 4.8, fc=NOTE if i == 0 else "white")
+    ax.plot([x + 0.8, x + 0.8], [1.8, 4.0], color=RED, lw=2.4)
+    ax.plot([x + 0.6, x + 0.6], [1.8, 4.0], color=RED, lw=1.4, alpha=0.4)
+    ax.plot([x + 1.0, x + 1.0], [1.8, 4.0], color=RED, lw=1.4, alpha=0.4)
+    if i == 0:
+        for yy in (2.2, 2.9, 3.6):
+            chain(ax, x + 1.5, yy, 11, r=0.11, base=0.42, comp=0.13)
+        sound(ax, x + 6.3, 2.9, 2, 0.35, color=INK)
+    ear(ax, x + 7.5, 2.9, 1.0)
+    ax.text(x + 4.2, 0.95, lab, ha="center", va="center", fontsize=11, fontweight="bold")
+save(fig, "m09-empty.svg")

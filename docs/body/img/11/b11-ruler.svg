@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-23T22:25:26.453848</dc:date>
+    <dc:date>2026-11-13T21:40:16.421245</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -30,118 +30,117 @@ z
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 276.075 211.897846 
-L 303.975 211.897846 
-L 303.975 55.528615 
-L 276.075 55.528615 
+    <path d="M 276.075 228.056 
+L 303.975 228.056 
+L 303.975 58.656 
+L 276.075 58.656 
 z
-" clip-path="url(#p6fcb09d0f8)" style="fill: #fff8e1; stroke: #555555; stroke-width: 1.4; stroke-linejoin: miter"/>
+" clip-path="url(#p5270560c1e)" style="fill: #fff8e1; stroke: #555555; stroke-width: 1.4; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
-    <path d="M 262.125 69.601846 
-L 317.925 69.601846 
-Q 323.15625 69.601846 323.15625 64.910769 
-L 323.15625 36.764308 
-Q 323.15625 32.073231 317.925 32.073231 
-L 262.125 32.073231 
-Q 256.89375 32.073231 256.89375 36.764308 
-L 256.89375 64.910769 
-Q 256.89375 69.601846 262.125 69.601846 
+    <path d="M 262.125 73.902 
+L 317.925 73.902 
+Q 323.15625 73.902 323.15625 68.82 
+L 323.15625 38.328 
+Q 323.15625 33.246 317.925 33.246 
+L 262.125 33.246 
+Q 256.89375 33.246 256.89375 38.328 
+L 256.89375 68.82 
+Q 256.89375 73.902 262.125 73.902 
 z
-" clip-path="url(#p6fcb09d0f8)" style="fill: #f6d8c4; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p5270560c1e)" style="fill: #f6d8c4; stroke: #555555; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
-    <path d="M 241.2 101.315099 
-Q 241.2 133.71385 241.2 164.10014 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #e4572e; stroke-width: 1.8; stroke-linecap: round"/>
-    <path d="M 244.8 156.90014 
-L 241.2 164.10014 
-L 237.6 156.90014 
+    <path d="M 234.225 108.08515 
+Q 234.225 143.356192 234.225 176.614772 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #e4572e; stroke-width: 1.8; stroke-linecap: round"/>
+    <path d="M 237.825 169.414772 
+L 234.225 176.614772 
+L 230.625 169.414772 
 z
-" clip-path="url(#p6fcb09d0f8)" style="fill: #e4572e; stroke: #e4572e; stroke-width: 1.8; stroke-linecap: round"/>
+" clip-path="url(#p5270560c1e)" style="fill: #e4572e; stroke: #e4572e; stroke-width: 1.8; stroke-linecap: round"/>
    </g>
    <g id="line2d_1">
-    <path d="M 276.075 205.643077 
-L 290.025 205.643077 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
+    <path d="M 276.075 221.28 
+L 290.025 221.28 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
-    <path d="M 276.075 191.569846 
-L 283.7475 191.569846 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
+    <path d="M 276.075 206.034 
+L 283.7475 206.034 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
    </g>
    <g id="line2d_3">
-    <path d="M 276.075 177.496615 
-L 283.7475 177.496615 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
+    <path d="M 276.075 190.788 
+L 283.7475 190.788 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
    </g>
    <g id="line2d_4">
-    <path d="M 276.075 163.423385 
-L 283.7475 163.423385 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
+    <path d="M 276.075 175.542 
+L 283.7475 175.542 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
    </g>
    <g id="line2d_5">
-    <path d="M 276.075 149.350154 
-L 283.7475 149.350154 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
+    <path d="M 276.075 160.296 
+L 283.7475 160.296 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
    </g>
    <g id="line2d_6">
-    <path d="M 276.075 135.276923 
-L 290.025 135.276923 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
+    <path d="M 276.075 145.05 
+L 290.025 145.05 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
    </g>
    <g id="line2d_7">
-    <path d="M 276.075 121.203692 
-L 283.7475 121.203692 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
+    <path d="M 276.075 129.804 
+L 283.7475 129.804 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
    </g>
    <g id="line2d_8">
-    <path d="M 276.075 107.130462 
-L 283.7475 107.130462 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
+    <path d="M 276.075 114.558 
+L 283.7475 114.558 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
    </g>
    <g id="line2d_9">
-    <path d="M 276.075 93.057231 
-L 283.7475 93.057231 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
+    <path d="M 276.075 99.312 
+L 283.7475 99.312 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
    </g>
    <g id="line2d_10">
-    <path d="M 276.075 78.984 
-L 283.7475 78.984 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
+    <path d="M 276.075 84.066 
+L 283.7475 84.066 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
    </g>
    <g id="line2d_11">
-    <path d="M 276.075 64.910769 
-L 290.025 64.910769 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
+    <path d="M 276.075 68.82 
+L 290.025 68.82 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
    </g>
    <g id="line2d_12">
-    <path d="M 248.175 202.515692 
-L 272.5875 202.515692 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-width: 3; stroke-linecap: square"/>
+    <path d="M 248.175 217.892 
+L 272.5875 217.892 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-width: 3; stroke-linecap: square"/>
    </g>
    <g id="line2d_13">
-    <path d="M 307.4625 202.515692 
-L 331.875 202.515692 
-" clip-path="url(#p6fcb09d0f8)" style="fill: none; stroke: #555555; stroke-width: 3; stroke-linecap: square"/>
+    <path d="M 307.4625 217.892 
+L 331.875 217.892 
+" clip-path="url(#p5270560c1e)" style="fill: none; stroke: #555555; stroke-width: 3; stroke-linecap: square"/>
    </g>
    <g id="text_1">
-    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="359.775" y="52.655096" transform="rotate(-0 359.775 52.655096)">친구가 잡고 있다가 놓아요</text>
+    <text style="fill: #222222; font: 9px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="290.025" y="241.154141" transform="rotate(-0 290.025 241.154141)">0</text>
    </g>
    <g id="text_2">
-    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(359.775 200.74288)">엄지와 검지를 벌리고 기다렸다가</text>
-    <text style="fill: #222222; font: 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(359.775 211.019755)">떨어지는 걸 보면 잡아요</text>
+    <text style="fill: #222222; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="345.825" y="55.533203" transform="rotate(-0 345.825 55.533203)">놓기</text>
    </g>
    <g id="text_3">
-    <text style="fill: #e4572e; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="220.275" y="137.625418" transform="rotate(-0 220.275 137.625418)">툭</text>
+    <text style="fill: #222222; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="345.825" y="221.534031" transform="rotate(-0 345.825 221.534031)">잡기</text>
    </g>
    <g id="text_4">
-    <text style="fill: #222222; font: 700 10px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="122.625" y="246.48263" transform="rotate(-0 122.625 246.48263)">잡은 곳의 눈금을 적어요</text>
+    <text style="fill: #e4572e; font: 700 12px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="220.275" y="147.268188" transform="rotate(-0 220.275 147.268188)">툭</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p6fcb09d0f8">
+  <clipPath id="p5270560c1e">
    <rect x="18" y="18" width="558" height="243.936"/>
   </clipPath>
  </defs>

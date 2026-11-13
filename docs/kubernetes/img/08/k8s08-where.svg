@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-08T10:45:58.742876</dc:date>
+    <dc:date>2026-11-13T22:10:34.518439</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 433.5984 77.598
 L 433.5984 47.106 
 L 26.4816 47.106 
 z
-" clip-path="url(#p2ac183d471)" style="fill: #fbe3dc"/>
+" clip-path="url(#p9dd79f20ce)" style="fill: #fbe3dc"/>
    </g>
    <g id="patch_3">
     <path d="M 26.4816 117.792 
@@ -43,7 +43,7 @@ L 433.5984 117.792
 L 433.5984 87.3 
 L 26.4816 87.3 
 z
-" clip-path="url(#p2ac183d471)" style="fill: #fbe3dc"/>
+" clip-path="url(#p9dd79f20ce)" style="fill: #fbe3dc"/>
    </g>
    <g id="patch_4">
     <path d="M 26.4816 157.986 
@@ -51,12 +51,12 @@ L 433.5984 157.986
 L 433.5984 127.494 
 L 26.4816 127.494 
 z
-" clip-path="url(#p2ac183d471)" style="fill: #fbe3dc"/>
+" clip-path="url(#p9dd79f20ce)" style="fill: #fbe3dc"/>
    </g>
    <g id="line2d_1">
     <path d="M 26.4816 41.562 
 L 433.5984 41.562 
-" clip-path="url(#p2ac183d471)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
+" clip-path="url(#p9dd79f20ce)" style="fill: none; stroke: #555555; stroke-linecap: square"/>
    </g>
    <g id="text_1">
     <text style="fill: #555555; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="71.7168" y="35.502031" transform="rotate(-0 71.7168 35.502031)">바꾼 칸</text>
@@ -80,7 +80,7 @@ L 433.5984 41.562
     <text style="fill: #e4572e; font: 11px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: middle" x="261.1392" y="65.402781" transform="rotate(-0 261.1392 65.402781)">7c9d → 5f8b</text>
    </g>
    <g id="text_8">
-    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="362.9184" y="65.999187" transform="rotate(-0 362.9184 65.999187)">전부 교대해요</text>
+    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="362.9184" y="65.999187" transform="rotate(-0 362.9184 65.999187)">전부 교대</text>
    </g>
    <g id="text_9">
     <text style="fill: #e4572e; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="32.136" y="105.458109" transform="rotate(-0 32.136 105.458109)">hostAliases</text>
@@ -92,7 +92,7 @@ L 433.5984 41.562
     <text style="fill: #e4572e; font: 11px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: middle" x="261.1392" y="105.596781" transform="rotate(-0 261.1392 105.596781)">7c9d → 5f8b</text>
    </g>
    <g id="text_12">
-    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="362.9184" y="106.193187" transform="rotate(-0 362.9184 106.193187)">전부 교대해요</text>
+    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="362.9184" y="106.193187" transform="rotate(-0 362.9184 106.193187)">전부 교대</text>
    </g>
    <g id="text_13">
     <text style="fill: #e4572e; font: 700 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="32.136" y="145.588125" transform="rotate(-0 32.136 145.588125)">image</text>
@@ -104,7 +104,7 @@ L 433.5984 41.562
     <text style="fill: #e4572e; font: 11px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: middle" x="261.1392" y="145.790781" transform="rotate(-0 261.1392 145.790781)">7c9d → 5f8b</text>
    </g>
    <g id="text_16">
-    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="362.9184" y="146.387187" transform="rotate(-0 362.9184 146.387187)">전부 교대해요</text>
+    <text style="fill: #e4572e; font: 700 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="362.9184" y="146.387187" transform="rotate(-0 362.9184 146.387187)">전부 교대</text>
    </g>
    <g id="text_17">
     <text style="fill: #222222; font: 10.5px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: start" x="32.136" y="185.846109" transform="rotate(-0 32.136 185.846109)">replicas</text>
@@ -116,12 +116,12 @@ L 433.5984 41.562
     <text style="fill: #222222; font: 11px 'Menlo', 'Apple SD Gothic Neo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: middle" x="261.1392" y="185.984781" transform="rotate(-0 261.1392 185.984781)">7c9d 그대로</text>
    </g>
    <g id="text_20">
-    <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="362.9184" y="186.592359" transform="rotate(-0 362.9184 186.592359)">개수만 맞춰요</text>
+    <text style="fill: #222222; font: 11px 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="362.9184" y="186.592359" transform="rotate(-0 362.9184 186.592359)">개수만 맞춤</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p2ac183d471">
+  <clipPath id="p9dd79f20ce">
    <rect x="18" y="18" width="424.08" height="199.584"/>
   </clipPath>
  </defs>
