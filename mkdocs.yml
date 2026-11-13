@@ -124,6 +124,9 @@ nav:
         - 16. 자바 서비스는 왜 늦게 뜰까요: kubernetes/16-jvm-startup.md
         - 17. Secret은 왜 암호가 아닐까요: kubernetes/17-secret.md
         - 18. 권한은 왜 꼭 필요한 만큼만 줄까요: kubernetes/18-least-privilege.md
+      - 3단계 · 보안:
+        - security/index.md
+        - 1. 디지털 서명, 로그인 토큰을 아무도 고쳐 쓰지 못하는 까닭: security/01-signature.md
   - 과학:
       - science.md
       - 인체:
